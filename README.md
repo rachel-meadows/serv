@@ -121,3 +121,23 @@ get, post, put, delete
 /quotes
 
 
+## Customer Routes
+
+### `GET /:id` Home Page after signup
+
+### `POST /:id/quotes` Create issue
+
+### `GET /:id/quotes` Job form confirmation 
+
+### 'GET /:id/quote/2` Quotes Page 
+
+### 'GET /:id/dashboard` Client dashboard
+
+## Business Routes 
+
+### `POST /:id/setup` Business info form setup
+
+### `POST /:id/` Business info form setup
+
+### `POST /api/v1/` Business info form setup
+
