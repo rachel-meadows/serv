@@ -104,3 +104,21 @@ Let's create a new application in Auth0, this application will be linked and con
 Now the server will be able to get a new access token and retrieve the user's roles. If the logged-in user has a Role(s), it will be displayed next to the name. (see `Nav.jsx`)
 
 🎉 Congratulations! Your application is now Authenticated with Auth0 🎉
+
+## Routes
+
+
+homepage
+/
+
+get, post, put, delete
+/jobs
+
+get, post, put, delete
+/users
+
+get, post, put, delete
+/quotes
+
+
+
