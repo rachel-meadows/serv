@@ -20,6 +20,117 @@ npm run dev # to start the dev server
 
 You can find the server running on [http://localhost:3000](http://localhost:3000).
 
+
+# Routes
+
+## General Routes
+
+**`GET /` Home Page**
+React route.
+
+**`GET /about` How it works Page** 
+React route.
+
+**`GET /services` Services Page**
+React route.
+
+**`Auth0 form`**
+Link - not a route.
+Redirects to `/login` or `/register`.
+
+**`/login`**
+React route.
+
+**`/register`**
+React route.
+User chooses 'business' or 'customer' userType.
+Conditionally renders either:
+- (For customer): Just a 'register' button. POSTs to `/customer`
+- (For businesses): Business info form and register button. POSTs to `/business`
+
+## Customer Routes
+
+**`POST /customer/jobs/add` Send data from /register**
+
+**`GET /customer/jobs/add` View form to submit a new job**
+POSTs to `/customer/jobs` (i.e. redirects to customer dashboard).
+
+**`GET /customer/jobs` View client dashboard with their existing jobs and button to add new**
+'Job submission complete' message shows on this page with a timeout.
+
+**`POST /customer/jobs` Submit a customer's job request**
+```json
+[
+  {
+    "id": 1,
+    "userId": "2",
+    "description": "Plumbing wanted",
+    "image": "pipes.jpeg",
+    "category": "Plumbing",
+    "priceMin": "50",
+    "priceMax": "100",
+    "dateAdded": "2022-05-04T21:15:34.334Z",
+    "status": "Pending",
+  }
+]
+```
+
+**`GET /customer/jobs/:id` View details of a specific job**
+
+**`PUT /customer/jobs/:id` Edit details of a specific job (stretch)**
+
+**`GET /customer/quotes` Customer route to view ALL quotes across ALL jobs**
+
+**`GET /customer/jobs/:id/quotes` Customer route to view the quotes for a specific job**
+Get to this route from the customer's list of jobs (/customer/jobs) by clicking on a specific job.
+
+**`GET /customer/jobs/quotes/:quotesid` Customer route to a particular quote for a specific job (stretch?)**
+Job `id` comes from props. (if that doesn't work, try something like /customer/jobs/:jobid/quotes/:quotesid).
+
+## Business Routes 
+
+**`POST /business` Send data from /register for businesses**
+
+**`GET /business/jobs` Business's view of currently available jobs**
+UseState and filter to only see open jobs in that particular business category.
+Each job links to
+
+**GET `/business/quote/add` View form to submit quote on a particular job**
+Retrieve data from props to specificy job's `id` in form.
+
+**POST `/business/quote/add` Data for quote on a particular job**
+
+```json
+[
+        {
+          id: 1,
+          user_id: 1,
+          price: 500,
+          date_added: '2022-05-04T21:15:34.334Z',
+          notes: 'We can do it for 500 if its quick',
+          business_id: null,
+        }
+]
+```
+
+**`GET /business/edit` Edit business form**
+
+**`PUT /business/edit` Edit business details**
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Pumbers Inc",
+    "website": "plimbing.com",
+    "category": "Plumbing",
+    "logo": "Plumbing",
+    "averageRating": "2",
+  }
+]
+```
+
+
 ## Details
 This repo includes:
 
@@ -104,88 +215,3 @@ Let's create a new application in Auth0, this application will be linked and con
 Now the server will be able to get a new access token and retrieve the user's roles. If the logged-in user has a Role(s), it will be displayed next to the name. (see `Nav.jsx`)
 
 🎉 Congratulations! Your application is now Authenticated with Auth0 🎉
-
-
-## Customer Routes
-
-**`GET /about` How it works Page** 
-
-**`GET /services` Services Page**
-
-**`POST /jobs/add` Client job form**
-
-
-```json
-[
-  {
-    "id": 1,
-    "userId": "2",
-    "description": "Plumbing wanted",
-    "image": "pipes.jpeg",
-    "category": "Plumbing",
-    "priceMin": "50",
-    "priceMax": "100",
-    "dateAdded": "",
-    "status": "Pending",
-  }
-]
-```
-
-
-
-**`GET /dashboard/complete` Job form confirmation ?**
-
-
-**`GET /dashboard` Existing client dashboard**
-
-
-**`GET /jobs/1/quotes` Quotes Page**
-
-
-**`GET /jobs/1/quotes/:id` Individual Quotes Page**
-
-
-## Business Routes 
-
-**`POST /business/add` Business info form setup**
-
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Pumbers Inc",
-    "website": "plimbing.com",
-    "category": "Plumbing",
-    "logo": "Plumbing",
-    "averageRating": "2",
-  }
-]
-```
-
-
-
-**`GET /business/jobs` List of jobs**
-
-
-**`POST /business/:id/quote` Send a quote**
-
-
-**`POST /business/edit` Edit business form**
-
-
-
-homepage
-/
-
-get, post, put, delete
-/jobs
-
-get, post, put, delete
-/users
-
-get, post, put, delete
-/quotes
-
-
-
