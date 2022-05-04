@@ -114,6 +114,15 @@ Now the server will be able to get a new access token and retrieve the user's ro
 
 ### `POST /jobs/add` Client job form 
 
+Request:
+
+```json
+[
+  {
+    "id": 1,
+  
+  }
+]
 
 ### `GET /dashboard/complete` Job form confirmation ? 
 
