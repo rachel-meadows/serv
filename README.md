@@ -123,11 +123,11 @@ get, post, put, delete
 
 ## Customer Routes
 
-### `GET /:id` Home Page after signup
+### `GET /` Home Page after signup
 
-### `POST /:id/quotes` Create issue
+### `POST /quotes` Create issue
 
-### `GET /:id/quotes` Job form confirmation 
+### `GET /quotes/:id` Job form confirmation 
 
 ### 'GET /:id/quote/2` Quotes Page 
 
