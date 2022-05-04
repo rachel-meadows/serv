@@ -108,13 +108,30 @@ Now the server will be able to get a new access token and retrieve the user's ro
 
 ## Customer Routes
 
-
-
 **`GET /about` How it works Page** 
 
 **`GET /services` Services Page**
 
 **`POST /jobs/add` Client job form**
+
+
+```json
+[
+  {
+    "id": 1,
+    "user_id": "",
+    "description": "",
+    "image": "".
+    "category": "",
+    "price_min": "",
+    "price_max": "",
+    "date_added": "",
+    "status": "",
+  }
+]
+```
+
+
 
 **`GET /dashboard/complete` Job form confirmation ?**
 
