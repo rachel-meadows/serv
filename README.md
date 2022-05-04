@@ -108,24 +108,6 @@ Now the server will be able to get a new access token and retrieve the user's ro
 
 ## Customer Routes
 
-**GET `/api/v1/products`**
-
-Response:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "fish",
-    "shortDescription": "Such a great tool",
-    "longDescription": "it's a fish...",
-    "price": 32.5,
-    "quantity": 5,
-    "picture": "fish_1.png",
-    "category": "miscellaneous",
-    "condition": "used"
-  }
-]
 
 
 **`GET /about` How it works Page** 
