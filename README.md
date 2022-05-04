@@ -114,21 +114,29 @@ Now the server will be able to get a new access token and retrieve the user's ro
 
 ### `POST /jobs/add` Client job form 
 
+
 ### `GET /dashboard/complete` Job form confirmation ? 
+
 
 ### `GET /dashboard` Existing client dashboard 
 
-### 'GET /jobs/1/quotes` Quotes Page 
 
-### 'GET /jobs/1/quotes/:id` Individual Quotes Page 
+### `GET /jobs/1/quotes` Quotes Page 
+
+
+### `GET /jobs/1/quotes/:id` Individual Quotes Page 
+
 
 ## Business Routes 
 
 ### `POST /business/add` Business info form setup
 
+
 ### `GET /business/jobs` List of jobs 
- 
+
+
 ### `POST /business/:id/quote` Send a quote 
+
 
 ### `POST /business/edit` Edit business form 
 
