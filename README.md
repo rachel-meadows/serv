@@ -132,34 +132,34 @@ Response:
 
 **`GET /services` Services Page**
 
-### `POST /jobs/add` Client job form 
+**`POST /jobs/add` Client job form **
 
 
 
-### `GET /dashboard/complete` Job form confirmation ? 
+**`GET /dashboard/complete` Job form confirmation ? **
 
 
-### `GET /dashboard` Existing client dashboard 
+**`GET /dashboard` Existing client dashboard **
 
 
-### `GET /jobs/1/quotes` Quotes Page 
+**`GET /jobs/1/quotes` Quotes Page **
 
 
-### `GET /jobs/1/quotes/:id` Individual Quotes Page 
+**`GET /jobs/1/quotes/:id` Individual Quotes Page **
 
 
 ## Business Routes 
 
-### `POST /business/add` Business info form setup
+**`POST /business/add` Business info form setup**
 
 
-### `GET /business/jobs` List of jobs 
+** `GET /business/jobs` List of jobs **
 
 
-### `POST /business/:id/quote` Send a quote 
+**`POST /business/:id/quote` Send a quote **
 
 
-### `POST /business/edit` Edit business form 
+**`POST /business/edit` Edit business form **
 
 
 
