@@ -150,6 +150,21 @@ Now the server will be able to get a new access token and retrieve the user's ro
 **`POST /business/add` Business info form setup**
 
 
+```json
+[
+  {
+    "id": 1,
+    "name": "Pumbers Inc",
+    "website": "plimbing.com",
+    "category": "Plumbing",
+    "logo": "Plumbing",
+    "averageRating": "2",
+  }
+]
+```
+
+
+
 **`GET /business/jobs` List of jobs**
 
 
