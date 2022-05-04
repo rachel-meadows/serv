@@ -119,14 +119,14 @@ Now the server will be able to get a new access token and retrieve the user's ro
 [
   {
     "id": 1,
-    "user_id": "",
-    "description": "",
-    "image": "".
-    "category": "",
-    "price_min": "",
-    "price_max": "",
+    "user_id": "2",
+    "description": "Plumbing wanted",
+    "image": "pipes.jpeg",
+    "category": "Plumbing",
+    "price_min": "50",
+    "price_max": "100",
     "date_added": "",
-    "status": "",
+    "status": "Pending",
   }
 ]
 ```
