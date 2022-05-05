@@ -50,7 +50,7 @@ Conditionally renders either:
 
 ## Customer Routes
 
-**`POST /customer/jobs/add` Send data from /register**
+**`POST /users` Send data from /register**
 
 **`GET /customer/jobs/add` View form to submit a new job**
 POSTs to `/customer/jobs` (i.e. redirects to customer dashboard).
@@ -105,10 +105,11 @@ Retrieve data from props to specificy job's `id` in form.
         {
           id: 1,
           user_id: 1,
+          job_id: 
           price: 500,
           date_added: '2022-05-04T21:15:34.334Z',
           notes: 'We can do it for 500 if its quick',
-          business_id: null,
+          business_id: null
         }
 ]
 ```
