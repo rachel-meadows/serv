@@ -1,13 +1,14 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
-import PingRoutes from './PingRoutes'
 import Registration from './Registration'
-import Users from './Users'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './Layout/Layout'
 import HowItWorks from './home/HowItWorks'
 import Services from './home/Services'
+import Home from './home/Home'
+import AddJob from './Customer/AddJob'
+import QuotesList from './Customer/QuotesList'
 
 function App() {
   cacheUser(useAuth0)
@@ -17,9 +18,10 @@ function App() {
       <Routes>
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/" element={<Users />} />
-        <Route path="/" element={<PingRoutes />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/customer/add" element={<AddJob />} />
+        <Route path="/customer/quote" element={<QuotesList />} />
       </Routes>
     </Layout>
   )
