@@ -25,6 +25,7 @@ body {
     hsl(195deg 31% 64%) 89%,
     hsl(200deg 27% 64%) 100%
   );
+  background-attachment: fixed;
 }
 
 $serv-darkgreen: #59d74f;
@@ -110,4 +111,58 @@ nav li {
 
 nav a {
   color: rgb(0, 44, 20);
+}
+
+// REGISTRATION PAGE
+.registration > .page-title {
+  text-align: center;
+  color: white;
+  font-size: 5vw;
+  margin-bottom: 1rem;
+}
+
+.registration > .hero-logo {
+  text-align: center;
+}
+
+.registration > .hero-logo > img {
+  width: 200px;
+}
+
+.registration > .user-type-title {
+  color: #daffd5;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.registration > .user-type {
+  text-align: center;
+}
+
+.registration > .user-type > button {
+  border: none;
+  padding: 3rem 2rem;
+  margin: 1rem;
+  width: 300px;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  box-shadow: 0px 3px 10px rgb(69, 69, 69);
+}
+
+.registration > .user-type > .customer-btn {
+  background: #00ddff;
+  color: white;
+}
+
+.registration > .user-type > .customer-btn:hover {
+  background: #44e6ff;
+}
+
+.registration > .user-type > .business-btn {
+  background: #59d74f;
+  color: white;
+}
+
+.registration > .user-type > .business-btn:hover {
+  background: #6eeb65;
 }

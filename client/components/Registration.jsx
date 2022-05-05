@@ -63,9 +63,12 @@ function Registration() {
   }
 
   return (
-    <>
-      <h2>Welcome to Serv.</h2>
-      <h3>Select what type of user you are..</h3>
+    <div className="registration">
+      <h2 className="page-title">Welcome to</h2>
+      <div className="hero-logo">
+        <img src="/serv-logo-light.png" alt="Welcome to Serv" />
+      </div>
+      <h3 className="user-type-title">Select what type of user you are..</h3>
       <div className="user-type">
         <button className="customer-btn" onClick={handleSetUserTypeCustomer}>
           I am a customer
@@ -153,10 +156,16 @@ function Registration() {
           </div>
           <div className="input-group">
             <label htmlFor="category">Business Category</label>
-            <select name="category" id="category">
-              <option value="">Plumbing</option>
-              <option value="">Gardening</option>
-              <option value="">Building</option>
+            <select
+              name="category"
+              id="category"
+              required
+              onChange={handleChange}
+            >
+              <option value="">Select</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="gardening">Gardening</option>
+              <option value="building">Building</option>
             </select>
           </div>
           <div className="input-group">
@@ -168,46 +177,7 @@ function Registration() {
           </div>
         </form>
       )}
-    </>
-    // <section className="form">
-    //   <h2>Register Profile</h2>
-    //   <form className="registration">
-    //     <label htmlFor="auth0Id">auth0Id</label>
-    //     <input
-    //       name="auth0Id"
-    //       value={form.auth0Id}
-    //       onChange={handleChange}
-    //       disabled={true}
-    //     ></input>
-
-    // <label htmlFor="name">Name</label>
-    // <input
-    //   name="name"
-    //   value={form.name}
-    //   onChange={handleChange}
-    //   disabled={true}
-    // ></input>
-
-    // <label htmlFor="email">Email</label>
-    // <input
-    //   name="email"
-    //   value={form.email}
-    //   onChange={handleChange}
-    //   disabled={true}
-    // ></input>
-
-    //     <label htmlFor="description">Description</label>
-    //     <textarea
-    //       name="description"
-    //       value={form.description}
-    //       onChange={handleChange}
-    //       cols={3}
-    //     ></textarea>
-    //     <button type="button" onClick={handleClick}>
-    //       Register
-    //     </button>
-    //   </form>
-    // </section>
+    </div>
   )
 }
 
