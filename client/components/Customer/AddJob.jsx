@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 function AddJob() {
-  const [inputs, setInputs] = useState({})
+  const userId = useSelector((state) => state.user.userId)
+  const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
     const name = event.target.name
@@ -20,38 +22,47 @@ function AddJob() {
       <form onSubmit={handleSubmit}>
         <div>
           <textarea
-            name="form"
+            name="description"
             placeholder="What can we help you with?"
             onChange={handleChange}
+            required
           ></textarea>
         </div>
         <div>
           <h3>Budget Estimate</h3>
           $
           <input
-            name="minEstimate"
+            name="priceMin"
             type="number"
             min={0}
             onChange={handleChange}
+            required
           />
           $
           <input
-            name="maxEstimate"
+            name="priceMax"
             type="number"
             min={0}
             onChange={handleChange}
+            required
           />
         </div>
         <div>
           <input
             type="file"
             id="myImage"
-            name="imagename"
+            name="image"
             onChange={handleChange}
           />
         </div>
         <div>
-          <select name="category" id="category" onChange={handleChange}>
+          <select
+            name="category"
+            id="category"
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Category</option>
             <option value="plumbing">Plumbing</option>
             <option value="gardening">Gardening</option>
             <option value="building">Building</option>
