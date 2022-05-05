@@ -6,6 +6,8 @@ import Registration from './Registration'
 import Users from './Users'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './Layout/Layout'
+import HowItWorks from './home/HowItWorks'
+import Services from './home/Services'
 
 function App() {
   cacheUser(useAuth0)
@@ -13,6 +15,8 @@ function App() {
   return (
     <Layout>
       <Routes>
+        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/" element={<Users />} />
         <Route path="/" element={<PingRoutes />} />
         <Route path="/register" element={<Registration />} />
