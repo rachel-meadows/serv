@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
-import PingRoutes from './PingRoutes'
 import Registration from './Registration'
 import Users from './Users'
 import { Routes, Route } from 'react-router-dom'
@@ -18,7 +17,6 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/services" element={<Services />} />
         <Route path="/" element={<Users />} />
-        <Route path="/" element={<PingRoutes />} />
         <Route path="/register" element={<Registration />} />
       </Routes>
     </Layout>
