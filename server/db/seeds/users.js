@@ -8,21 +8,18 @@ exports.seed = function (knex) {
           auth0_id: 'auth0 placeholder',
           email: 'example1@example.com',
           type: 'customer',
-          business_id: null,
         },
         {
           id: 2,
           auth0_id: 'auth0 placeholder',
           email: 'example2@example.com',
           type: 'customer',
-          business_id: null,
         },
         {
           id: 3,
           auth0_id: 'auth0 placeholder',
           email: 'example3@example.com',
           type: 'business',
-          business_id: 1,
         },
       ])
     })

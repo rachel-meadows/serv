@@ -41,8 +41,23 @@ function getQuotesByJob(id, db = connection) {
     )
 }
 
+function getQuote(id, db = connection) {
+  return db('quotes')
+    .where('id', id)
+    .select(
+      'id',
+      'user_id as userId',
+      'job_id as jobId',
+      'price',
+      'date_added as dateAdded',
+      'notes',
+      'status'
+    )
+}
+
 module.exports = {
   addQuote,
   getQuotesByCustomer,
   getQuotesByJob,
+  getQuote,
 }
