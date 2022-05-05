@@ -8,6 +8,8 @@ import HowItWorks from './home/HowItWorks'
 import Services from './home/Services'
 import Home from './home/Home'
 import AddJob from './Customer/AddJob'
+import JobsList from './Customer/JobsList'
+
 
 function App() {
   cacheUser(useAuth0)
@@ -20,6 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
+        {/* THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS */}
+        <Route path="/individualJobsList" element={<JobsList />} />
       </Routes>
     </Layout>
   )
