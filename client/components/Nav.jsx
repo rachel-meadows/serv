@@ -27,31 +27,33 @@ function Nav() {
 
   return (
     <nav>
-      <section className="nav-item">
+      <ul>
         <IfAuthenticated>
-          <p>
+          <li>
             Hello, {user.name} {user.roles ? `(${user.roles})` : null}
-          </p>
-          <section className="sign">
+          </li>
+          <li>
             <a href="/" onClick={handleLogoff} className="nav-link">
               Log out
             </a>
-          </section>
+          </li>
         </IfAuthenticated>
         <IfNotAuthenticated>
-          {/* <section className='nav-item'> */}
-          <p>Hello, guest</p>
-          <section className="sign">
+          <li>
+            <p>Hello, guest</p>{' '}
+          </li>
+          <li>
             <a href="/" onClick={handleLogin} className="nav-link">
               Sign in
             </a>
+          </li>
+          <li>
             <a href="/" onClick={handleRegister} className="nav-link">
               Register
             </a>
-          </section>
-          {/* </section> */}
+          </li>
         </IfNotAuthenticated>
-      </section>
+      </ul>
     </nav>
   )
 }
