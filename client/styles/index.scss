@@ -11,6 +11,25 @@ body {
   margin: 0;
 }
 
+body {
+  background-image: linear-gradient(
+    315deg,
+    hsl(116deg 37% 71%) 0%,
+    hsl(138deg 39% 68%) 11%,
+    hsl(152deg 41% 66%) 22%,
+    hsl(163deg 40% 64%) 33%,
+    hsl(171deg 39% 62%) 44%,
+    hsl(178deg 36% 61%) 56%,
+    hsl(184deg 36% 62%) 67%,
+    hsl(190deg 34% 63%) 78%,
+    hsl(195deg 31% 64%) 89%,
+    hsl(200deg 27% 64%) 100%
+  );
+}
+
+$serv-darkgreen: #59d74f;
+$serv-lightgreen: #d4ffd3;
+
 a {
   text-decoration: none;
   color: inherit;
@@ -22,22 +41,66 @@ a {
   height: 100vh;
 }
 
-header {
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.flex {
   display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-align-center {
   align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex-justify-space-between {
   justify-content: space-between;
-  background: rgb(154, 233, 81);
+}
+
+header {
+  background: $serv-lightgreen;
+  padding: 0 2rem;
+}
+
+header a > .logo {
+  margin: 0;
+  line-height: 0;
+}
+
+header a > .logo > img {
+  width: 80px;
+  height: 80px;
+  margin: 1rem 0;
+}
+
+main {
+  padding: 0 2rem;
 }
 
 footer {
   margin-top: auto;
   text-align: center;
-  background: rgb(154, 233, 81);
+  background: $serv-lightgreen;
+  padding: 0 2rem;
 }
 
 nav > ul {
   display: flex;
   list-style: none;
+  margin: 0;
 }
 
 nav li {
