@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import QuotesItem from './QuotesItem'
+import { useSelector } from 'react-redux'
 
 // import { APIgetJobQuotes } from '../../apis/quotes'
 
 function QuotesList() {
 
-  // const quotes = fetchQuotes()
-  // the data is hardcoded at the moment. Will need to pull from the api once built 
-  // where can we generate the user_id and job_id from 
+  // const quotes = useSelector((state) => state.quotes)
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(fetchQuotes())
+  // }, [])
+  // the data is hardcoded at the moment.t 
+  // need related user_id and job_id from 
 
   const quotes = [
     {
@@ -39,9 +44,6 @@ function QuotesList() {
     }
   ]
 
-  // function handleSubmit(event) {
-  //   event.preventDefault()
-  // }
 
   return (
     <div>
