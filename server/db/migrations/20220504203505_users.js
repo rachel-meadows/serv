@@ -4,7 +4,6 @@ exports.up = function (knex) {
     table.string('auth0_id')
     table.string('email')
     table.string('type')
-    table.integer('business_id').references('businesses.id')
   })
 }
 
