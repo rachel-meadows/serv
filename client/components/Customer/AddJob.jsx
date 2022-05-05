@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { APIaddJob } from '../../apis/customer'
 
 function AddJob() {
   const [inputs, setInputs] = useState({})
@@ -9,8 +10,9 @@ function AddJob() {
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    await APIaddJob(inputs)
     console.log(inputs)
   }
   return (
@@ -20,7 +22,7 @@ function AddJob() {
       <form onSubmit={handleSubmit}>
         <div>
           <textarea
-            name="form"
+            name="description"
             placeholder="What can we help you with?"
             onChange={handleChange}
           ></textarea>
@@ -29,14 +31,14 @@ function AddJob() {
           <h3>Budget Estimate</h3>
           $
           <input
-            name="minEstimate"
+            name="priceMin"
             type="number"
             min={0}
             onChange={handleChange}
           />
           $
           <input
-            name="maxEstimate"
+            name="priceMax"
             type="number"
             min={0}
             onChange={handleChange}
