@@ -8,6 +8,7 @@ import HowItWorks from './home/HowItWorks'
 import Services from './home/Services'
 import Home from './home/Home'
 import AddJob from './Customer/AddJob'
+import QuotesList from './Customer/QuotesList'
 
 function App() {
   cacheUser(useAuth0)
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
+        <Route path="/customer/quote" element={<QuotesList />} />
       </Routes>
     </Layout>
   )
