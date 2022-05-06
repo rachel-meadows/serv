@@ -35,10 +35,9 @@ function App() {
 
         <Route path="/business" element={<BusinessJobsList />} />
         <Route path="/business/:businessId" element={<BusinessInfo />} />
-        {/* <Route path="/business/:jobId" element={} />
-        <Route path="/business/jobs" element={} />
-        <Route path="/business/jobs/:jobId" element={} /> */}
-
+        {/* <Route path="/business/:jobId" element={} /> */}
+        {/* <Route path="/business/jobs" element={} /> */}
+        {/* <Route path="/business/jobs/:jobId" element={} />  */}
 
       </Routes>
     </Layout>
