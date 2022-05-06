@@ -13,7 +13,6 @@ function AddJob() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(inputs)
   }
   return (
     <div>
