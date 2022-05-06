@@ -10,6 +10,7 @@ import Home from './home/Home'
 import AddJob from './customer/CustomerJobAdd'
 import JobsList from './customer/CustomerJobsList'
 import QuotesList from './customer/CustomerQuotesList'
+import CustomerJobCompleted from './customer/CustomerJobCompleted'
 import BusinessInfo from './business/BusinessInfo'
 import BusinessJobsList from './business/BusinessJobsList'
 import WaitIndicator from './WaitIndicator'
@@ -25,6 +26,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
+        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
         <Route
           path="/customer"
           element={
@@ -43,7 +45,6 @@ function App() {
         />
         {/* <Route path="/customer/active" element={} /> */}
         {/* <Route path="/customer/complete" element={} /> */}
-
         <Route
           path="/business"
           element={

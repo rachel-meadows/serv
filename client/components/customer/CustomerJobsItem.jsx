@@ -4,7 +4,7 @@ function JobsListItem(props) {
   const job = props.job
 
   function showDetails() {
-   props.showDetails(job.id)
+   props.showDetails(job.id, job.status)
   }
 
   return (
