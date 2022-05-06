@@ -11,6 +11,7 @@ import AddJob from './Customer/AddJob'
 import JobsList from './Customer/JobsList'
 import QuotesList from './Customer/QuotesList'
 import BusinessJobsList from './business/BusinessJobsList'
+import BusJobItem from './business/BusJobItem'
 
 function App() {
   cacheUser(useAuth0)
@@ -27,6 +28,7 @@ function App() {
         <Route path="/customer/jobs" element={<JobsList />} />
         <Route path="/customer/quote" element={<QuotesList />} />
         <Route path="/business/jobs" element={<BusinessJobsList />} />
+        <Route path="/business/jobs/:id" element={<BusJobItem />} />
       </Routes>
     </Layout>
   )

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-// import BusJobItem from './BusJobItem'
+import BusJobItem from './BusJobItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOpenJobs } from '../../actions/business'
 
@@ -40,7 +40,7 @@ function BusinessJobsList() {
       <section>
         {jobListing?.map((jobListing) => {
           console.log(jobListing)
-          // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </section>
     </div>
