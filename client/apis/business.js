@@ -3,7 +3,13 @@ import request from 'superagent'
 const rootUrl = '/api/v1/business'
 
 export function APIgetJobs() {
-  return request.get(rootUrl + `/jobs`).then((res) => {
+  return request.get(rootUrl).then((res) => {
+    return res.body
+  })
+}
+
+export function APIgetBusinessById(businessId) {
+  return request.get(rootUrl + `/${businessId}`).then((res) => {
     return res.body
   })
 }

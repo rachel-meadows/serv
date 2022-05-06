@@ -3,6 +3,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.integer('user_id').references('users.id')
     table.integer('job_id').references('jobs.id')
+    table.integer('business_id').references('businesses.id')
     table.int('price')
     table.date('date_added')
     table.string('notes')

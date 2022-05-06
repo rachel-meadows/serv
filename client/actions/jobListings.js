@@ -1,4 +1,5 @@
 import { getJobs } from '../apis/jobListings'
+import { showError } from '../actions/error'
 
 export const FETCH_JOB_LISTINGS = 'FETCH_JOB_LISTINGS'
 
@@ -8,7 +9,8 @@ export function fetchJobsSuccess(jobs) {
     jobs,
   }
 }
-//THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
+
+// THIS DISPLAYS A CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
 export function fetchJobs() {
   return (dispatch) => {
     return getJobs()

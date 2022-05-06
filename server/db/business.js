@@ -1,10 +1,10 @@
 const connection = require('./connection')
 
 function addBusiness(input, db = connection) {
-  const { userId, name, website, category, logo } = input
+  const { userId, businessName, website, category, logo } = input
   const business = {
     user_id: userId,
-    name,
+    business_name: businessName,
     website,
     category,
     logo,
@@ -14,10 +14,10 @@ function addBusiness(input, db = connection) {
 }
 
 function editBusiness(id, input, db = connection) {
-  const { name, website, category, logo } = input
+  const { businessName, website, category, logo } = input
   const business = {
     user_id: id,
-    name,
+    business_name: businessName,
     website,
     category,
     logo,
@@ -26,7 +26,18 @@ function editBusiness(id, input, db = connection) {
 }
 
 function getBusiness(id, db = connection) {
-  return db('businesses').where('id', id).select()
+  return db('businesses')
+    .where('id', id)
+    .select(
+      'id',
+      'user_id as userId',
+      'business_name as businessName',
+      'website',
+      'category',
+      'logo',
+      'average_rating as averageRating'
+    )
+    .first()
 }
 
 module.exports = {
