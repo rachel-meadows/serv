@@ -166,3 +166,15 @@ nav a {
 .registration > .user-type > .business-btn:hover {
   background: #6eeb65;
 }
+
+.registration > form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.registration > form > .input-group {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

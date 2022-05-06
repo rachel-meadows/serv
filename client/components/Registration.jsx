@@ -34,6 +34,7 @@ function Registration() {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
     console.log(form)
+    navigate('/customer')
     // try {
     //   await addUser(form)
     //   navigate('/')
@@ -46,6 +47,7 @@ function Registration() {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
     console.log(form)
+    navigate('/business')
     // try {
     //   await addUser(form)
     //   navigate('/')
@@ -110,7 +112,7 @@ function Registration() {
         </form>
       )}
       {userType === 'business' && (
-        <form onSubmit={handleAddBusiness}>
+        <form onSubmit={handleAddBusiness} className="flex flex-col">
           <h3>Business</h3>
           <div className="input-group">
             <input
