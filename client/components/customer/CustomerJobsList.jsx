@@ -9,13 +9,14 @@ import JobsListItem from './CustomerJobsItem'
 //THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
 function JobsList({ children }) {
   const jobs = useSelector((state) => state.jobListings)
+  console.log('jobs', jobs)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchJobs())
   }, [])
 
-  function showDetails(jobsId){
+  function showDetails(jobsId) {
     //navigate to route that displays Your Listing Details
     navigate(`/customer/quote/${jobsId}`)
   }
@@ -24,13 +25,7 @@ function JobsList({ children }) {
     <div className="jobList">
       {/* {children} This holds the WaitIndicator (from App) */}
       {jobs.map((job) => {
-        return (
-          <JobsListItem
-            key={job.id}
-            job={job}
-            showDetails={showDetails}
-          />
-        )
+        return <JobsListItem key={job.id} job={job} showDetails={showDetails} />
       })}
     </div>
   )
