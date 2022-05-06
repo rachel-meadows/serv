@@ -2,7 +2,7 @@ import { GET_JOBS_SUCCESS } from '../actions/business'
 
 const initialState = []
 
-const openJobs = (state = initialState, action) => {
+export const openJobs = (state = initialState, action) => {
   switch (action.type) {
     case GET_JOBS_SUCCESS:
       // Two layers deep to get the array within the object returned from DB
@@ -11,5 +11,3 @@ const openJobs = (state = initialState, action) => {
       return state
   }
 }
-
-export default openJobs
