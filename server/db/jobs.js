@@ -35,16 +35,7 @@ function getJobsByCustomer(id, db = connection) {
 }
 
 function addJob(input, db = connection) {
-  const {
-    userId,
-    description,
-    image,
-    category,
-    priceMin,
-    priceMax,
-    dateAdded,
-    status,
-  } = input
+  const { userId, description, image, category, priceMin, priceMax } = input
   const job = {
     user_id: userId,
     description,
@@ -52,8 +43,8 @@ function addJob(input, db = connection) {
     category,
     price_min: priceMin,
     price_max: priceMax,
-    date_added: dateAdded,
-    status,
+    date_added: new Date(Date.now()),
+    status: 'open',
   }
   return db('jobs').insert(job)
 }
