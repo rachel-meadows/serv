@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchOpenJobs } from '../../actions/business'
 
 function BusinessJobsList() {
-  const jobListing = useSelector((state) => state.openJobs) 
+  const jobListing = useSelector((state) => state.openJobs)
   const dispatch = useDispatch()
-  
+
   // const [inputs, setInputs] = useState({ userId })
 
   // const handleChange = (event) => {
@@ -14,7 +14,7 @@ function BusinessJobsList() {
   //   const value = event.target.value
   //   setInputs((values) => ({ ...values, [name]: value }))
   // }
-  
+
   // const [inputs, setInputs] = useState({ userId })
 
   // const handleChange = (event) => {
@@ -39,6 +39,7 @@ function BusinessJobsList() {
       <h1>Job Listings</h1>
       <section>
         {jobListing?.map((jobListing) => {
+          return jobListing.description
           console.log(jobListing)
           // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}

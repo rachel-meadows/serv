@@ -19,6 +19,7 @@ function getQuotesByCustomer(id, db = connection) {
     .select(
       'id',
       'user_id as userId',
+      'business_id as businessId',
       'job_id as jobId',
       'price',
       'date_added as dateAdded',
@@ -33,6 +34,7 @@ function getQuotesByJob(id, db = connection) {
     .select(
       'id',
       'user_id as userId',
+      'business_id as businessId',
       'job_id as jobId',
       'price',
       'date_added as dateAdded',
@@ -47,6 +49,7 @@ function getQuote(id, db = connection) {
     .select(
       'id',
       'user_id as userId',
+      'business_id as businessId',
       'job_id as jobId',
       'price',
       'date_added as dateAdded',

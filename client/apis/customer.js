@@ -29,7 +29,7 @@ export function APIgetCustomerQuotes(customerId) {
 }
 
 export function APIgetJobQuotes(jobId) {
-  return request.get(rootUrl + `/${jobId}/quotes`).then((res) => {
+  return request.get(rootUrl + `/quote/${jobId}`).then((res) => {
     return res.body
   })
 }

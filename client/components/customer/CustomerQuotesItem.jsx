@@ -1,52 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { APIgetBusinessById } from '../../apis/business'
 
 function QuotesItem(props) {
-  
-  const { id, user_id, job_id, business_id, notes, price } = props.quote
+  const { id, userId, jobId, businessId, notes, price } = props.quote
   function handleSubmit(event) {
     event.preventDefault()
   }
 
-  //Business details to display the business name based on the business_id
-  // Replace with redux
-  const businessDetails = [
-  {
-    id: 1, 
-    name: 'Plumbers R Us',
-    website: 'url',
-    category: 'plumbing',
-    logo: 'url',
-    average_rating: 4.6
-  },
-  {
-    id: 2, 
-    name: 'Gardenscapes',
-    website: 'url',
-    category: 'gardening',
-    logo: 'url',
-    average_rating: 2.1
-  },
-  {
-    id: 3, 
-    name: 'Earnest Catering',
-    website: 'url',
-    category: 'plumbing',
-    logo: 'url',
-    average_rating: 5
-  }
-]
+  const [business, setBusiness] = useState({})
 
-const businessName = businessDetails.find((obj) => obj.id === business_id).name
+  useEffect(() => {
+    APIgetBusinessById(businessId).then((data) => {
+      setBusiness(data)
+    })
+  }, [])
 
   return (
     <>
       <h1>Customer Quotes</h1>
       <section>
         <div className="flex quoteList-item"></div>
-        <Link to={`/business/details/${business_id}`}>{businessName}</Link>
-        <p key={id}>{user_id}</p>
-        <p>{job_id}</p>
+        <Link to={`/business/${businessId}`}>{business.name}</Link>
+        <p key={id}>{userId}</p>
+        <p>{jobId}</p>
         <p>{notes}</p>
         <p>${price}</p>
         <button className="accept-btn" onClick={handleSubmit}>
