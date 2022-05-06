@@ -4,6 +4,19 @@ const dbQuotes = require('../db/quotes')
 const dbBusiness = require('../db/business')
 const router = express.Router()
 
+// GET /business
+router.get('/', async (req, res) => {
+  try {
+    dbJobs.getOpenJobs().then((jobs) => {
+      res.json({ jobs })
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get list of all jobs' })
+  }
+})
+
 // GET /business/:jobId
 router.get('/:jobId', async (req, res) => {
   const { jobId } = req.params
@@ -30,19 +43,6 @@ router.get('/:businessId', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to find busines by business ID' })
-  }
-})
-
-// GET /business/jobs
-router.get('/jobs', async (req, res) => {
-  try {
-    dbJobs.getOpenJobs().then((jobs) => {
-      res.json({ jobs })
-      return null
-    })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Unable to get list of all jobs' })
   }
 })
 

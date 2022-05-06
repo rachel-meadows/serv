@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchOpenJobs } from '../../actions/business'
 
 function BusinessJobsList() {
-  const jobListing = useSelector((state) => state.openJobs)
+  const jobListings = useSelector((state) => state.openJobs)
   const dispatch = useDispatch()
 
   // const [inputs, setInputs] = useState({ userId })
@@ -36,9 +36,9 @@ function BusinessJobsList() {
         <option value="building">Building</option>
       </select>
 
-      <h1>Job Listings</h1>
+      <h1>Open Job Listings</h1>
       <section>
-        {jobListing?.map((jobListing) => {
+        {jobListings?.map((jobListing) => {
           return jobListing.description
           console.log(jobListing)
           // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
