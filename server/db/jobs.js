@@ -53,7 +53,7 @@ function addJob(input, db = connection) {
     price_min: priceMin,
     price_max: priceMax,
     date_added: dateAdded,
-    status,
+    status: 'open',
   }
   return db('jobs').insert(job)
 }
