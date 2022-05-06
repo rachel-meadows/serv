@@ -88,7 +88,8 @@ header a > .logo > img {
 }
 
 main {
-  padding: 0 2rem;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
 }
 
 footer {
@@ -168,13 +169,52 @@ nav a {
 }
 
 .registration > form {
-  width: 300px;
-  margin: 0 auto;
+  background: #fff;
+  max-width: 380px;
+  margin: 2rem auto 0 auto;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.registration > form > h3 {
+  color: #00ddff;
+  text-align: center;
 }
 
 .registration > form > .input-group {
-  width: 400px;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+}
+.registration > form > .input-group > label {
+  color: #000;
+}
+
+.registration > form > .input-group > input {
+  width: 160px;
+  padding: 0.25rem;
+}
+
+.registration > form > .input-group > .business-category {
+  width: 160px;
+  padding: 0.25rem;
+}
+.registration > form > .input-group > button {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: #59d74f;
+  color: #fff;
+  box-shadow: 0px 1px 3px rgb(63, 63, 63);
+  border-radius: 0.5rem;
+  margin: 1rem auto 0 auto;
+}
+
+// media queries -----------------------------------------------------------------------------------
+@media only screen and (min-width: 750px) {
+  .registration > .page-title {
+    font-size: 38px;
+  }
+  .registration > .user-type-title {
+    font-size: 30px;
+  }
 }

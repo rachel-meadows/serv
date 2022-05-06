@@ -91,9 +91,10 @@ function Registration() {
             />
           </div>
           <div className="input-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="userName">Name</label>
             <input
-              name="name"
+              name="userName"
+              id="userName"
               value={form.name}
               onChange={handleChange}
               disabled={true}
@@ -108,12 +109,14 @@ function Registration() {
               disabled={true}
             />
           </div>
-          <button>Register as Customer</button>
+          <div className="input-group">
+            <button>Register as Customer</button>
+          </div>
         </form>
       )}
       {userType === 'business' && (
         <form onSubmit={handleAddBusiness} className="flex flex-col">
-          <h3>Business</h3>
+          <h3 className="business-details-title">Business Details</h3>
           <div className="input-group">
             <input
               name="auth0Id"
@@ -123,11 +126,11 @@ function Registration() {
             />
           </div>
           <div className="input-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="userName">Name</label>
             <input
-              name="name"
+              name="userName"
               value={form.name}
-              id="name"
+              id="userName"
               onChange={handleChange}
               disabled={true}
             />
@@ -142,7 +145,6 @@ function Registration() {
               disabled={true}
             />
           </div>
-          <h3>Tell your customers about your business!</h3>
           <div className="input-group">
             <label htmlFor="businessName">Business Name</label>
             <input
@@ -160,6 +162,7 @@ function Registration() {
             <label htmlFor="category">Business Category</label>
             <select
               name="category"
+              className="business-category"
               id="category"
               required
               onChange={handleChange}
