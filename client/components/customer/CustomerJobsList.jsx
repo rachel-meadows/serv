@@ -9,7 +9,6 @@ import JobsListItem from './CustomerJobsItem'
 //THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
 function JobsList({ children }) {
   const jobs = useSelector((state) => state.jobListings)
-  console.log('jobs', jobs)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {

@@ -26,7 +26,18 @@ function editBusiness(id, input, db = connection) {
 }
 
 function getBusiness(id, db = connection) {
-  return db('businesses').where('id', id).select().first()
+  return db('businesses')
+    .where('id', id)
+    .select(
+      'id',
+      'user_id as userId',
+      'business_name as businessName',
+      'website',
+      'category',
+      'logo',
+      'average_rating as averageRating'
+    )
+    .first()
 }
 
 module.exports = {
