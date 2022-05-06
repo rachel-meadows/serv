@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import QuotesItem from './QuotesItem'
+import QuotesItem from './CustomerQuotesItem'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 

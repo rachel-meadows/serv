@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { fetchJobs } from '../../actions/jobListings'
 
-import JobsListItem from './JobsItem'
+import JobsListItem from './CustomerJobsItem'
 
 //THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
 function JobsList({ children }) {

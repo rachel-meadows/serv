@@ -7,10 +7,14 @@ import Layout from './Layout/Layout'
 import HowItWorks from './home/HowItWorks'
 import Services from './home/Services'
 import Home from './home/Home'
-import AddJob from './Customer/AddJob'
-import JobsList from './Customer/JobsList'
-import QuotesList from './Customer/QuotesList'
+import AddJob from './customer/CustomerJobAdd'
+import JobsList from './customer/CustomerJobsList'
+import QuotesList from './customer/CustomerQuotesList'
+
 import BusinessInfo from './business/BusinessInfo'
+
+import BusinessJobsList from './business/BusinessJobsList'
+
 
 function App() {
   cacheUser(useAuth0)
@@ -18,15 +22,23 @@ function App() {
   return (
     <Layout>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
-        {/* THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS */}
-        <Route path="/customer/individualJobsList" element={<JobsList />} />
+        <Route path="/customer" element={<JobsList />} />
         <Route path="/customer/quote/:jobsId" element={<QuotesList />} />
-        <Route path="/business/details/:businessId" element={<BusinessInfo />} />
+        {/* <Route path="/customer/active" element={} /> */}
+        {/* <Route path="/customer/complete" element={} /> */}
+
+        <Route path="/business" element={<BusinessJobsList />} />
+        <Route path="/business/:businessId" element={<BusinessInfo />} />
+        {/* <Route path="/business/:jobId" element={} />
+        <Route path="/business/jobs" element={} />
+        <Route path="/business/jobs/:jobId" element={} /> */}
+
+
       </Routes>
     </Layout>
   )
