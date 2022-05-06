@@ -2,6 +2,14 @@ import React from 'react'
 // import BusJobItem from './BusJobItem'
 
 function BusinessJobsList() {
+  // const [inputs, setInputs] = useState({ userId })
+
+  // const handleChange = (event) => {
+  //   const name = event.target.name
+  //   const value = event.target.value
+  //   setInputs((values) => ({ ...values, [name]: value }))
+  // }
+
   const jobListing = [
     {
       id: 1,
@@ -41,6 +49,13 @@ function BusinessJobsList() {
 
   return (
     <div>
+      <select name="category" id="category" required>
+        <option value="">Select Category</option>
+        <option value="plumbing">Plumbing</option>
+        <option value="gardening">Gardening</option>
+        <option value="building">Building</option>
+      </select>
+
       <h1>Job Listings</h1>
       <section>
         {jobListing.map((jobListing) => {
