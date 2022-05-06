@@ -10,6 +10,7 @@ import Home from './home/Home'
 import AddJob from './Customer/AddJob'
 import JobsList from './Customer/JobsList'
 import QuotesList from './Customer/QuotesList'
+import BusinessInfo from './business/BusinessInfo'
 
 function App() {
   cacheUser(useAuth0)
@@ -23,8 +24,9 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
         {/* THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS */}
-        <Route path="/individualJobsList" element={<JobsList />} />
-        <Route path="/customer/quote" element={<QuotesList />} />
+        <Route path="/customer/individualJobsList" element={<JobsList />} />
+        <Route path="/customer/quote/:jobsId" element={<QuotesList />} />
+        <Route path="/business/details/:businessId" element={<BusinessInfo />} />
       </Routes>
     </Layout>
   )

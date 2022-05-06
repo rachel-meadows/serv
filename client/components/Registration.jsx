@@ -33,7 +33,6 @@ function Registration() {
   async function handleAddCustomer(e) {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
-    console.log(form)
     // try {
     //   await addUser(form)
     //   navigate('/')

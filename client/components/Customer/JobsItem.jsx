@@ -1,20 +1,20 @@
 import React from 'react'
 
 function JobsListItem(props) {
-  const jobs = props.jobs
+  const job = props.job
 
   function showDetails() {
-    props.showDetails()
+   props.showDetails(job.id)
   }
 
   return (
-    <div className="jobs">
-      <p className="description">{jobs.description}</p>
-      <p className="image">{jobs.image}</p>
-      <p className="category">{jobs.category}</p>
-      <p className="priceMin">{jobs.priceMin}</p>
-      <p className="priceMax">{jobs.priceMax}</p>
-      <p className="status">{jobs.status}</p>
+    <div className="job">
+      <p className="description">{job.description}</p>
+      <p className="image">{job.image}</p>
+      <p className="category">{job.category}</p>
+      <p className="priceMin">{job.priceMin}</p>
+      <p className="priceMax">{job.priceMax}</p>
+      <p className="status">{job.status}</p>
       <p>
         <button onClick={showDetails}>
           Details
