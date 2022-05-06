@@ -1,14 +1,14 @@
 const connection = require('./connection')
 
 function addQuote(input, db = connection) {
-  const { userId, jobId, price, dateAdded, notes, status } = input
+  const { userId, jobId, price, notes } = input
   const quote = {
     user_id: userId,
     job_id: jobId,
     price,
-    date_added: dateAdded,
+    date_added: new Date(Date.now()),
     notes,
-    status,
+    status: 'pending',
   }
   return db('quotes').insert(quote)
 }
