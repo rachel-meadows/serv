@@ -7,7 +7,7 @@ function Layout({ children }) {
     <>
       <Header />
       <main>
-        <div className="container flex flex-row">{children}</div>
+        <div className="container">{children}</div>
       </main>
       <Footer />
     </>
