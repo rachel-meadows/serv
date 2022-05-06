@@ -9,6 +9,7 @@ import Services from './home/Services'
 import Home from './home/Home'
 import AddJob from './Customer/AddJob'
 import QuotesList from './Customer/QuotesList'
+import BusinessJobsList from './business/BusinessJobsList'
 
 function App() {
   cacheUser(useAuth0)
@@ -22,6 +23,7 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
         <Route path="/customer/quote" element={<QuotesList />} />
+        <Route path="/business/jobs" element={<BusinessJobsList />} />
       </Routes>
     </Layout>
   )
