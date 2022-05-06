@@ -1,4 +1,5 @@
 import React from 'react'
+// import BusJobItem from './BusJobItem'
 
 function BusinessJobsList() {
   const jobListing = [
@@ -40,11 +41,11 @@ function BusinessJobsList() {
 
   return (
     <div>
-      <h1>Customer Quotes</h1>
+      <h1>Job Listings</h1>
       <section>
         {jobListing.map((jobListing) => {
           console.log(jobListing)
-          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+          // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </section>
     </div>
