@@ -11,11 +11,9 @@ import AddJob from './customer/CustomerJobAdd'
 import JobsList from './customer/CustomerJobsList'
 import QuotesList from './customer/CustomerQuotesList'
 import CustomerJobCompleted from './customer/CustomerJobCompleted'
-
 import BusinessInfo from './business/BusinessInfo'
-
 import BusinessJobsList from './business/BusinessJobsList'
-
+import WaitIndicator from './WaitIndicator'
 
 function App() {
   cacheUser(useAuth0)
@@ -28,17 +26,44 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
-        <Route path="/customer" element={<JobsList />} />
-        <Route path="/customer/quote/:jobsId" element={<QuotesList />} />
         <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
-
-        <Route path="/business" element={<BusinessJobsList />} />
-        <Route path="/business/:businessId" element={<BusinessInfo />} />
+        <Route
+          path="/customer"
+          element={
+            <JobsList>
+              <WaitIndicator />
+            </JobsList>
+          }
+        />
+        <Route
+          path="/customer/quote/:jobsId"
+          element={
+            <QuotesList>
+              <WaitIndicator />
+            </QuotesList>
+          }
+        />
+        {/* <Route path="/customer/active" element={} /> */}
+        {/* <Route path="/customer/complete" element={} /> */}
+        <Route
+          path="/business"
+          element={
+            <BusinessJobsList>
+              <WaitIndicator />
+            </BusinessJobsList>
+          }
+        />
+        <Route
+          path="/business/:businessId"
+          element={
+            <BusinessInfo>
+              <WaitIndicator />
+            </BusinessInfo>
+          }
+        />
         {/* <Route path="/business/:jobId" element={} />
         <Route path="/business/jobs" element={} />
         <Route path="/business/jobs/:jobId" element={} /> */}
-
-
       </Routes>
     </Layout>
   )

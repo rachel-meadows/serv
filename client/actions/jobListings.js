@@ -1,4 +1,5 @@
 import { getJobs } from '../apis/jobListings'
+import { showError } from '../actions/error'
 
 export const FETCH_JOB_LISTINGS = 'FETCH_JOB_LISTINGS'
 

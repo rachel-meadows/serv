@@ -4,6 +4,7 @@ import {
   APIgetBusinessDetails,
   APIeditBusiness,
 } from '../apis/business'
+import { showError } from '../actions/error'
 
 export const GET_JOBS_PENDING = 'GET_JOBS_PENDING'
 export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS'

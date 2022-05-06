@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-function AddJob() {
+function AddJob({ children }) {
   const userId = useSelector((state) => state.user.userId)
   const [inputs, setInputs] = useState({ userId })
 
@@ -17,7 +17,6 @@ function AddJob() {
   return (
     <div>
       <h3>Get Your Job Taken Care Of!</h3>
-
       <form onSubmit={handleSubmit}>
         <div>
           <textarea

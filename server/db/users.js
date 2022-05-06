@@ -5,16 +5,16 @@ function getUsers(db = connection) {
     .select(
       'id',
       'auth0_id as auth0Id',
+      'user_name as userName',
       'email',
-      'type',
-      'business_id as businessId'
+      'type'
     )
     .first()
 }
 
 function addUser(input, db = connection) {
-  const { auth0Id, email, type } = input
-  const user = { auth0_id: auth0Id, email, type }
+  const { auth0Id, name, email, type } = input
+  const user = { auth0_id: auth0Id, user_name: name, email, type }
   return db('users').insert(user)
 }
 
