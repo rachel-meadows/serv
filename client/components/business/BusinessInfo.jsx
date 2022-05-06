@@ -4,6 +4,7 @@ import { APIgetBusinessById } from '../../apis/business'
 
 function BusinessInfo({ children }) {
   const { businessId } = useParams()
+
   const [business, setBusiness] = useState({})
 
   useEffect(() => {

@@ -13,7 +13,11 @@ import QuotesList from './customer/CustomerQuotesList'
 import CustomerJobCompleted from './customer/CustomerJobCompleted'
 import BusinessInfo from './business/BusinessInfo'
 import BusinessJobsList from './business/BusinessJobsList'
+
+import BusinessJobItem from './business/BusinessJobItem'
+
 import WaitIndicator from './WaitIndicator'
+
 
 function App() {
   cacheUser(useAuth0)
@@ -45,6 +49,10 @@ function App() {
         />
         {/* <Route path="/customer/active" element={} /> */}
         {/* <Route path="/customer/complete" element={} /> */}
+        {/* <Route path="/business/:jobId" element={} /> */}
+        {/* <Route path="/business/jobs" element={} /> */}
+        {/* <Route path="/business/jobs/:jobId" element={} />  */}
+
         <Route
           path="/business"
           element={

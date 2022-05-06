@@ -82,6 +82,7 @@ export function fetchOpenJobs() {
   }
 }
 
+
 export function createQuote(jobId, data) {
   return (dispatch) => {
     dispatch(createQuotePending())
