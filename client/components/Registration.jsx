@@ -12,7 +12,6 @@ function Registration() {
     auth0Id: '',
     name: '',
     email: '',
-    description: '',
   })
 
   useEffect(() => {
@@ -20,7 +19,6 @@ function Registration() {
       auth0Id: user.auth0Id,
       name: user.name,
       email: user.email,
-      description: user.description,
     })
   }, [user])
 
@@ -35,12 +33,25 @@ function Registration() {
   async function handleAddCustomer(e) {
     e.preventDefault()
     // registerUser(form, authUser, history.push)
-    try {
-      await addUser(form)
-      navigate('/')
-    } catch (error) {
-      console.error(error)
-    }
+    console.log(form)
+    // try {
+    //   await addUser(form)
+    //   navigate('/')
+    // } catch (error) {
+    //   console.error(error)
+    // }
+  }
+
+  async function handleAddBusiness(e) {
+    e.preventDefault()
+    // registerUser(form, authUser, history.push)
+    console.log(form)
+    // try {
+    //   await addUser(form)
+    //   navigate('/')
+    // } catch (error) {
+    //   console.error(error)
+    // }
   }
 
   const handleSetUserTypeCustomer = () => {
@@ -96,7 +107,7 @@ function Registration() {
         </form>
       )}
       {userType === 'business' && (
-        <form action="">
+        <form onSubmit={handleAddBusiness}>
           <h3>Business</h3>
           <div className="input-group">
             <input
@@ -133,6 +144,7 @@ function Registration() {
               name="businessName"
               id="businessName"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="input-group">

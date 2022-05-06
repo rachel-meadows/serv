@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { APIaddJob } from '../../apis/customer'
+import { useSelector } from 'react-redux'
 
 function AddJob() {
-  const [inputs, setInputs] = useState({})
+  const userId = useSelector((state) => state.user.userId)
+  const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
     const name = event.target.name
@@ -12,7 +13,6 @@ function AddJob() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await APIaddJob(inputs)
     console.log(inputs)
   }
   return (
@@ -25,6 +25,7 @@ function AddJob() {
             name="description"
             placeholder="What can we help you with?"
             onChange={handleChange}
+            required
           ></textarea>
         </div>
         <div>
@@ -35,6 +36,7 @@ function AddJob() {
             type="number"
             min={0}
             onChange={handleChange}
+            required
           />
           $
           <input
@@ -42,18 +44,25 @@ function AddJob() {
             type="number"
             min={0}
             onChange={handleChange}
+            required
           />
         </div>
         <div>
           <input
             type="file"
             id="myImage"
-            name="imagename"
+            name="image"
             onChange={handleChange}
           />
         </div>
         <div>
-          <select name="category" id="category" onChange={handleChange}>
+          <select
+            name="category"
+            id="category"
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Category</option>
             <option value="plumbing">Plumbing</option>
             <option value="gardening">Gardening</option>
             <option value="building">Building</option>

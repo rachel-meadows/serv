@@ -36,9 +36,9 @@ function Nav() {
           <Link to="/services">Services</Link>
         </li>
         <IfAuthenticated>
-          <li>
+          {/* <li>
             Hello, {user.name} {user.roles ? `(${user.roles})` : null}
-          </li>
+          </li> */}
           <li>
             <a href="/" onClick={handleLogoff} className="nav-link">
               Log out
