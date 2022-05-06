@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchJobQuotes } from '../../actions/customer'
 
-function QuotesList() {
+function QuotesList({ children }) {
   const { jobsId } = useParams()
   // console.log('JOBS ID: ' + jobsId)
 
@@ -53,6 +53,7 @@ function QuotesList() {
     <div>
       <h1>Customer Quotes</h1>
       <section>
+        {children} {/* This holds the WaitIndicator (from App) */}
         {quotes.map((quote) => {
           return <CustomerQuotesItem key={quote.id} quote={quote} />
         })}

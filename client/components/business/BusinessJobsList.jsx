@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOpenJobs } from '../../actions/business'
 
-function BusinessJobsList() {
+function BusinessJobsList({ children }) {
   const jobListings = useSelector((state) => state.openJobs)
   const dispatch = useDispatch()
 
@@ -38,9 +38,9 @@ function BusinessJobsList() {
 
       <h1>Open Job Listings</h1>
       <section>
+        {children} {/* This holds the WaitIndicator (from App) */}
         {jobListings?.map((jobListing) => {
           return jobListing.description
-          console.log(jobListing)
           // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </section>
