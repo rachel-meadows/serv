@@ -6,7 +6,7 @@ exports.seed = function (knex) {
         {
           id: 1,
           user_id: 1,
-          name: 'Plumbers R Us',
+          business_name: 'Plumbers R Us',
           website: 'www.example.com',
           category: 'plumbing',
           logo: 'multer image string placeholder',
@@ -15,7 +15,7 @@ exports.seed = function (knex) {
         {
           id: 2,
           user_id: 2,
-          name: 'Gardenscapes',
+          business_name: 'Gardenscapes',
           website: 'www.example.com',
           category: 'gardening',
           logo: 'multer image string placeholder',
@@ -24,7 +24,7 @@ exports.seed = function (knex) {
         {
           id: 3,
           user_id: 3,
-          name: 'Earnest Catering',
+          business_name: 'Earnest Catering',
           website: 'www.example.com',
           category: 'food',
           logo: 'multer image string placeholder',
