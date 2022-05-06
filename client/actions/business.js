@@ -71,7 +71,6 @@ export function fetchOpenJobs() {
     dispatch(fetchOpenJobsPending())
     return APIgetJobs()
       .then((jobs) => {
-        console.log('up to actions', jobs)
         dispatch(fetchOpenJobsSuccess(jobs))
         return null
       })

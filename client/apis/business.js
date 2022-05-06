@@ -4,7 +4,6 @@ const rootUrl = '/api/v1/business'
 
 export function APIgetBusinessById(businessId) {
   return request.get(rootUrl + `/${businessId}`).then((res) => {
-    console.log('API!!!', res.body)
     return res.body
   })
 }
