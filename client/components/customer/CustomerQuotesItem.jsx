@@ -12,7 +12,7 @@ function QuotesItem(props) {
 
   useEffect(() => {
     APIgetBusinessById(businessId).then((data) => {
-      setBusiness(data)
+      return setBusiness(data)
     })
   }, [])
 
@@ -21,7 +21,9 @@ function QuotesItem(props) {
       <h1>Customer Quotes</h1>
       <section>
         <div className="flex quoteList-item"></div>
-        <Link to={`/business/${businessId}`}>{business.name}</Link>
+        <strong>
+          <Link to={`/business/${businessId}`}>{business.businessName}</Link>
+        </strong>
         <p key={id}>{userId}</p>
         <p>{jobId}</p>
         <p>{notes}</p>
