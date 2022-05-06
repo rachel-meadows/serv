@@ -1,5 +1,4 @@
 const express = require('express')
-const dbUsers = require('../db/users')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
 const router = express.Router()
@@ -7,7 +6,6 @@ const router = express.Router()
 // GET api/v1/customer/:customerId/jobs
 router.get('/:customerId/jobs', async (req, res) => {
   const { customerId } = req.params
-  //   const id = req.params.id
   try {
     await dbJobs.getJobsByCustomer(customerId).then((jobs) => {
       res.json({ jobs })
@@ -43,12 +41,12 @@ router.get('/jobs/:jobId', async (req, res) => {
     })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Unable to get list of jobs by job ID' })
+    res.status(500).json({ message: 'Unable to get job by job ID' })
   }
 })
 
-// PUT api/v1/customer/jobs/:jobId
-router.put('/jobs/:jobId', async (req, res) => {
+// PATCH api/v1/customer/jobs/:jobId
+router.patch('/jobs/:jobId', async (req, res) => {
   const { jobId } = req.params
   const data = req.body
   try {

@@ -11,7 +11,7 @@ function AddJob() {
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     console.log(inputs)
   }
