@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { APIgetBusinessById } from '../../apis/business'
 
-function BusinessInfo() {
+function BusinessInfo({ children }) {
   const { businessId } = useParams()
   const [business, setBusiness] = useState({})
 
@@ -16,6 +16,7 @@ function BusinessInfo() {
 
   return (
     <section>
+      {children} {/* This holds the WaitIndicator (from App) */}
       <p>{name}</p>
       <p>{website}</p>
       <p>{category}</p>
