@@ -26,7 +26,7 @@ function editBusiness(id, input, db = connection) {
 }
 
 function getBusiness(id, db = connection) {
-  return db('businesses').where('id', id).select()
+  return db('businesses').where('id', id).select().first()
 }
 
 module.exports = {
