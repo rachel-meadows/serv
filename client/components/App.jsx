@@ -10,6 +10,7 @@ import Home from './home/Home'
 import AddJob from './customer/CustomerJobAdd'
 import JobsList from './customer/CustomerJobsList'
 import QuotesList from './customer/CustomerQuotesList'
+import CustomerJobCompleted from './customer/CustomerJobCompleted'
 
 import BusinessInfo from './business/BusinessInfo'
 
@@ -29,8 +30,7 @@ function App() {
         <Route path="/customer/add" element={<AddJob />} />
         <Route path="/customer" element={<JobsList />} />
         <Route path="/customer/quote/:jobsId" element={<QuotesList />} />
-        {/* <Route path="/customer/active" element={} /> */}
-        {/* <Route path="/customer/complete" element={} /> */}
+        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
 
         <Route path="/business" element={<BusinessJobsList />} />
         <Route path="/business/:businessId" element={<BusinessInfo />} />
