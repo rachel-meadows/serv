@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import BusJobItem from './BusJobItem'
+import BusJobItem from './BusinessJobItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOpenJobs } from '../../actions/business'
 

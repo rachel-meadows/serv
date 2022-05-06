@@ -1,72 +1,84 @@
 import React, { useState } from 'react'
-
+import { useDispatch, useSelector } from 'react-redux'
 function BusJobItem(props) {
-  const [QuoteForm, setQuoteForm] = useState('')
+  const [toggleForm, setToggleForm] = useState(false)
+  const [quoteForm, setQuoteForm] = useState({
+    description: "",
+    price_min: 0, 
+    price_max: 0
+  })
+ 
+  const dispatch = useDispatch()
 
-  const handleSetQuoteForm = () => {
-    setQuoteForm('quoteItem')
+  const handleSetToggleForm = () => {
+    setToggleForm(!toggleForm )
   }
 
   const { id, user_id, description, image, category, price_min, price_max } = props.jobListing
 
   function handleSubmit(event) {
     event.preventDefault()
+    // dispatch(addQuote({
+    //   // description: description,
+    //   // price_min: price_min,
+    //   // price_max: price_max,
+    // }))
   }
 
-
-  function handleChange(e) {
-    const { name, value } = e.target
-    setForm({
-      ...form,
-      [name]: value,
-    })
+  const handleChange = (event) => {
+    const name = event.target.name
+    const value = event.target.value
+    setQuoteForm((values) => ({ ...values, [name]: value }))
+   console.log(quoteForm);
   }
 
   return (
     <>
       <section className="flex flex-col flex-justify-center">
-        <h2>Job Details</h2>
+        {/* <h2>Details</h2> */}
         <div className="jobList-item"></div>
         <p key={id}>{user_id}</p>
         <p>{category}</p>
         <p>{description}</p>
         <p>Budget: ${price_min} - {price_max}</p>
         <p>{image}</p>
-        <button className="accept-btn" onClick={handleSetQuoteForm}>
+        <button className="accept-btn" onClick={handleSetToggleForm}>
           Create Quote
         </button>
       </section>
 
-      {QuoteForm === 'quoteItem' && (
+      {toggleForm && (
 
         <><section className="flex flex-col flex-align-center">
           <h2>Send A Message To A Customers</h2>
           <textarea
-            name="form"
+            name="description"
+            value={quoteForm.description}
             placeholder="What can we help you with?"
             onChange={handleChange}
           ></textarea>
           <h3>Cost Estimate</h3>
         </section>
-          <section flex flex-col>
+          <section className="flex flex-row flex-justify-center">
             <label htmlFor="price_min"></label>
             <input
               name="price_min"
               placeholder="Min price"
-              value={price_min}
+              value={quoteForm.price_min}
               onChange={handleChange}
-              disabled={true} />
-          </section>
-          <section flex flex-col>
+              disabled={false} />
             <label htmlFor="price_min"></label>
             <input
               name="price_max"
               placeholder="Max price"
-              value={price_max}
+              value={quoteForm.price_max}
               onChange={handleChange}
-              disabled={true} />
+              disabled={false} />
           </section>
-          <button className="submit-button" onClick={handleSubmit}>Submit</button></>
+          <section className="flex flex-col flex-justify-center">
+            <button className="submit-button" onClick={handleSubmit}>Submit</button>
+          </section>
+        </>
       )}
     </>
   )

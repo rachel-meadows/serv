@@ -14,7 +14,7 @@ import QuotesList from './customer/CustomerQuotesList'
 import BusinessInfo from './business/BusinessInfo'
 
 import BusinessJobsList from './business/BusinessJobsList'
-import BusJobItem from './business/BusJobItem'
+import BusJobItem from './business/BusinessJobItem'
 
 
 function App() {
