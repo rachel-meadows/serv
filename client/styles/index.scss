@@ -45,6 +45,7 @@ a {
 .container {
   max-width: 1000px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .flex {
@@ -82,14 +83,15 @@ header a > .logo {
 }
 
 header a > .logo > img {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   margin: 1rem 0;
 }
 
 main {
   padding: 0 1rem;
   margin-bottom: 2rem;
+  height: 100%;
 }
 
 footer {
@@ -114,7 +116,46 @@ nav a {
   color: rgb(0, 44, 20);
 }
 
-// REGISTRATION PAGE
+// HOME PAGE =======================================================================================
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.home-page > .hero {
+  background: rgb(34, 50, 64);
+  width: 600px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.home-page > .hero > img {
+  width: 170px;
+}
+
+.home-page > .hero > .tagline {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.home-page > .hero > .sign-up-btn {
+  color: #fff;
+  background: #00ddff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 4px black;
+}
+
+.home-page > .hero > .sign-up-btn:hover {
+  background: #5ee9fe;
+}
+
+// REGISTRATION PAGE ===============================================================================
 .registration > .page-title {
   text-align: center;
   color: white;
@@ -209,7 +250,7 @@ nav a {
   margin: 1rem auto 0 auto;
 }
 
-// media queries -----------------------------------------------------------------------------------
+// MEDIA QUERIES ===================================================================================
 @media only screen and (min-width: 750px) {
   .registration > .page-title {
     font-size: 38px;
