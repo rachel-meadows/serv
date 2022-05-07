@@ -18,7 +18,6 @@ import BusinessJobItem from './business/BusinessJobItem'
 
 import WaitIndicator from './WaitIndicator'
 
-
 function App() {
   cacheUser(useAuth0)
 
@@ -30,7 +29,11 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
-        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
+
+        <Route
+          path="/customer/completed/:jobsId"
+          element={<CustomerJobCompleted />}
+        />
         <Route
           path="/customer"
           element={
