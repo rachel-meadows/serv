@@ -13,8 +13,8 @@ function getUsers(db = connection) {
 }
 
 function addUser(input, db = connection) {
-  const { auth0Id, name, email, type } = input
-  const user = { auth0_id: auth0Id, user_name: name, email, type }
+  const { auth0Id, userName, email, type } = input
+  const user = { auth0_id: auth0Id, user_name: userName, email, type }
   return db('users').insert(user)
 }
 
