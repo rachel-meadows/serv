@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
 import Registration from './Registration'
@@ -17,9 +17,13 @@ import BusinessJobsList from './business/BusinessJobsList'
 import BusinessJobItem from './business/BusinessJobItem'
 
 import WaitIndicator from './WaitIndicator'
+import { useSelector } from 'react-redux'
 
 function App() {
   cacheUser(useAuth0)
+
+  //Check if user is logged in, if logged in, update currentCustomer state variable 
+  // const user = useSelector((state) => state.user)
 
   return (
     <Layout>

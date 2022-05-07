@@ -30,8 +30,20 @@ function getUserById(id, db = connection) {
   )
 }
 
+function getUserByAuth0Id(auth0Id, db = connection) {
+  return db('users').where('auth0_id', auth0Id).first().select(
+    'id',
+    'auth0_id as auth0Id',
+    'user_name as userName',
+    'email',
+    'type'
+  )
+}
+
 
 module.exports = {
   getUsers,
   addUser,
+  getUserById,
+  getUserByAuth0Id,
 }
