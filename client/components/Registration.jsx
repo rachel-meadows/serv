@@ -36,17 +36,13 @@ function Registration() {
 
   function handleAddCustomer(e) {
     e.preventDefault()
-    dispatch(
+    dispatch(   
       addUser({
         ...form,
         type: 'customer',
       })
     )
 
-    console.log({
-      ...form,
-      type: 'customer',
-    })
     // navigate('/customer')
     // try {
     //   await addUser(form)
