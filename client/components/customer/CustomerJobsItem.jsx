@@ -16,9 +16,19 @@ function JobsListItem(props) {
       <p className="priceMax">{job.priceMax}</p>
       <p className="status">{job.status}</p>
       <p>
-        <button onClick={showDetails}>
+        { 
+          job.status === 'open' ? 
+          <button onClick={showDetails}>
+            Quotes
+          </button>
+          : 
+          job.status === 'closed' ?
+          <button onClick={showDetails}>
           Details
-        </button>
+          </button>
+          :
+          null
+        }
       </p>
     </div>
   )
