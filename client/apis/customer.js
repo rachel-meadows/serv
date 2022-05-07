@@ -40,3 +40,9 @@ export function APIgetQuoteById(jobId, quoteId) {
     return res.body
   })
 }
+
+export function APIchangeQuoteStatus(quoteId, status) {
+  return request
+    .patch(rootUrl + `/jobs/quotes/${quoteId}`)
+    .send({ status: status })
+}
