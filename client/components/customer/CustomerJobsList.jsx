@@ -35,7 +35,7 @@ function JobsList() {
     }
     else if (dropDownSelection === 'all') {
       setJobs(allJobs)
-    }
+    }``
   }, [allJobs, dropDownSelection])
  
   function showDetails(jobsId, status) {
