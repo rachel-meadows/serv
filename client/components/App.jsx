@@ -7,14 +7,13 @@ import Layout from './Layout/Layout'
 import HowItWorks from './home/HowItWorks'
 import Services from './home/Services'
 import Home from './home/Home'
-import AddJob from './customer/CustomerJobAdd'
 import JobsList from './customer/CustomerJobsList'
 import QuotesList from './customer/CustomerQuotesList'
 import CustomerJobAdd from './customer/CustomerJobAdd'
 import SubmittedMessage from './customer/SubmittedMessage'
 import BusinessInfo from './business/BusinessInfo'
 import BusinessJobsList from './business/BusinessJobsList'
-
+import CustomerJobCompleted from './customer/CustomerJobCompleted'
 // import BusinessJobItem from './business/BusinessJobItem'
 
 import WaitIndicator from './WaitIndicator'
@@ -28,30 +27,13 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/customer/add" element={<AddJob />} />
-        <Route path="/customer/form" element={<CustomerJobAdd />} />
-        <Route path="/customer/completed/:jobsId" element={<AddJob />} />
-        <Route
-          path="/customer"
-          element={
-            <JobsList>
-              <WaitIndicator />
-            </JobsList>
-          }
-        >
+        <Route path="/customer/add" element={<CustomerJobAdd />} />
+        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
+        <Route path="/customer" element={ <JobsList><WaitIndicator /></JobsList>}>
           <Route path="message" element={<SubmittedMessage />} />
         </Route>
-
-        <Route
-          path="/customer/quote/:jobsId"
-          element={
-            <QuotesList>
-              <WaitIndicator />
-            </QuotesList>
-          }
-        />
-        {/* <Route path="/customer/active" element={} /> */}
-        {/* <Route path="/customer/complete" element={} /> */}
+        <Route path="/customer/quote/:jobsId" element={ <QuotesList><WaitIndicator /></QuotesList> }/>
+        
         {/* <Route path="/business/:jobId" element={} /> */}
         {/* <Route path="/business/jobs" element={} /> */}
         {/* <Route path="/business/jobs/:jobId" element={} />  */}

@@ -1,4 +1,4 @@
-import { getJobs } from '../apis/jobListings'
+import { APIgetJobsByCustomer } from '../apis/customer'
 import { showError } from '../actions/error'
 
 export const FETCH_JOB_LISTINGS = 'FETCH_JOB_LISTINGS'
@@ -11,11 +11,11 @@ export function fetchJobsSuccess(jobs) {
 }
 
 // THIS DISPLAYS A CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
-export function fetchJobs() {
+export function fetchJobs(customerId) {
   return (dispatch) => {
-    return getJobs()
-      .then((jobs) => {
-        dispatch(fetchJobsSuccess(jobs))
+    return APIgetJobsByCustomer(customerId)
+    .then((obj) => {
+        dispatch(fetchJobsSuccess(obj.jobs))
         return null
       })
       .catch((err) => {
