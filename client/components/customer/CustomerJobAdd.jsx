@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function AddJob({ children }) {
-  const userId = useSelector((state) => state.user.userId)
+  const userId = useSelector((state) => state.currentUser.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
@@ -13,6 +13,7 @@ function AddJob({ children }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    
   }
   return (
     <div>
