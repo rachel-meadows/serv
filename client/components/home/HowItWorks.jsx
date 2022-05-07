@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function HowItWorks() {
   return (
@@ -18,7 +19,10 @@ function HowItWorks() {
           use indicates that this is not a final version of a document, thus
           helping to avoid unnecessary printing.
         </p>
-        <button className="back-btn">Back</button>
+        <button>
+          <Link to="/">Home</Link>
+        </button>
+        {/* </button><button className="back-btn">Back</button> */}
       </div>
     </div>
   )
