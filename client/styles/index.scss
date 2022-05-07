@@ -155,6 +155,75 @@ nav a {
   background: #5ee9fe;
 }
 
+// SERVICES PAGE ===================================================================================
+.services {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.services > .panels {
+  display: flex;
+  background: rgb(34, 50, 64);
+  padding: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.services > .panels h2 {
+  margin: 0 0 1rem 0;
+}
+
+.services > .panels > .services-panel {
+  width: 400px;
+  margin: 2rem;
+}
+
+.services > .panels > .services-panel > .sign-up-btn {
+  color: #fff;
+  background: #00ddff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 4px black;
+  margin-top: 1rem;
+}
+
+.services > .panels > .services-panel > .sign-up-btn:hover {
+  background: #5ee9fe;
+}
+
+.services > .panels > .businesses-panel {
+  width: 400px;
+  margin: 2rem;
+}
+
+.services > .panels > .businesses-panel > .services-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.services > .panels > .businesses-panel > .services-box > .service {
+  margin: 1rem;
+}
+
+.services > .panels > .businesses-panel > .services-box > .service > img {
+  width: 90px;
+  border-radius: 100%;
+}
+
+.services
+  > .panels
+  > .businesses-panel
+  > .services-box
+  > .service
+  > .service-title {
+  margin: 0;
+}
+
 // REGISTRATION PAGE ===============================================================================
 .registration > .page-title {
   text-align: center;
@@ -185,7 +254,7 @@ nav a {
   border: none;
   padding: 3rem 2rem;
   margin: 1rem;
-  width: 300px;
+  width: 330px;
   border-radius: 1rem;
   font-size: 1.5rem;
   box-shadow: 0px 3px 10px rgb(69, 69, 69);
