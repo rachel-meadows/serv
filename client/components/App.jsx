@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { cacheUser } from '../auth0-utils'
 import Registration from './Registration'
@@ -15,17 +15,12 @@ import SubmittedMessage from './customer/SubmittedMessage'
 import BusinessInfo from './business/BusinessInfo'
 import BusinessJobsList from './business/BusinessJobsList'
 
-import BusinessJobItem from './business/BusinessJobItem'
+// import BusinessJobItem from './business/BusinessJobItem'
 
 import WaitIndicator from './WaitIndicator'
-import { useSelector } from 'react-redux'
 
 function App() {
   cacheUser(useAuth0)
-
-  //Check if user is logged in, if logged in, update currentCustomer state variable
-  // const user = useSelector((state) => state.user)
-
   return (
     <Layout>
       <Routes>
@@ -35,7 +30,7 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
         <Route path="/customer/form" element={<CustomerJobAdd />} />
-        <Route path="/customer/completed/:jobsId"element={<AddJob />} />
+        <Route path="/customer/completed/:jobsId" element={<AddJob />} />
         <Route
           path="/customer"
           element={
@@ -44,7 +39,7 @@ function App() {
             </JobsList>
           }
         >
-          <Route path="message" element={<SubmittedMessage />}/>
+          <Route path="message" element={<SubmittedMessage />} />
         </Route>
 
         <Route
