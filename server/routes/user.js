@@ -8,6 +8,7 @@ const router = express.Router()
 router.post('/', async (req, res) => {
   // console.log(req.body);
   // Some users are not businesses and some are - filter and handle accordingly
+  console.log('route', req.body)
   const {
     auth0Id,
     email,
@@ -34,7 +35,8 @@ router.post('/', async (req, res) => {
       }
       await dbBusiness.addBusiness(businessData)
     }
-    res.sendStatus(201)
+    res.json(userId)
+    return null
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to insert user into the database' })
