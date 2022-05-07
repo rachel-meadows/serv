@@ -37,7 +37,7 @@ export function clearUsers() {
 
 export function addUserPending() {
   return {
-    type: ADD_USER_PENDING
+    type: ADD_USER_PENDING,
   }
 }
 
@@ -65,13 +65,11 @@ export function getUserSuccess(user) {
 // }
 
 export function addUser(data) {
-  console.log('reached action: ', data)
   return (dispatch) => {
-    dispatch(addUserPending())    
+    dispatch(addUserPending())
     return APIaddUser(data)
       .then((user) => {
-        console.log('API returns: ', user)
-        dispatch(addUserSuccess(user))    
+        dispatch(addUserSuccess(user))
         return null
       })
       .catch((err) => {
@@ -80,14 +78,14 @@ export function addUser(data) {
   }
 }
 
-export function getUserByAuth0Id(auth0Id){
-  console.log('ACTION')
+export function getUserByAuth0Id(auth0Id) {
   return (dispatch) => {
-    return APIgetUserByAuth0Id(auth0Id).then((user) => {
-      console.log('.THEN')
-      dispatch(getUserSuccess(user))
-    }).catch((err) => {
-      console.log(err)
-    })
+    return APIgetUserByAuth0Id(auth0Id)
+      .then((user) => {
+        dispatch(getUserSuccess(user))
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }

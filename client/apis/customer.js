@@ -4,13 +4,13 @@ const rootUrl = '/api/v1/customer'
 
 export function APIgetJobsByCustomer(customerId) {
   return request.get(rootUrl + `/${customerId}/jobs`).then((res) => {
+    console.log('API', res.body.jobs)
     return res.body
   })
 }
 
 export function APIaddJob(data) {
-  console.log('in api', data)
-  return request.post(rootUrl + '/customer/add').send(data)
+  return request.post(rootUrl + `/add`).send(data)
 }
 
 export function APIgetJobById(jobId) {

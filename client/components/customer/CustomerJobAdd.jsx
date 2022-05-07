@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { createJob } from '../../actions/customer'
+import { useNavigate } from 'react-router-dom'
 
 // function AddJob() {
 // Use this to update state with user (and get ID) once user is set up
@@ -9,19 +10,20 @@ import { createJob } from '../../actions/customer'
 // }, [])
 
 function AddJob({ children }) {
+  const navigate = useNavigate()
   const userId = useSelector((state) => state.currentUser.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
     const name = event.target.name
     const value = event.target.value
-    setInputs((values) => ({ ...values, [name]: value }))
+    setInputs((values) => ({ ...values, [name]: value, userId }))
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    createJob(inputs)
+    createJob(inputs, navigate)
   }
   return (
     <div>

@@ -12,7 +12,6 @@ export const jobQuotes = (state = initialState, action) => {
   }
 }
 
-//THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
 export const jobListings = (state = [], action) => {
   switch (action.type) {
     case FETCH_JOB_LISTINGS:
