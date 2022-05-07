@@ -15,7 +15,7 @@ function Home() {
   const currentUser = useSelector((state) => state.currentUser)
 
   useEffect(() => {
-    if (currentUser.type) {
+    if (currentUser?.type) {
       navigate(`/${currentUser.type}`)
     }
   }, [currentUser])
