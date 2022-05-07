@@ -68,7 +68,7 @@ function Registration() {
     <div className="registration">
       <h2 className="page-title">Welcome to</h2>
       <div className="hero-logo">
-        <img src="/serv-logo-light.png" alt="Welcome to Serv" />
+        <img src="/images/serv-logo-light.png" alt="Welcome to Serv" />
       </div>
       <h3 className="user-type-title">Select what type of user you are..</h3>
       <div className="user-type">
