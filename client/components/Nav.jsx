@@ -29,16 +29,13 @@ function Nav() {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/how-it-works">How It Works</Link>
-        </li>
-        <li>
-          <Link to="/services">Services</Link>
-        </li>
         <IfAuthenticated>
-          {/* <li>
-            Hello, {user.name} {user.roles ? `(${user.roles})` : null}
-          </li> */}
+          <li>
+            <Link to="/customer/add">Create Jobs</Link>
+          </li>
+          <li>
+            <Link to="/customer">My Listings</Link>
+          </li>
           <li>
             <a href="/" onClick={handleLogoff} className="nav-link">
               Log out
@@ -46,6 +43,12 @@ function Nav() {
           </li>
         </IfAuthenticated>
         <IfNotAuthenticated>
+          <li>
+            <Link to="/how-it-works">How It Works</Link>
+          </li>
+          <li>
+            <Link to="/services">Services</Link>
+          </li>
           <li>
             <a href="/" onClick={handleLogin} className="nav-link">
               Sign in
