@@ -31,6 +31,25 @@ function Registration() {
     })
   }
 
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertToBase64(file)
+    setForm({ ...form, logo: base64 })
+  }
+
   function handleAddCustomer(e) {
     e.preventDefault()
     dispatch(
@@ -168,7 +187,15 @@ function Registration() {
           </div>
           <div className="input-group">
             <label htmlFor="logo">Logo</label>
-            <input type="file" name="logo" id="logo" onChange={handleChange} />
+            <input
+              type="file"
+              name="logo"
+              id="logo"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
+          <div className="input-group">
+            <img src={form.logo} alt="" style={{ width: '100px' }} />
           </div>
           <div className="input-group">
             <button>Register as Business</button>
