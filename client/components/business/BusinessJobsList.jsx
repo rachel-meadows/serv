@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import BusinessJobItem from './BusinessJobItem'
 
 import { useNavigate } from 'react-router-dom'
 import { APIgetBusinessByUserId } from '../../apis/business'
@@ -16,12 +17,11 @@ function BusinessJobsList({ children }) {
   const currentUser = useSelector((state) => state.currentUser)
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
-  const openJobsByCategory = useSelector((state) => state.openJobsByCategory)
   const jobListing = useSelector((state) => state.openJobs)
   // const { userId, category } = userData
-  const business = APIgetBusinessByUserId(userId)
+  // const business = APIgetBusinessByUserId(currentUser.id)
 
-  const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('all')
 
   const navigate = useNavigate()
@@ -29,7 +29,9 @@ function BusinessJobsList({ children }) {
 
 
   useEffect(() => {
+    console.log("1")
     dispatch(fetchOpenJobsByCategory('construction'))
+
   }, [])
 
   useEffect(() => {
@@ -47,8 +49,9 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
-      const openJobsByCategory = openJobs.filter((obj) => obj.status === 'open')
-      setJobs(openJobsByCategory)
+      console.log("4")
+      setJobs(openJobs)
+      console.log(jobs);
     }
     else if (dropDownSelection === 'quoted') {
       setJobs(jobsByUser.filter((obj) => obj.status === 'quoted'))
@@ -62,7 +65,7 @@ function BusinessJobsList({ children }) {
     // else if (dropDownSelection === 'all') {
     //   setJobs(allJobs)
     // }
-  }, [jobsByUser, dropDownSelection])
+  }, [jobsByUser, openJobs, dropDownSelection])
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
@@ -88,9 +91,9 @@ function BusinessJobsList({ children }) {
     <>
       <form>
         <label htmlFor="filter">Filter your jobs:</label>
-        <select name="filter" onChange={handleDropDown}>
-          <option value="all">All</option>
-          <option value="unmatched" >Unmatched</option>
+        <select name="filter" defaultValue="unmatched" onChange={handleDropDown} >
+          {/* <option value="all">All</option> */}
+          <option value="unmatched">Unmatched</option>
           <option value="quoted">Quoted</option>
           <option value="active">Active</option>
           <option value="completed">Completed</option>
@@ -99,31 +102,17 @@ function BusinessJobsList({ children }) {
       <h1>Job Listings</h1>
       <div className="jobList">
 
-<<<<<<< HEAD
-  {
-    jobs?.map((jobListing) => {
-      console.log(jobListing)
-      return <BusinessQuoteItem key={jobListing.id} jobListing={jobListing} showDetails={showDetails} />
-||||||| 60125bc
-      <h1>Open Job Listings</h1>
-      <section>
+        {
+          jobs?.map((jobListing) => {
+            console.log(jobListing)
+            return <BusinessJobItem key={jobListing.id} jobListing={jobListing} showDetails={showDetails} />
 
-        {jobListing?.map((jobListing) => {
-          console.log(jobListing)
-          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
-=======
-      <h1>Open Job Listings</h1>
-      <section>
-        {jobListing?.map((jobListing) => {
-          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
->>>>>>> 6da169e56b4a0a1c225776e75ea26b2d3302be23
-
-      //   {children} {/* This holds the WaitIndicator (from App) */}
-      //   {jobListings?.map((jobListing) => {
-      // return jobListing.description       Rachael to review this page/line
-      // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
-    })
-  }
+            //   {children} {/* This holds the WaitIndicator (from App) */}
+            //   {jobListings?.map((jobListing) => {
+            // return jobListing.description       Rachael to review this page/line
+            // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+          })
+        }
       </div >
     </>
   )
