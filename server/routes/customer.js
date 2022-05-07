@@ -19,8 +19,8 @@ router.get('/:customerId/jobs', async (req, res) => {
   }
 })
 
-// POST api/v1/customer/jobs
-router.post('/jobs', async (req, res) => {
+// POST api/v1/customer/add
+router.post('/add', async (req, res) => {
   const data = req.body
   try {
     await dbJobs.addJob(data)

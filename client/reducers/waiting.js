@@ -12,6 +12,8 @@ import {
 import {
   GET_JOB_QUOTES_PENDING,
   GET_JOB_QUOTES_SUCCESS,
+  CREATE_JOB_PENDING,
+  CREATE_JOB_SUCCESS,
 } from '../actions/customer'
 
 import { SHOW_ERROR } from '../actions/error'
@@ -46,6 +48,12 @@ function waiting(state = false, action) {
       return true
 
     case GET_JOB_QUOTES_SUCCESS:
+      return false
+
+    case CREATE_JOB_PENDING:
+      return true
+
+    case CREATE_JOB_SUCCESS:
       return false
 
     default:

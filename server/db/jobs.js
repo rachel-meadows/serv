@@ -89,10 +89,49 @@ function editJob(id, input, db = connection) {
   return db('jobs').where('id', id).update(job)
 }
 
+function getOpenJobsByCategory(category, db = connection) {
+  return db('jobs')
+    .where('category', category)
+    .where('status', 'open')
+    .select(
+      'id',
+      'user_id as userId',
+      'description',
+      'image',
+      'category',
+      'price_min as priceMin',
+      'price_max as priceMax',
+      'date_added as dateAdded',
+      'status'
+    )
+}
+
+function getJobsByUser(userId, db = connection) {
+  return db('jobs')
+    .join('quotes', 'jobs.id', 'quotes.job_id')
+    .join('businesses', 'businesses.id', 'quotes.business_id')
+    .join('users', 'users.id', 'businesses.user_id')
+    .where('businesses.user_id', userId)
+    .select(
+      'jobs.id',
+      'jobs.user_id as userId',
+      'description',
+      'image',
+      'jobs.category',
+      'price_min as priceMin',
+      'price_max as priceMax',
+      'jobs.date_added as dateAdded',
+      'quotes.status as quoteStatus',
+      'jobs.status as jobStatus'
+    )
+}
+
 module.exports = {
   getOpenJobs,
   getJobsByCustomer,
   addJob,
   getJobById,
   editJob,
+  getOpenJobsByCategory,
+  getJobsByUser,
 }
