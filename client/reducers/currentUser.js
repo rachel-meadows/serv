@@ -1,4 +1,4 @@
-import { ADD_USER_SUCCESS } from '../actions/user'
+import { ADD_USER_SUCCESS, GET_USER_SUCCESS } from '../actions/user'
 
 const emptyUser = {
   id: null,
@@ -11,6 +11,9 @@ const emptyUser = {
 export default function currentUser(state = emptyUser, action) {
   switch (action.type) {
     case ADD_USER_SUCCESS:
+      return action.currentUser
+    
+    case GET_USER_SUCCESS:
       return action.currentUser
 
       default:

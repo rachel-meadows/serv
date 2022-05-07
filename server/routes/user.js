@@ -43,4 +43,22 @@ router.post('/', async (req, res) => {
   }
 })
 
+// GET /api/v1/user
+router.get('/:auth0Id', async (req, res) => {
+  const auth0Id = req.params.auth0Id
+  try {
+    const user = await dbUsers.getUserByAuth0Id(auth0Id)
+    res.json(user)
+    return null
+  }
+  catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get user from the database by ID' })
+  }
+
+} )
+
+
+
+
 module.exports = router
