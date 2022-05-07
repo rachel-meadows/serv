@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { createJob } from '../../actions/customer'
 
-function AddJob({ children }) {
+function AddJob() {
+  // Use this to update state with user (and get ID) once user is set up
+  // useEffect(() => {
+  //   dispatch(fetchUser())
+  // }, [])
+
   const userId = useSelector((state) => state.user.userId)
   const [inputs, setInputs] = useState({ userId })
 
@@ -13,6 +19,8 @@ function AddJob({ children }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    console.log('in handleSumbit fn')
+    createJob(inputs)
   }
   return (
     <div>

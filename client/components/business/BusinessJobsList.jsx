@@ -1,11 +1,26 @@
 import React, { useEffect } from 'react'
 import BusJobItem from './BusinessJobItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchOpenJobs } from '../../actions/business'
+import {
+  fetchOpenJobs,
+  fetchOpenJobsByCategory,
+  fetchJobsByUser,
+} from '../../actions/business'
 
 function BusinessJobsList({ children }) {
-  const jobListings = useSelector((state) => state.openJobs)
+  const openJobsByCategory = useSelector((state) => state.openJobsByCategory)
+  const jobsByUser = useSelector((state) => state.jobsByUser)
+
+  const jobListing = useSelector((state) => state.openJobs)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchOpenJobsByCategory('construction'))
+  }, [])
+
+  useEffect(() => {
+    dispatch(fetchJobsByUser(3))
+  }, [])
 
   // const [inputs, setInputs] = useState({ userId })
 
@@ -38,16 +53,13 @@ function BusinessJobsList({ children }) {
 
       <h1>Open Job Listings</h1>
       <section>
-
         {jobListing?.map((jobListing) => {
-          console.log(jobListing)
           return <BusJobItem key={jobListing.id} jobListing={jobListing} />
 
-     //   {children} {/* This holds the WaitIndicator (from App) */}
-     //   {jobListings?.map((jobListing) => {
-         // return jobListing.description       Rachael to review this page/line
+          //   {children} {/* This holds the WaitIndicator (from App) */}
+          //   {jobListings?.map((jobListing) => {
+          // return jobListing.description       Rachael to review this page/line
           // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
-
         })}
       </section>
     </div>

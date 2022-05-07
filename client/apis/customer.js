@@ -9,7 +9,8 @@ export function APIgetJobsByCustomer(customerId) {
 }
 
 export function APIaddJob(data) {
-  return request.post(rootUrl + '/jobs').send(data)
+  console.log('in api', data)
+  return request.post(rootUrl + '/customer/add').send(data)
 }
 
 export function APIgetJobById(jobId) {

@@ -17,6 +17,36 @@ router.get('/', async (req, res) => {
   }
 })
 
+// GET /business/category/:category
+// Get data for the openJobsByCategory state
+router.get('/category/:category', async (req, res) => {
+  const { category } = req.params
+  try {
+    dbJobs.getOpenJobsByCategory(category).then((jobs) => {
+      res.json(jobs)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get list of all jobs' })
+  }
+})
+
+// GET /business/user/:userId
+// Get data for the jobsByUser state
+router.get('/user/:userId', async (req, res) => {
+  const { userId } = req.params
+  try {
+    dbJobs.getJobsByUser(userId).then((jobs) => {
+      res.json(jobs)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get list of all jobs' })
+  }
+})
+
 // GET /business/:jobId
 router.get('/:jobId', async (req, res) => {
   const { jobId } = req.params
