@@ -4,6 +4,7 @@ const rootUrl = '/api/v1/customer'
 
 export function APIgetJobsByCustomer(customerId) {
   return request.get(rootUrl + `/${customerId}/jobs`).then((res) => {
+    console.log('API', res.body.jobs)
     return res.body
   })
 }

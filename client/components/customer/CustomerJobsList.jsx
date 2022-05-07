@@ -10,8 +10,10 @@ import JobsListItem from './CustomerJobsItem'
 
 function JobsList() {
   const allJobs = useSelector((state) => state.jobListings)
+  const customerId = useSelector((state) => state.currentUser.id)
   
   const [jobs, setJobs] = useState([])
+  console.log(jobs)
   const [dropDownSelection, setdropDownSelection] = useState('all')
  
   const navigate = useNavigate()
@@ -19,9 +21,9 @@ function JobsList() {
 
   useEffect(() => {
     console.log('fetchJobs')
-    dispatch(fetchJobs())
+    dispatch(fetchJobs(customerId))
   }, [])
-  
+
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {  
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
@@ -53,7 +55,6 @@ function JobsList() {
   function handleDropDown(event) {
      setdropDownSelection(event.target.value)
   }
-
   return <>
     <Outlet/>
     <form>
@@ -67,7 +68,7 @@ function JobsList() {
     </form>
     <div className="jobList">
       {/* {children} This holds the WaitIndicator (from App) */}
-      {jobs.map((job) => {
+      {!jobs[0] ? <h3>You have no job listings</h3> : jobs.map((job) => {
         return <JobsListItem key={job.id} job={job} showDetails={showDetails}/>
       })}
     </div>
