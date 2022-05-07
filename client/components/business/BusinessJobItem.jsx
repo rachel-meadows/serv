@@ -1,55 +1,68 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-function BusJobItem(props) {
+import { useDispatch } from 'react-redux'
+import { createQuote } from '../../actions/business'
+import { useNavigate } from 'react-router-dom'
+
+function BusinessJobItem(props) {
   const [toggleForm, setToggleForm] = useState(false)
   const [quoteForm, setQuoteForm] = useState({
     description: "",
-    price_min: 0, 
+    price_min: 0,
     price_max: 0
   })
- 
+  const [createQuote, setCreateQuote] = useState(false)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSetToggleForm = () => {
-    setToggleForm(!toggleForm )
+    setToggleForm(!toggleForm)
   }
 
-  const { id, user_id, description, image, category, price_min, price_max } = props.jobListing
+  const { id, user_id, description, image, category, price_min, price_max, status } = props.jobListing
 
   function handleSubmit(event) {
     event.preventDefault()
-    // dispatch(addQuote({
-    //   // description: description,
-    //   // price_min: price_min,
-    //   // price_max: price_max,
-    // }))
+    dispatch(createQuote(id, quoteForm))
+    navigate(`/business/jobs`)
   }
 
   const handleChange = (event) => {
     const name = event.target.name
     const value = event.target.value
     setQuoteForm((values) => ({ ...values, [name]: value }))
-   console.log(quoteForm);
+    console.log(quoteForm);
   }
 
+  function showDetails() {
+    props.showDetails(id, status)
+    setCreateQuote(!createQuote)
+  }
+
+
   return (
+
     <>
-      <section className="flex flex-col flex-justify-center">
-        {/* <h2>Details</h2> */}
+      <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p key={id}>{user_id}</p>
-        <p>{category}</p>
-        <p>{description}</p>
-        <p>Budget: ${price_min} - {price_max}</p>
-        <p>{image}</p>
-        <button className="accept-btn" onClick={handleSetToggleForm}>
-          Create Quote
-        </button>
-      </section>
+        <p className="userId" key={id}>{user_id}</p>
+        <p className="category">{category}</p>
+        <p className="description">{description}</p>
+        <p className="price">Budget: ${price_min} - {price_max}</p>
+        <p className="image">{image}</p>
+        <button onClick={showDetails}>Details</button>
+
+        {createQuote && (
+          <button className="accept-btn" onClick={handleSetToggleForm}>
+            Create Quote
+          </button>
+        )}
+
+      </div>
 
       {toggleForm && (
 
-        <><section className="flex flex-col flex-align-center">
+        <><div className="flex flex-col flex-align-center">
           <h2>Send A Message To A Customers</h2>
           <textarea
             name="description"
@@ -58,8 +71,8 @@ function BusJobItem(props) {
             onChange={handleChange}
           ></textarea>
           <h3>Cost Estimate</h3>
-        </section>
-          <section className="flex flex-row flex-justify-center">
+        </div>
+          <div className="flex flex-row flex-justify-center">
             <label htmlFor="price_min"></label>
             <input
               name="price_min"
@@ -74,14 +87,14 @@ function BusJobItem(props) {
               value={quoteForm.price_max}
               onChange={handleChange}
               disabled={false} />
-          </section>
-          <section className="flex flex-col flex-justify-center">
+          </div>
+          <div className="flex flex-col flex-justify-center">
             <button className="submit-button" onClick={handleSubmit}>Submit</button>
-          </section>
+          </div>
         </>
       )}
     </>
   )
 }
 
-export default BusJobItem
+export default BusinessJobItem
