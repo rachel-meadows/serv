@@ -126,6 +126,10 @@ function getJobsByUser(userId, db = connection) {
     )
 }
 
+function changeJobStatus(jobId, status, db = connection) {
+  return db('jobs').where('id', jobId).update('status', status)
+}
+
 module.exports = {
   getOpenJobs,
   getJobsByCustomer,
@@ -134,4 +138,5 @@ module.exports = {
   editJob,
   getOpenJobsByCategory,
   getJobsByUser,
+  changeJobStatus,
 }

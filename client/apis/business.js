@@ -30,12 +30,16 @@ export function APIaddQuote(jobId, data) {
   return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data)
 }
 
-export function APIgetBusinessDetails() {
-  return request.get(rootUrl + `/jobs/${jobId}`).then((res) => {
+export function APIgetBusinessByUserId(userId) {
+  return request.get(rootUrl + `/${userId}/details`).then((res) => {
     return res.body
   })
 }
 
 export function APIeditBusiness(userId, data) {
   return request.put(rootUrl + `/${userId}/edit`).send(businessId, data)
+}
+
+export function APIchangeJobStatus(jobId, status) {
+  return request.patch(rootUrl + `/jobs/${jobId}`).send({ status: status })
 }
