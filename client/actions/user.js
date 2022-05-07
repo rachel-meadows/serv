@@ -1,4 +1,5 @@
-import { getUsers } from '../apis/users'
+// import { getUsers } from '../apis/users'
+import { APIaddUser } from '../apis/users'
 
 export const SET_USER = 'SET_USER'
 export const SET_USERS = 'SET_USERS'
@@ -31,11 +32,23 @@ export function clearUsers() {
   }
 }
 
-export function fetchUsers() {
-  return (dispatch) => {
-    return getUsers().then((users) => {
-      dispatch(setUsers(users))
-      return null
-    })
+// export function fetchUsers() {
+//   return (dispatch) => {
+//     return getUsers().then((users) => {
+//   dispatch(setUsers(users))
+//   return null
+// })
+//   }
+// }
+
+export function addUser(data) {
+  return () => {
+    return APIaddUser(data)
+      .then(() => {
+        return null
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }

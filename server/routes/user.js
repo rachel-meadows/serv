@@ -8,15 +8,25 @@ const router = express.Router()
 router.post('/', async (req, res) => {
   // console.log(req.body);
   // Some users are not businesses and some are - filter and handle accordingly
-  const { auth0Id, email, type, name, description, website, category, logo } =
-    req.body
+  const {
+    auth0Id,
+    email,
+    type,
+    userName,
+    businessName,
+    description,
+    website,
+    category,
+    logo,
+  } = req.body
+  console.log(req.body.userName)
   try {
-    const userData = { auth0Id, email, type }
+    const userData = { auth0Id, email, userName, type }
     const userId = await dbUsers.addUser(userData)
     if (type === 'business') {
       const businessData = {
         userId,
-        name,
+        businessName,
         description,
         website,
         category,

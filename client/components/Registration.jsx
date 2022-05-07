@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { addUser } from '../apis/users'
+// import { addUser } from '../apis/users'
+import { useDispatch } from 'react-redux'
+import { APIaddUser } from '../apis/users'
+import { addUser } from '../actions/user'
 
 function Registration() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const [userType, setUserType] = useState('')
 
   const [form, setForm] = useState({
     auth0Id: '',
-    name: '',
+    userName: '',
     email: '',
   })
 
   useEffect(() => {
     setForm({
       auth0Id: user.auth0Id,
-      name: user.name,
+      userName: user.name,
       email: user.email,
     })
   }, [user])
@@ -30,11 +34,20 @@ function Registration() {
     })
   }
 
-  async function handleAddCustomer(e) {
+  function handleAddCustomer(e) {
     e.preventDefault()
-    // registerUser(form, authUser, history.push)
-    console.log(form)
-    navigate('/customer')
+    dispatch(
+      addUser({
+        ...form,
+        type: 'customer',
+      })
+    )
+
+    console.log({
+      ...form,
+      type: 'customer',
+    })
+    // navigate('/customer')
     // try {
     //   await addUser(form)
     //   navigate('/')
@@ -45,9 +58,18 @@ function Registration() {
 
   async function handleAddBusiness(e) {
     e.preventDefault()
+    dispatch(
+      addUser({
+        ...form,
+        type: 'business',
+      })
+    )
     // registerUser(form, authUser, history.push)
-    console.log(form)
-    navigate('/business')
+    console.log({
+      ...form,
+      type: 'business',
+    })
+    // navigate('/business')
     // try {
     //   await addUser(form)
     //   navigate('/')
@@ -83,19 +105,15 @@ function Registration() {
         <form onSubmit={handleAddCustomer}>
           <h3>Customer</h3>
           <div className="input-group">
-            <input
-              name="auth0Id"
-              value={form.auth0Id}
-              onChange={handleChange}
-              type="hidden"
-            />
+            <input name="auth0Id" value={form.auth0Id} type="hidden" />{' '}
+            <input name="type" value="customer" type="hidden" />
           </div>
           <div className="input-group">
-            <label htmlFor="userName">Name</label>
+            <label htmlFor="userName">Username</label>
             <input
               name="userName"
               id="userName"
-              value={form.name}
+              value={form.userName}
               onChange={handleChange}
               disabled={true}
             />
@@ -118,18 +136,14 @@ function Registration() {
         <form onSubmit={handleAddBusiness} className="flex flex-col">
           <h3 className="business-details-title">Business Details</h3>
           <div className="input-group">
-            <input
-              name="auth0Id"
-              value={form.auth0Id}
-              onChange={handleChange}
-              type="hidden"
-            />
+            <input name="auth0Id" value={form.auth0Id} type="hidden" />
+            <input name="type" value="business" type="hidden" />
           </div>
           <div className="input-group">
-            <label htmlFor="userName">Name</label>
+            <label htmlFor="userName">Username</label>
             <input
               name="userName"
-              value={form.name}
+              value={form.userName}
               id="userName"
               onChange={handleChange}
               disabled={true}
