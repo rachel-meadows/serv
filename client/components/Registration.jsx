@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
-// import { addUser } from '../apis/users'
-import { useDispatch } from 'react-redux'
-import { APIaddUser } from '../apis/users'
 import { addUser } from '../actions/user'
 
 function Registration() {
@@ -36,20 +33,13 @@ function Registration() {
 
   function handleAddCustomer(e) {
     e.preventDefault()
-    dispatch(   
+    dispatch(
       addUser({
         ...form,
         type: 'customer',
       })
     )
-
-    // navigate('/customer')
-    // try {
-    //   await addUser(form)
-    //   navigate('/')
-    // } catch (error) {
-    //   console.error(error)
-    // }
+    navigate('/customer')
   }
 
   async function handleAddBusiness(e) {
@@ -60,18 +50,11 @@ function Registration() {
         type: 'business',
       })
     )
-    // registerUser(form, authUser, history.push)
     console.log({
       ...form,
       type: 'business',
     })
-    // navigate('/business')
-    // try {
-    //   await addUser(form)
-    //   navigate('/')
-    // } catch (error) {
-    //   console.error(error)
-    // }
+    navigate('/business')
   }
 
   const handleSetUserTypeCustomer = () => {
