@@ -47,19 +47,15 @@ export function fetchJobQuotes(jobId) {
   }
 }
 
-export function createJob(data) {
-  console.log('in actions, data is ', data)
-  return (dispatch) => {
-    dispatch(createJobPending())
-    console.log('in actions, data is ', data)
-    return APIaddJob(data)
-      .then(() => {
-        dispatch(createJobSuccess())
-        return null
-      })
-      .catch((error) => {
-        const errMessage = error.response?.text || error.message
-        dispatch(showError(errMessage))
-      })
-  }
+export function createJob(data, navigate) {
+  return APIaddJob(data)
+    .then((response) => {
+      if (response.status === 201) {
+        navigate('/customer/message')
+      }
+    })
+    .catch((error) => {
+      const errMessage = error.response?.text || error.message
+      console.log(errMessage)
+    })
 }

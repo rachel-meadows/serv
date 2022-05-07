@@ -3,6 +3,20 @@ const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
 const router = express.Router()
 
+// POST api/v1/customer/add
+router.post('/add', async (req, res) => {
+  const data = req.body
+  console.log('hello?')
+  console.log(data)
+  try {
+    await dbJobs.addJob(data)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to insert job into the database' })
+  }
+})
+
 // GET api/v1/customer/:customerId/jobs
 router.get('/:customerId/jobs', async (req, res) => {
   const { customerId } = req.params
@@ -16,18 +30,6 @@ router.get('/:customerId/jobs', async (req, res) => {
     res
       .status(500)
       .json({ message: 'Unable to get list of jobs by customer ID' })
-  }
-})
-
-// POST api/v1/customer/add
-router.post('/add', async (req, res) => {
-  const data = req.body
-  try {
-    await dbJobs.addJob(data)
-    res.sendStatus(201)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Unable to insert job into the database' })
   }
 })
 
