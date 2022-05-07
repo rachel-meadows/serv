@@ -10,7 +10,8 @@ import Home from './home/Home'
 import AddJob from './customer/CustomerJobAdd'
 import JobsList from './customer/CustomerJobsList'
 import QuotesList from './customer/CustomerQuotesList'
-import CustomerJobCompleted from './customer/CustomerJobCompleted'
+import CustomerJobAdd from './customer/CustomerJobAdd'
+import SubmittedMessage from './customer/SubmittedMessage'
 import BusinessInfo from './business/BusinessInfo'
 import BusinessJobsList from './business/BusinessJobsList'
 
@@ -22,7 +23,7 @@ import { useSelector } from 'react-redux'
 function App() {
   cacheUser(useAuth0)
 
-  //Check if user is logged in, if logged in, update currentCustomer state variable 
+  //Check if user is logged in, if logged in, update currentCustomer state variable
   // const user = useSelector((state) => state.user)
 
   return (
@@ -33,11 +34,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<AddJob />} />
-
-        <Route
-          path="/customer/completed/:jobsId"
-          element={<CustomerJobCompleted />}
-        />
+        <Route path="/customer/form" element={<CustomerJobAdd />} />
+        <Route path="/customer/completed/:jobsId"element={<AddJob />} />
         <Route
           path="/customer"
           element={
@@ -45,7 +43,10 @@ function App() {
               <WaitIndicator />
             </JobsList>
           }
-        />
+        >
+          <Route path="message" element={<SubmittedMessage />}/>
+        </Route>
+
         <Route
           path="/customer/quote/:jobsId"
           element={

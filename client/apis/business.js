@@ -8,6 +8,18 @@ export function APIgetJobs() {
   })
 }
 
+export function APIgetOpenJobsByCategory(category) {
+  return request.get(rootUrl + `/category/${category}`).then((res) => {
+    return res.body
+  })
+}
+
+export function APIgetJobsByUser(userId) {
+  return request.get(rootUrl + `/user/${userId}`).then((res) => {
+    return res.body
+  })
+}
+
 export function APIgetBusinessById(businessId) {
   return request.get(rootUrl + `/${businessId}`).then((res) => {
     return res.body

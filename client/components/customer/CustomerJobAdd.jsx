@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { createJob } from '../../actions/customer'
+
+function AddJob() {
+  // Use this to update state with user (and get ID) once user is set up
+  // useEffect(() => {
+  //   dispatch(fetchUser())
+  // }, [])
+
 
 function AddJob({ children }) {
-  const userId = useSelector((state) => state.user.userId)
+  const userId = useSelector((state) => state.currentUser.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
@@ -13,6 +21,8 @@ function AddJob({ children }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
+    createJob(inputs)
   }
   return (
     <div>

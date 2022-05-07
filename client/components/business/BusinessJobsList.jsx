@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { useNavigate } from 'react-router-dom'
 import { APIgetBusinessByUserId } from '../../apis/business'
 // import { fetchJobsByUserId } from '../../actions/business'
-
-import { fetchJobs, fetchJobsByUser, fetchOpenJobsByCategory } from '../../actions/jobListings'
+import {
+  fetchOpenJobs,
+  fetchOpenJobsByCategory,
+  fetchJobsByUser,
+} from '../../actions/business'
 
 function BusinessJobsList({ children }) {
+
   const allJobs = useSelector((state) => state.jobList)
   const currentUser = useSelector((state) => state.currentUser)
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
+  const openJobsByCategory = useSelector((state) => state.openJobsByCategory)
+  const jobListing = useSelector((state) => state.openJobs)
   // const { userId, category } = userData
   const business = APIgetBusinessByUserId(userId)
 
@@ -20,11 +27,21 @@ function BusinessJobsList({ children }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+
   useEffect(() => {
-    // dispatch(fetchJobsByCatergory(userId, category))
-    dispatch(fetchOpenJobsByCategory(business.category))
-    dispatch(fetchJobsByUser(currentUser.id))
+    dispatch(fetchOpenJobsByCategory('construction'))
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchJobsByUser(3))
+  }, [])
+
+
+  // useEffect(() => {
+  //   // dispatch(fetchJobsByCatergory(userId, category))
+  //   dispatch(fetchOpenJobsByCategory(business.category))
+  //   dispatch(fetchJobsByUser(currentUser.id))
+  // }, [])
 
 
 
@@ -82,17 +99,32 @@ function BusinessJobsList({ children }) {
       <h1>Job Listings</h1>
       <div className="jobList">
 
-        {jobs?.map((jobListing) => {
+<<<<<<< HEAD
+  {
+    jobs?.map((jobListing) => {
+      console.log(jobListing)
+      return <BusinessQuoteItem key={jobListing.id} jobListing={jobListing} showDetails={showDetails} />
+||||||| 60125bc
+      <h1>Open Job Listings</h1>
+      <section>
+
+        {jobListing?.map((jobListing) => {
           console.log(jobListing)
-          return <BusinessQuoteItem key={jobListing.id} jobListing={jobListing} showDetails={showDetails} />
+          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+=======
+      <h1>Open Job Listings</h1>
+      <section>
+        {jobListing?.map((jobListing) => {
+          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+>>>>>>> 6da169e56b4a0a1c225776e75ea26b2d3302be23
 
-          //   {children} {/* This holds the WaitIndicator (from App) */}
-          //   {jobListings?.map((jobListing) => {
-          // return jobListing.description       Rachael to review this page/line
-          // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
-
-        })}
-      </div>
+      //   {children} {/* This holds the WaitIndicator (from App) */}
+      //   {jobListings?.map((jobListing) => {
+      // return jobListing.description       Rachael to review this page/line
+      // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+    })
+  }
+      </div >
     </>
   )
 }
