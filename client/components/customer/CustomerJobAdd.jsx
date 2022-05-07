@@ -8,7 +8,9 @@ function AddJob() {
   //   dispatch(fetchUser())
   // }, [])
 
-  const userId = useSelector((state) => state.user.userId)
+
+function AddJob({ children }) {
+  const userId = useSelector((state) => state.currentUser.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
@@ -19,7 +21,7 @@ function AddJob() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log('in handleSumbit fn')
+
     createJob(inputs)
   }
   return (
