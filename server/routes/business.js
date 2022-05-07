@@ -61,6 +61,21 @@ router.get('/:jobId', async (req, res) => {
   }
 })
 
+// Get business details by user ID
+// GET /business/:userId/details
+router.get('/:userId/details', async (req, res) => {
+  const { userId } = req.params
+  try {
+    await dbBusiness.getBusinessByUserId(userId).then((data) => {
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to find busines by job ID' })
+  }
+})
+
 // GET /business/:businessId
 router.get('/:businessId', async (req, res) => {
   console.log('up to route')
@@ -110,6 +125,20 @@ router.put('/:id/edit', async (req, res) => {
   const data = req.body
   try {
     await dbBusiness.editBusiness(id, data)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to edit business' })
+  }
+})
+
+// Change job status
+// PATCH /business/jobs/:jobId Edit business details
+router.patch('/jobs/:jobId', async (req, res) => {
+  const { jobId } = req.params
+  const status = req.body.status
+  try {
+    await dbJobs.changeJobStatus(jobId, status)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)
