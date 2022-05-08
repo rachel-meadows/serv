@@ -56,8 +56,25 @@ function getBusiness(id, db = connection) {
     .first()
 }
 
+function getBusinessByUserId(id, db = connection) {
+  return db('businesses')
+    .join('users', 'users.id', 'businesses.user_id')
+    .where('users.id', id)
+    .select(
+      'businesses.id as id',
+      'user_id as userId',
+      'business_name as businessName',
+      'website',
+      'category',
+      'logo',
+      'average_rating as averageRating'
+    )
+    .first()
+}
+
 module.exports = {
   addBusiness,
   editBusiness,
   getBusiness,
+  getBusinessByUserId,
 }

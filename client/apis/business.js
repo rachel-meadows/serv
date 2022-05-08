@@ -8,6 +8,12 @@ export function APIgetJobs() {
   })
 }
 
+export function APIgetJobById(jobId) {
+  return request.get(rootUrl + `/jobs/details/${jobId}`).then((res) => {
+    return res.body
+  })
+}
+
 export function APIgetOpenJobsByCategory(category) {
   return request.get(rootUrl + `/category/${category}`).then((res) => {
     return res.body
@@ -26,14 +32,14 @@ export function APIgetBusinessById(businessId) {
   })
 }
 
-export function APIaddQuote(jobId, data) {
-  return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data)
-}
-
 export function APIgetBusinessByUserId(userId) {
-  return request.get(rootUrl + `/${userId}/details`).then((res) => {
+  return request.get(rootUrl + `/details/${userId}`).then((res) => {
     return res.body
   })
+}
+
+export function APIaddQuote(jobId, data) {
+  return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data)
 }
 
 export function APIeditBusiness(userId, data) {

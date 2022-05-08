@@ -17,6 +17,19 @@ router.get('/', async (req, res) => {
   }
 })
 
+// Get job by job ID
+// GET /business/jobs/details/:jobsId
+router.post('/jobs/details/:jobId', async (req, res) => {
+  const { jobId } = req.params
+  try {
+    await dbJobs.getJobById(jobId)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to add quote into db' })
+  }
+})
+
 // GET /business/category/:category
 // Get data for the openJobsByCategory state
 router.get('/category/:category', async (req, res) => {
@@ -29,6 +42,22 @@ router.get('/category/:category', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to get list of all jobs' })
+  }
+})
+
+// Get business details by user ID
+// GET /business/details/:userId/
+router.get('/details/:userId/', async (req, res) => {
+  const { userId } = req.params
+  try {
+    await dbBusiness.getBusinessByUserId(userId).then((data) => {
+      console.log(data)
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to find business by user ID' })
   }
 })
 
@@ -57,22 +86,7 @@ router.get('/:jobId', async (req, res) => {
     })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Unable to find busines by job ID' })
-  }
-})
-
-// Get business details by user ID
-// GET /business/:userId/details
-router.get('/:userId/details', async (req, res) => {
-  const { userId } = req.params
-  try {
-    await dbBusiness.getBusinessByUserId(userId).then((data) => {
-      res.json(data)
-      return null
-    })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Unable to find busines by job ID' })
+    res.status(500).json({ message: 'Unable to find business by job ID' })
   }
 })
 
