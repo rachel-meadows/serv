@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../actions/user'
+import { APIgetBusinessByUserId } from '../apis/business'
 
 function Registration() {
   const dispatch = useDispatch()
@@ -69,6 +70,9 @@ function Registration() {
         type: 'business',
       })
     )
+    // .then
+
+    //APIgetBusinessByUserId
     console.log({
       ...form,
       type: 'business',

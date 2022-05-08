@@ -5,6 +5,7 @@ import {
   APIeditBusiness,
   APIgetOpenJobsByCategory,
   APIgetJobsByUser,
+  APIgetJobById,
 } from '../apis/business'
 import { showError } from '../actions/error'
 
@@ -25,6 +26,9 @@ export const FETCH_JOBS_BY_CATEGORY_SUCCESS = 'FETCH_JOBS_BY_CATEGORY_SUCCESS'
 
 export const FETCH_JOBS_BY_USER_PENDING = 'FETCH_JOBS_BY_USER_PENDING'
 export const FETCH_JOBS_BY_USER_SUCCESS = 'FETCH_JOBS_BY_USER_SUCCESS'
+
+export const FETCH_JOB_BY_ID_PENDING = 'FETCH_JOB_BY_ID_PENDING'
+export const FETCH_JOB_BY_ID_SUCCESS = 'FETCH_JOB_BY_ID_SUCCESS'
 
 export function fetchOpenJobsPending() {
   return {
@@ -98,6 +102,19 @@ export function fetchJobsByUserSuccess(jobs) {
   return {
     type: FETCH_JOBS_BY_USER_SUCCESS,
     jobsByUser: jobs,
+  }
+}
+
+export function fetchJobByIdPending() {
+  return {
+    type: FETCH_JOB_BY_ID_PENDING,
+  }
+}
+
+export function fetchJobByIdSuccess(job) {
+  return {
+    type: FETCH_JOB_BY_ID_SUCCESS,
+    currentJob: job,
   }
 }
 
@@ -182,6 +199,21 @@ export function fetchJobsByUser(userId) {
     return APIgetJobsByUser(userId)
       .then((jobs) => {
         dispatch(fetchJobsByUserSuccess(jobs))
+        return null
+      })
+      .catch((error) => {
+        const errMessage = error.response?.text || error.message
+        dispatch(showError(errMessage))
+      })
+  }
+}
+
+export function fetchJobById(jobId) {
+  return (dispatch) => {
+    dispatch(fetchJobByIdPending())
+    return APIgetJobById(jobId)
+      .then((job) => {
+        dispatch(fetchJobByIdSuccess(job))
         return null
       })
       .catch((error) => {
