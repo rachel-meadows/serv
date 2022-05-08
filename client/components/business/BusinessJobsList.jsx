@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
-
-
-import { useNavigate } from 'react-router-dom'
-// import { APIgetBusinessByUserId } from '../../apis/business'
-
-
+import { APIgetBusinessByUserId } from '../../apis/business'
 import { useLocation, useNavigate } from 'react-router-dom'
-
 
 import {
   // fetchOpenJobs,
   fetchOpenJobsByCategory,
   fetchJobsByUser,
-  fetchJobsByUserId
+  fetchJobsByUserId,
 } from '../../actions/business'
 
 function BusinessJobsList({ children }) {
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
 
   const allJobs = useSelector((state) => state.jobList)
   const currentBusiness = useSelector((state) => state.currentBusiness)
@@ -32,26 +24,16 @@ function BusinessJobsList({ children }) {
   // const quoteById = useSelector((state) => state.quotesById)
   const location = useLocation()
 
-
   // const { userId, category } = userData
 
   const [business, setBusiness] = useState({})
   const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
-
   const [showMessage, setShowMessage] = useState(false)
-  // const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const userId = currentUser.id
 
   useEffect(() => {
-    console.log('1')
-    dispatch(fetchOpenJobsByCategory('plumbing'))
-  }, [])
-
-  useEffect(() => {
-    APIgetBusinessByUserId(currentUser.id).then((data) => {
+    APIgetBusinessByUserId(currentUser?.id).then((data) => {
       setBusiness(data)
     }).catch
   }, [currentUser])
@@ -61,7 +43,7 @@ function BusinessJobsList({ children }) {
   }, [business])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(6))
+    dispatch(fetchJobsByUser(5))
   }, [])
 
   useEffect(() => {
@@ -71,11 +53,21 @@ function BusinessJobsList({ children }) {
     }, 5000)
   }, [])
 
-
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
+      // TODO: Filter to exclude content business has worked on
+      // The problem is that jobsByUser updates in global state on adding a quote
+      // (according to the Redux plugin), but not here for some reason.
+      // If we can fix that, the openAndUnquoted code will probably work.
+
+      // console.log('openJobs:', openJobs)
+      // console.log('jobsByUser:', jobsByUser)
+      const openAndUnquoted = openJobs.filter(
+        (job) => !jobsByUser.includes(job.id)
+      )
+      // console.log('openAndUnquoted', openAndUnquoted)
+      // Current
       setJobs(openJobs)
-      console.log()
     } else if (dropDownSelection === 'quoted') {
       // 'pending'status includes pending and rejected quotes
       setJobs(
@@ -97,7 +89,6 @@ function BusinessJobsList({ children }) {
       console.log(jobs)
     }
   }, [jobsByUser, openJobs, dropDownSelection])
-
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
@@ -140,14 +131,12 @@ function BusinessJobsList({ children }) {
       </form>
       <h1>Job Listings</h1>
       <div className="jobList">
-
         {jobs?.map((job) => {
           return (
             <BusinessJobItem
               key={job.id}
               job={job}
               dropDownSelection={dropDownSelection}
-
             />
           )
 

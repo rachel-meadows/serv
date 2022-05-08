@@ -53,7 +53,6 @@ router.get('/details/:userId/', async (req, res) => {
   const { userId } = req.params
   try {
     await dbBusiness.getBusinessByUserId(userId).then((data) => {
-      console.log(data)
       res.json(data)
       return null
     })
@@ -89,6 +88,23 @@ router.get('/:jobId', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to find business by job ID' })
+  }
+})
+
+// Change job status
+// PATCH /business/jobs/:jobId Edit business details
+router.patch('/jobs/:jobId', async (req, res) => {
+  const { jobId } = req.params
+  const status = req.body.status
+  console.log('routes')
+  console.log('jobId', jobId)
+  console.log('status', status)
+  try {
+    await dbJobs.changeJobStatus(jobId, status)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to edit business' })
   }
 })
 
@@ -140,20 +156,6 @@ router.put('/:id/edit', async (req, res) => {
   const data = req.body
   try {
     await dbBusiness.editBusiness(id, data)
-    res.sendStatus(201)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Unable to edit business' })
-  }
-})
-
-// Change job status
-// PATCH /business/jobs/:jobId Edit business details
-router.patch('/jobs/:jobId', async (req, res) => {
-  const { jobId } = req.params
-  const status = req.body.status
-  try {
-    await dbJobs.changeJobStatus(jobId, status)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)
