@@ -10,7 +10,7 @@ export function APIgetJobs() {
 
 export function APIgetJobById(jobId) {
   return request.get(rootUrl + `/jobs/details/${jobId}`).then((res) => {
-    return res.body
+    return res.body[0]
   })
 }
 
@@ -38,8 +38,8 @@ export function APIgetBusinessByUserId(userId) {
   })
 }
 
-export function APIaddQuote(jobId, data) {
-  return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data)
+export function APIaddQuote(jobId, data) { 
+  return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data).then(() => {})
 }
 
 export function APIeditBusiness(userId, data) {

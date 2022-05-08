@@ -1,49 +1,82 @@
 import React, { useEffect } from 'react'
 import BusJobItem from './BusinessJobItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllJobs } from '../../actions/business'
+import { fetchJobsByUserId} from '../../actions/business'
+import { useNavigate } from 'react-router-dom'
+import BusinessQuoteItem from './BusinessQuoteItem' 
 
-function BusinessJobsList() {
-  const jobListing = useSelector((state) => state.openJobs) 
+function BusinessQuotedJobsList() {
+  const jobListing = useSelector((state) => state.openJobs)
+  const userData = useSelector((state) => state.userData)
+  const { userId, category } = userData
+
+  const [jobs, setJobs] = useState([])
+  const [dropDownSelection, setdropDownSelection] = useState("unmatched")
+
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-  
-  // const [inputs, setInputs] = useState({ userId })
-
-  // const handleChange = (event) => {
-  //   const name = event.target.name
-  //   const value = event.target.value
-  //   setInputs((values) => ({ ...values, [name]: value }))
-  // }
-  
-  // const [inputs, setInputs] = useState({ userId })
-
-  // const handleChange = (event) => {
-  //   const name = event.target.name
-  //   const value = event.target.value
-  //   setInputs((values) => ({ ...values, [name]: value }))
-  // }
 
   useEffect(() => {
-    dispatch(fetchAllJobs())
+    dispatch(fetchJobsByUserId(userId, category?))
   }, [])
 
-  return (
-    <div>
-      <select name="category" id="category" required>
-        <option value="">Select Status</option>
-        <option value="Active">Active</option>
-        <option value="in_progress">In Progress</option>
-        <option value="complete">Complete</option>
-      </select>
+  useEffect(() => {
+    // if (dropDownSelection === 'unmatched') {
+    //   const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
+    //   setJobs(unmatchedJobs)
+    // }
+    if (dropDownSelection === 'active') {
+      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
+    }
+    else if (dropDownSelection === 'completed') {
+      setJobs(allJobs.filter((obj) => obj.status === 'closed'))
+    }
+    else if (dropDownSelection === 'all') {
+      setJobs(allJobs)
+    }
+  }, [allJobs, dropDownSelection])
 
+  function showDetails(jobsId, status) {
+    if (status === 'open') {
+      navigate(`/business/open/${jobsId}`)
+    }
+    else if (status === 'in progress') {
+      navigate(`/business/active/${jobsId}`)
+    }
+    else if (status === 'closed') {
+      navigate(`/business/completed/${jobsId}`)
+    }
+  }
+
+  function handleDropDown(event) {
+    setdropDownSelection(event.target.value)
+  }
+
+
+  return (
+    <>
+    <div className="quote-submitted flex flex-col flex-align-center">
+      <h2>Your quote has been submitted</h2>
+      <p>Your quote has been successfully passed on to your customer.</p>
+      <p>You'll get a message soon if they accept the quote.</p>
+    </div>
+      <form>
+        <label htmlFor="filter">Filter your jobs:</label>
+        <select name="status" id="status"  defaultValue={"quoted"} required onChange={handleDropDown}>
+        <option value="unmatched" >Unmatched</option>
+          <option value="quoted">Quoted</option>
+          <option value="active">Active</option>
+          <option value="completed">Completed</option>
+        </select>
+      </form>
       <h1>Job Listings</h1>
       <section>
-        {jobListing?.map((jobListing) => {
-          console.log(jobListing)
-          return <BusJobItem key={jobListing.id} jobListing={jobListing} />
+        {jobs?.map((job) => {
+          console.log(job)
+          return <BusinessQuoteItem key={job.id} jobListing={job} showDetails={showDetails}/>
         })}
       </section>
-    </div>
+    </>
   )
 }
 

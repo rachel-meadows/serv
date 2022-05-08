@@ -34,7 +34,7 @@ function JobsList() {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
     } else if (dropDownSelection === 'all') {
       setJobs(allJobs)
-    }
+    }``
   }, [allJobs, dropDownSelection])
 
   function showDetails(jobsId, status) {

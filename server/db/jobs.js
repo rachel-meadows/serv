@@ -118,8 +118,8 @@ function getJobsByUser(userId, db = connection) {
       'description',
       'image',
       'jobs.category',
-      'price_min as priceMin',
-      'price_max as priceMax',
+      'jobs.price_min as priceMin',
+      'jobs.price_max as priceMax',
       'jobs.date_added as dateAdded',
       'quotes.status as quoteStatus',
       'jobs.status as jobStatus'
