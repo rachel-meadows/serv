@@ -9,6 +9,7 @@
 html,
 body {
   margin: 0;
+  height: 100vh;
 }
 
 body {
@@ -91,7 +92,7 @@ header a > .logo > img {
 main {
   padding: 0 1rem;
   margin-bottom: 2rem;
-  height: 100%;
+  flex-grow: 1;
 }
 
 footer {

@@ -40,36 +40,33 @@ function Nav() {
     <nav>
       <ul>
         <IfAuthenticated>
-          {currentUser?.type === 'customer' && (
+          {/* puit === 'customer' when ready for production */}
+          {currentUser?.type && (
             <>
               <li>
-                <Link to="/customer/add">Create Jobs</Link>
+                <Link to="/customer">Customer</Link>
               </li>
               <li>
-                <Link to="/customer">My Listings</Link>
-              </li>
-              <li>
-                <a href="/" onClick={handleLogoff} className="nav-link">
-                  Log out
-                </a>
+                <Link to="/customer/add">Cus Add</Link>
               </li>
             </>
           )}
-          {currentUser?.type === 'business' && (
+          {/* put === 'business' when ready for production */}
+          {currentUser?.type && (
             <>
               <li>
-                <Link to="/business">Dashboard</Link>
+                <Link to="/business">Business</Link>
               </li>
               <li>
-                <Link to="/business/jobs">My Jobs</Link>
-              </li>
-              <li>
-                <a href="/" onClick={handleLogoff} className="nav-link">
-                  Log out
-                </a>
+                <Link to="/business/jobs">Bus Jobs</Link>
               </li>
             </>
           )}
+          <li>
+            <a href="/" onClick={handleLogoff} className="nav-link">
+              Log out
+            </a>
+          </li>
         </IfAuthenticated>
         <IfNotAuthenticated>
           <>

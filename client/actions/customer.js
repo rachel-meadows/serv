@@ -56,6 +56,6 @@ export function createJob(data, navigate) {
     })
     .catch((error) => {
       const errMessage = error.response?.text || error.message
-      console.log(errMessage)
+      // console.log(errMessage)
     })
 }

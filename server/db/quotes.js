@@ -58,9 +58,14 @@ function getQuote(id, db = connection) {
     )
 }
 
+function editQuoteStatus(quoteId, status, db = connection) {
+  return db('quotes').where('id', quoteId).update('status', status)
+}
+
 module.exports = {
   addQuote,
   getQuotesByCustomer,
   getQuotesByJob,
   getQuote,
+  editQuoteStatus,
 }

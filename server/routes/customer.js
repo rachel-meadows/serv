@@ -94,6 +94,22 @@ router.get('/quote/:jobId', async (req, res) => {
   }
 })
 
+// Change quote status
+// GET api/v1/customer/jobs/quotes/:quoteId
+router.patch('/jobs/quotes/:quoteId', async (req, res) => {
+  const { quoteId } = req.params
+  const status = req.body.status
+  try {
+    await dbQuotes.editQuoteStatus(quoteId, status).then((quote) => {
+      res.json({ quote })
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get list of jobs by job ID' })
+  }
+})
+
 // GET api/v1/customer/:jobId/quotes/:quoteId
 router.get('/:jobId/quotes/:quoteId', async (req, res) => {
   const { quoteId } = req.params
