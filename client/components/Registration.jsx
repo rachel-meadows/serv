@@ -191,6 +191,7 @@ function Registration() {
               type="file"
               name="logo"
               id="logo"
+              accept="image/*"
               onChange={(e) => handleFileUpload(e)}
             />
           </div>
