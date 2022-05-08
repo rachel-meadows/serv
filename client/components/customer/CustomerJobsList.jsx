@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Outlet } from 'react-router-dom'
+import { useNavigate, Outlet, useLocation } from 'react-router-dom'
 
 import { fetchJobs } from '../../actions/jobListings'
 
@@ -15,7 +15,7 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   // console.log(jobs)
   const [dropDownSelection, setdropDownSelection] = useState('all')
-
+  const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -52,8 +52,8 @@ function JobsList() {
   }
   return (
     <>
-      <Outlet />
       <form>
+        {location?.state?.message && <h1>YOUR JOB HAS BEEN SUBMITTED!</h1>}
         <label htmlFor="filter">Filter your jobs:</label>
         <select name="filter" onChange={handleDropDown}>
           <option value="all">All</option>

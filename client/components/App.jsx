@@ -28,12 +28,27 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<CustomerJobAdd />} />
-        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
-        <Route path="/customer" element={ <JobsList><WaitIndicator /></JobsList>}>
-          <Route path="message" element={<SubmittedMessage />} />
-        </Route>
-        <Route path="/customer/quote/:jobsId" element={ <QuotesList><WaitIndicator /></QuotesList> }/>
-        
+        <Route
+          path="/customer/completed/:jobsId"
+          element={<CustomerJobCompleted />}
+        />
+        <Route
+          path="/customer"
+          element={
+            <JobsList>
+              <WaitIndicator />
+            </JobsList>
+          }
+        />
+        <Route
+          path="/customer/quote/:jobsId"
+          element={
+            <QuotesList>
+              <WaitIndicator />
+            </QuotesList>
+          }
+        />
+
         {/* <Route path="/business/:jobId" element={} /> */}
         {/* <Route path="/business/jobs" element={} /> */}
         {/* <Route path="/business/jobs/:jobId" element={} />  */}
