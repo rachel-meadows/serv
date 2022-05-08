@@ -14,6 +14,7 @@ import {
 function BusinessJobsList({ children }) {
 
   const allJobs = useSelector((state) => state.jobList)
+  const currentBusiness = useSelector((state) => state.currentBusiness)
   const currentUser = useSelector((state) => state.currentUser)
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
@@ -21,23 +22,26 @@ function BusinessJobsList({ children }) {
   // const quoteById = useSelector((state) => state.quotesById)
   // const { userId, category } = userData
 
-  // const business = APIgetBusinessByUserId(currentUser.id)
-  console.log(jobsByUser)
+
+  const [business, setBusiness] = useState({})
   const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userId = currentUser.id
-  // console.log(userId)
-  const currentBusiness = APIgetBusinessByUserId(userId)
-  console.log(currentBusiness);
+
 
   useEffect(() => {
+    APIgetBusinessByUserId(currentUser.id)
+      .then((data) => {
+        setBusiness(data)
+      }).catch
+  }, [currentUser])
 
-    dispatch(fetchOpenJobsByCategory('plumbing'))
-
-  }, [])
+  useEffect(() => {
+    dispatch(fetchOpenJobsByCategory(business?.category))
+  }, [business])
 
   useEffect(() => {
     dispatch(fetchJobsByUser(userId))

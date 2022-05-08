@@ -34,6 +34,7 @@ export function APIgetBusinessById(businessId) {
 
 export function APIgetBusinessByUserId(userId) {
   return request.get(rootUrl + `/details/${userId}`).then((res) => {
+    console.log("res.body", res.body)
     return res.body
   })
 }
