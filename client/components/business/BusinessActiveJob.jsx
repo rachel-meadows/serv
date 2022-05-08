@@ -21,7 +21,7 @@ function BusinessActiveJob() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    APIchangeJobStatus(currentJob.id)
+    APIchangeJobStatus(currentJob.id, "completed")
     navigate(`/business`)
   }
   return (

@@ -3,6 +3,7 @@ import {
   FETCH_JOBS_BY_CATEGORY_SUCCESS,
   FETCH_JOBS_BY_USER_SUCCESS,
   FETCH_JOB_BY_ID_SUCCESS,
+  ADD_BUSINESS_SUCCESS
 } from '../actions/business'
 
 const initialState = []
@@ -39,6 +40,15 @@ export const currentJob = (state = {}, action) => {
   switch (action.type) {
     case FETCH_JOB_BY_ID_SUCCESS:
       return action.currentJob
+    default:
+      return state
+  }
+}
+
+export const currentBusiness = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_BUSINESS_SUCCESS:
+      return action.currentBusiness
     default:
       return state
   }

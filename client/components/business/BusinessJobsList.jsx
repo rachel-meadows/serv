@@ -12,48 +12,61 @@ import {
 } from '../../actions/business'
 
 function BusinessJobsList({ children }) {
-  // const allJobs = useSelector((state) => state.jobList)
+
+  const allJobs = useSelector((state) => state.jobList)
+  const currentBusiness = useSelector((state) => state.currentBusiness)
   const currentUser = useSelector((state) => state.currentUser)
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
-  // const jobListing = useSelector((state) => state.openJobs)
+  const jobListing = useSelector((state) => state.openJobs)
+  // const quoteById = useSelector((state) => state.quotesById)
   const location = useLocation()
+
   // const { userId, category } = userData
-  // const business = APIgetBusinessByUserId(currentUser.id)
-  console.log(jobsByUser)
+
+  const [business, setBusiness] = useState({})
   const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   // const navigate = useNavigate()
   const dispatch = useDispatch()
   const userId = currentUser.id
+ 
   useEffect(() => {
     console.log('1')
     dispatch(fetchOpenJobsByCategory('plumbing'))
   }, [])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(userId))
-  }, [])
+    APIgetBusinessByUserId(currentUser.id)
+      .then((data) => {
+        setBusiness(data)
+      }).catch
+  }, [currentUser])
 
-  // useEffect(() => {
-  //   // dispatch(fetchJobsByCatergory(userId, category))
-  //   dispatch(fetchOpenJobsByCategory(business.category))
-  //   dispatch(fetchJobsByUser(currentUser.id))
-  // }, [])
+  useEffect(() => {
+    dispatch(fetchOpenJobsByCategory(business?.category))
+  }, [business])
+
+  useEffect(() => {
+    dispatch(fetchJobsByUser(6))
+  }, [])
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
       setJobs(openJobs)
       console.log()
-    } else if (dropDownSelection === 'quoted') {
-      setJobs(jobsByUser.filter((obj) => obj.quoteStatus === 'pending'))
-      console.log(jobs)
-    } else if (dropDownSelection === 'active') {
-      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'in progress'))
-      console.log(jobs)
-    } else if (dropDownSelection === 'completed') {
-      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'closed'))
+
+    }
+    else if (dropDownSelection === 'quoted') {
+      // 'pending'status includes pending and rejected quotes
+      setJobs(jobsByUser.filter((obj) => obj.quoteStatus === 'pending' || 'rejected'))
+    }
+    else if (dropDownSelection === 'active') {
+      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'in progress' && obj.quoteStatus === 'accepted'))
+    }
+    else if (dropDownSelection === 'completed') {
+      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'))
       console.log(jobs)
     }
     // else if (dropDownSelection === 'all') {

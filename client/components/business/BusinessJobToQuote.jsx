@@ -8,6 +8,7 @@ function BusinessJobToQuote() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { jobId } = useParams()
+  console.log(jobId)
   useEffect(() => {
     dispatch(fetchJobById(jobId))
   }, [])

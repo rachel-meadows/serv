@@ -8,6 +8,7 @@ import {
   openJobsByCategory,
   jobsByUser,
   currentJob,
+  currentBusiness
 } from './business'
 import { jobQuotes, jobListings } from './customer'
 import waiting from './waiting'
@@ -23,4 +24,5 @@ export default combineReducers({
   jobQuotes,
   jobListings,
   currentJob,
+  currentBusiness
 })

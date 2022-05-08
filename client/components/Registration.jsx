@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router'
 import { addUser } from '../actions/user'
 // import { APIgetBusinessByUserId } from '../apis/business'
 import { convertToBase64 } from '../utils/convertImage'
+import { addBusiness } from '../actions/business'
 
 function Registration() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
+  const currentUser = useSelector((state) => state.currentUser)
   const navigate = useNavigate()
   const [userType, setUserType] = useState('')
 
@@ -66,6 +68,10 @@ function Registration() {
       )
     )
   }
+
+  useEffect(() => {
+    dispatch(addBusiness(currentUser?.id))
+  }, [currentUser])
 
   const handleSetUserTypeCustomer = () => {
     setUserType('customer')
