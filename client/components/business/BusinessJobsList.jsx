@@ -44,7 +44,7 @@ function BusinessJobsList({ children }) {
   }, [business])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(userId))
+    dispatch(fetchJobsByUser(6))
   }, [])
 
   useEffect(() => {
@@ -53,15 +53,16 @@ function BusinessJobsList({ children }) {
       console.log()
     }
     else if (dropDownSelection === 'quoted') {
-      setJobs(jobsByUser.filter((obj) => obj.quoteStatus === 'pending'))
+      // 'pending'status includes pending and rejected quotes
+      setJobs(jobsByUser.filter((obj) => obj.quoteStatus === 'pending' || 'rejected'))
       console.log(jobs)
     }
     else if (dropDownSelection === 'active') {
-      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'in progress'))
+      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'in progress' && obj.quoteStatus === 'accepted'))
       console.log(jobs)
     }
     else if (dropDownSelection === 'completed') {
-      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'closed'))
+      setJobs(jobsByUser.filter((obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'))
       console.log(jobs)
     }
     // else if (dropDownSelection === 'all') {
