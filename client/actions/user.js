@@ -83,7 +83,6 @@ export function getUserByAuth0Id(auth0Id) {
   return (dispatch) => {
     return APIgetUserByAuth0Id(auth0Id)
       .then((user) => {
-        console.log(user)
         dispatch(getUserSuccess(user))
       })
       .catch((err) => {

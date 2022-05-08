@@ -69,6 +69,7 @@ exports.seed = function (knex) {
           notes: 'Best I can do is a treehouse.',
           status: 'pending',
         },
+<<<<<<< HEAD
         {
           id: 7,
           user_id: 7,
@@ -79,6 +80,19 @@ exports.seed = function (knex) {
           notes: 'Best I can do is a treehouse.',
           status: 'accepted',
         },
+||||||| 05cbec3
+=======
+        {
+          id: 7,
+          user_id: 7,
+          business_id: 3,
+          job_id: 7,
+          price: 100,
+          date_added: '2022-05-04T21:15:34.334Z',
+          notes: 'Best I can do is a treehouse.',
+          status: 'accepted',
+        },
+>>>>>>> 652cfcdf139050ff66d191f482d6b3f162606eba
       ])
     })
 }

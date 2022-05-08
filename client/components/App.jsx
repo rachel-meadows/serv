@@ -30,6 +30,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<CustomerJobAdd />} />
+<<<<<<< HEAD
         <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
         <Route path="/customer" element={<JobsList><WaitIndicator /></JobsList>}>
           <Route path="message" element={<SubmittedMessage />} />
@@ -38,6 +39,38 @@ function App() {
         <Route path="/business/open/:jobId" element={<BusinessJobToQuote><WaitIndicator /></BusinessJobToQuote>} />
         <Route path="/business/active/:jobId" element={<BusinessActiveJob><WaitIndicator /></BusinessActiveJob>} />
         <Route path="/business/quoted/:jobId" element={<BusinessQuotedJob><WaitIndicator /></BusinessQuotedJob>} />
+||||||| 05cbec3
+        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
+        <Route path="/customer" element={ <JobsList><WaitIndicator /></JobsList>}>
+          <Route path="message" element={<SubmittedMessage />} />
+        </Route>
+        <Route path="/customer/quote/:jobsId" element={ <QuotesList><WaitIndicator /></QuotesList> }/>
+        
+        {/* <Route path="/business/:jobId" element={} /> */}
+=======
+        <Route
+          path="/customer/completed/:jobsId"
+          element={<CustomerJobCompleted />}
+        />
+        <Route
+          path="/customer"
+          element={
+            <JobsList>
+              <WaitIndicator />
+            </JobsList>
+          }
+        />
+        <Route
+          path="/customer/quote/:jobsId"
+          element={
+            <QuotesList>
+              <WaitIndicator />
+            </QuotesList>
+          }
+        />
+
+        {/* <Route path="/business/:jobId" element={} /> */}
+>>>>>>> 652cfcdf139050ff66d191f482d6b3f162606eba
         {/* <Route path="/business/jobs" element={} /> */}
         {/* <Route path="/business/jobs/:jobId" element={} />  */}
 
