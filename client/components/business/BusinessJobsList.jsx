@@ -26,15 +26,15 @@ function BusinessJobsList({ children }) {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const userId = currentUser.id
+  const userId = currentUser.id
   useEffect(() => {
     console.log("1")
-    dispatch(fetchOpenJobsByCategory('construction'))
+    dispatch(fetchOpenJobsByCategory('plumbing'))
 
   }, [])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(6))
+    dispatch(fetchJobsByUser(userId))
   }, [])
 
 
