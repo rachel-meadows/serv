@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
-// import { addUser } from '../apis/users'
-import { useDispatch } from 'react-redux'
-import { APIaddUser } from '../apis/users'
 import { addUser } from '../actions/user'
+// import { APIgetBusinessByUserId } from '../apis/business'
+import { convertToBase64 } from '../utils/convertImage'
+import { addBusiness } from '../actions/business'
 
 function Registration() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
+  const currentUser = useSelector((state) => state.currentUser)
   const navigate = useNavigate()
   const [userType, setUserType] = useState('')
 
@@ -34,45 +35,43 @@ function Registration() {
     })
   }
 
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertToBase64(file)
+    setForm({ ...form, logo: base64 })
+  }
+
   function handleAddCustomer(e) {
     e.preventDefault()
-    dispatch(   
-      addUser({
-        ...form,
-        type: 'customer',
-      })
+    dispatch(
+      addUser(
+        {
+          ...form,
+          type: 'customer',
+        },
+        navigate,
+        '/customer'
+      )
     )
-
-    // navigate('/customer')
-    // try {
-    //   await addUser(form)
-    //   navigate('/')
-    // } catch (error) {
-    //   console.error(error)
-    // }
   }
 
   async function handleAddBusiness(e) {
     e.preventDefault()
     dispatch(
-      addUser({
-        ...form,
-        type: 'business',
-      })
+      addUser(
+        {
+          ...form,
+          type: 'business',
+        },
+        navigate,
+        '/business'
+      )
     )
-    // registerUser(form, authUser, history.push)
-    console.log({
-      ...form,
-      type: 'business',
-    })
-    // navigate('/business')
-    // try {
-    //   await addUser(form)
-    //   navigate('/')
-    // } catch (error) {
-    //   console.error(error)
-    // }
   }
+
+  useEffect(() => {
+    dispatch(addBusiness(currentUser?.id))
+  }, [currentUser])
 
   const handleSetUserTypeCustomer = () => {
     setUserType('customer')
@@ -185,7 +184,16 @@ function Registration() {
           </div>
           <div className="input-group">
             <label htmlFor="logo">Logo</label>
-            <input type="file" name="logo" id="logo" onChange={handleChange} />
+            <input
+              type="file"
+              name="logo"
+              id="logo"
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
+          <div className="input-group">
+            <img src={form.logo} alt="" style={{ width: '100px' }} />
           </div>
           <div className="input-group">
             <button>Register as Business</button>

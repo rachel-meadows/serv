@@ -25,6 +25,22 @@ function editBusiness(id, input, db = connection) {
   return db('businesses').where('id', id).update(business)
 }
 
+function getBusinessByUserId(id, db = connection) {
+  return db('businesses')
+    .join('users', 'users.id', 'businesses.user_id')
+    .where('businesses.user_id', id)
+    .select(
+      'businesses.id',
+      'user_id as userId',
+      'business_name as businessName',
+      'website',
+      'category',
+      'logo',
+      'average_rating as averageRating'
+    )
+    .first()
+}
+
 function getBusiness(id, db = connection) {
   return db('businesses')
     .where('id', id)
@@ -44,4 +60,5 @@ module.exports = {
   addBusiness,
   editBusiness,
   getBusiness,
+  getBusinessByUserId,
 }

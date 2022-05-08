@@ -6,13 +6,14 @@ import { fetchJobQuotes } from '../../actions/customer'
 
 function QuotesList({ children }) {
   const { jobsId } = useParams()
-  // console.log('JOBS ID: ' + jobsId)
+  console.log('JOBS ID: ' + jobsId)
 
   const quotes = useSelector((state) => state.jobQuotes)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchJobQuotes(jobsId))
   }, [])
+  console.log(quotes)
   // the data is hardcoded at the moment.t
   // need related user_id and job_id from
 

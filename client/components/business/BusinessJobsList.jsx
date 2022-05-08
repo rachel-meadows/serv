@@ -2,50 +2,102 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
 
+
 import { useNavigate } from 'react-router-dom'
 // import { APIgetBusinessByUserId } from '../../apis/business'
-// import { fetchJobsByUserId } from '../../actions/business'
+
+
+import { useLocation, useNavigate } from 'react-router-dom'
+
 
 import {
+  // fetchOpenJobs,
   fetchOpenJobsByCategory,
   fetchJobsByUser,
+  fetchJobsByUserId
 } from '../../actions/business'
 
 function BusinessJobsList({ children }) {
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+
+  const allJobs = useSelector((state) => state.jobList)
+  const currentBusiness = useSelector((state) => state.currentBusiness)
   const currentUser = useSelector((state) => state.currentUser)
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
-  // const { userId, category } = userData
-  // const business = APIgetBusinessByUserId(currentUser.id)
+  const jobListing = useSelector((state) => state.openJobs)
+  // const quoteById = useSelector((state) => state.quotesById)
+  const location = useLocation()
 
+
+  // const { userId, category } = userData
+
+  const [business, setBusiness] = useState({})
   const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
+
+  const [showMessage, setShowMessage] = useState(false)
+  // const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const userId = currentUser.id
+
   useEffect(() => {
-    dispatch(fetchOpenJobsByCategory('construction'))
-    dispatch(fetchJobsByUser(3))
+    console.log('1')
+    dispatch(fetchOpenJobsByCategory('plumbing'))
   }, [])
 
-  // useEffect(() => {
-  //   // dispatch(fetchJobsByCatergory(userId, category))
-  //   dispatch(fetchOpenJobsByCategory(business.category))
-  //   dispatch(fetchJobsByUser(currentUser.id))
-  // }, [])
+  useEffect(() => {
+    APIgetBusinessByUserId(currentUser.id).then((data) => {
+      setBusiness(data)
+    }).catch
+  }, [currentUser])
+
+  useEffect(() => {
+    dispatch(fetchOpenJobsByCategory(business?.category))
+  }, [business])
+
+  useEffect(() => {
+    dispatch(fetchJobsByUser(6))
+  }, [])
+
+  useEffect(() => {
+    setShowMessage(location?.state?.message)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 5000)
+  }, [])
+
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
       setJobs(openJobs)
+      console.log()
     } else if (dropDownSelection === 'quoted') {
-      setJobs(jobsByUser.filter((obj) => obj.status === 'quoted'))
+      // 'pending'status includes pending and rejected quotes
+      setJobs(
+        jobsByUser.filter((obj) => obj.quoteStatus === 'pending' || 'rejected')
+      )
     } else if (dropDownSelection === 'active') {
-      setJobs(jobsByUser.filter((obj) => obj.status === 'in progress'))
+      setJobs(
+        jobsByUser.filter(
+          (obj) =>
+            obj.jobStatus === 'in progress' && obj.quoteStatus === 'accepted'
+        )
+      )
     } else if (dropDownSelection === 'completed') {
-      setJobs(jobsByUser.filter((obj) => obj.status === 'closed'))
+      setJobs(
+        jobsByUser.filter(
+          (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
+        )
+      )
+      console.log(jobs)
     }
   }, [jobsByUser, openJobs, dropDownSelection])
+
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
@@ -65,6 +117,13 @@ function BusinessJobsList({ children }) {
 
   return (
     <>
+      {showMessage && (
+        <div className="quote-submitted flex flex-col flex-align-center">
+          <h2>Your quote has been submitted</h2>
+          <p>Your quote has been successfully passed on to your customer.</p>
+          <p>Youll get a message soon if they accept the quote.</p>
+        </div>
+      )}
       <form>
         <label htmlFor="filter">Filter your jobs:</label>
         <select
@@ -81,18 +140,20 @@ function BusinessJobsList({ children }) {
       </form>
       <h1>Job Listings</h1>
       <div className="jobList">
-        {jobs?.map((jobListing) => {
+
+        {jobs?.map((job) => {
           return (
             <BusinessJobItem
-              key={jobListing.id}
-              jobListing={jobListing}
-              showDetails={showDetails}
+              key={job.id}
+              job={job}
+              dropDownSelection={dropDownSelection}
+
             />
           )
 
           //   {children} {/* This holds the WaitIndicator (from App) */}
           //   {jobListings?.map((jobListing) => {
-          // return jobListing.description       Rachael to review this page/line
+          // return jobListing.description       Rachel to review this page/line
           // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </div>

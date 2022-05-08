@@ -1,28 +1,31 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { createJob } from '../../actions/customer'
+import { useNavigate } from 'react-router-dom'
+import { convertToBase64 } from '../../utils/convertImage'
 
-// function AddJob() {
-// Use this to update state with user (and get ID) once user is set up
-// useEffect(() => {
-//   dispatch(fetchUser())
-// }, [])
-
-function AddJob({ children }) {
+function AddJob() {
+  const navigate = useNavigate()
   const userId = useSelector((state) => state.currentUser.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
     const name = event.target.name
     const value = event.target.value
-    setInputs((values) => ({ ...values, [name]: value }))
+    setInputs((values) => ({ ...values, [name]: value, userId }))
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    createJob(inputs)
+    createJob(inputs, navigate)
   }
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertToBase64(file)
+    setInputs({ ...inputs, image: base64 })
+  }
+
   return (
     <div>
       <h3>Get Your Job Taken Care Of!</h3>
@@ -59,8 +62,12 @@ function AddJob({ children }) {
             type="file"
             id="myImage"
             name="image"
-            onChange={handleChange}
+            accept="image/*"
+            onChange={(e) => handleFileUpload(e)}
           />
+        </div>
+        <div className="input-group">
+          <img src={inputs.image} alt="" style={{ width: '100px' }} />
         </div>
         <div>
           <select

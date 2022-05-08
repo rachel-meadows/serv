@@ -20,13 +20,13 @@ router.post('/', async (req, res) => {
     category,
     logo,
   } = req.body
-  console.log(req.body.userName)
   try {
     const userData = { auth0Id, email, userName, type }
-    const userId = await dbUsers.addUser(userData)
+    const user = await dbUsers.addUser(userData)
+    console.log(user)
     if (type === 'business') {
       const businessData = {
-        userId,
+        userId: user.id,
         businessName,
         description,
         website,
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
       }
       await dbBusiness.addBusiness(businessData)
     }
-    res.json(userId)
+    res.json(user)
     return null
   } catch (error) {
     console.error(error)
@@ -50,15 +50,12 @@ router.get('/:auth0Id', async (req, res) => {
     const user = await dbUsers.getUserByAuth0Id(auth0Id)
     res.json(user)
     return null
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Unable to get user from the database by ID' })
+    res
+      .status(500)
+      .json({ message: 'Unable to get user from the database by ID' })
   }
-
-} )
-
-
-
+})
 
 module.exports = router

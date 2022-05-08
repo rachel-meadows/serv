@@ -118,12 +118,16 @@ function getJobsByUser(userId, db = connection) {
       'description',
       'image',
       'jobs.category',
-      'price_min as priceMin',
-      'price_max as priceMax',
+      'jobs.price_min as priceMin',
+      'jobs.price_max as priceMax',
       'jobs.date_added as dateAdded',
       'quotes.status as quoteStatus',
       'jobs.status as jobStatus'
     )
+}
+
+function changeJobStatus(jobId, status, db = connection) {
+  return db('jobs').where('id', jobId).update('status', status)
 }
 
 module.exports = {
@@ -134,4 +138,5 @@ module.exports = {
   editJob,
   getOpenJobsByCategory,
   getJobsByUser,
+  changeJobStatus,
 }

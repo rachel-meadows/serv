@@ -7,7 +7,7 @@ const router = express.Router()
 // GET /business
 router.get('/', async (req, res) => {
   try {
-    dbJobs.getOpenJobs().then((jobs) => {
+    await dbJobs.getOpenJobs().then((jobs) => {
       res.json({ jobs })
       return null
     })
@@ -17,12 +17,27 @@ router.get('/', async (req, res) => {
   }
 })
 
+// Get job by job ID
+// GET /business/jobs/details/:jobsId
+router.get('/jobs/details/:jobId', async (req, res) => {
+  const { jobId } = req.params
+  try {
+    await dbJobs.getJobById(jobId).then((job) => {
+      res.json(job)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to add quote into db' })
+  }
+})
+
 // GET /business/category/:category
 // Get data for the openJobsByCategory state
 router.get('/category/:category', async (req, res) => {
   const { category } = req.params
   try {
-    dbJobs.getOpenJobsByCategory(category).then((jobs) => {
+    await dbJobs.getOpenJobsByCategory(category).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -32,12 +47,28 @@ router.get('/category/:category', async (req, res) => {
   }
 })
 
+// Get business details by user ID
+// GET /business/details/:userId/
+router.get('/details/:userId/', async (req, res) => {
+  const { userId } = req.params
+  try {
+    await dbBusiness.getBusinessByUserId(userId).then((data) => {
+      console.log(data)
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to find business by user ID' })
+  }
+})
+
 // GET /business/user/:userId
 // Get data for the jobsByUser state
 router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params
   try {
-    dbJobs.getJobsByUser(userId).then((jobs) => {
+    await dbJobs.getJobsByUser(userId).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -57,16 +88,15 @@ router.get('/:jobId', async (req, res) => {
     })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Unable to find busines by job ID' })
+    res.status(500).json({ message: 'Unable to find business by job ID' })
   }
 })
 
 // GET /business/:businessId
 router.get('/:businessId', async (req, res) => {
-  console.log('up to route')
   const { businessId } = req.params
   try {
-    dbJobs.getBusiness(businessId).then((data) => {
+    await dbJobs.getBusiness(businessId).then((data) => {
       res.json({ data })
       return null
     })
@@ -110,6 +140,20 @@ router.put('/:id/edit', async (req, res) => {
   const data = req.body
   try {
     await dbBusiness.editBusiness(id, data)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to edit business' })
+  }
+})
+
+// Change job status
+// PATCH /business/jobs/:jobId Edit business details
+router.patch('/jobs/:jobId', async (req, res) => {
+  const { jobId } = req.params
+  const status = req.body.status
+  try {
+    await dbJobs.changeJobStatus(jobId, status)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)

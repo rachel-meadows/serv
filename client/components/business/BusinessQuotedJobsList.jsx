@@ -11,7 +11,7 @@ function BusinessQuotedJobsList() {
   const { userId, category } = userData
 
   const [jobs, setJobs] = useState([])
-  const [dropDownSelection, setdropDownSelection] = useState('all')
+  const [dropDownSelection, setdropDownSelection] = useState("unmatched")
 
   const navigate = useNavigate()
   const dispatch = useDispatch()

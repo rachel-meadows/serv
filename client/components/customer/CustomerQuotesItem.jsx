@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { APIgetBusinessById } from '../../apis/business'
+import { APIchangeQuoteStatus } from '../../apis/customer'
 
 function QuotesItem(props) {
-  const { id, userId, jobId, businessId, notes, price } = props.quote
-  function handleSubmit(event) {
-    event.preventDefault()
+  const [business, setBusiness] = useState({})
+  const { id, userId, jobId, businessId, notes, price, status } = props.quote
+  const navigate = useNavigate()
+
+  function handleSubmitAccept() {
+    APIchangeQuoteStatus(id, 'accepted')
+    navigate('/customer')
   }
 
-  const [business, setBusiness] = useState({})
+  function handleSubmitReject() {
+    APIchangeQuoteStatus(id, 'rejected')
+    navigate('/customer')
+  }
 
   useEffect(() => {
     APIgetBusinessById(businessId).then((data) => {
@@ -28,12 +36,18 @@ function QuotesItem(props) {
         <p>{jobId}</p>
         <p>{notes}</p>
         <p>${price}</p>
-        <button className="accept-btn" onClick={handleSubmit}>
-          Accept
-        </button>
-        <button className="reject-btn" onClick={handleSubmit}>
-          Reject
-        </button>
+        {status === 'accepted' && <p>Quote has been accepted.</p>}
+        {status === 'rejected' && <p>Quote has was rejected.</p>}
+        {status === 'pending' && (
+          <>
+            <button className="accept-btn" onClick={handleSubmitAccept}>
+              Accept
+            </button>
+            <button className="reject-btn" onClick={handleSubmitReject}>
+              Reject
+            </button>
+          </>
+        )}
       </section>
     </>
   )

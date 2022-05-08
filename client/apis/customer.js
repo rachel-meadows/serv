@@ -9,8 +9,7 @@ export function APIgetJobsByCustomer(customerId) {
 }
 
 export function APIaddJob(data) {
-  console.log('in api', data)
-  return request.post(rootUrl + '/customer/add').send(data)
+  return request.post(rootUrl + `/add`).send(data)
 }
 
 export function APIgetJobById(jobId) {
@@ -39,4 +38,14 @@ export function APIgetQuoteById(jobId, quoteId) {
   return request.get(rootUrl + `/${jobId}/quotes/${quoteId}`).then((res) => {
     return res.body
   })
+}
+
+export function APIchangeQuoteStatus(quoteId, status) {
+  console.log(quoteId, status)
+  return request
+    .patch(rootUrl + `/jobs/quotes/${quoteId}`)
+    .send({ status: status })
+    .then(() => {
+      return null
+    })
 }

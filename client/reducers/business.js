@@ -2,6 +2,8 @@ import {
   GET_JOBS_SUCCESS,
   FETCH_JOBS_BY_CATEGORY_SUCCESS,
   FETCH_JOBS_BY_USER_SUCCESS,
+  FETCH_JOB_BY_ID_SUCCESS,
+  ADD_BUSINESS_SUCCESS
 } from '../actions/business'
 
 const initialState = []
@@ -29,6 +31,24 @@ export const openJobs = (state = initialState, action) => {
     case GET_JOBS_SUCCESS:
       // Two layers deep to get the array within the object returned from DB
       return action.openJobs.jobs
+    default:
+      return state
+  }
+}
+
+export const currentJob = (state = {}, action) => {
+  switch (action.type) {
+    case FETCH_JOB_BY_ID_SUCCESS:
+      return action.currentJob
+    default:
+      return state
+  }
+}
+
+export const currentBusiness = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_BUSINESS_SUCCESS:
+      return action.currentBusiness
     default:
       return state
   }
