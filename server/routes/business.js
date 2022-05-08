@@ -53,6 +53,7 @@ router.get('/details/:userId/', async (req, res) => {
   const { userId } = req.params
   try {
     await dbBusiness.getBusinessByUserId(userId).then((data) => {
+      console.log(data)
       res.json(data)
       return null
     })

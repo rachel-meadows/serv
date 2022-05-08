@@ -27,10 +27,10 @@ function editBusiness(id, input, db = connection) {
 
 function getBusinessByUserId(id, db = connection) {
   return db('businesses')
-    .join('users', 'user.id', 'businesses.user_id')
-    .where('user.id', id)
+    .join('users', 'users.id', 'businesses.user_id')
+    .where('businesses.user_id', id)
     .select(
-      'id',
+      'businesses.id',
       'user_id as userId',
       'business_name as businessName',
       'website',
