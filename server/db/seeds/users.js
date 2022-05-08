@@ -22,6 +22,27 @@ exports.seed = function (knex) {
           auth0_id: 'auth0 placeholder',
           user_name: 'Carol Sea',
           email: 'example3@example.com',
+          type: 'customer',
+        },
+        {
+          id: 4,
+          auth0_id: 'auth0 placeholder',
+          user_name: 'Flynn Foo',
+          email: 'example4@example.com',
+          type: 'business',
+        },
+        {
+          id: 5,
+          auth0_id: 'auth0 placeholder',
+          user_name: 'Baz Black',
+          email: 'example3@example.com',
+          type: 'business',
+        },
+        {
+          id: 6,
+          auth0_id: 'auth0 placeholder',
+          user_name: 'Brit Bar',
+          email: 'example3@example.com',
           type: 'business',
         },
       ])
