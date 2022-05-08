@@ -51,11 +51,11 @@ export function createJob(data, navigate) {
   return APIaddJob(data)
     .then((response) => {
       if (response.status === 201) {
-        navigate('/customer/message')
+        navigate('/customer', { state: { message: true } })
       }
     })
     .catch((error) => {
       const errMessage = error.response?.text || error.message
-      // console.log(errMessage)
+      console.log(errMessage)
     })
 }

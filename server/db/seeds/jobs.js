@@ -71,6 +71,28 @@ exports.seed = function (knex) {
           date_added: '2022-02-01T21:15:34.334Z',
           status: 'open',
         },
+        {
+          id: 7,
+          user_id: 7,
+          description: 'In urgent need of a birdhouse.',
+          image: '',
+          category: 'building',
+          price_min: '50',
+          price_max: '100',
+          date_added: '2022-02-01T21:15:34.334Z',
+          status: 'open',
+        },
+        {
+          id: 8,
+          user_id: 7,
+          description: 'Paint my house.',
+          image: '',
+          category: 'building',
+          price_min: '50',
+          price_max: '100',
+          date_added: '2022-02-01T21:15:34.334Z',
+          status: 'closed',
+        },
       ])
     })
 }

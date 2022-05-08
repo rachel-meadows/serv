@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../actions/user'
-import { APIgetBusinessByUserId } from '../apis/business'
+// import { APIgetBusinessByUserId } from '../apis/business'
+import { convertToBase64 } from '../utils/convertImage'
 
 function Registration() {
   const dispatch = useDispatch()
@@ -32,19 +33,6 @@ function Registration() {
     })
   }
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader()
-      fileReader.readAsDataURL(file)
-      fileReader.onload = () => {
-        resolve(fileReader.result)
-      }
-      fileReader.onerror = (error) => {
-        reject(error)
-      }
-    })
-  }
-
   const handleFileUpload = async (e) => {
     const file = e.target.files[0]
     const base64 = await convertToBase64(file)
@@ -54,30 +42,29 @@ function Registration() {
   function handleAddCustomer(e) {
     e.preventDefault()
     dispatch(
-      addUser({
-        ...form,
-        type: 'customer',
-      })
+      addUser(
+        {
+          ...form,
+          type: 'customer',
+        },
+        navigate,
+        '/customer'
+      )
     )
-    navigate('/customer')
   }
 
   async function handleAddBusiness(e) {
     e.preventDefault()
     dispatch(
-      addUser({
-        ...form,
-        type: 'business',
-      })
+      addUser(
+        {
+          ...form,
+          type: 'business',
+        },
+        navigate,
+        '/business'
+      )
     )
-    // .then
-
-    //APIgetBusinessByUserId
-    console.log({
-      ...form,
-      type: 'business',
-    })
-    navigate('/business')
   }
 
   const handleSetUserTypeCustomer = () => {
