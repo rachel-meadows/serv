@@ -13,15 +13,15 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser.id)
 
   const [jobs, setJobs] = useState([])
-  console.log(jobs)
+  // console.log(jobs)
   const [dropDownSelection, setdropDownSelection] = useState('all')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('fetchJobs')
-    dispatch(fetchJobs(customerId))
+    // console.log('fetchJobs')
+    dispatch(fetchJobs(2))
   }, [])
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function JobsList() {
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h3>You have no job listings</h3>
+          <h3>You have no job listings (EDIT THE WORDING)</h3>
         ) : (
           jobs.map((job) => {
             return (
