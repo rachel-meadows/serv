@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
-
-
-import { useNavigate } from 'react-router-dom'
-// import { APIgetBusinessByUserId } from '../../apis/business'
-
-
+import { APIgetBusinessByUserId } from '../../apis/business'
 import { useLocation, useNavigate } from 'react-router-dom'
-
 
 import {
   // fetchOpenJobs,
   fetchOpenJobsByCategory,
   fetchJobsByUser,
-  fetchJobsByUserId
+  fetchJobsByUserId,
 } from '../../actions/business'
 
 function BusinessJobsList({ children }) {
-
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-
 
   const allJobs = useSelector((state) => state.jobList)
   const currentBusiness = useSelector((state) => state.currentBusiness)
@@ -32,18 +23,15 @@ function BusinessJobsList({ children }) {
   // const quoteById = useSelector((state) => state.quotesById)
   const location = useLocation()
 
-
   // const { userId, category } = userData
 
   const [business, setBusiness] = useState({})
   const [jobs, setJobs] = useState(openJobs)
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
-
   const [showMessage, setShowMessage] = useState(false)
   // const navigate = useNavigate()
   const dispatch = useDispatch()
-  const userId = currentUser.id
 
   useEffect(() => {
     console.log('1')
@@ -51,7 +39,7 @@ function BusinessJobsList({ children }) {
   }, [])
 
   useEffect(() => {
-    APIgetBusinessByUserId(currentUser.id).then((data) => {
+    APIgetBusinessByUserId(currentUser?.id).then((data) => {
       setBusiness(data)
     }).catch
   }, [currentUser])
@@ -70,7 +58,6 @@ function BusinessJobsList({ children }) {
       setShowMessage(false)
     }, 5000)
   }, [])
-
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
@@ -97,7 +84,6 @@ function BusinessJobsList({ children }) {
       console.log(jobs)
     }
   }, [jobsByUser, openJobs, dropDownSelection])
-
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
@@ -140,14 +126,12 @@ function BusinessJobsList({ children }) {
       </form>
       <h1>Job Listings</h1>
       <div className="jobList">
-
         {jobs?.map((job) => {
           return (
             <BusinessJobItem
               key={job.id}
               job={job}
               dropDownSelection={dropDownSelection}
-
             />
           )
 
