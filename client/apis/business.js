@@ -34,13 +34,15 @@ export function APIgetBusinessById(businessId) {
 
 export function APIgetBusinessByUserId(userId) {
   return request.get(rootUrl + `/details/${userId}`).then((res) => {
-    console.log("res.body", res.body)
     return res.body
   })
 }
 
-export function APIaddQuote(jobId, data) { 
-  return request.post(rootUrl + `/jobs/${jobId}/addquote`).send(data).then(() => {})
+export function APIaddQuote(jobId, data) {
+  return request
+    .post(rootUrl + `/jobs/${jobId}/addquote`)
+    .send(data)
+    .then(() => {})
 }
 
 export function APIeditBusiness(userId, data) {
@@ -48,5 +50,8 @@ export function APIeditBusiness(userId, data) {
 }
 
 export function APIchangeJobStatus(jobId, status) {
-  return request.patch(rootUrl + `/jobs/${jobId}`).send({ status: status })
+  return request
+    .patch(rootUrl + `/jobs/${jobId}`)
+    .send({ status: status })
+    .then(() => {})
 }

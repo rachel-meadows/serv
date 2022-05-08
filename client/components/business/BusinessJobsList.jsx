@@ -13,6 +13,7 @@ import {
 
 function BusinessJobsList({ children }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const allJobs = useSelector((state) => state.jobList)
   const currentBusiness = useSelector((state) => state.currentBusiness)
@@ -30,13 +31,6 @@ function BusinessJobsList({ children }) {
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   const [showMessage, setShowMessage] = useState(false)
-  // const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log('1')
-    dispatch(fetchOpenJobsByCategory('plumbing'))
-  }, [])
 
   useEffect(() => {
     APIgetBusinessByUserId(currentUser?.id).then((data) => {
@@ -49,7 +43,7 @@ function BusinessJobsList({ children }) {
   }, [business])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(6))
+    dispatch(fetchJobsByUser(5))
   }, [])
 
   useEffect(() => {
@@ -61,8 +55,19 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
+      // TODO: Filter to exclude content business has worked on
+      // The problem is that jobsByUser updates in global state on adding a quote
+      // (according to the Redux plugin), but not here for some reason.
+      // If we can fix that, the openAndUnquoted code will probably work.
+
+      // console.log('openJobs:', openJobs)
+      // console.log('jobsByUser:', jobsByUser)
+      const openAndUnquoted = openJobs.filter(
+        (job) => !jobsByUser.includes(job.id)
+      )
+      // console.log('openAndUnquoted', openAndUnquoted)
+      // Current
       setJobs(openJobs)
-      console.log()
     } else if (dropDownSelection === 'quoted') {
       // 'pending'status includes pending and rejected quotes
       setJobs(

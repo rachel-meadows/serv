@@ -1,12 +1,11 @@
 import {
   APIgetJobs,
   APIaddQuote,
-  APIgetBusinessDetails,
   APIeditBusiness,
   APIgetOpenJobsByCategory,
   APIgetJobsByUser,
   APIgetJobById,
-  APIgetBusinessByUserId
+  APIgetBusinessByUserId,
 } from '../apis/business'
 import { showError } from '../actions/error'
 
@@ -15,9 +14,6 @@ export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS'
 
 export const CREATE_QUOTE_PENDING = 'CREATE_QUOTE_PENDING'
 export const CREATE_QUOTE_SUCCESS = 'CREATE_QUOTE_SUCCESS'
-
-export const FETCH_BUSINESS_PENDING = 'FETCH_BUSINESS_PENDING'
-export const FETCH_BUSINESS_SUCCESS = 'FETCH_BUSINESS_SUCCESS'
 
 export const UPDATE_BUSINESS_PENDING = 'UPDATE_BUSINESS_PENDING'
 export const UPDATE_BUSINESS_SUCCESS = 'UPDATE_BUSINESS_SUCCESS'
@@ -165,21 +161,6 @@ export function createQuote(jobId, data) {
   }
 }
 
-export function fetchBusiness() {
-  return (dispatch) => {
-    dispatch(fetchBusinessPending())
-    return APIgetBusinessDetails()
-      .then((data) => {
-        dispatch(fetchBusinessSuccess(data))
-        return null
-      })
-      .catch((error) => {
-        const errMessage = error.response?.text || error.message
-        dispatch(showError(errMessage))
-      })
-  }
-}
-
 export function updateBusiness(userId, data) {
   return (dispatch) => {
     dispatch(updateBusinessPending())
@@ -230,7 +211,6 @@ export function fetchJobById(jobId) {
     dispatch(fetchJobByIdPending())
     return APIgetJobById(jobId)
       .then((job) => {
-        console.log("fetchJObById", job)
         dispatch(fetchJobByIdSuccess(job))
         return null
       })
