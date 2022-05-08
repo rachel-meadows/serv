@@ -45,6 +45,13 @@ exports.seed = function (knex) {
           email: 'example3@example.com',
           type: 'business',
         },
+        {
+          id: 7,
+          auth0_id: 'google-oauth2|100533594005351605752',
+          user_name: 'Daniel Bird',
+          email: 'danieldbird@gmail.com',
+          type: 'customer',
+        },
       ])
     })
 }
