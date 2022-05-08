@@ -22,9 +22,8 @@ router.get('/', async (req, res) => {
 router.get('/jobs/details/:jobId', async (req, res) => {
   const { jobId } = req.params
   try {
-    await dbJobs.getJobById(jobId)
-    .then((job) => {
-      res.json( job )
+    await dbJobs.getJobById(jobId).then((job) => {
+      res.json(job)
       return null
     })
   } catch (error) {
@@ -68,7 +67,7 @@ router.get('/details/:userId/', async (req, res) => {
 router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params
   try {
-   await dbJobs.getJobsByUser(userId).then((jobs) => {
+    await dbJobs.getJobsByUser(userId).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -110,7 +109,6 @@ router.get('/:businessId', async (req, res) => {
 router.post('/jobs/:jobId/addquote', async (req, res) => {
   const { jobId } = req.params
   const data = { ...req.body, jobId }
-  console.log("routes" , data)
   try {
     await dbQuotes.addQuote(data)
     res.sendStatus(201)
