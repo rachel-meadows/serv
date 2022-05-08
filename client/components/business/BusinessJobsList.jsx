@@ -18,7 +18,9 @@ function BusinessJobsList({ children }) {
   const openJobs = useSelector((state) => state.openJobsByCategory)
   const jobsByUser = useSelector((state) => state.jobsByUser)
   const jobListing = useSelector((state) => state.openJobs)
+  // const quoteById = useSelector((state) => state.quotesById)
   // const { userId, category } = userData
+
   // const business = APIgetBusinessByUserId(currentUser.id)
   console.log(jobsByUser)
   const [jobs, setJobs] = useState(openJobs)
@@ -27,8 +29,12 @@ function BusinessJobsList({ children }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userId = currentUser.id
+  // console.log(userId)
+  const currentBusiness = APIgetBusinessByUserId(userId)
+  console.log(currentBusiness);
+
   useEffect(() => {
-    console.log("1")
+
     dispatch(fetchOpenJobsByCategory('plumbing'))
 
   }, [])
@@ -36,14 +42,6 @@ function BusinessJobsList({ children }) {
   useEffect(() => {
     dispatch(fetchJobsByUser(userId))
   }, [])
-
-
-  // useEffect(() => {
-  //   // dispatch(fetchJobsByCatergory(userId, category))
-  //   dispatch(fetchOpenJobsByCategory(business.category))
-  //   dispatch(fetchJobsByUser(currentUser.id))
-  // }, [])
-
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
