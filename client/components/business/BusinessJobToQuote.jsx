@@ -10,6 +10,7 @@ function BusinessJobToQuote() {
   const [job, setJob] = useState(currentJob)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { jobId } = useParams()
   useEffect(() => {
     dispatch(fetchJobById(jobId))
   }, [])
@@ -24,7 +25,7 @@ function BusinessJobToQuote() {
     priceMax: 0
   })
 
-  const { jobId } = useParams()
+
 
   const handleChange = (event) => {
     const name = event.target.name

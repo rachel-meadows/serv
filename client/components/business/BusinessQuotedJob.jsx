@@ -4,7 +4,7 @@ import { fetchJobById } from '../../actions/business'
 import { useNavigate, useParams } from 'react-router-dom'
 import { APIchangeJobStatus } from '../../apis/business'
 
-function BusinessActiveJob() {
+function BusinessQuotedJob() {
   const currentJob = useSelector((state) => state.currentJob)
   console.log(currentJob)
   const [job, setJob] = useState(currentJob)
@@ -34,8 +34,9 @@ function BusinessActiveJob() {
         <p className="price">Budget: ${currentJob.priceMin} - {currentJob.priceMax}</p>
         {/* <p className="image">{image}</p> */}
         <p className="status">{currentJob.status}</p>
+        <p className="status">{currentJob.quoteStatus}</p>
         <button className="completed-btn" onClick={handleSubmit}>
-          Mark as Completed
+          Remove quote
         </button>
       </div>
 
@@ -47,4 +48,4 @@ function BusinessActiveJob() {
 
 
 
-export default BusinessActiveJob
+export default BusinessQuotedJob
