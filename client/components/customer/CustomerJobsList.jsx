@@ -21,8 +21,8 @@ function JobsList() {
 
   useEffect(() => {
     // console.log('fetchJobs')
-    dispatch(fetchJobs(2))
-  }, [])
+    dispatch(fetchJobs(customerId))
+  }, [customerId])
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {

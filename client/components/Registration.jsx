@@ -54,21 +54,28 @@ function Registration() {
   function handleAddCustomer(e) {
     e.preventDefault()
     dispatch(
-      addUser({
-        ...form,
-        type: 'customer',
-      })
+      addUser(
+        {
+          ...form,
+          type: 'customer',
+        },
+        navigate,
+        '/customer'
+      )
     )
-    navigate('/customer')
   }
 
   async function handleAddBusiness(e) {
     e.preventDefault()
     dispatch(
-      addUser({
-        ...form,
-        type: 'business',
-      })
+      addUser(
+        {
+          ...form,
+          type: 'business',
+        },
+        navigate,
+        '/business'
+      )
     )
     // .then
 
@@ -77,7 +84,6 @@ function Registration() {
       ...form,
       type: 'business',
     })
-    navigate('/business')
   }
 
   const handleSetUserTypeCustomer = () => {
