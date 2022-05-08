@@ -64,12 +64,13 @@ export function getUserSuccess(user) {
 //   }
 // }
 
-export function addUser(data) {
+export function addUser(data, navigate, type) {
   return (dispatch) => {
     dispatch(addUserPending())
     return APIaddUser(data)
       .then((user) => {
         dispatch(addUserSuccess(user))
+        navigate(type)
         return null
       })
       .catch((err) => {
