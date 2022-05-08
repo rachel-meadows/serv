@@ -209,10 +209,12 @@ export function fetchJobsByUser(userId) {
 }
 
 export function fetchJobById(jobId) {
+  console.log("fetchJObsById", jobId)
   return (dispatch) => {
     dispatch(fetchJobByIdPending())
     return APIgetJobById(jobId)
       .then((job) => {
+        console.log("fetchJObById", job)
         dispatch(fetchJobByIdSuccess(job))
         return null
       })

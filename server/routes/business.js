@@ -7,7 +7,7 @@ const router = express.Router()
 // GET /business
 router.get('/', async (req, res) => {
   try {
-    dbJobs.getOpenJobs().then((jobs) => {
+    await dbJobs.getOpenJobs().then((jobs) => {
       res.json({ jobs })
       return null
     })
@@ -19,11 +19,14 @@ router.get('/', async (req, res) => {
 
 // Get job by job ID
 // GET /business/jobs/details/:jobsId
-router.post('/jobs/details/:jobId', async (req, res) => {
+router.get('/jobs/details/:jobId', async (req, res) => {
   const { jobId } = req.params
   try {
     await dbJobs.getJobById(jobId)
-    res.sendStatus(201)
+    .then((job) => {
+      res.json( job )
+      return null
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to add quote into db' })
@@ -35,7 +38,7 @@ router.post('/jobs/details/:jobId', async (req, res) => {
 router.get('/category/:category', async (req, res) => {
   const { category } = req.params
   try {
-    dbJobs.getOpenJobsByCategory(category).then((jobs) => {
+    await dbJobs.getOpenJobsByCategory(category).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -51,7 +54,6 @@ router.get('/details/:userId/', async (req, res) => {
   const { userId } = req.params
   try {
     await dbBusiness.getBusinessByUserId(userId).then((data) => {
-      console.log(data)
       res.json(data)
       return null
     })
@@ -66,7 +68,7 @@ router.get('/details/:userId/', async (req, res) => {
 router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params
   try {
-    dbJobs.getJobsByUser(userId).then((jobs) => {
+   await dbJobs.getJobsByUser(userId).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -92,10 +94,9 @@ router.get('/:jobId', async (req, res) => {
 
 // GET /business/:businessId
 router.get('/:businessId', async (req, res) => {
-  console.log('up to route')
   const { businessId } = req.params
   try {
-    dbJobs.getBusiness(businessId).then((data) => {
+    await dbJobs.getBusiness(businessId).then((data) => {
       res.json({ data })
       return null
     })
@@ -109,6 +110,7 @@ router.get('/:businessId', async (req, res) => {
 router.post('/jobs/:jobId/addquote', async (req, res) => {
   const { jobId } = req.params
   const data = { ...req.body, jobId }
+  console.log("routes" , data)
   try {
     await dbQuotes.addQuote(data)
     res.sendStatus(201)

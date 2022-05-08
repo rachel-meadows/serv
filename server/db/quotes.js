@@ -1,13 +1,15 @@
 const connection = require('./connection')
 
 function addQuote(input, db = connection) {
-  const { userId, jobId, price, notes } = input
+  console.log(input)
+  const { userId, jobId, description, priceMin, priceMax } = input
   const quote = {
     user_id: userId,
     job_id: jobId,
-    price,
+    notes: description,
+    price_min: priceMin,
+    price_max: priceMax,
     date_added: new Date(Date.now()),
-    notes,
     status: 'pending',
   }
   return db('quotes').insert(quote)
@@ -21,9 +23,10 @@ function getQuotesByCustomer(id, db = connection) {
       'user_id as userId',
       'business_id as businessId',
       'job_id as jobId',
-      'price',
+      'price_min as priceMin',
+      'price_max as priceMax',
       'date_added as dateAdded',
-      'notes',
+      'notes as description',
       'status'
     )
 }
@@ -36,9 +39,10 @@ function getQuotesByJob(id, db = connection) {
       'user_id as userId',
       'business_id as businessId',
       'job_id as jobId',
-      'price',
+      'price_min as priceMin',
+      'price_max as priceMax',
       'date_added as dateAdded',
-      'notes',
+      'notes as description',
       'status'
     )
 }
@@ -51,9 +55,10 @@ function getQuote(id, db = connection) {
       'user_id as userId',
       'business_id as businessId',
       'job_id as jobId',
-      'price',
+      'price_min as priceMin',
+      'price_max as priceMax',
       'date_added as dateAdded',
-      'notes',
+      'notes as description',
       'status'
     )
 }
