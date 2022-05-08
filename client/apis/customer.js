@@ -4,7 +4,6 @@ const rootUrl = '/api/v1/customer'
 
 export function APIgetJobsByCustomer(customerId) {
   return request.get(rootUrl + `/${customerId}/jobs`).then((res) => {
-    console.log('API', res.body.jobs)
     return res.body
   })
 }
@@ -42,7 +41,11 @@ export function APIgetQuoteById(jobId, quoteId) {
 }
 
 export function APIchangeQuoteStatus(quoteId, status) {
+  console.log(quoteId, status)
   return request
     .patch(rootUrl + `/jobs/quotes/${quoteId}`)
     .send({ status: status })
+    .then(() => {
+      return null
+    })
 }

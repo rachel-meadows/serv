@@ -67,7 +67,7 @@ exports.seed = function (knex) {
           id: 7,
           user_id: 7,
           business_id: 3,
-          job_id: 8,
+          job_id: 7,
           price: 100,
           date_added: '2022-05-04T21:15:34.334Z',
           notes: 'Best I can do is a treehouse.',
