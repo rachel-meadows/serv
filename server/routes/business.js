@@ -96,9 +96,6 @@ router.get('/:jobId', async (req, res) => {
 router.patch('/jobs/:jobId', async (req, res) => {
   const { jobId } = req.params
   const status = req.body.status
-  console.log('routes')
-  console.log('jobId', jobId)
-  console.log('status', status)
   try {
     await dbJobs.changeJobStatus(jobId, status)
     res.sendStatus(201)
@@ -125,8 +122,10 @@ router.get('/:businessId', async (req, res) => {
 // POST /business/jobs/:jobsId/addquote
 router.post('/jobs/:jobId/addquote', async (req, res) => {
   const { jobId } = req.params
-  const data = { ...req.body, jobId }
   try {
+    // User ID here is the ID of the user who MADE the job, not the business
+    const { userId } = await dbQuotes.getUserIdByJobId(jobId)
+    const data = { ...req.body, jobId, userId }
     await dbQuotes.addQuote(data)
     res.sendStatus(201)
   } catch (error) {
