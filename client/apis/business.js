@@ -55,3 +55,9 @@ export function APIchangeJobStatus(jobId, status) {
     .send({ status: status })
     .then(() => {})
 }
+
+export function APIgetQuoteByJobAndUserId(jobId, userId) {
+  return request
+    .get(rootUrl + `/quotes/${jobId}/${userId}`)
+    .then((res) => res.body)
+}

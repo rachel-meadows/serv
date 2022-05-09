@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { APIgetJobById } from '../../apis/business'
+import { APIgetJobById, APIgetQuoteByJobAndUserId } from '../../apis/business'
 
 function BusinessQuotedJob() {
   const [job, setJob] = useState({})
+  const [quote, setQuote] = useState({})
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { jobId } = useParams()
+  const user = useSelector((state) => state.currentUser)
 
+  useEffect(() => {
+    APIgetQuoteByJobAndUserId(jobId, user?.id).then((quote) => {
+      setQuote(quote)
+    })
+  }, [user])
+
+  /// Can replace this with data from APIgetQuoteByJobAndUserId in refactor
   useEffect(() => {
     APIgetJobById(jobId).then((job) => {
       setJob(job)
@@ -38,7 +47,7 @@ function BusinessQuotedJob() {
         </p>
         {/* <p className="image">{image}</p> */}
         <p className="status">{job.status}</p>
-        <p className="status">{job.quoteStatus}</p>
+        <p className="status">{quote?.quoteStatus}</p>
         <button className="completed-btn" onClick={handleSubmit}>
           Remove quote
         </button>

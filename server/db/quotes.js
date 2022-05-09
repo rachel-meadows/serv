@@ -82,6 +82,27 @@ function editQuoteStatus(quoteId, status, db = connection) {
   return db('quotes').where('id', quoteId).update('status', status)
 }
 
+function getQuoteByJobAndUserId(jobId, userId, db = connection) {
+  return db('quotes')
+    .join('businesses', 'quotes.business_id', 'businesses.id')
+    .join('users', 'users.id', 'businesses.user_id')
+    .join('jobs', 'jobs.id', 'quotes.job_id')
+    .where('quotes.job_id', jobId)
+    .where('users.id', userId)
+    .select(
+      'quotes.id as quoteId',
+      'business_id as businessId',
+      'job_id as jobId',
+      'quotes.price_min as priceMin',
+      'quotes.price_max as priceMax',
+      'quotes.date_added as dateAdded',
+      'notes as description',
+      'quotes.status as quoteStatus',
+      'jobs.status as jobStatus'
+    )
+    .first()
+}
+
 module.exports = {
   addQuote,
   getQuotesByCustomer,
@@ -90,4 +111,5 @@ module.exports = {
   editQuoteStatus,
   getUserIdByJobId,
   addUserIdToQuote,
+  getQuoteByJobAndUserId,
 }

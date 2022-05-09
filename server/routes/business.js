@@ -166,4 +166,19 @@ router.put('/:id/edit', async (req, res) => {
   }
 })
 
+// GET /business/quotes/:jobId/:userId
+// Triangulate quote from job and (business) user ID
+router.get('/quotes/:jobId/:userId', async (req, res) => {
+  const { jobId, userId } = req.params
+  try {
+    await dbQuotes.getQuoteByJobAndUserId(jobId, userId).then((data) => {
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get quote data from database' })
+  }
+})
+
 module.exports = router
