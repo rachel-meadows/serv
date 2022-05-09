@@ -84,6 +84,14 @@ function AddJob() {
             <option value="building">Building</option>
           </select>
         </div>
+        <div>
+          <text
+            name="location"
+            placeholder="What's the address of the job?"
+            onChange={handleChange}
+            required
+          ></text>
+        </div>
         <div className="submit-buttons">
           <button className="submit-button">Submit</button>
         </div>

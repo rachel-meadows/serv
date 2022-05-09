@@ -10,6 +10,8 @@ exports.seed = function (knex) {
           website: 'www.example.com',
           category: 'plumbing',
           logo: 'multer image string placeholder',
+          location: '123 Location Road, Auckland',
+          rating_count: 5,
           average_rating: 4.6,
         },
         {
@@ -19,6 +21,8 @@ exports.seed = function (knex) {
           website: 'www.example.com',
           category: 'gardening',
           logo: 'multer image string placeholder',
+          location: '123 Location Road, Auckland',
+          rating_count: 5,
           average_rating: 2.1,
         },
         {
@@ -28,6 +32,8 @@ exports.seed = function (knex) {
           website: 'www.example.com',
           category: 'food',
           logo: 'multer image string placeholder',
+          location: '123 Location Road, Auckland',
+          rating_count: 5,
           average_rating: 5.0,
         },
       ])

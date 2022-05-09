@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function BusinessJobItem(props) {
@@ -13,7 +13,10 @@ function BusinessJobItem(props) {
     priceMin,
     priceMax,
     status,
+    location,
   } = props.job
+  console.log('job: ', props.job)
+
   const dropDownStatus = props.dropDownSelection
 
   function showDetails(jobsId, dropDownStatus) {
@@ -45,6 +48,7 @@ function BusinessJobItem(props) {
           Budget: ${priceMin} - {priceMax}
         </p>
         <p className="image">{image}</p>
+        <p className="location">{location}</p>
         <p className="status">{status}</p>
         <button onClick={handleDetailClick}>Details</button>
       </div>

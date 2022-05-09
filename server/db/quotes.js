@@ -23,13 +23,6 @@ function getUserIdByJobId(jobId, db = connection) {
     .first()
 }
 
-// addQuote helper function 2
-function addUserIdToQuote(quoteId, userId, db = connection) {
-  console.log('userId in helper:', userId)
-  console.log('quoteId in helper:', quoteId)
-  return db('quotes').where('id', quoteId).update('user_id', userId)
-}
-
 function getQuotesByCustomer(id, db = connection) {
   return db('quotes')
     .where('user_id', id)
@@ -98,7 +91,9 @@ function getQuoteByJobAndUserId(jobId, userId, db = connection) {
       'quotes.date_added as dateAdded',
       'notes as description',
       'quotes.status as quoteStatus',
-      'jobs.status as jobStatus'
+      'jobs.status as jobStatus',
+      'jobs.location as jobLocation',
+      'businesses.location as businessLocation'
     )
     .first()
 }
@@ -110,6 +105,5 @@ module.exports = {
   getQuote,
   editQuoteStatus,
   getUserIdByJobId,
-  addUserIdToQuote,
   getQuoteByJobAndUserId,
 }

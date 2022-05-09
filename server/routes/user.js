@@ -6,9 +6,7 @@ const router = express.Router()
 
 // POST /api/v1/user
 router.post('/', async (req, res) => {
-  // console.log(req.body);
   // Some users are not businesses and some are - filter and handle accordingly
-  console.log('route', req.body)
   const {
     auth0Id,
     email,

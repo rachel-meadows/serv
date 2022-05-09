@@ -6,15 +6,14 @@ import {
   APIgetOpenJobsByCategory,
   APIgetJobsByUser,
 } from '../../apis/business'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 function BusinessJobsList({ children }) {
-  const navigate = useNavigate()
   const location = useLocation()
 
-  const [showMessage, setShowMessage] = useState(false)
-
   const user = useSelector((state) => state.currentUser)
+
+  const [showMessage, setShowMessage] = useState(false)
   const [jobs, setJobs] = useState([])
   const [openJobsInCategory, setOpenJobsInCategory] = useState([])
   const [jobsQuotedOn, setJobsQuotedOn] = useState([])
