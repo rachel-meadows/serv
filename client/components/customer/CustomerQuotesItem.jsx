@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { APIgetBusinessById, APIchangeJobStatus } from '../../apis/business'
-import { APIchangeQuoteStatus } from '../../apis/customer'
+import { APIchangeQuoteStatus, APIgetCustomerQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
   const { jobId, id, businessId, description, priceMin, priceMax, status } =
     props.quote
+
   const navigate = useNavigate()
 
   function handleSubmitAccept() {
@@ -22,7 +23,7 @@ function QuotesItem(props) {
   }
 
   useEffect(() => {
-    APIgetBusinessById(businessId).then((data) => {
+    APIgetCustomerQuotes(customerId).then((data) => {
       return setBusiness(data)
     })
   }, [])
@@ -32,7 +33,7 @@ function QuotesItem(props) {
       <section>
         <div className="flex quoteList-item"></div>
         <strong>
-          <Link to={`/business/${businessId}`}>{business.businessName}</Link>
+          <Link to={`/business/${customerId}`}>{business.businessName}</Link>
         </strong>
         <p>{description}</p>
         <p>

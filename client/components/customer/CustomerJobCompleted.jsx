@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-
-
-import { fetchJobs } from '../../actions/jobListings'
 import { APIgetJobQuotes, APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 import IndividualQuote from './IndividualQuote'
@@ -23,7 +20,7 @@ function CustomerJobCompleted() {
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
-    .then((obj) => {
+      .then((obj) => {
         setAllJobs(obj.jobs)
         return null
       })
@@ -37,28 +34,27 @@ function CustomerJobCompleted() {
   useEffect(() => {
     setJob(allJobs.find((obj) => obj.id === Number(jobsId)))
   }, [allJobs])
-  
+
   useEffect(() => {
-    APIgetJobQuotes(jobsId).then((obj) => { 
+    APIgetJobQuotes(jobsId).then((obj) => {
       setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
     })
   }, [])
-  
-  return <>
-    {(job?.id !== undefined) 
-      ? 
-      <JobsListItem key={job.id} job={job}/>
-      :
-      <h4>Error - Job listing cannot display</h4>
-    }
-    {(quote !== undefined) 
-      ? 
-      <IndividualQuote notes={ quote.notes } price={quote.price} />
-      :
-      <h4>Error - Accepted quote cannot display</h4>
-    }
+
+  return (
+    <>
+      {job?.id !== undefined ? (
+        <JobsListItem key={job.id} job={job} hideButton={true} />
+      ) : (
+        <h4>Error - Job listing cannot display</h4>
+      )}
+      {quote !== undefined ? (
+        <IndividualQuote notes={quote.notes} price={quote.price} />
+      ) : (
+        <h4>Error - Accepted quote cannot display</h4>
+      )}
     </>
-    
+  )
 }
 
 export default CustomerJobCompleted
