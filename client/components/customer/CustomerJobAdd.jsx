@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { createJob } from '../../actions/customer'
+import { APIaddJob } from '../../apis/customer'
 import { useNavigate } from 'react-router-dom'
 import { convertToBase64 } from '../../utils/convertImage'
 
@@ -17,7 +17,8 @@ function AddJob() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    createJob(inputs, navigate)
+    APIaddJob(inputs)
+    navigate('/customer', { state: { message: true } })
   }
 
   const handleFileUpload = async (e) => {

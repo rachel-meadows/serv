@@ -40,10 +40,11 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     dispatch(fetchOpenJobsByCategory(business?.category))
+    // dispatch(fetchOpenJobsByCategory('plumbing'))
   }, [business])
 
   useEffect(() => {
-    dispatch(fetchJobsByUser(5))
+    dispatch(fetchJobsByUser(6))
   }, [])
 
   useEffect(() => {

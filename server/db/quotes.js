@@ -1,10 +1,9 @@
 const connection = require('./connection')
 
 function addQuote(input, db = connection) {
-  const { businessId, userId, jobId, description, priceMin, priceMax } = input
+  const { businessId, jobId, description, priceMin, priceMax } = input
   const quote = {
     business_id: businessId,
-    user_id: userId,
     job_id: jobId,
     notes: description,
     price_min: priceMin,
@@ -15,13 +14,20 @@ function addQuote(input, db = connection) {
   return db('quotes').insert(quote)
 }
 
-// addQuote helper function
+// addQuote helper function 1
 function getUserIdByJobId(jobId, db = connection) {
   return db('quotes')
     .join('jobs', 'quotes.job_id', 'jobs.id')
     .where('jobs.id', jobId)
     .select('jobs.user_id as userId')
     .first()
+}
+
+// addQuote helper function 2
+function addUserIdToQuote(quoteId, userId, db = connection) {
+  console.log('userId in helper:', userId)
+  console.log('quoteId in helper:', quoteId)
+  return db('quotes').where('id', quoteId).update('user_id', userId)
 }
 
 function getQuotesByCustomer(id, db = connection) {
@@ -83,4 +89,5 @@ module.exports = {
   getQuote,
   editQuoteStatus,
   getUserIdByJobId,
+  addUserIdToQuote,
 }
