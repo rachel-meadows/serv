@@ -47,12 +47,10 @@ export function getUserSuccess(user) {
 }
 
 export function addUser(data, navigate, type) {
-  console.log('data:', data, 'navigate:', navigate, 'type:', type)
   return (dispatch) => {
     dispatch(addUserPending())
     return APIaddUser(data)
       .then((user) => {
-        console.log('User after API:', user)
         dispatch(addUserSuccess(user))
         navigate(type)
         return null

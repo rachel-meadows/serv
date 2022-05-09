@@ -162,6 +162,15 @@ function Registration() {
             <input name="website" id="website" onChange={handleChange} />
           </div>
           <div className="input-group">
+            <label htmlFor="location">Location</label>
+            <input
+              name="location"
+              id="location"
+              onChange={handleChange}
+              disabled={true}
+            />
+          </div>
+          <div className="input-group">
             <label htmlFor="category">Business Category</label>
             <select
               name="category"
