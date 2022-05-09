@@ -15,6 +15,7 @@ function CustomerJobCompleted() {
   const [allJobs, setAllJobs] = useState([])
   const [job, setJob] = useState({})
   const [quote, setQuote] = useState({})
+  const dispatch = useDispatch()
   const customerId = useSelector((state) => state.currentUser.id)
 
   useEffect(() => {
@@ -43,7 +44,7 @@ function CustomerJobCompleted() {
   return (
     <>
       {job?.id !== undefined ? (
-        <JobsListItem key={job.id} job={job} />
+        <JobsListItem key={job.id} job={job} hideButton={true} />
       ) : (
         <h4>Error - Job listing cannot display</h4>
       )}

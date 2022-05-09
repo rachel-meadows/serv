@@ -1,8 +1,9 @@
 import React from 'react'
 
 function JobsListItem(props) {
-  const { job } = props
+  const { job, hideButton } = props
 
+  console.log('showButton', hideButton)
   function showDetails() {
     props.showDetails(job.id, job.status)
   }
@@ -19,13 +20,17 @@ function JobsListItem(props) {
       <p className="priceMin">${job.priceMin}</p>
       <p className="priceMax">${job.priceMax}</p>
       <p className="status">{job.status}</p>
-      <p>
-        {job.status === 'open' ? (
-          <button onClick={showDetails}>Quotes</button>
-        ) : job.status === 'closed' ? (
-          <button onClick={showDetails}>Details</button>
-        ) : null}
-      </p>
+      {!hideButton ? (
+        <p>
+          {job.status === 'open' ? (
+            <button onClick={showDetails}>Quotes</button>
+          ) : job.status === 'closed' ? (
+            <button onClick={showDetails}>Details</button>
+          ) : null}
+        </p>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
