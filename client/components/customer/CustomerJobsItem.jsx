@@ -3,7 +3,6 @@ import React from 'react'
 function JobsListItem(props) {
   const { job, hideButton } = props
 
-  console.log('showButton', hideButton)
   function showDetails() {
     props.showDetails(job.id, job.status)
   }

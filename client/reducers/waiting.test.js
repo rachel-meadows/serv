@@ -11,14 +11,6 @@ describe('waiting reducer', () => {
     expect(newState).toBeTruthy()
   })
 
-  it('returns false on "SET_GARDEN"', () => {
-    const action = {
-      type: SET_GARDEN,
-    }
-    const newState = waitingReducer(true, action)
-    expect(newState).toBeFalsy()
-  })
-
   it('returns false on "CLEAR_WAITING"', () => {
     const action = {
       type: CLEAR_WAITING,

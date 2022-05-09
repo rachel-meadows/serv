@@ -1,6 +1,6 @@
 import { setUser, clearUser, SET_USER, CLEAR_USER } from './user'
 
-// TODO: Tests for addUser and getUserByAuth0Id\
+// TODO: Tests for addUser and getUserByAuth0Id
 
 describe('setUser', () => {
   it('returns the correct action', () => {

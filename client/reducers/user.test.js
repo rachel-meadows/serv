@@ -6,52 +6,49 @@ jest.mock('../auth0-utils')
 describe('user reducer', () => {
   it('returns new user object on "SET_USER"', () => {
     const user = {
-      id: 1,
       name: 'Firstname Lastname',
       type: 'business',
     }
 
     const prevState = {
-      firstName: '',
-      isAdmin: false,
-      gardenId: null,
-      id: null,
+      name: '',
+      type: null,
     }
 
     const action = {
       type: SET_USER,
       user,
     }
-    const state = userReducer(oldState, action)
+    const state = userReducer(prevState, action)
     expect(state.name).toBe('Firstname Lastname')
-    expect(state).not.toBe(oldState)
+    expect(state).not.toBe(prevState)
   })
 
   it('returns default empty user object on "CLEAR_USER"', () => {
-    const user = {
+    const prevState = {
       id: 1,
-      name: 'Firstname Lastname',
-      type: 'business',
+      username: 'Firstname Lastname',
+      token: 'qwertyuiop',
     }
+
     const action = {
       type: CLEAR_USER,
     }
-    const state = userReducer(oldState, action)
-    expect(state.type).toBeNull()
-    expect(state).not.toBe(oldState)
+    const state = userReducer(prevState, action)
+    expect(state.id).toBeNull()
+    expect(state).not.toBe(prevState)
   })
 
   it('returns old state on unknown action type', () => {
-    const oldState = {
-      firstName: 'test',
-      isAdmin: false,
-      gardenId: 2,
-      id: 5,
+    const prevState = {
+      name: '',
+      name: false,
+      type: null,
     }
     const action = {
       type: 'UNKNOWN_ACTION',
     }
-    const state = userReducer(oldState, action)
-    expect(state).toBe(oldState)
+    const state = userReducer(prevState, action)
+    expect(state).toBe(prevState)
   })
 })
