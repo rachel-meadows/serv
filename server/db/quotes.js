@@ -105,6 +105,5 @@ module.exports = {
   getQuote,
   editQuoteStatus,
   getUserIdByJobId,
-  addUserIdToQuote,
   getQuoteByJobAndUserId,
 }

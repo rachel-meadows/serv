@@ -17,7 +17,7 @@ function addBusiness(input, db = connection) {
     category,
     logo,
     location,
-    ratingCount,
+    rating_count: ratingCount,
     average_rating: null,
   }
   return db('businesses').insert(business)
@@ -32,7 +32,7 @@ function editBusiness(id, input, db = connection) {
     category,
     logo,
     location,
-    ratingCount,
+    rating_count: ratingCount,
   }
   return db('businesses').where('id', id).update(business)
 }

@@ -5,7 +5,7 @@ import { APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 
 function JobsList() {
-  const customerId = useSelector((state) => state.currentUser.id)
+  const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [dropDownSelection, setdropDownSelection] = useState('all')
@@ -15,7 +15,7 @@ function JobsList() {
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
-    .then((obj) => {
+      .then((obj) => {
         setAllJobs(obj.jobs)
         return null
       })

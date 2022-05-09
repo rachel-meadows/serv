@@ -37,16 +37,17 @@ function BusinessQuotedJob() {
     <>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p className="userId" key={job.id}>
-          {job.userId}
+        <p className="userId" key={job?.id}>
+          {job?.userId}
         </p>
-        <p className="category">{job.category}</p>
-        <p className="description">{job.description}</p>
+        <p className="category">{job?.category}</p>
+        <p className="description">{job?.description}</p>
         <p className="price">
-          Budget: ${job.priceMin} - {job.priceMax}
+          Budget: ${job?.priceMin} - {job?.priceMax}
         </p>
         {/* <p className="image">{image}</p> */}
-        <p className="status">{job.status}</p>
+        <p className="location">{job?.location}</p>
+        <p className="status">{job?.status}</p>
         <p className="status">{quote?.quoteStatus}</p>
         <button className="completed-btn" onClick={handleSubmit}>
           Remove quote
