@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-
-import { fetchJobs } from '../../actions/jobListings'
 import { APIgetJobQuotes, APIgetJobsByCustomer } from '../../apis/customer'
 import CustomerCheckout from './StripeCheckout/CustomerCheckout'
 import JobsListItem from './CustomerJobsItem'
@@ -37,19 +35,15 @@ function CustomerJobCompleted() {
   }, [allJobs])
 
   useEffect(() => {
-    APIgetJobQuotes(jobsId)
-      .then((obj) => {
-        setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    APIgetJobQuotes(jobsId).then((obj) => {
+      setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
+    })
   }, [])
 
   return (
     <>
       {job?.id !== undefined ? (
-        <JobsListItem key={job.id} job={job} />
+        <JobsListItem key={job.id} job={job} hideButton={true} />
       ) : (
         <h4>Error - Job listing cannot display</h4>
       )}
