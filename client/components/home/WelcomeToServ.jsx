@@ -7,6 +7,29 @@ function HowItWorks() {
       <h2>Welcome to Serv.</h2>
 
       <div className="hero">
+        <h3>Our Vision</h3>
+        <p>
+          <q>
+            To lead the way in bringing services effortlessly to your front door
+            at the click of a button
+          </q>
+        </p>
+        <h3>Our Mission</h3>
+        <p>
+          <q>
+            Our mission is to provide effortless service at the click of a
+            button, so you can have all of your maintenance issues fixed with
+            ease by skilled professionals.
+          </q>
+        </p>
+        <h3>Our Values</h3>
+        <ul>
+          <li>Trust</li>
+          <li>Accountability</li>
+          <li>Ingenuity</li>
+          <li>Respect</li>
+          <li>Value creation</li>
+        </ul>
         <h3>We Serv. You</h3>
         <p className="tagline">
           We take the hard work out of vetting tradespeople. We select the best,
