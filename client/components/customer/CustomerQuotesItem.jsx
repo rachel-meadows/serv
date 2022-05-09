@@ -26,7 +26,6 @@ function QuotesItem(props) {
 
   return (
     <>
-      <h1>Customer Quotes</h1>
       <section>
         <div className="flex quoteList-item"></div>
         <strong>

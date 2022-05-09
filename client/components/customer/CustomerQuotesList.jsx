@@ -27,7 +27,11 @@ function QuotesList({ children }) {
       <h1>Customer Quotes</h1>
       <section>
         {children} {/* This holds the WaitIndicator (from App) */}
-        {quotes.map((quote) => {
+        {!quotes[0]
+          ?
+          <h3>No Quotes Available</h3>
+          :
+          quotes.map((quote) => {
           return <CustomerQuotesItem key={quote.id} quote={quote} />
         })}
       </section>
