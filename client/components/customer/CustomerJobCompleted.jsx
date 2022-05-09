@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+
 import { fetchJobs } from '../../actions/jobListings'
-import { APIgetJobQuotes } from '../../apis/customer'
+import { APIgetJobQuotes, APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 import IndividualQuote from './IndividualQuote'
 
@@ -12,35 +13,33 @@ import IndividualQuote from './IndividualQuote'
 2. (stretch) Rate Button
 */
 
-
-
 function CustomerJobCompleted() {
   const { jobsId } = useParams()
+  const [allJobs, setAllJobs] = useState([])
   const [job, setJob] = useState({})
   const [quote, setQuote] = useState({})
-  const allJobs = useSelector((state) => { 
-    return state.jobListings
-  })
-  const customerId = useSelector((state) => { 
-    return state.currentUser.id
-  })
   const dispatch = useDispatch()
-  
+  const customerId = useSelector((state) => state.currentUser.id)
+
   useEffect(() => {
-    dispatch(fetchJobs(1))
+    APIgetJobsByCustomer(customerId)
+    .then((obj) => {
+        setAllJobs(obj.jobs)
+        return null
+      })
+      .catch((err) => {
+        const errMessage = err.response?.text || err.message
+        // dispatch(showError(errMessage))
+        console.log(errMessage)
+      })
   }, [])
 
-  // useEffect(() => {
-  //   dispatch(fetchJobs(customerId))
-  // }, [customerId])
-  
   useEffect(() => {
     setJob(allJobs.find((obj) => obj.id === Number(jobsId)))
   }, [allJobs])
   
   useEffect(() => {
     APIgetJobQuotes(jobsId).then((obj) => { 
-      console.log('APIgetJobQuotes returned obj', obj.quotes)
       setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
     })
   }, [])
@@ -53,10 +52,10 @@ function CustomerJobCompleted() {
       <h4>Error - Job listing cannot display</h4>
     }
     {(quote !== undefined) 
-    ? 
-    <IndividualQuote notes={ quote.notes } price={quote.price} />
-    :
-    <h4>Error - Accepted quote cannot display</h4>
+      ? 
+      <IndividualQuote notes={ quote.notes } price={quote.price} />
+      :
+      <h4>Error - Accepted quote cannot display</h4>
     }
     </>
     

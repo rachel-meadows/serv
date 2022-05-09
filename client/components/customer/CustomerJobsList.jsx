@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Outlet, useLocation } from 'react-router-dom'
-
-import { fetchJobs } from '../../actions/jobListings'
-
+import { APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 
-//THIS IS INTENDED TO DISPLAY AN INDIVIDUAL CUSTOMER'S **OWN** JOB LISTINGS, NOT ALL THE JOB LISTINGS
-
 function JobsList() {
-  const allJobs = useSelector((state) => state.jobListings)
   const customerId = useSelector((state) => state.currentUser.id)
-
   const [jobs, setJobs] = useState([])
-  // console.log(jobs)
+  const [allJobs, setAllJobs] = useState([])
   const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // console.log('fetchJobs')
-    dispatch(fetchJobs(customerId))
+    APIgetJobsByCustomer(customerId)
+    .then((obj) => {
+        setAllJobs(obj.jobs)
+        return null
+      })
+      .catch((err) => {
+        const errMessage = err.response?.text || err.message
+        dispatch(showError(errMessage))
+      })
   }, [customerId])
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function JobsList() {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
     } else if (dropDownSelection === 'all') {
       setJobs(allJobs)
-    }``
+    }
   }, [allJobs, dropDownSelection])
 
   function showDetails(jobsId, status) {

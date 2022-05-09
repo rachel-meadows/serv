@@ -41,7 +41,6 @@ export function APIgetQuoteById(jobId, quoteId) {
 }
 
 export function APIchangeQuoteStatus(quoteId, status) {
-  console.log(quoteId, status)
   return request
     .patch(rootUrl + `/jobs/quotes/${quoteId}`)
     .send({ status: status })
