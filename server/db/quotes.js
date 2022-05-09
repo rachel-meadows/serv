@@ -13,36 +13,11 @@ function addQuote(input, db = connection) {
   return db('quotes').insert(quote)
 }
 
-// addQuote helper function 1
-function getUserIdByJobId(jobId, db = connection) {
-  return db('quotes')
-    .join('jobs', 'quotes.job_id', 'jobs.id')
-    .where('jobs.id', jobId)
-    .select('jobs.user_id as userId')
-    .first()
-}
-
-function getQuotesByCustomer(id, db = connection) {
-  return db('quotes')
-    .where('user_id', id)
-    .select(
-      'id',
-      'user_id as userId',
-      'business_id as businessId',
-      'job_id as jobId',
-      'price',
-      'date_added as dateAdded',
-      'notes as description',
-      'status'
-    )
-}
-
 function getQuotesByJob(id, db = connection) {
   return db('quotes')
     .where('job_id', id)
     .select(
       'id',
-      'user_id as userId',
       'business_id as businessId',
       'job_id as jobId',
       'price',
@@ -95,10 +70,8 @@ function getQuoteByJobAndUserId(jobId, userId, db = connection) {
 
 module.exports = {
   addQuote,
-  getQuotesByCustomer,
   getQuotesByJob,
   getQuote,
   editQuoteStatus,
-  getUserIdByJobId,
   getQuoteByJobAndUserId,
 }
