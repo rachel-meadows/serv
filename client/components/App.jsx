@@ -18,6 +18,8 @@ import BusinessJobToQuote from './business/BusinessJobToQuote'
 import BusinessActiveJob from './business/BusinessActiveJob'
 import WaitIndicator from './WaitIndicator'
 import BusinessQuotedJob from './business/BusinessQuotedJob'
+import CheckoutSuccess from './customer/StripeCheckout/CheckoutSuccess'
+import CheckoutCancel from './customer/StripeCheckout/CheckoutCancel'
 
 function App() {
   cacheUser(useAuth0)
@@ -29,6 +31,11 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<CustomerJobAdd />} />
+        <Route path="/customer/checkout/cancel" element={<CheckoutCancel />} />
+        <Route
+          path="/customer/checkout/success"
+          element={<CheckoutSuccess />}
+        />
 
         <Route
           path="/customer/completed/:jobsId"

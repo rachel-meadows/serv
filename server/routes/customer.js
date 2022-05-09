@@ -2,6 +2,11 @@ const express = require('express')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
 const router = express.Router()
+const path = require('path')
+
+require('dotenv').config({ path: path.join(__dirname, '../', '.env') })
+const Stripe = require('stripe')
+const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY)
 
 // POST api/v1/customer/add
 router.post('/add', async (req, res) => {
@@ -79,7 +84,6 @@ router.get('/:customerId/quotes', async (req, res) => {
 // GET api/v1/customer/:jobId/quotes
 router.get('/quote/:jobId', async (req, res) => {
   const { jobId } = req.params
-  console.log('1', jobId)
   try {
     await dbQuotes.getQuotesByJob(jobId).then((quotes) => {
       res.json({ quotes })
@@ -122,6 +126,37 @@ router.get('/:jobId/quotes/:quoteId', async (req, res) => {
     res
       .status(500)
       .json({ message: 'Unable to get list of quotes by customer ID' })
+  }
+})
+
+router.post('/create-checkout-session', async (req, res) => {
+  console.log('yes')
+  const { quoteId } = req.body
+  const quote = await dbQuotes.getQuote(quoteId)
+  console.log(quote[0].priceMax)
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: [
+        {
+          price_data: {
+            currency: 'nzd',
+            product_data: {
+              name: quote[0].description || 'My Service',
+            },
+            unit_amount: quote[0].priceMax * 100,
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: `${process.env.SERVER_URL}/customer/checkout/success`,
+      cancel_url: `${process.env.SERVER_URL}/customer/checkout/cancel`,
+    })
+
+    res.json({ url: session.url })
+  } catch (e) {
+    res.status(500).json({ error: e.message })
   }
 })
 
