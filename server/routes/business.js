@@ -122,10 +122,11 @@ router.get('/:businessId', async (req, res) => {
 // POST /business/jobs/:jobId/addquote
 router.post('/jobs/:jobId/addquote', async (req, res) => {
   const { jobId } = req.params
+  const data = { ...req.body, jobId }
   try {
-    const data = { ...req.body, jobId }
-    dbQuotes.addQuote(data)
-    res.sendStatus(201)
+    dbQuotes.addQuote(data).then(() => {
+      res.sendStatus(201)
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to add quote into db' })
