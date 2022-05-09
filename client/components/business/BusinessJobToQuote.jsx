@@ -86,19 +86,11 @@ function BusinessJobToQuote() {
             <h3>Cost Estimate</h3>
           </div>
           <div className="flex flex-row flex-justify-center">
-            <label htmlFor="price_min"></label>
+            <label htmlFor="price"></label>
             <input
-              name="priceMin"
-              placeholder="Min price"
-              value={quoteForm.priceMin}
-              onChange={handleChange}
-              disabled={false}
-            />
-            <label htmlFor="price_min"></label>
-            <input
-              name="priceMax"
-              placeholder="Max price"
-              value={quoteForm.priceMax}
+              name="price"
+              placeholder="Price"
+              value={quoteForm.price}
               onChange={handleChange}
               disabled={false}
             />
