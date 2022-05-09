@@ -5,7 +5,7 @@ exports.seed = function (knex) {
       return knex('jobs').insert([
         {
           id: 1,
-          user_id: 3,
+          user_id: 7,
           description:
             'My roof has been leaking for 3 days. It appears to be from a crack in some of the tiles.',
           image: 'multer image string placeholder',
@@ -17,7 +17,7 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          user_id: 3,
+          user_id: 7,
           description:
             'Looking for a contractor to mow my lawn every two weeks.',
           image: 'multer image string placeholder',
@@ -29,7 +29,7 @@ exports.seed = function (knex) {
         },
         {
           id: 3,
-          user_id: 3,
+          user_id: 7,
           description: 'Office is moving, needs a deep clean (3-4 days work).',
           image: 'multer image string placeholder',
           category: 'cleaning',

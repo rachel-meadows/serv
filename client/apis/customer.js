@@ -48,3 +48,22 @@ export function APIchangeQuoteStatus(quoteId, status) {
       return null
     })
 }
+
+// TODO: Add quoteId so we can search for item price and send that items price to stripe for payment
+export function APIcustomerCheckoutSession(quoteId) {
+  return request
+    .post(rootUrl + `/create-checkout-session`)
+    .send({
+      quoteId,
+    })
+    .then((res) => {
+      if (res.ok) return res.body
+      return res.json().then((json) => Promise.reject(json))
+    })
+    .then(({ url }) => {
+      window.location = url
+    })
+    .catch((e) => {
+      console.error(e.error)
+    })
+}
