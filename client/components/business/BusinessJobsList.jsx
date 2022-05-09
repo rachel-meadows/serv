@@ -22,14 +22,14 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     console.log('useEffect has run - PAGE HAS RE-RENDERED!!.')
-    // APIgetJobsByUser(4).then((quotedJobs) => {
-    APIgetJobsByUser(user?.id).then((quotedJobs) => {
+    APIgetJobsByUser(4).then((quotedJobs) => {
+      // APIgetJobsByUser(user?.id).then((quotedJobs) => {
       setJobsQuotedOn(quotedJobs)
       console.log('quotedJobs:', quotedJobs)
     })
 
-    APIgetBusinessByUserId(user?.id)
-      // APIgetBusinessByUserId(4)
+    // APIgetBusinessByUserId(user?.id)
+    APIgetBusinessByUserId(4)
       .then((business) => {
         return APIgetOpenJobsByCategory(business?.category)
       })
@@ -71,7 +71,8 @@ function BusinessJobsList({ children }) {
     } else if (dropDownSelection === 'completed') {
       setJobs(
         jobsQuotedOn.filter(
-          (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
+          // (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
+          (obj) => obj.jobStatus === 'closed'
         )
       )
       console.log(jobs)

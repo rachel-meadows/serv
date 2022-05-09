@@ -20,12 +20,9 @@ function BusinessActiveJob() {
     // This API function does work; it changes the data in the database
     // The problem is that jobStatus does not update in state here,
     // though it is visible in the Redux tools.
-    APIchangeJobStatus(job.id, 'completed')
-    APIgetJobById(jobId).then((job) => {
-      setJob(job)
+    APIchangeJobStatus(job.id, 'closed').then(() => {
+      navigate(`/business`)
     })
-    console.log('job after API call: ', job)
-    navigate(`/business`)
   }
 
   return (
