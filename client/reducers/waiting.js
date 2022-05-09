@@ -1,49 +1,11 @@
-import {
-  GET_JOBS_PENDING,
-  GET_JOBS_SUCCESS,
-  CREATE_QUOTE_PENDING,
-  CREATE_QUOTE_SUCCESS,
-  UPDATE_BUSINESS_PENDING,
-  UPDATE_BUSINESS_SUCCESS,
-} from '../actions/business'
-
-import {
-  GET_JOB_QUOTES_PENDING,
-  GET_JOB_QUOTES_SUCCESS,
-  CREATE_JOB_PENDING,
-  CREATE_JOB_SUCCESS,
-} from '../actions/customer'
+import { SET_WAITING, CLEAR_WAITING } from '../actions/waiting'
 
 function waiting(state = false, action) {
   switch (action.type) {
-    case GET_JOBS_PENDING:
+    case SET_WAITING:
       return true
 
-    case GET_JOBS_SUCCESS:
-      return false
-
-    case CREATE_QUOTE_PENDING:
-      return true
-
-    case CREATE_QUOTE_SUCCESS:
-      return false
-
-    case UPDATE_BUSINESS_PENDING:
-      return true
-
-    case UPDATE_BUSINESS_SUCCESS:
-      return false
-
-    case GET_JOB_QUOTES_PENDING:
-      return true
-
-    case GET_JOB_QUOTES_SUCCESS:
-      return false
-
-    case CREATE_JOB_PENDING:
-      return true
-
-    case CREATE_JOB_SUCCESS:
+    case CLEAR_WAITING:
       return false
 
     default:

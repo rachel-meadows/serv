@@ -1,28 +1,13 @@
 import { combineReducers } from 'redux'
 
-import errorMessage from './errorMessage'
-import currentUser from './currentUser'
+import error from './error'
 import user from './user'
-import {
-  openJobs,
-  openJobsByCategory,
-  jobsByUser,
-  currentJob,
-  currentBusiness
-} from './business'
-import { jobQuotes, jobListings } from './customer'
+import currentUser from './currentUser'
 import waiting from './waiting'
 
 export default combineReducers({
-  errorMessage,
+  error,
   waiting,
   currentUser,
   user,
-  openJobs,
-  openJobsByCategory,
-  jobsByUser,
-  jobQuotes,
-  jobListings,
-  currentJob,
-  currentBusiness
 })

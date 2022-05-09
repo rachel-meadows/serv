@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../actions/user'
-// import { APIgetBusinessByUserId } from '../apis/business'
 import { convertToBase64 } from '../utils/convertImage'
-import { addBusiness } from '../actions/business'
+// import { APIgetBusinessByUserId } from '../apis/business'
 
 function Registration() {
   const dispatch = useDispatch()
