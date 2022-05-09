@@ -6,7 +6,7 @@ import { convertToBase64 } from '../../utils/convertImage'
 
 function AddJob() {
   const navigate = useNavigate()
-  const userId = useSelector((state) => state.currentUser.id)
+  const userId = useSelector((state) => state.currentUser?.id)
   const [inputs, setInputs] = useState({ userId })
 
   const handleChange = (event) => {
@@ -17,7 +17,7 @@ function AddJob() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    APIaddJob(inputs).then(() => 
+    APIaddJob(inputs).then(() =>
       navigate('/customer', { state: { message: true } })
     )
   }
