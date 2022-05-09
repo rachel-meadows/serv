@@ -1,23 +1,32 @@
 import React, { useEffect } from 'react'
-import BusJobItem from './BusinessJobItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchJobsByUserId} from '../../actions/business'
 import { useNavigate } from 'react-router-dom'
-import BusinessQuoteItem from './BusinessQuoteItem' 
+import BusinessQuoteItem from './BusinessQuoteItem'
+import { APIgetJobById } from '../../apis/business'
 
 function BusinessQuotedJobsList() {
-  const jobListing = useSelector((state) => state.openJobs)
+  const [job, setJob] = useState({})
+  const { jobId } = useParams()
+  useEffect(() => {
+    APIgetJobById(jobId).then((job) => {
+      setJob(job)
+    })
+  }, [])
+
   const userData = useSelector((state) => state.userData)
   const { userId, category } = userData
 
   const [jobs, setJobs] = useState([])
-  const [dropDownSelection, setdropDownSelection] = useState("unmatched")
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
+  const [jobsQuotedOn, setJobsQuotedOn] = useState([])
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchJobsByUserId(userId, category?))
+    APIgetJobsByUser(userId).then((quotedJobs) => {
+      setJobsQuotedOn(quotedJobs)
+    })
   }, [])
 
   useEffect(() => {
@@ -27,11 +36,9 @@ function BusinessQuotedJobsList() {
     // }
     if (dropDownSelection === 'active') {
       setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
-    }
-    else if (dropDownSelection === 'completed') {
+    } else if (dropDownSelection === 'completed') {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
-    }
-    else if (dropDownSelection === 'all') {
+    } else if (dropDownSelection === 'all') {
       setJobs(allJobs)
     }
   }, [allJobs, dropDownSelection])
@@ -39,11 +46,9 @@ function BusinessQuotedJobsList() {
   function showDetails(jobsId, status) {
     if (status === 'open') {
       navigate(`/business/open/${jobsId}`)
-    }
-    else if (status === 'in progress') {
+    } else if (status === 'in progress') {
       navigate(`/business/active/${jobsId}`)
-    }
-    else if (status === 'closed') {
+    } else if (status === 'closed') {
       navigate(`/business/completed/${jobsId}`)
     }
   }
@@ -52,18 +57,23 @@ function BusinessQuotedJobsList() {
     setdropDownSelection(event.target.value)
   }
 
-
   return (
     <>
-    <div className="quote-submitted flex flex-col flex-align-center">
-      <h2>Your quote has been submitted</h2>
-      <p>Your quote has been successfully passed on to your customer.</p>
-      <p>You'll get a message soon if they accept the quote.</p>
-    </div>
+      <div className="quote-submitted flex flex-col flex-align-center">
+        <h2>Your quote has been submitted</h2>
+        <p>Your quote has been successfully passed on to your customer.</p>
+        <p>You'll get a message soon if they accept the quote.</p>
+      </div>
       <form>
         <label htmlFor="filter">Filter your jobs:</label>
-        <select name="status" id="status"  defaultValue={"quoted"} required onChange={handleDropDown}>
-        <option value="unmatched" >Unmatched</option>
+        <select
+          name="status"
+          id="status"
+          defaultValue={'quoted'}
+          required
+          onChange={handleDropDown}
+        >
+          <option value="unmatched">Unmatched</option>
           <option value="quoted">Quoted</option>
           <option value="active">Active</option>
           <option value="completed">Completed</option>
@@ -73,7 +83,13 @@ function BusinessQuotedJobsList() {
       <section>
         {jobs?.map((job) => {
           console.log(job)
-          return <BusinessQuoteItem key={job.id} jobListing={job} showDetails={showDetails}/>
+          return (
+            <BusinessQuoteItem
+              key={job.id}
+              jobListing={job}
+              showDetails={showDetails}
+            />
+          )
         })}
       </section>
     </>

@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createQuote, fetchJobById } from '../../actions/business'
+import {
+  APIgetJobById,
+  APIaddQuote,
+  APIgetBusinessByUserId,
+} from '../../apis/business'
 import { useNavigate, useParams } from 'react-router-dom'
 
 function BusinessJobToQuote() {
-  const currentJob = useSelector((state) => state.currentJob)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { jobId } = useParams()
-  console.log(jobId)
+  const [job, setJob] = useState({})
+  const [business, setBusiness] = useState({})
+  const user = useSelector((state) => state.currentUser)
+
   useEffect(() => {
-    dispatch(fetchJobById(jobId))
-  }, [])
+    APIgetJobById(jobId).then((job) => {
+      setJob(job)
+    })
+
+    APIgetBusinessByUserId(user?.id).then((business) => {
+      console.log('user', user)
+      console.log('business', business)
+      setBusiness(business)
+    })
+  }, [user])
 
   const [toggleForm, setToggleForm] = useState(false)
   const [quoteForm, setQuoteForm] = useState({
@@ -23,7 +36,11 @@ function BusinessJobToQuote() {
   const handleChange = (event) => {
     const name = event.target.name
     const value = event.target.value
-    setQuoteForm((values) => ({ ...values, [name]: value }))
+    setQuoteForm((values) => ({
+      ...values,
+      [name]: value,
+      businessId: business?.id,
+    }))
   }
 
   const handleSetToggleForm = () => {
@@ -32,31 +49,30 @@ function BusinessJobToQuote() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log(currentJob.id)
-    console.log(quoteForm)
-    dispatch(createQuote(currentJob.id, quoteForm))
-    navigate(`/business`, { state: { message: true } })
+    console.log('Job id: ', job.id)
+    console.log('quoteForm: ', quoteForm)
+    APIaddQuote(job.id, quoteForm).then(() => {
+      navigate(`/business`, { state: { message: true } })
+    })
   }
   return (
     <>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p className="userId" key={currentJob.id}>
-          {currentJob.userId}
+        <p className="userId" key={job.id}>
+          {job.userId}
         </p>
-        <p className="category">{currentJob.category}</p>
-        <p className="description">{currentJob.description}</p>
+        <p className="category">{job.category}</p>
+        <p className="description">{job.description}</p>
         <p className="price">
-          Budget: ${currentJob.priceMin} - {currentJob.priceMax}
+          Budget: ${job.priceMin} - {job.priceMax}
         </p>
         {/* <p className="image">{image}</p> */}
-        <p className="status">{currentJob.status}</p>
+        <p className="status">{job.status}</p>
 
-        {createQuote && (
-          <button className="accept-btn" onClick={handleSetToggleForm}>
-            Create Quote
-          </button>
-        )}
+        <button className="accept-btn" onClick={handleSetToggleForm}>
+          Create Quote
+        </button>
       </div>
       {toggleForm && (
         <>

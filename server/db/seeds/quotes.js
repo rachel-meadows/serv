@@ -5,7 +5,6 @@ exports.seed = function (knex) {
       return knex('quotes').insert([
         {
           id: 1,
-          user_id: 4,
           business_id: 1,
           job_id: 1,
           price_min: 21,
@@ -16,8 +15,7 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          user_id: 5,
-          business_id: 2,
+          business_id: 1,
           job_id: 2,
           price_min: 21,
           price_max: 45,
@@ -27,19 +25,17 @@ exports.seed = function (knex) {
         },
         {
           id: 3,
-          user_id: 6,
-          business_id: 3,
-          job_id: 2,
+          business_id: 1,
+          job_id: 3,
           price_min: 21,
           price_max: 45,
           date_added: '2022-05-04T21:15:34.334Z',
           notes: null,
-          status: 'rejected',
+          status: 'accepted',
         },
         {
           id: 4,
-          user_id: 6,
-          business_id: 3,
+          business_id: 1,
           job_id: 4,
           price_min: 21,
           price_max: 45,
@@ -49,8 +45,7 @@ exports.seed = function (knex) {
         },
         {
           id: 5,
-          user_id: 6,
-          business_id: 3,
+          business_id: 1,
           job_id: 5,
           price_min: 21,
           price_max: 45,
@@ -60,8 +55,7 @@ exports.seed = function (knex) {
         },
         {
           id: 6,
-          user_id: 6,
-          business_id: 3,
+          business_id: 1,
           job_id: 6,
           price_min: 21,
           price_max: 45,

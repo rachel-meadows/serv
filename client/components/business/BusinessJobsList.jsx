@@ -5,7 +5,6 @@ import {
   APIgetBusinessByUserId,
   APIgetOpenJobsByCategory,
   APIgetJobsByUser,
-  APIgetJobById,
 } from '../../apis/business'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -13,21 +12,24 @@ function BusinessJobsList({ children }) {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const user = useSelector((state) => state.currentUser)
-
   const [showMessage, setShowMessage] = useState(false)
 
+  const user = useSelector((state) => state.currentUser)
   const [jobs, setJobs] = useState([])
   const [openJobsInCategory, setOpenJobsInCategory] = useState([])
   const [jobsQuotedOn, setJobsQuotedOn] = useState([])
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   useEffect(() => {
+    console.log('useEffect has run - PAGE HAS RE-RENDERED!!.')
+    // APIgetJobsByUser(4).then((quotedJobs) => {
     APIgetJobsByUser(user?.id).then((quotedJobs) => {
-      return setJobsQuotedOn(quotedJobs)
+      setJobsQuotedOn(quotedJobs)
+      console.log('quotedJobs:', quotedJobs)
     })
 
     APIgetBusinessByUserId(user?.id)
+      // APIgetBusinessByUserId(4)
       .then((business) => {
         return APIgetOpenJobsByCategory(business?.category)
       })
@@ -50,12 +52,12 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
-      setJobs(openJobsInCategory)
+      // setJobs(openJobsInCategory)
       // TODO: Filter to exclude content business has worked on
-
-      // const openAndUnquoted = openJobs.filter(
-      //   (job) => !jobsByUser.includes(job.id)
-      // )
+      const openAndUnquoted = openJobsInCategory.filter(
+        (job) => !jobsQuotedOn.includes(job)
+      )
+      setJobs(openAndUnquoted)
     } else if (dropDownSelection === 'quoted') {
       // 'Quoted' status includes pending and rejected quotes
       setJobs(jobsQuotedOn)
@@ -75,18 +77,6 @@ function BusinessJobsList({ children }) {
       console.log(jobs)
     }
   }, [user, dropDownSelection, openJobsInCategory])
-
-  function showDetails(jobsId, status) {
-    if (status === 'open') {
-      navigate(`/business/open/${jobsId}`)
-    } else if (status === 'quoted') {
-      navigate(`/business/quoted/${jobsId}`)
-    } else if (status === 'in progress') {
-      navigate(`/business/active/${jobsId}`)
-    } else if (status === 'closed') {
-      navigate(`/business/completed/${jobsId}`)
-    }
-  }
 
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)

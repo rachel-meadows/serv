@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchJobById } from '../../actions/business'
 import { useNavigate, useParams } from 'react-router-dom'
-import { APIchangeJobStatus } from '../../apis/business'
+import { APIgetJobById } from '../../apis/business'
 
 function BusinessQuotedJob() {
-  const currentJob = useSelector((state) => state.currentJob)
-  console.log(currentJob)
-  const [job, setJob] = useState(currentJob)
+  const [job, setJob] = useState({})
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { jobId } = useParams()
+
   useEffect(() => {
-    dispatch(fetchJobById(jobId))
+    APIgetJobById(jobId).then((job) => {
+      setJob(job)
+    })
   }, [])
 
-
-  console.log("BusinessJobToQuote", jobId)
-
+  console.log('BusinessJobToQuote', jobId)
 
   function handleSubmit(event) {
     event.preventDefault()
-    APIchangeJobStatus(currentJob.id)
-    navigate(`/business`)
+    APIchangeJobStatus(job.id).then(() => {
+      navigate(`/business`)
+    })
   }
+
   return (
     <>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p className="userId" key={currentJob.id}>{currentJob.userId}</p>
-        <p className="category">{currentJob.category}</p>
-        <p className="description">{currentJob.description}</p>
-        <p className="price">Budget: ${currentJob.priceMin} - {currentJob.priceMax}</p>
+        <p className="userId" key={job.id}>
+          {job.userId}
+        </p>
+        <p className="category">{job.category}</p>
+        <p className="description">{job.description}</p>
+        <p className="price">
+          Budget: ${job.priceMin} - {job.priceMax}
+        </p>
         {/* <p className="image">{image}</p> */}
-        <p className="status">{currentJob.status}</p>
-        <p className="status">{currentJob.quoteStatus}</p>
+        <p className="status">{job.status}</p>
+        <p className="status">{job.quoteStatus}</p>
         <button className="completed-btn" onClick={handleSubmit}>
           Remove quote
         </button>
       </div>
-
     </>
   )
-
-
 }
-
-
 
 export default BusinessQuotedJob

@@ -63,7 +63,7 @@ router.get('/details/:userId/', async (req, res) => {
 })
 
 // GET /business/user/:userId
-// Get data for the jobsByUser state
+// Get data for jobsByUser
 router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params
   try {
