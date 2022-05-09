@@ -123,12 +123,14 @@ router.get('/:businessId', async (req, res) => {
 router.post('/jobs/:jobId/addquote', async (req, res) => {
   const { jobId } = req.params
   try {
+    const data = { ...req.body, jobId }
+    const [quoteId] = await dbQuotes.addQuote(data)
+
     // User ID here is the ID of the user who MADE the job, not the business
     const userIdData = await dbQuotes.getUserIdByJobId(jobId)
     const userId = userIdData.userId
+    dbQuotes.addUserIdToQuote(quoteId, userId)
 
-    const data = { ...req.body, jobId, userId }
-    await dbQuotes.addQuote(data)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)
