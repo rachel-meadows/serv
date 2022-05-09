@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { APIgetBusinessById, APIchangeJobStatus } from '../../apis/business'
-import { APIchangeQuoteStatus, APIgetCustomerQuotes } from '../../apis/customer'
+import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
   const { jobId, id, businessId, description, priceMin, priceMax, status } =
     props.quote
+  const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
 
@@ -23,17 +25,17 @@ function QuotesItem(props) {
   }
 
   useEffect(() => {
-    APIgetCustomerQuotes(customerId).then((data) => {
+    APIgetJobQuotes(user?.id).then((data) => {
       return setBusiness(data)
     })
-  }, [])
+  }, [user])
 
   return (
     <>
       <section>
         <div className="flex quoteList-item"></div>
         <strong>
-          <Link to={`/business/${customerId}`}>{business.businessName}</Link>
+          <Link to={`/business/${user.id}`}>{business.businessName}</Link>
         </strong>
         <p>{description}</p>
         <p>
