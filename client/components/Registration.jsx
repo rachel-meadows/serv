@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addUser } from '../actions/user'
 import { convertToBase64 } from '../utils/convertImage'
-// import { APIgetBusinessByUserId } from '../apis/business'
 
 function Registration() {
   const dispatch = useDispatch()
@@ -67,10 +66,6 @@ function Registration() {
       )
     )
   }
-
-  useEffect(() => {
-    dispatch(addBusiness(currentUser?.id))
-  }, [currentUser])
 
   const handleSetUserTypeCustomer = () => {
     setUserType('customer')
