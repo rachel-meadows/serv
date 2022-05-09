@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
-import { APIgetBusinessByUserId } from '../../apis/business'
-import { useLocation, useNavigate } from 'react-router-dom'
-
 import {
-  // fetchOpenJobs,
-  fetchOpenJobsByCategory,
-  fetchJobsByUser,
-  fetchJobsByUserId,
-} from '../../actions/business'
+  APIgetBusinessByUserId,
+  APIgetOpenJobsByCategory,
+  APIgetJobsByUser,
+  APIgetJobById,
+} from '../../apis/business'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function BusinessJobsList({ children }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  const allJobs = useSelector((state) => state.jobList)
-  const currentBusiness = useSelector((state) => state.currentBusiness)
-  const currentUser = useSelector((state) => state.currentUser)
-  const openJobs = useSelector((state) => state.openJobsByCategory)
-  const jobsByUser = useSelector((state) => state.jobsByUser)
-  const jobListing = useSelector((state) => state.openJobs)
-  // const quoteById = useSelector((state) => state.quotesById)
   const location = useLocation()
 
-  // const { userId, category } = userData
+  const user = useSelector((state) => state.currentUser)
 
   const [business, setBusiness] = useState({})
-  const [jobs, setJobs] = useState(openJobs)
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
-
   const [showMessage, setShowMessage] = useState(false)
 
-  useEffect(() => {
-    APIgetBusinessByUserId(currentUser?.id).then((data) => {
-      setBusiness(data)
-    }).catch
-  }, [currentUser])
+  const [jobs, setJobs] = useState([])
+  const [openJobsInCategory, setOpenJobsInCategory] = useState([])
+  const [jobsQuotedOn, setJobsQuotedOn] = useState([])
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   useEffect(() => {
-    dispatch(fetchOpenJobsByCategory(business?.category))
-    // dispatch(fetchOpenJobsByCategory('plumbing'))
-  }, [business])
-
-  useEffect(() => {
-    dispatch(fetchJobsByUser(6))
-  }, [])
+    APIgetBusinessByUserId(user?.id)
+      .then((currentBusiness) => {
+        console.log('currentBusiness', currentBusiness)
+        setBusiness(currentBusiness)
+      })
+      .then(
+        APIgetOpenJobsByCategory('plumbing').then((openJobs) => {
+          // TODO: fix this
+          // APIgetOpenJobsByCategory('business?.category').then((openJobs) => {
+          console.log('openJobs', openJobs)
+          setOpenJobsInCategory(openJobs)
+        })
+      )
+      .then(
+        APIgetJobsByUser(user?.id).then((quotedJobs) => {
+          console.log('quotedJobs', quotedJobs)
+          setJobsQuotedOn(quotedJobs)
+        })
+      )
+  }, [user])
 
   useEffect(() => {
     setShowMessage(location?.state?.message)
@@ -56,19 +55,12 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
+      setJobs(openJobsInCategory)
       // TODO: Filter to exclude content business has worked on
-      // The problem is that jobsByUser updates in global state on adding a quote
-      // (according to the Redux plugin), but not here for some reason.
-      // If we can fix that, the openAndUnquoted code will probably work.
 
-      // console.log('openJobs:', openJobs)
-      // console.log('jobsByUser:', jobsByUser)
-      const openAndUnquoted = openJobs.filter(
-        (job) => !jobsByUser.includes(job.id)
-      )
-      // console.log('openAndUnquoted', openAndUnquoted)
-      // Current
-      setJobs(openJobs)
+      // const openAndUnquoted = openJobs.filter(
+      //   (job) => !jobsByUser.includes(job.id)
+      // )
     } else if (dropDownSelection === 'quoted') {
       // 'pending'status includes pending and rejected quotes
       setJobs(
@@ -89,7 +81,7 @@ function BusinessJobsList({ children }) {
       )
       console.log(jobs)
     }
-  }, [jobsByUser, openJobs, dropDownSelection])
+  }, [user])
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
