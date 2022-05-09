@@ -13,6 +13,7 @@ function getOpenJobs(db = connection) {
       'price_min as priceMin',
       'price_max as priceMax',
       'date_added as dateAdded',
+      'location',
       'status'
     )
 }
@@ -30,12 +31,14 @@ function getJobsByCustomer(id, db = connection) {
       'price_min as priceMin',
       'price_max as priceMax',
       'date_added as dateAdded',
+      'location',
       'status'
     )
 }
 
 function addJob(input, db = connection) {
-  const { userId, description, image, category, priceMin, priceMax } = input
+  const { userId, description, image, category, priceMin, priceMax, location } =
+    input
   const job = {
     user_id: userId,
     description,
@@ -44,6 +47,7 @@ function addJob(input, db = connection) {
     price_min: priceMin,
     price_max: priceMax,
     date_added: new Date(Date.now()),
+    location,
     status: 'open',
   }
   return db('jobs').insert(job)
@@ -61,6 +65,7 @@ function getJobById(id, db = connection) {
       'price_min as priceMin',
       'price_max as priceMax',
       'date_added as dateAdded',
+      'location',
       'status'
     )
 }
@@ -75,6 +80,7 @@ function editJob(id, input, db = connection) {
     priceMax,
     dateAdded,
     status,
+    location,
   } = input
   const job = {
     user_id: userId,
@@ -84,6 +90,7 @@ function editJob(id, input, db = connection) {
     price_min: priceMin,
     price_max: priceMax,
     date_added: dateAdded,
+    location,
     status,
   }
   return db('jobs').where('id', id).update(job)
@@ -102,6 +109,7 @@ function getOpenJobsByCategory(category, db = connection) {
       'price_min as priceMin',
       'price_max as priceMax',
       'date_added as dateAdded',
+      'location',
       'status'
     )
 }
@@ -122,6 +130,8 @@ function getJobsByUser(userId, db = connection) {
       'jobs.price_max as priceMax',
       'jobs.date_added as dateAdded',
       'quotes.status as quoteStatus',
+      'jobs.location as jobLocation',
+      'businesses.location as businessLocation',
       'jobs.status as jobStatus'
     )
 }

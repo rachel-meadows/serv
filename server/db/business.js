@@ -1,26 +1,38 @@
 const connection = require('./connection')
 
 function addBusiness(input, db = connection) {
-  const { userId, businessName, website, category, logo } = input
+  const {
+    userId,
+    businessName,
+    website,
+    category,
+    logo,
+    location,
+    ratingCount,
+  } = input
   const business = {
     user_id: userId,
     business_name: businessName,
     website,
     category,
     logo,
+    location,
+    ratingCount,
     average_rating: null,
   }
   return db('businesses').insert(business)
 }
 
 function editBusiness(id, input, db = connection) {
-  const { businessName, website, category, logo } = input
+  const { businessName, website, category, logo, location, ratingCount } = input
   const business = {
     user_id: id,
     business_name: businessName,
     website,
     category,
     logo,
+    location,
+    ratingCount,
   }
   return db('businesses').where('id', id).update(business)
 }
@@ -36,7 +48,9 @@ function getBusinessByUserId(id, db = connection) {
       'website',
       'category',
       'logo',
-      'average_rating as averageRating'
+      'location',
+      'average_rating as averageRating',
+      'rating_count as ratingCount'
     )
     .first()
 }
@@ -51,6 +65,8 @@ function getBusiness(id, db = connection) {
       'website',
       'category',
       'logo',
+      'location',
+      'average_rating as averageRating',
       'average_rating as averageRating'
     )
     .first()
