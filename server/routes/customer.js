@@ -6,8 +6,6 @@ const router = express.Router()
 // POST api/v1/customer/add
 router.post('/add', async (req, res) => {
   const data = req.body
-  console.log('hello?')
-  console.log(data)
   try {
     await dbJobs.addJob(data)
     res.sendStatus(201)
@@ -81,6 +79,7 @@ router.get('/:customerId/quotes', async (req, res) => {
 // GET api/v1/customer/:jobId/quotes
 router.get('/quote/:jobId', async (req, res) => {
   const { jobId } = req.params
+  console.log('1', jobId)
   try {
     await dbQuotes.getQuotesByJob(jobId).then((quotes) => {
       res.json({ quotes })

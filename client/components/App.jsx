@@ -4,7 +4,7 @@ import { cacheUser } from '../auth0-utils'
 import Registration from './Registration'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './Layout/Layout'
-import HowItWorks from './home/HowItWorks'
+import WelcomeToServ from './home/WelcomeToServ'
 import Services from './home/Services'
 import Home from './home/Home'
 import JobsList from './customer/CustomerJobsList'
@@ -19,26 +19,77 @@ import BusinessActiveJob from './business/BusinessActiveJob'
 import WaitIndicator from './WaitIndicator'
 import BusinessQuotedJob from './business/BusinessQuotedJob'
 
-
 function App() {
   cacheUser(useAuth0)
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/welcome-to-serv" element={<WelcomeToServ />} />
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<CustomerJobAdd />} />
 
-        <Route path="/customer/completed/:jobsId" element={<CustomerJobCompleted />} />
-        <Route path="/customer" element={<JobsList><WaitIndicator /></JobsList>} />
-        <Route path="/customer/quote/:jobsId" element={<QuotesList><WaitIndicator /></QuotesList>} />
-        <Route path="/business/open/:jobId" element={<BusinessJobToQuote><WaitIndicator /></BusinessJobToQuote>} />
-        <Route path="/business/active/:jobId" element={<BusinessActiveJob><WaitIndicator /></BusinessActiveJob>} />
-        <Route path="/business/quoted/:jobId" element={<BusinessQuotedJob><WaitIndicator /></BusinessQuotedJob>} />
-        <Route path="/business" element={<BusinessJobsList><WaitIndicator /></BusinessJobsList>} />
-        <Route path="/business/:businessId" element={<BusinessInfo><WaitIndicator /></BusinessInfo>} />
+        <Route
+          path="/customer/completed/:jobsId"
+          element={<CustomerJobCompleted />}
+        />
+        <Route
+          path="/customer"
+          element={
+            <JobsList>
+              <WaitIndicator />
+            </JobsList>
+          }
+        />
+        <Route
+          path="/customer/quote/:jobId"
+          element={
+            <QuotesList>
+              <WaitIndicator />
+            </QuotesList>
+          }
+        />
+        <Route
+          path="/business/open/:jobId"
+          element={
+            <BusinessJobToQuote>
+              <WaitIndicator />
+            </BusinessJobToQuote>
+          }
+        />
+        <Route
+          path="/business/active/:jobId"
+          element={
+            <BusinessActiveJob>
+              <WaitIndicator />
+            </BusinessActiveJob>
+          }
+        />
+        <Route
+          path="/business/quoted/:jobId"
+          element={
+            <BusinessQuotedJob>
+              <WaitIndicator />
+            </BusinessQuotedJob>
+          }
+        />
+        <Route
+          path="/business"
+          element={
+            <BusinessJobsList>
+              <WaitIndicator />
+            </BusinessJobsList>
+          }
+        />
+        <Route
+          path="/business/:businessId"
+          element={
+            <BusinessInfo>
+              <WaitIndicator />
+            </BusinessInfo>
+          }
+        />
         {/* <Route path="/business/:jobId" element={} />
         <Route path="/business/jobs" element={} />
         <Route path="/business/jobs/:jobId" element={} /> */}

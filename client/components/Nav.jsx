@@ -13,7 +13,7 @@ function Nav() {
   const logout = getLogoutFn(useAuth0)
   const register = getRegisterFn(useAuth0)
   const user = useSelector((state) => state.user)
-  const currentUser = useSelector((state) => state.currentUser)
+  // const currentUser = useSelector((state) => state.currentUser)
 
   useEffect(() => {
     if (user.auth0Id !== '') {
@@ -37,59 +37,65 @@ function Nav() {
   }
 
   return (
-    <nav>
-      <ul>
-        <IfAuthenticated>
-          {/* puit === 'customer' when ready for production */}
-          {currentUser?.type && (
-            <>
-              <li>
-                <Link to="/customer">Customer</Link>
-              </li>
-              <li>
-                <Link to="/customer/add">Cus Add</Link>
-              </li>
-            </>
-          )}
-          {/* put === 'business' when ready for production */}
-          {currentUser?.type && (
-            <>
-              <li>
-                <Link to="/business">Business</Link>
-              </li>
-              <li>
-                <Link to="/business/jobs">Bus Jobs</Link>
-              </li>
-            </>
-          )}
-          <li>
-            <a href="/" onClick={handleLogoff} className="nav-link">
-              Log out
-            </a>
+    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <IfAuthenticated>
+        {/* puit === 'customer' when ready for production */}
+        {/* {currentUser?.type && ( */}
+        <>
+          <li className="nav-item">
+            <Link to="/customer" className="nav-link">
+              <button className="btn btn-outline-success">Customer</button>
+            </Link>
           </li>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <>
-            <li>
+          <li className="nav-item">
+            <Link to="/customer/add" className="nav-link">
+              <button className="btn btn-outline-success">Cus Add</button>
+            </Link>
+          </li>
+        </>
+        {/* )} */}
+        {/* put === 'business' when ready for production */}
+        {/* {currentUser?.type && ( */}
+        <>
+          <li className="nav-item">
+            <Link to="/business" className="nav-link">
+              <button className="btn btn-outline-primary">Business</button>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/business/jobs" className="nav-link">
+              <button className="btn btn-outline-primary">Bus Jobs</button>
+            </Link>
+          </li>
+        </>
+        {/* )} */}
+        <li className="nav-item">
+          <a href="/" onClick={handleLogoff} className="nav-link ">
+            <button className="btn btn-outline-danger">Log out</button>
+          </a>
+        </li>
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <>
+          {/* <li>
               <Link to="/how-it-works">How It Works</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <a href="/" onClick={handleLogin} className="nav-link">
-                Sign in
-              </a>
-            </li>
-            <li>
-              <a href="/" onClick={handleRegister} className="nav-link">
-                Register
-              </a>
-            </li>
-          </>
-        </IfNotAuthenticated>
-      </ul>
-    </nav>
+            </li> */}
+          <li className="nav-item">
+            <a href="/" onClick={handleLogin} className="nav-link">
+              <button className="btn btn-outline-danger">Login</button>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="/" onClick={handleRegister} className="nav-link">
+              <button className="btn btn-outline-danger">Sign Up</button>
+            </a>
+          </li>
+        </>
+      </IfNotAuthenticated>
+    </ul>
   )
 }
 

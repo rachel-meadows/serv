@@ -15,10 +15,11 @@ function AddJob() {
     setInputs((values) => ({ ...values, [name]: value, userId }))
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    APIaddJob(inputs)
-    navigate('/customer', { state: { message: true } })
+    APIaddJob(inputs).then(() => 
+      navigate('/customer', { state: { message: true } })
+    )
   }
 
   const handleFileUpload = async (e) => {

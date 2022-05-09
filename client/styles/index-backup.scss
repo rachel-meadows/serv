@@ -1,0 +1,365 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+body {
+  // background-image: linear-gradient(
+  //   315deg,
+  //   hsl(116deg 37% 71%) 0%,
+  //   hsl(138deg 39% 68%) 11%,
+  //   hsl(152deg 41% 66%) 22%,
+  //   hsl(163deg 40% 64%) 33%,
+  //   hsl(171deg 39% 62%) 44%,
+  //   hsl(178deg 36% 61%) 56%,
+  //   hsl(184deg 36% 62%) 67%,
+  //   hsl(190deg 34% 63%) 78%,
+  //   hsl(195deg 31% 64%) 89%,
+  //   hsl(200deg 27% 64%) 100%
+  // );
+  // background-attachment: fixed;
+}
+
+$color1: #ff859d;
+$serv-lightgreen: #d4ffd3;
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.flex-justify-space-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+header {
+  // background: $serv-lightgreen;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+header a > .logo {
+  margin: 0;
+  line-height: 0;
+}
+
+header a > .logo > img {
+  width: 150px;
+  margin: 1rem 0;
+}
+
+main {
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  background: $serv-lightgreen;
+  padding: 0 2rem;
+}
+
+nav {
+  position: absolute;
+  right: 10px;
+}
+
+nav > ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+// nav li {
+//   margin: 0.5rem;
+//   padding: 0.5rem 1rem;
+// }
+
+// nav li a {
+//   padding: 0.5rem 1.5rem;
+// }
+
+nav > ul > li {
+  margin: 0 1rem;
+}
+
+nav > ul > li > a > button {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+}
+
+nav .login-btn,
+nav .sign-up-btn {
+  border: 1px solid $color1;
+  color: $color1;
+  // border-radius: 1rem;
+}
+
+// HOME PAGE =======================================================================================
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.home-page > .hero {
+  background: rgb(34, 50, 64);
+  width: 600px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.home-page > .hero > img {
+  width: 170px;
+}
+
+.home-page > .hero > .tagline {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.home-page > .hero > .sign-up-btn {
+  color: #fff;
+  background: #00ddff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 4px black;
+}
+
+.home-page > .hero > .sign-up-btn:hover {
+  background: #5ee9fe;
+}
+
+// SERVICES PAGE ===================================================================================
+.services {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.services > .panels {
+  display: flex;
+  background: rgb(34, 50, 64);
+  padding: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.services > .panels h2 {
+  margin: 0 0 1rem 0;
+}
+
+.services > .panels > .services-panel {
+  width: 400px;
+  margin: 2rem;
+}
+
+.services > .panels > .services-panel > .sign-up-btn {
+  color: #fff;
+  background: #00ddff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 4px black;
+  margin-top: 1rem;
+}
+
+.services > .panels > .services-panel > .sign-up-btn:hover {
+  background: #5ee9fe;
+}
+
+.services > .panels > .businesses-panel {
+  width: 400px;
+  margin: 2rem;
+}
+
+.services > .panels > .businesses-panel > .services-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.services > .panels > .businesses-panel > .services-box > .service {
+  margin: 1rem;
+}
+
+.services > .panels > .businesses-panel > .services-box > .service > img {
+  width: 90px;
+  border-radius: 100%;
+}
+
+.services
+  > .panels
+  > .businesses-panel
+  > .services-box
+  > .service
+  > .service-title {
+  margin: 0;
+}
+
+// REGISTRATION PAGE ===============================================================================
+.registration > .page-title {
+  text-align: center;
+  color: white;
+  font-size: 5vw;
+  margin-bottom: 1rem;
+}
+
+.registration > .hero-logo {
+  text-align: center;
+}
+
+.registration > .hero-logo > img {
+  width: 200px;
+}
+
+.registration > .user-type-title {
+  color: #daffd5;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.registration > .user-type {
+  text-align: center;
+}
+
+.registration > .user-type > button {
+  border: none;
+  padding: 3rem 2rem;
+  margin: 1rem;
+  width: 330px;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  box-shadow: 0px 3px 10px rgb(69, 69, 69);
+}
+
+.registration > .user-type > .customer-btn {
+  background: #00ddff;
+  color: white;
+}
+
+.registration > .user-type > .customer-btn:hover {
+  background: #44e6ff;
+}
+
+.registration > .user-type > .business-btn {
+  background: #59d74f;
+  color: white;
+}
+
+.registration > .user-type > .business-btn:hover {
+  background: #6eeb65;
+}
+
+.registration > form {
+  background: #fff;
+  max-width: 380px;
+  margin: 2rem auto 0 auto;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.registration > form > h3 {
+  color: #00ddff;
+  text-align: center;
+}
+
+.registration > form > .input-group {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.registration > form > .input-group > label {
+  color: #000;
+}
+
+.registration > form > .input-group > input {
+  width: 160px;
+  padding: 0.25rem;
+}
+
+.registration > form > .input-group > .business-category {
+  width: 160px;
+  padding: 0.25rem;
+}
+.registration > form > .input-group > button {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: #59d74f;
+  color: #fff;
+  box-shadow: 0px 1px 3px rgb(63, 63, 63);
+  border-radius: 0.5rem;
+  margin: 1rem auto 0 auto;
+}
+
+// MEDIA QUERIES ===================================================================================
+@media only screen and (min-width: 750px) {
+  .registration > .page-title {
+    font-size: 38px;
+  }
+  .registration > .user-type-title {
+    font-size: 30px;
+  }
+}
