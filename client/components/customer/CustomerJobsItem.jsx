@@ -1,7 +1,7 @@
 import React from 'react'
 
 function JobsListItem(props) {
-  const job = props.job
+  const { job } = props
 
   function showDetails() {
     props.showDetails(job.id, job.status)

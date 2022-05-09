@@ -79,6 +79,7 @@ router.get('/:customerId/quotes', async (req, res) => {
 // GET api/v1/customer/:jobId/quotes
 router.get('/quote/:jobId', async (req, res) => {
   const { jobId } = req.params
+  console.log('1', jobId)
   try {
     await dbQuotes.getQuotesByJob(jobId).then((quotes) => {
       res.json({ quotes })

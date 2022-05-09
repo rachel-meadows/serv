@@ -2,22 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { APIgetJobQuotes } from '../../apis/customer'
 import CustomerQuotesItem from './CustomerQuotesItem'
-// import { useDispatch } from 'react-redux'
 
 function QuotesList({ children }) {
-  const { jobsId } = useParams()
+  const { jobId } = useParams()
   const [quotes, setQuotes] = useState([])
   
   useEffect(() => {
-    APIgetJobQuotes(jobsId)
+    APIgetJobQuotes(jobId)
       .then((jobs) => {
-        console.log('jobs', jobs)
         setQuotes(jobs.quotes)
         return null
       })
       .catch((error) => {
         const errMessage = error.response?.text || error.message
-        // dispatch(showError(errMessage))
         console.log(errMessage)
       })
   }, [])

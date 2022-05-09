@@ -43,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path="/customer/quote/:jobsId"
+          path="/customer/quote/:jobId"
           element={
             <QuotesList>
               <WaitIndicator />

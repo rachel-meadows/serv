@@ -5,7 +5,7 @@ import { APIchangeQuoteStatus } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { id, userId, jobId, businessId, notes, price, status } = props.quote
+  const { id, businessId, description, priceMin, priceMax, status } = props.quote
   const navigate = useNavigate()
 
   function handleSubmitAccept() {
@@ -31,10 +31,8 @@ function QuotesItem(props) {
         <strong>
           <Link to={`/business/${businessId}`}>{business.businessName}</Link>
         </strong>
-        <p key={id}>{userId}</p>
-        <p>{jobId}</p>
-        <p>{notes}</p>
-        <p>${price}</p>
+        <p>{description}</p>
+           <p>${priceMin} - ${priceMax}</p>
         {status === 'accepted' && <p>Quote has been accepted.</p>}
         {status === 'rejected' && <p>Quote has was rejected.</p>}
         {status === 'pending' && (

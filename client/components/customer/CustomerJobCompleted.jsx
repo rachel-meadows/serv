@@ -29,7 +29,8 @@ function CustomerJobCompleted() {
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
-        dispatch(showError(errMessage))
+        // dispatch(showError(errMessage))
+        console.log(errMessage)
       })
   }, [])
 
