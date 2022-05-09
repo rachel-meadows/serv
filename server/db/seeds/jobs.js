@@ -58,7 +58,7 @@ exports.seed = function (knex) {
           price_min: '10000',
           price_max: '110000',
           date_added: '2022-02-01T21:15:34.334Z',
-          status: 'open',
+          status: 'closed',
         },
         {
           id: 6,

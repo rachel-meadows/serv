@@ -63,7 +63,7 @@ router.get('/details/:userId/', async (req, res) => {
 })
 
 // GET /business/user/:userId
-// Get data for the jobsByUser state
+// Get data for jobsByUser
 router.get('/user/:userId', async (req, res) => {
   const { userId } = req.params
   try {
@@ -163,6 +163,21 @@ router.put('/:id/edit', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to edit business' })
+  }
+})
+
+// GET /business/quotes/:jobId/:userId
+// Triangulate quote from job and (business) user ID
+router.get('/quotes/:jobId/:userId', async (req, res) => {
+  const { jobId, userId } = req.params
+  try {
+    await dbQuotes.getQuoteByJobAndUserId(jobId, userId).then((data) => {
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get quote data from database' })
   }
 })
 

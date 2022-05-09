@@ -1,51 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
-import { APIgetBusinessByUserId } from '../../apis/business'
-import { useLocation, useNavigate } from 'react-router-dom'
-
 import {
-  // fetchOpenJobs,
-  fetchOpenJobsByCategory,
-  fetchJobsByUser,
-  fetchJobsByUserId,
-} from '../../actions/business'
+  APIgetBusinessByUserId,
+  APIgetOpenJobsByCategory,
+  APIgetJobsByUser,
+} from '../../apis/business'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function BusinessJobsList({ children }) {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const allJobs = useSelector((state) => state.jobList)
-  const currentBusiness = useSelector((state) => state.currentBusiness)
-  const currentUser = useSelector((state) => state.currentUser)
-  const openJobs = useSelector((state) => state.openJobsByCategory)
-  const jobsByUser = useSelector((state) => state.jobsByUser)
-  const jobListing = useSelector((state) => state.openJobs)
-  // const quoteById = useSelector((state) => state.quotesById)
   const location = useLocation()
-
-  // const { userId, category } = userData
-
-  const [business, setBusiness] = useState({})
-  const [jobs, setJobs] = useState(openJobs)
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   const [showMessage, setShowMessage] = useState(false)
 
-  useEffect(() => {
-    APIgetBusinessByUserId(currentUser?.id).then((data) => {
-      setBusiness(data)
-    }).catch
-  }, [currentUser])
+  const user = useSelector((state) => state.currentUser)
+  const [jobs, setJobs] = useState([])
+  const [openJobsInCategory, setOpenJobsInCategory] = useState([])
+  const [jobsQuotedOn, setJobsQuotedOn] = useState([])
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   useEffect(() => {
-    dispatch(fetchOpenJobsByCategory(business?.category))
-    // dispatch(fetchOpenJobsByCategory('plumbing'))
-  }, [business])
+    // Test user
+    // APIgetJobsByUser(4).then((quotedJobs) => {
+    APIgetJobsByUser(user?.id).then((quotedJobs) => {
+      setJobsQuotedOn(quotedJobs)
+    })
 
-  useEffect(() => {
-    dispatch(fetchJobsByUser(6))
-  }, [])
+    // Test user
+    APIgetBusinessByUserId(user?.id)
+      // APIgetBusinessByUserId(4)
+      .then((business) => {
+        return APIgetOpenJobsByCategory(business?.category)
+      })
+      .then((openJobs) => {
+        setOpenJobsInCategory(openJobs)
+      })
+      .catch((err) => {
+        // TODO
+        // dispatch(showError(err.message))
+        return false
+      })
+  }, [user, dropDownSelection])
 
   useEffect(() => {
     setShowMessage(location?.state?.message)
@@ -56,52 +52,32 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
+      // setJobs(openJobsInCategory)
       // TODO: Filter to exclude content business has worked on
-      // The problem is that jobsByUser updates in global state on adding a quote
-      // (according to the Redux plugin), but not here for some reason.
-      // If we can fix that, the openAndUnquoted code will probably work.
-
-      // console.log('openJobs:', openJobs)
-      // console.log('jobsByUser:', jobsByUser)
-      const openAndUnquoted = openJobs.filter(
-        (job) => !jobsByUser.includes(job.id)
+      const openAndUnquoted = openJobsInCategory.filter(
+        (job) => !jobsQuotedOn.includes(job)
       )
-      // console.log('openAndUnquoted', openAndUnquoted)
-      // Current
-      setJobs(openJobs)
+      setJobs(openAndUnquoted)
     } else if (dropDownSelection === 'quoted') {
-      // 'pending'status includes pending and rejected quotes
-      setJobs(
-        jobsByUser.filter((obj) => obj.quoteStatus === 'pending' || 'rejected')
-      )
+      // 'Quoted' status includes pending and rejected quotes
+      setJobs(jobsQuotedOn)
     } else if (dropDownSelection === 'active') {
       setJobs(
-        jobsByUser.filter(
+        jobsQuotedOn.filter(
           (obj) =>
             obj.jobStatus === 'in progress' && obj.quoteStatus === 'accepted'
         )
       )
     } else if (dropDownSelection === 'completed') {
       setJobs(
-        jobsByUser.filter(
-          (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
+        jobsQuotedOn.filter(
+          // (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
+          (obj) => obj.jobStatus === 'closed'
         )
       )
       console.log(jobs)
     }
-  }, [jobsByUser, openJobs, dropDownSelection])
-
-  function showDetails(jobsId, status) {
-    if (status === 'open') {
-      navigate(`/business/open/${jobsId}`)
-    } else if (status === 'quoted') {
-      navigate(`/business/quoted/${jobsId}`)
-    } else if (status === 'in progress') {
-      navigate(`/business/active/${jobsId}`)
-    } else if (status === 'closed') {
-      navigate(`/business/completed/${jobsId}`)
-    }
-  }
+  }, [user, dropDownSelection, openJobsInCategory])
 
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
@@ -123,7 +99,6 @@ function BusinessJobsList({ children }) {
           defaultValue="unmatched"
           onChange={handleDropDown}
         >
-          {/* <option value="all">All</option> */}
           <option value="unmatched">Unmatched</option>
           <option value="quoted">Quoted</option>
           <option value="active">Active</option>
@@ -140,11 +115,6 @@ function BusinessJobsList({ children }) {
               dropDownSelection={dropDownSelection}
             />
           )
-
-          //   {children} {/* This holds the WaitIndicator (from App) */}
-          //   {jobListings?.map((jobListing) => {
-          // return jobListing.description       Rachel to review this page/line
-          // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </div>
     </>
