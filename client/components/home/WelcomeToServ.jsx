@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function HowItWorks() {
+function WelcomeToServ() {
   return (
     <div className="how-it-works-page">
       <h2>Welcome to Serv.</h2>
@@ -73,4 +73,4 @@ function HowItWorks() {
   )
 }
 
-export default HowItWorks
+export default WelcomeToServ
