@@ -6,8 +6,6 @@ const router = express.Router()
 // POST api/v1/customer/add
 router.post('/add', async (req, res) => {
   const data = req.body
-  console.log('hello?')
-  console.log(data)
   try {
     await dbJobs.addJob(data)
     res.sendStatus(201)

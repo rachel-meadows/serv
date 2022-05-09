@@ -1,54 +1,26 @@
-import React, { useEffect } from 'react'
-import CustomerQuotesItem from './CustomerQuotesItem'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchJobQuotes } from '../../actions/customer'
+import { APIgetJobQuotes } from '../../apis/customer'
+import CustomerQuotesItem from './CustomerQuotesItem'
+// import { useDispatch } from 'react-redux'
 
 function QuotesList({ children }) {
   const { jobsId } = useParams()
-  console.log('JOBS ID: ' + jobsId)
-
-  const quotes = useSelector((state) => state.jobQuotes)
-  const dispatch = useDispatch()
+  const [quotes, setQuotes] = useState([])
+  
   useEffect(() => {
-    dispatch(fetchJobQuotes(jobsId))
+    APIgetJobQuotes(jobsId)
+      .then((jobs) => {
+        console.log('jobs', jobs)
+        setQuotes(jobs.quotes)
+        return null
+      })
+      .catch((error) => {
+        const errMessage = error.response?.text || error.message
+        // dispatch(showError(errMessage))
+        console.log(errMessage)
+      })
   }, [])
-  console.log(quotes)
-  // the data is hardcoded at the moment.t
-  // need related user_id and job_id from
-
-  // const quotes = [
-  //   {
-  //     id: 1,
-  //     user_id: 1,
-  //     job_id: 2,
-  //     business_id: 1,
-  //     price: 500,
-  //     date_added: '2022-05-04T21:15:34.334Z',
-  //     notes: 'We can do it for 500 if its quick',
-  //     status: 'pending',
-  //   },
-  //   {
-  //     id: 2,
-  //     user_id: 1,
-  //     job_id: 2,
-  //     business_id: 2,
-  //     price: 500,
-  //     date_added: '2022-05-04T21:15:34.334Z',
-  //     notes: 'We can do it for 500 if its quick',
-  //     status: 'pending',
-  //   },
-  //   {
-  //     id: 3,
-  //     user_id: 1,
-  //     job_id: 2,
-  //     business_id: 3,
-  //     price: 500,
-  //     date_added: '2022-05-04T21:15:34.334Z',
-  //     notes: 'We can do it for 500 if its quick',
-  //     status: 'pending',
-  //   }
-  // ]
 
   return (
     <div>
