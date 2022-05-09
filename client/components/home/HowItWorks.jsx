@@ -4,25 +4,49 @@ import { Link } from 'react-router-dom'
 function HowItWorks() {
   return (
     <div className="how-it-works-page">
-      <h2>How it works page</h2>
+      <h2>Welcome to Serv.</h2>
 
       <div className="hero">
+        <h3>We Serv. You</h3>
         <p className="tagline">
-          Have you ever read a webpage or document that used this text without
-          paying much attention to it? The lorem ipsum is a placeholder text
-          used in publishing and graphic design. This filler text is a short
-          paragraph that contains all the letters of the alphabet. The
-          characters are spread out evenly so that the readers attention is
-          focused on the layout of the text instead of its content. Many
-          software programs and applications have made it their default dummy
-          text. Since the lorem ipsum is always used as a placeholder text, its
-          use indicates that this is not a final version of a document, thus
-          helping to avoid unnecessary printing.
+          We take the hard work out of vetting tradespeople. We select the best,
+          most qualified and with the best reviews and experience. We also
+          compare those service prices and we offer you a selection from the
+          most expensive to the most inexpensive. So when your lights go out, or
+          your hot water cylinder explodes, just tap on our app and your problem
+          will be solved before you even have to worry about it. Well get you
+          the quotes and youll do the choosing.
         </p>
+
+        <p>
+          We take the hassle out lifes unexpected maintenance problems We are
+          here to ensure all your service needs and requirements are met in an
+          easy and efficient manner.
+        </p>
+        <p>
+          Our aim is to make your life easier by finding the service providers
+          for you. Our service providers are trained and certified in all
+          aspects of Health and Safety procedures including Workplace Hygiene,
+          HACCP Hazard Analysis and Critical Control Point, GMP Good
+          Manufacturing Practices.
+        </p>
+        <p>
+          {' '}
+          Additionally, our service providers are highly trained in Hazard
+          Management, Confined Space, Safe Working at Heights, Safe Chemical
+          Handling plus many more.
+        </p>
+        <p>
+          The Companys Health and Safety Policy and Environmental Policies are
+          comprehensive. Serv. prides itself on the full range of services from
+          service providers we offer our clients together with the expertise to
+          ensure they get the results they require.
+        </p>
+        <h4>The team at Serv.</h4>
+
         <button>
           <Link to="/">Home</Link>
         </button>
-        {/* </button><button className="back-btn">Back</button> */}
       </div>
     </div>
   )
