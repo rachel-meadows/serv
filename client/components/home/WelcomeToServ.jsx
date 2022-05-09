@@ -30,7 +30,6 @@ function HowItWorks() {
           Manufacturing Practices.
         </p>
         <p>
-          {' '}
           Additionally, our service providers are highly trained in Hazard
           Management, Confined Space, Safe Working at Heights, Safe Chemical
           Handling plus many more.
@@ -41,7 +40,7 @@ function HowItWorks() {
           service providers we offer our clients together with the expertise to
           ensure they get the results they require.
         </p>
-        git
+
         <h4>The team at Serv.</h4>
         <button>
           <Link to="/">Home</Link>
