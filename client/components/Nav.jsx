@@ -71,7 +71,7 @@ function Nav() {
         <IfNotAuthenticated>
           <>
             <li>
-              <Link to="/how-it-works">How It Works</Link>
+              <Link to="/welcome-to-serv">Welcome to Serv.</Link>
             </li>
             <li>
               <Link to="/services">Services</Link>
