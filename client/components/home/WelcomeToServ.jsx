@@ -17,7 +17,6 @@ function HowItWorks() {
           will be solved before you even have to worry about it. Well get you
           the quotes and youll do the choosing.
         </p>
-
         <p>
           We take the hassle out lifes unexpected maintenance problems We are
           here to ensure all your service needs and requirements are met in an
@@ -42,8 +41,8 @@ function HowItWorks() {
           service providers we offer our clients together with the expertise to
           ensure they get the results they require.
         </p>
+        git
         <h4>The team at Serv.</h4>
-
         <button>
           <Link to="/">Home</Link>
         </button>
