@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import BusinessJobItem from './BusinessJobItem'
 import {
   APIgetBusinessByUserId,
@@ -11,12 +11,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 function BusinessJobsList({ children }) {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const location = useLocation()
 
   const user = useSelector((state) => state.currentUser)
 
-  const [business, setBusiness] = useState({})
   const [showMessage, setShowMessage] = useState(false)
 
   const [jobs, setJobs] = useState([])
@@ -25,25 +23,22 @@ function BusinessJobsList({ children }) {
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   useEffect(() => {
+    APIgetJobsByUser(user?.id).then((quotedJobs) => {
+      return setJobsQuotedOn(quotedJobs)
+    })
+
     APIgetBusinessByUserId(user?.id)
-      .then((currentBusiness) => {
-        console.log('currentBusiness', currentBusiness)
-        setBusiness(currentBusiness)
+      .then((business) => {
+        return APIgetOpenJobsByCategory(business?.category)
       })
-      .then(
-        APIgetOpenJobsByCategory('plumbing').then((openJobs) => {
-          // TODO: fix this
-          // APIgetOpenJobsByCategory('business?.category').then((openJobs) => {
-          console.log('openJobs', openJobs)
-          setOpenJobsInCategory(openJobs)
-        })
-      )
-      .then(
-        APIgetJobsByUser(user?.id).then((quotedJobs) => {
-          console.log('quotedJobs', quotedJobs)
-          setJobsQuotedOn(quotedJobs)
-        })
-      )
+      .then((openJobs) => {
+        setOpenJobsInCategory(openJobs)
+      })
+      .catch((err) => {
+        // TODO
+        // dispatch(showError(err.message))
+        return false
+      })
   }, [user])
 
   useEffect(() => {
@@ -62,26 +57,24 @@ function BusinessJobsList({ children }) {
       //   (job) => !jobsByUser.includes(job.id)
       // )
     } else if (dropDownSelection === 'quoted') {
-      // 'pending'status includes pending and rejected quotes
-      setJobs(
-        jobsByUser.filter((obj) => obj.quoteStatus === 'pending' || 'rejected')
-      )
+      // 'Quoted' status includes pending and rejected quotes
+      setJobs(jobsQuotedOn)
     } else if (dropDownSelection === 'active') {
       setJobs(
-        jobsByUser.filter(
+        jobsQuotedOn.filter(
           (obj) =>
             obj.jobStatus === 'in progress' && obj.quoteStatus === 'accepted'
         )
       )
     } else if (dropDownSelection === 'completed') {
       setJobs(
-        jobsByUser.filter(
+        jobsQuotedOn.filter(
           (obj) => obj.jobStatus === 'closed' && obj.quoteStatus === 'accepted'
         )
       )
       console.log(jobs)
     }
-  }, [user])
+  }, [user, dropDownSelection, openJobsInCategory])
 
   function showDetails(jobsId, status) {
     if (status === 'open') {
@@ -115,7 +108,6 @@ function BusinessJobsList({ children }) {
           defaultValue="unmatched"
           onChange={handleDropDown}
         >
-          {/* <option value="all">All</option> */}
           <option value="unmatched">Unmatched</option>
           <option value="quoted">Quoted</option>
           <option value="active">Active</option>
@@ -132,11 +124,6 @@ function BusinessJobsList({ children }) {
               dropDownSelection={dropDownSelection}
             />
           )
-
-          //   {children} {/* This holds the WaitIndicator (from App) */}
-          //   {jobListings?.map((jobListing) => {
-          // return jobListing.description       Rachel to review this page/line
-          // return <BusJobItem key={jobListing.id} jobListing={jobListing} />
         })}
       </div>
     </>
