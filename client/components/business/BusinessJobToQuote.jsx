@@ -49,8 +49,6 @@ function BusinessJobToQuote() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log('Job id: ', job.id)
-    console.log('quoteForm: ', quoteForm)
     APIaddQuote(job.id, quoteForm).then(() => {
       navigate(`/business`, { state: { message: true } })
     })

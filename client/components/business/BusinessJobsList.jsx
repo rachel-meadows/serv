@@ -21,15 +21,15 @@ function BusinessJobsList({ children }) {
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
 
   useEffect(() => {
-    console.log('useEffect has run - PAGE HAS RE-RENDERED!!.')
-    APIgetJobsByUser(4).then((quotedJobs) => {
-      // APIgetJobsByUser(user?.id).then((quotedJobs) => {
+    // Test user
+    // APIgetJobsByUser(4).then((quotedJobs) => {
+    APIgetJobsByUser(user?.id).then((quotedJobs) => {
       setJobsQuotedOn(quotedJobs)
-      console.log('quotedJobs:', quotedJobs)
     })
 
-    // APIgetBusinessByUserId(user?.id)
-    APIgetBusinessByUserId(4)
+    // Test user
+    APIgetBusinessByUserId(user?.id)
+      // APIgetBusinessByUserId(4)
       .then((business) => {
         return APIgetOpenJobsByCategory(business?.category)
       })
@@ -41,7 +41,7 @@ function BusinessJobsList({ children }) {
         // dispatch(showError(err.message))
         return false
       })
-  }, [user])
+  }, [user, dropDownSelection])
 
   useEffect(() => {
     setShowMessage(location?.state?.message)

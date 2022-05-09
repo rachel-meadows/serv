@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { APIgetBusinessById } from '../../apis/business'
+import { APIgetBusinessById, APIchangeJobStatus } from '../../apis/business'
 import { APIchangeQuoteStatus } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { id, businessId, description, priceMin, priceMax, status } = props.quote
+  const { jobId, id, businessId, description, priceMin, priceMax, status } =
+    props.quote
   const navigate = useNavigate()
 
   function handleSubmitAccept() {
     APIchangeQuoteStatus(id, 'accepted')
-    navigate('/customer')
+    APIchangeJobStatus(jobId, 'in progress').then(() => {
+      navigate('/customer')
+    })
   }
 
   function handleSubmitReject() {
@@ -32,7 +35,9 @@ function QuotesItem(props) {
           <Link to={`/business/${businessId}`}>{business.businessName}</Link>
         </strong>
         <p>{description}</p>
-           <p>${priceMin} - ${priceMax}</p>
+        <p>
+          ${priceMin} - ${priceMax}
+        </p>
         {status === 'accepted' && <p>Quote has been accepted.</p>}
         {status === 'rejected' && <p>Quote has was rejected.</p>}
         {status === 'pending' && (
