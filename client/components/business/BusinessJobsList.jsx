@@ -52,11 +52,12 @@ function BusinessJobsList({ children }) {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
-      // setJobs(openJobsInCategory)
-      // TODO: Filter to exclude content business has worked on
-      const openAndUnquoted = openJobsInCategory.filter(
-        (job) => !jobsQuotedOn.includes(job)
-      )
+      // Exclude content business has worked on (i.e. quoted jobs)
+      const jobsQuotedOnIds = jobsQuotedOn.map((obj) => obj.id)
+      const openAndUnquoted = openJobsInCategory.filter((job) => {
+        return !jobsQuotedOnIds.includes(job.id)
+      })
+
       setJobs(openAndUnquoted)
     } else if (dropDownSelection === 'quoted') {
       // 'Quoted' status includes pending and rejected quotes
