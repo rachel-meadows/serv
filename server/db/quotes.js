@@ -32,7 +32,6 @@ function getQuote(id, db = connection) {
     .where('id', id)
     .select(
       'id',
-      'user_id as userId',
       'business_id as businessId',
       'job_id as jobId',
       'price',
