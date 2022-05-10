@@ -7,8 +7,10 @@ function CustomerCheckout(props) {
     APIcustomerCheckoutSession(quoteId)
   }
   return (
-    <div>
-      <button onClick={handleClick}>Checkout</button>
+    <div className="container mt-3">
+      <button className="btn btn-success" onClick={handleClick}>
+        Checkout
+      </button>
     </div>
   )
 }

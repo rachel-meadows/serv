@@ -36,9 +36,9 @@ function AddJob() {
       <h3>Get Your Job Taken Care Of!</h3>
       <form onSubmit={handleSubmit}>
         <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">
-              Job Description:
+          <div className="mb-3">
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">
+              Job Description
             </label>
             <textarea
               className="form-control"
@@ -62,8 +62,9 @@ function AddJob() {
               onChange={handleChange}
             />
           </div>
-          <br></br>
-          <label htmlFor="exampleInputEmail1">Budget Estimate:</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Budget Estimate:
+          </label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">$</span>

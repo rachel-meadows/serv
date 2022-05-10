@@ -26,14 +26,29 @@ function Review({ quoteId, reviewed, setReviewed, customerId }) {
         <p className="thanks-msg">Thanks for submitting a review!</p>
       ) : (
         <form onSubmit={postReview}>
-          <StarRating onChange={handleRating} />
-          <input
-            type="textarea"
-            value={review}
-            onChange={handleReview}
-            placeholder="Write a review"
-          />
-          <button type="submit">Submit Review</button>
+          <div className="container mt-3">
+            <StarRating onChange={handleRating} />
+            <div className="input-group w-50">
+              <input
+                type="text"
+                className="form-control"
+                id="inputGroupFile04"
+                aria-describedby="inputGroupFileAddon04"
+                aria-label="Write a review"
+                placeholder="Write a review"
+                value={review}
+                onChange={handleReview}
+              />
+              <button
+                className="btn btn-success"
+                type="submit"
+                id="inputGroupFileAddon04"
+              >
+                Submit Review
+              </button>
+            </div>
+          </div>
+          {/* <button type="submit">Submit Review</button> */}
         </form>
       )}
     </div>
