@@ -125,7 +125,6 @@ function Registration() {
                       <button type="submit" className="btn btn-success">Register</button>
                     </div>
                   </form>
-
                 </>
               )
             }
