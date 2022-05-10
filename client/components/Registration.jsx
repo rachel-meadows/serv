@@ -54,6 +54,8 @@ function Registration() {
   }
 
   async function handleAddBusiness(e) {
+    console.log("I am registering a business")
+    console.log(form)
     e.preventDefault()
     dispatch(
       addUser(
@@ -77,17 +79,19 @@ function Registration() {
 
   return (
     <div className="registration">
-      <h2 className="page-title">Welcome to</h2>
-      <div className="hero-logo">
-        <img src="/images/serv-logo-light.png" alt="Welcome to Serv" />
-      </div>
-      <div className="d-flex justify-content-center mt-5 mb-4 ">
-        <h4 className="user-type-title h4 col-4">Select what type of user you are..</h4>
-      </div>
-      <div className="row">
-        <div className="d-flex flex-row gap-3 d-md-flex justify-content-md-center">
-          <button className="btn btn-success btn-lg col-5 py-4" type="button" onClick={handleSetUserTypeCustomer} >I am a customer </button>
-          <button className="btn btn-primary btn-lg col-5 py-4" type="button" onClick={handleSetUserTypeBusiness} >I am a service provider</button>
+      <div className="d-flex flex-row">
+        <h2 className="page-title">Welcome to</h2>
+        <div className="hero-logo">
+          <img src="/images/serv-logo-light.png" alt="Welcome to Serv" />
+        </div>
+        <div className="d-flex justify-content-center mt-5 mb-4 ">
+          <h4 className="user-type-title h4 col-4">Select what type of user you are..</h4>
+        </div>
+        <div className="row">
+          <div className="d-flex flex-row gap-3 d-md-flex justify-content-md-center">
+            <button className="btn btn-success btn-lg col-5 py-4" type="button" onClick={handleSetUserTypeCustomer} >I am a customer </button>
+            <button className="btn btn-primary btn-lg col-5 py-4" type="button" onClick={handleSetUserTypeBusiness} >I am a service provider</button>
+          </div>
         </div>
 
 
@@ -111,7 +115,7 @@ function Registration() {
                   disabled={true} />
               </div>
               <div className="input-group mb-3">
-                <button type="button" className="btn btn-success">Register</button>
+                <button type="submit" className="btn btn-success">Register</button>
               </div>
             </form>
             <div>
@@ -148,15 +152,15 @@ function Registration() {
               <input type="website" className="form-control" name="website" id="website" onChange={handleChange} />
             </div>
 
-            <div className="input-group mb-3" >
+            <div className="mb-3" >
               <label htmlFor="location" className="form-label" >Location</label>
-              <input type="website" className="form-control" name="location" id="location" onChange={handleChange} />
+              <input type="location" className="form-control" name="location" id="location" onChange={handleChange} />
             </div>
 
 
             <div className="mb-3">
-              <select className="business-category form-select" aria-label="Default select example" name="category" id="category" required onChange={handleChange}>
-                <option selected>Business Category</option>
+              <select defaultValue="default" className="business-category form-select" aria-label="Default select example" name="category" id="category" required onChange={handleChange}>
+                <option value="default">Business Category</option>
                 <option value="plumbing">Plumbing</option>
                 <option value="Gardening">Gardening</option>
                 <option value="Building">Building</option>
@@ -172,7 +176,7 @@ function Registration() {
               <img src={form.logo} alt="" style={{ width: '100px' }} />
             </div>
             <div className="input-group">
-              <button type="button" className="btn btn-success">Register as a Business</button>
+              <button type="submit" className="btn btn-success">Register as a Business</button>
             </div>
 
           </form>
