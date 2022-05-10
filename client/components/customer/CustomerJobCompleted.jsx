@@ -20,9 +20,12 @@ function CustomerJobCompleted() {
   const customerId = useSelector((state) => state.currentUser.id)
   const [reviewed, setReviewed] = useState(false)
 
+  console.log('allJob', allJobs)
+
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
+        console.log('allJobsApi', obj)
         setAllJobs(obj.jobs)
         return null
       })
@@ -37,9 +40,11 @@ function CustomerJobCompleted() {
   }, [allJobs])
 
   useEffect(() => {
-    APIgetJobQuotes(jobsId).then((obj) => {
-      setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
-    })
+    APIgetJobQuotes(jobsId)
+      .then((obj) => {
+        setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
+      })
+      .catch(() => null)
   }, [])
 
   return (
@@ -55,7 +60,10 @@ function CustomerJobCompleted() {
 
       {quote !== undefined ? (
         <>
-          <IndividualQuote notes={quote.notes} price={quote.price} />
+          <IndividualQuote
+            description={quote.description}
+            price={quote.price}
+          />
         </>
       ) : (
         <h4>Error - Accepted quote cannot display</h4>

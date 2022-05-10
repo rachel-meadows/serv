@@ -9,17 +9,21 @@ function BusinessInfo({ children }) {
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
-    APIgetBusinessById(businessId).then((data) => {
-      setBusiness(data)
-    })
+    APIgetBusinessById(businessId)
+      .then((data) => {
+        setBusiness(data)
+      })
+      .catch(() => null)
   }, [])
 
   useEffect(() => {
-    APIgetReviews(businessId).then((data) => {
-      const reviewData = data.filter((obj) => obj.review !== '')
-      console.log('reviews: ', reviewData)
-      setReviews(reviewData)
-    })
+    APIgetReviews(Number(businessId))
+      .then((data) => {
+        const reviewData = data.filter((obj) => obj.review !== '')
+        console.log('reviews: ', reviewData)
+        setReviews(reviewData)
+      })
+      .catch(() => null)
   }, [])
 
   const {
@@ -33,23 +37,69 @@ function BusinessInfo({ children }) {
   } = business
 
   return (
-    <section>
+    <div className="container mt-3">
+      <h2 className="text-success mb-3">Business Information</h2>
       {children} {/* This holds the WaitIndicator (from App) */}
-      <p>{logo}</p>
-      <h1>{businessName}</h1>
-      <h2>{category}</h2>
-      <a href={website}>
-        <h2>{website}</h2>
-      </a>
-      <p>{location}</p>
-      <p>
-        {averageRating?.toFixed(2)} ({ratingCount} ratings)
-      </p>
-      {reviews.map((obj) => {
-        return `${obj.review}
-        Rating: ${obj.rating}`
-      })}
-    </section>
+      <div className="card my-2 p-4 col-xl-6">
+        <table className="table">
+          <tbody>
+            <tr>
+              <th scope="row">
+                <img src={logo} alt="Job illustration" className="w-25 mx-5" />
+              </th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row" className="w-50">
+                Business Name
+              </th>
+              <td className="text-capitalize">{businessName}</td>
+            </tr>
+            <tr>
+              <th scope="row">Category</th>
+              <td className="text-capitalize">{category}</td>
+            </tr>
+            <tr>
+              <th scope="row">Website</th>
+              <td>
+                <a href={website}>{website}</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Address </th>
+              <td>{location}</td>
+            </tr>
+            <tr>
+              <th scope="row">Rating </th>
+              <td>
+                {averageRating?.toFixed(2)} ({ratingCount} ratings)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Average Reviews </th>
+              <td>
+                {averageRating?.toFixed(2)} ({ratingCount} ratings)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="card my-2 p-4 col-xl-12">
+          <table className="table">
+            <tbody>
+              {reviews.map((obj, i) => {
+                return (
+                  <tr key={i}>
+                    <th scope="row">Review </th>
+                    <td>{obj.review}</td>
+                    <td>Rating: {obj.rating}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   )
 }
 

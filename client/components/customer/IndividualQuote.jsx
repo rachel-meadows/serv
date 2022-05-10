@@ -1,14 +1,24 @@
 import React from 'react'
 
 function IndividualQuote(props) {
-  const title = 'Accepted Quote'
-
   return (
-    <>
-      <h3>{ title }</h3>
-      <p>Notes: {props.notes} </p>
-      <p>Price: {props.price} </p>
-    </>
+    <div className="container mt-3">
+      <h2 className="text-success mb-3">Quote</h2>
+      <div className="card my-2 p-4 col-xl-6">
+        <table className="table">
+          <tbody>
+            <tr>
+              <th scope="row">Description</th>
+              <td className="text-capitalize">{props.description}</td>
+            </tr>
+            <tr>
+              <th scope="row">Price</th>
+              <td className="text-capitalize">${props.price}.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   )
 }
 
