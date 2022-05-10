@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   APIgetJobById,
   APIaddQuote,
@@ -15,22 +15,29 @@ function BusinessJobToQuote() {
   const user = useSelector((state) => state.currentUser)
 
   useEffect(() => {
-    APIgetJobById(jobId).then((job) => {
-      setJob(job)
-    })
+    APIgetJobById(jobId)
+      .then((job) => {
+        setJob(job)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
 
-    APIgetBusinessByUserId(user?.id).then((business) => {
-      console.log('user', user)
-      console.log('business', business)
-      setBusiness(business)
-    })
+    APIgetBusinessByUserId(user?.id)
+      .then((business) => {
+        console.log('user', user)
+        console.log('business', business)
+        setBusiness(business)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }, [user])
 
   const [toggleForm, setToggleForm] = useState(false)
   const [quoteForm, setQuoteForm] = useState({
     description: '',
-    priceMin: 0,
-    priceMax: 0,
+    price: 0,
   })
 
   const handleChange = (event) => {
@@ -49,9 +56,13 @@ function BusinessJobToQuote() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    APIaddQuote(job.id, quoteForm).then(() => {
-      navigate(`/business`, { state: { message: true } })
-    })
+    APIaddQuote(job.id, quoteForm)
+      .then(() => {
+        navigate(`/business`, { state: { message: true } })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
   return (
     <div className="container mt-3">
@@ -108,7 +119,7 @@ function BusinessJobToQuote() {
           <div className="mb-3">
             <label htmlFor="price_min">Quote Amount</label>
             <input
-              name="priceMin"
+              name="price"
               type="number"
               min={0}
               className="form-control"
@@ -117,14 +128,6 @@ function BusinessJobToQuote() {
               onChange={handleChange}
               disabled={false}
             />
-            {/* <label htmlFor="price_min"></label>
-            <input
-              name="priceMax"
-              placeholder="Max price"
-              value={quoteForm.priceMax}
-              onChange={handleChange}
-              disabled={false}
-            /> */}
           </div>
           <div className="">
             <button className="btn btn-success" onClick={handleSubmit}>

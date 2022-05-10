@@ -80,7 +80,6 @@ function BusinessJobsList() {
           (obj) => obj.jobStatus === 'closed'
         )
       )
-      console.log(jobs)
     }
   }, [user, dropDownSelection, openJobsInCategory])
 
