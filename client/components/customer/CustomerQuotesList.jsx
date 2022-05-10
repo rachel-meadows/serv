@@ -20,19 +20,20 @@ function QuotesList({ children }) {
   }, [])
 
   return (
-    <div>
-      <h1>Customer Quotes</h1>
+
+    <div className="container mt-3">
+    <h2 className="text-success mb-3">Customer Quotes</h2>
       <section>
         {children} {/* This holds the WaitIndicator (from App) */}
         {!quotes[0]
           ?
-          <h3>No Quotes Available</h3>
+          <h4>No Quotes Available</h4>
           :
           quotes.map((quote) => {
           return <CustomerQuotesItem key={quote.id} quote={quote} />
         })}
       </section>
-    </div>
+      </div>
   )
 }
 

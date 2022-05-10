@@ -8,6 +8,7 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
+  const [showMessage, setShowMessage] = useState(false)
   const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
@@ -25,6 +26,13 @@ function JobsList() {
         // dispatch(showError(errMessage))
       })
   }, [customerId])
+
+  useEffect(() => {
+    setShowMessage(location?.state?.message)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }, [])
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
@@ -55,7 +63,11 @@ function JobsList() {
   return (
     <>
      
-        {location?.state?.message && <h1>YOUR JOB HAS BEEN SUBMITTED!</h1>}
+        {showMessage && 
+        <div className="alert alert-success" role="alert">
+        Your job has been submitted!
+      </div> }
+        
         <h2 className="text-success mb-3">Job Listings</h2>
       <form>
         <div className="my-3 ml-auto">
