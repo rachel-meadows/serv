@@ -90,40 +90,104 @@ function Home() {
             <div className="col p-3">
               <div className="about-us">
                 <h3 className="text-danger">About Us</h3>
+                <h4>Our Vision</h4>
+                <p>
+                  <q>
+                    To lead the way in bringing services effortlessly to your
+                    front door at the click of a button
+                  </q>
+                </p>
+                <h4>Our Mission</h4>
+                <p>
+                  <q>
+                    Our mission is to provide effortless service at the click of
+                    a button, so you can have all of your maintenance issues
+                    fixed with ease by skilled professionals.
+                  </q>
+                </p>
               </div>
               <div className="our-values">
                 <h3 className="text-danger">Our Values</h3>
+                <ul>
+                  <li>Trust</li>
+                  <li>Accountability</li>
+                  <li>Ingenuity</li>
+                  <li>Respect</li>
+                  <li>Value creation</li>
+                </ul>
+                <h4>We Serv. You</h4>
+                <p className="tagline">
+                  We take the hard work out of vetting tradespeople. We select
+                  the best, most qualified and with the best reviews and
+                  experience. We also compare those service prices and we offer
+                  you a selection from the most expensive to the most
+                  inexpensive. So when your lights go out, or your hot water
+                  cylinder explodes, just tap on our app and your problem will
+                  be solved before you even have to worry about it. We&apos;ll
+                  get you the quotes and you&apos;ll do the choosing.
+                </p>
+                <p>
+                  We take the hassle out lifes unexpected maintenance problems
+                  We are here to ensure all your service needs and requirements
+                  are met in an easy and efficient manner.
+                </p>
+                <p>
+                  Our aim is to make your life easier by finding the service
+                  providers for you. Our service providers are trained and
+                  certified in all aspects of Health and Safety procedures
+                  including Workplace Hygiene, HACCP Hazard Analysis and
+                  Critical Control Point, GMP, Good Manufacturing Practices.
+                </p>
+                <p>
+                  Additionally, our service providers are highly trained in
+                  Hazard Management, Confined Space, Safe Working at Heights,
+                  Safe Chemical Handling plus many more.
+                </p>
+                <p>
+                  The Company&apos;s Health and Safety Policy and Environmental
+                  Policies are comprehensive. Serv. prides itself on offering a
+                  full range of services to our clients, together with the
+                  expertise to ensure they get the results they require.
+                </p>
               </div>
             </div>
             <div className="col p-3">
-              <div className="container">
-                <h3 className="text-danger">Services We Offer</h3>
-                <img
-                  src="/images/services/carpenter.jpg"
-                  alt="..."
-                  className="img-thumbnail w-50 p-2"
-                />
-                <img
-                  src="/images/services/cleaner.jpg"
-                  alt="..."
-                  className="img-thumbnail w-50 p-2"
-                />
-                <img
-                  src="/images/services/electrician.jpg"
-                  alt="..."
-                  className="img-thumbnail w-50 p-2"
-                />
-                <img
-                  src="/images/services/gardener.jpg"
-                  alt="..."
-                  className="img-thumbnail w-50 p-2"
-                />
-                <img
-                  src="/images/services/plumber.jpg"
-                  alt="..."
-                  className="img-thumbnail w-50 p-2"
-                />
-              </div>
+              <h3 className="text-danger">Services We Offer</h3>
+              <img
+                src="/images/services/carpenter.jpg"
+                alt="..."
+                className="img-thumbnail w-50 p-2"
+              />
+              <img
+                src="/images/services/cleaner.jpg"
+                alt="..."
+                className="img-thumbnail w-50 p-2"
+              />
+              <img
+                src="/images/services/electrician.jpg"
+                alt="..."
+                className="img-thumbnail w-50 p-2"
+              />
+              <img
+                src="/images/services/gardener.jpg"
+                alt="..."
+                className="img-thumbnail w-50 p-2"
+              />
+              <img
+                src="/images/services/plumber.jpg"
+                alt="..."
+                className="img-thumbnail w-50 p-2"
+              />
+              <blockquote className="blockquote mt-3">
+                <p className="mb-3">
+                  This is going to change the way services are offered around
+                  the world.
+                </p>
+                <footer className="blockquote-footer">
+                  Someone famous in the service industry
+                  <cite title="Source Title">Source Title</cite>
+                </footer>
+              </blockquote>
             </div>
           </div>
         </div>
