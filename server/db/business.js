@@ -81,7 +81,6 @@ function addFeedbackHelper(quoteId, db = connection) {
 }
 
 function addFeedback(data, db = connection) {
-  console.log('data: ', data)
   const reviewData = {
     user_id: data.customerId,
     business_id: data.businessId,
@@ -92,6 +91,30 @@ function addFeedback(data, db = connection) {
   return db('reviews').insert(reviewData)
 }
 
+function getRatings(businessId, db = connection) {
+  return db('reviews').where('business_id', businessId).select('rating')
+}
+
+function updateBusinessRatingCount(businessId, ratingsCount, db = connection) {
+  console.log('db businessId: ', businessId)
+  console.log('db ratingsCount: ', ratingsCount)
+  return db('businesses')
+    .where('id', businessId)
+    .update({ rating_count: ratingsCount })
+}
+
+function updateBusinessAverageRating(
+  businessId,
+  averageRating,
+  db = connection
+) {
+  console.log('db businessId: ', businessId)
+  console.log('db averageRating: ', averageRating)
+  return db('businesses')
+    .where('id', businessId)
+    .update({ average_rating: averageRating })
+}
+
 module.exports = {
   addBusiness,
   editBusiness,
@@ -99,4 +122,7 @@ module.exports = {
   getBusinessByUserId,
   addFeedbackHelper,
   addFeedback,
+  getRatings,
+  updateBusinessRatingCount,
+  updateBusinessAverageRating,
 }

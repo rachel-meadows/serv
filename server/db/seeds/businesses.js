@@ -33,8 +33,8 @@ exports.seed = function (knex) {
           category: 'food',
           logo: 'multer image string placeholder',
           location: '123 Location Road, Auckland',
-          rating_count: 5,
-          average_rating: 5.0,
+          rating_count: 0,
+          average_rating: null,
         },
       ])
     })

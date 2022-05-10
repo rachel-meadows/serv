@@ -120,19 +120,31 @@ router.post('/completed/:quoteId/review', async (req, res) => {
   const { quoteId } = req.params
   const { customerId, rating, review } = req.body
   const dateAdded = new Date(Date.now())
+
   try {
-    dbBusiness
-      .addFeedbackHelper(quoteId)
-      .then((business) => {
-        const businessId = business.businessId
-        dbBusiness
-          .addFeedback({ customerId, rating, review, businessId, dateAdded })
-          .then(() => {
-            res.sendStatus(201)
-            return null
+    dbBusiness.addFeedbackHelper(quoteId).then((business) => {
+      const businessId = business.businessId
+
+      dbBusiness
+        .addFeedback({ customerId, rating, review, businessId, dateAdded })
+        .then(() => {
+          dbBusiness.getRatings(businessId).then((ratingsArr) => {
+            const clearRatingsArr = ratingsArr
+              .map((obj) => obj.rating)
+              .filter((number) => number != null)
+            const ratingsCount = clearRatingsArr.length
+
+            const averageRating =
+              clearRatingsArr.reduce((partialSum, i) => partialSum + i, 0) /
+              ratingsCount
+            dbBusiness.updateBusinessRatingCount(businessId, ratingsCount)
+            dbBusiness.updateBusinessAverageRating(businessId, averageRating)
           })
-      })
-      .then()
+
+          res.sendStatus(201)
+          return null
+        })
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Unable to post feedback.' })
