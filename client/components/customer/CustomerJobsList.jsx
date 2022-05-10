@@ -9,10 +9,12 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState(false)
-  const [dropDownSelection, setdropDownSelection] = useState('all')
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
+  console.log('jobs', jobs)
+  console.log('Alljobs', allJobs)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
@@ -35,6 +37,7 @@ function JobsList() {
   }, [])
 
   useEffect(() => {
+    console.log('useEffect')
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
       setJobs(unmatchedJobs)
@@ -62,37 +65,39 @@ function JobsList() {
   }
   return (
     <>
-     
-        {showMessage && 
+      {showMessage && (
         <div className="alert alert-success" role="alert">
-        Your job has been submitted!
-      </div> }
-        
-        <h2 className="text-success mb-3">Job Listings</h2>
+          Your job has been submitted!
+        </div>
+      )}
+
+      <h2 className="text-success mb-3">Job Listings</h2>
       <form>
         <div className="my-3 ml-auto">
           <label htmlFor="filter" className="form-label">
             Filter your jobs:
           </label>
-  
-        <select
+
+          <select
             name="filter"
             id="filter"
             className="form-select w-25"
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
-          <option value="all">All</option>
-          <option value="active">Active</option>
-          <option value="unmatched">Unmatched</option>
-          <option value="completed">Completed</option>
-        </select>
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="unmatched">Unmatched</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
       </form>
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h4 className="text-success mb-3">You have no job listings to view</h4>
+          <h4 className="text-success mb-3">
+            You have no job listings to view
+          </h4>
         ) : (
           jobs.map((job) => {
             return (
@@ -101,7 +106,6 @@ function JobsList() {
           })
         )}
       </div>
-   
     </>
   )
 }
