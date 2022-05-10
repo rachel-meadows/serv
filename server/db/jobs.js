@@ -50,6 +50,7 @@ function addJob(input, db = connection) {
     location,
     status: 'open',
   }
+  console.log(job)
   return db('jobs').insert(job)
 }
 
