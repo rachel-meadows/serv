@@ -7,7 +7,6 @@ import JobsListItem from './CustomerJobsItem'
 import IndividualQuote from './IndividualQuote'
 
 /*To-Do
-1. Conditionally show the button in the <JobsListItem>
 2. (stretch) Rate Button
 */
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function WelcomeToServ() {
   return (
-    <div className="how-it-works-page">
+    <div className="welcome-to-serv">
       <h2>Welcome to Serv.</h2>
 
       <div className="hero">

@@ -57,16 +57,17 @@ function BusinessJobToQuote() {
     <>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p className="userId" key={job.id}>
-          {job.userId}
+        <p className="userId" key={job?.id}>
+          {job?.userId}
         </p>
-        <p className="category">{job.category}</p>
-        <p className="description">{job.description}</p>
+        <p className="category">{job?.category}</p>
+        <p className="description">{job?.description}</p>
         <p className="price">
-          Budget: ${job.priceMin} - {job.priceMax}
+          Budget: ${job.priceMin} - {job?.priceMax}
         </p>
         {/* <p className="image">{image}</p> */}
-        <p className="status">{job.status}</p>
+        <p className="location">{job?.location}</p>
+        <p className="status">{job?.status}</p>
 
         <button className="accept-btn" onClick={handleSetToggleForm}>
           Create Quote
@@ -85,19 +86,11 @@ function BusinessJobToQuote() {
             <h3>Cost Estimate</h3>
           </div>
           <div className="flex flex-row flex-justify-center">
-            <label htmlFor="price_min"></label>
+            <label htmlFor="price"></label>
             <input
-              name="priceMin"
-              placeholder="Min price"
-              value={quoteForm.priceMin}
-              onChange={handleChange}
-              disabled={false}
-            />
-            <label htmlFor="price_min"></label>
-            <input
-              name="priceMax"
-              placeholder="Max price"
-              value={quoteForm.priceMax}
+              name="price"
+              placeholder="Price"
+              value={quoteForm.price}
               onChange={handleChange}
               disabled={false}
             />

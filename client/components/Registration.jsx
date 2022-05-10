@@ -147,6 +147,13 @@ function Registration() {
               <label htmlFor="website" className="form-label">Website Link</label>
               <input type="website" className="form-control" name="website" id="website" onChange={handleChange} />
             </div>
+
+            <div className="input-group mb-3" >
+              <label htmlFor="location" className="form-label" >Location</label>
+              <input type="website" className="form-control" name="location" id="location" onChange={handleChange} />
+            </div>
+
+
             <div className="mb-3">
               <select className="business-category form-select" aria-label="Default select example" name="category" id="category" required onChange={handleChange}>
                 <option selected>Business Category</option>

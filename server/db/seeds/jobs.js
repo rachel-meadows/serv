@@ -13,6 +13,7 @@ exports.seed = function (knex) {
           price_min: '500',
           price_max: '1000',
           date_added: '2022-05-04T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'open',
         },
         {
@@ -25,6 +26,7 @@ exports.seed = function (knex) {
           price_min: '20',
           price_max: '40',
           date_added: '2022-03-04T21:14:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'in progress',
         },
         {
@@ -36,6 +38,7 @@ exports.seed = function (knex) {
           price_min: '900',
           price_max: '2000',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'closed',
         },
         {
@@ -47,6 +50,7 @@ exports.seed = function (knex) {
           price_min: '90',
           price_max: '200',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'open',
         },
         {
@@ -58,6 +62,7 @@ exports.seed = function (knex) {
           price_min: '10000',
           price_max: '110000',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'closed',
         },
         {
@@ -69,6 +74,7 @@ exports.seed = function (knex) {
           price_min: '50',
           price_max: '100',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'open',
         },
         {
@@ -80,6 +86,7 @@ exports.seed = function (knex) {
           price_min: '50',
           price_max: '100',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'open',
         },
         {
@@ -91,6 +98,7 @@ exports.seed = function (knex) {
           price_min: '50',
           price_max: '100',
           date_added: '2022-02-01T21:15:34.334Z',
+          location: '123 Location Road, Auckland',
           status: 'closed',
         },
       ])

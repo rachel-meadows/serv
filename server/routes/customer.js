@@ -65,22 +65,6 @@ router.patch('/jobs/:jobId', async (req, res) => {
   }
 })
 
-// GET api/v1/customer/:customerId/quotes
-router.get('/:customerId/quotes', async (req, res) => {
-  const { customerId } = req.params
-  try {
-    await dbQuotes.getQuotesByCustomer(customerId).then((quotes) => {
-      res.json({ quotes })
-      return null
-    })
-  } catch (error) {
-    console.error(error)
-    res
-      .status(500)
-      .json({ message: 'Unable to get list of quotes by customer ID' })
-  }
-})
-
 // GET api/v1/customer/:jobId/quotes
 router.get('/quote/:jobId', async (req, res) => {
   const { jobId } = req.params

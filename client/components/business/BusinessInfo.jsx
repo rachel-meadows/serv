@@ -13,7 +13,15 @@ function BusinessInfo({ children }) {
     })
   }, [])
 
-  const { name, website, category, logo, averageRating } = business
+  const {
+    name,
+    website,
+    category,
+    logo,
+    location,
+    averageRating,
+    ratingCount,
+  } = business
 
   return (
     <section>
@@ -22,7 +30,9 @@ function BusinessInfo({ children }) {
       <p>{website}</p>
       <p>{category}</p>
       <p>{logo}</p>
+      <p>{location}</p>
       <p>{averageRating}</p>
+      <p>{ratingCount}</p>
       {/* <button className="reject-btn" onClick={handleSubmit}>
         Reject
       </button> */}

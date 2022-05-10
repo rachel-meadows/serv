@@ -22,12 +22,6 @@ export function APIeditJob(jobId, data) {
   return request.patch(rootUrl + `/jobs/${jobId}`).send(jobId, data)
 }
 
-export function APIgetCustomerQuotes(customerId) {
-  return request.get(rootUrl + `/${customerId}/quotes`).then((res) => {
-    return res.body
-  })
-}
-
 export function APIgetJobQuotes(jobId) {
   return request.get(rootUrl + `/quote/${jobId}`).then((res) => {
     return res.body
