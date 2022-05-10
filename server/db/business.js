@@ -1,15 +1,7 @@
 const connection = require('./connection')
 
 function addBusiness(input, db = connection) {
-  const {
-    userId,
-    businessName,
-    website,
-    category,
-    logo,
-    location,
-    ratingCount,
-  } = input
+  const { userId, businessName, website, category, logo, location } = input
   const business = {
     user_id: userId,
     business_name: businessName,
@@ -17,7 +9,6 @@ function addBusiness(input, db = connection) {
     category,
     logo,
     location,
-    rating_count: ratingCount,
     average_rating: null,
   }
   return db('businesses').insert(business)
