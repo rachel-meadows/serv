@@ -5,6 +5,8 @@ import { APIgetJobQuotes, APIgetJobsByCustomer } from '../../apis/customer'
 import CustomerCheckout from './StripeCheckout/CustomerCheckout'
 import JobsListItem from './CustomerJobsItem'
 import IndividualQuote from './IndividualQuote'
+import StarRating from './Review/StarRating'
+import Review from './Review/Review'
 
 /*To-Do
 2. (stretch) Rate Button
@@ -16,6 +18,7 @@ function CustomerJobCompleted() {
   const [job, setJob] = useState({})
   const [quote, setQuote] = useState({})
   const customerId = useSelector((state) => state.currentUser.id)
+  const [reviewed, setReviewed] = useState(false)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
@@ -42,15 +45,29 @@ function CustomerJobCompleted() {
   return (
     <>
       {job?.id !== undefined ? (
-        <JobsListItem key={job.id} job={job} hideButton={true} />
+        <>
+          <h2>Your job:</h2>
+          <JobsListItem key={job.id} job={job} hideButton={true} />
+        </>
       ) : (
         <h4>Error - Job listing cannot display</h4>
       )}
+
       {quote !== undefined ? (
-        <IndividualQuote notes={quote.notes} price={quote.price} />
+        <>
+          <IndividualQuote notes={quote.notes} price={quote.price} />
+        </>
       ) : (
         <h4>Error - Accepted quote cannot display</h4>
       )}
+
+      <Review
+        quoteId={quote.id}
+        customerId={customerId}
+        reviewed={reviewed}
+        setReviewed={setReviewed}
+      />
+      <br />
       <CustomerCheckout quoteId={quote.id} />
     </>
   )

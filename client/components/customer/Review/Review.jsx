@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import StarRating from './StarRating'
-import superagent from 'superagent'
+import { APIaddFeedback } from '../../../apis/customer'
 
-// add star rating component
-// add post request
-// have posted state (in selection)
-
-function Review({ beer_id, hasReviewed, setHasReviewed }) {
+function Review({ quoteId, reviewed, setReviewed, customerId }) {
   const [rating, setRating] = useState(null)
   const [review, setReview] = useState('')
 
@@ -16,53 +12,28 @@ function Review({ beer_id, hasReviewed, setHasReviewed }) {
 
   const handleReview = (event) => {
     setReview(event.target.value)
-    setRating(null)
-    setReview(null)
   }
 
   const postReview = (event) => {
     event.preventDefault()
-    superagent
-      .post(`/api/${beer_id}/review`)
-      .send({ comment: review, rating })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error))
-    setHasReviewed(beer_id)
+    APIaddFeedback(quoteId, { customerId, review, rating })
+    setReviewed(true)
   }
 
   return (
     <div className="review">
-      {hasReviewed ? (
+      {reviewed ? (
         <p className="thanks-msg">Thanks for submitting a review!</p>
       ) : (
         <form onSubmit={postReview}>
           <StarRating onChange={handleRating} />
           <input
-            type="text"
+            type="textarea"
             value={review}
             onChange={handleReview}
             placeholder="Write a review"
-            style={{
-              fontSize: '2rem',
-              border: 'none',
-              borderRadius: '.25rem',
-              width: '600px',
-            }}
           />
-          <button
-            type="submit"
-            style={{
-              background: '#314ee1',
-              color: 'white',
-              border: 'none',
-              fontSize: '1.85rem',
-              marginLeft: '4px',
-              borderRadius: '.25rem',
-              padding: '0.25rem 1rem',
-            }}
-          >
-            Submit Review
-          </button>
+          <button type="submit">Submit Review</button>
         </form>
       )}
     </div>

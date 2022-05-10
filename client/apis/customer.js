@@ -43,6 +43,13 @@ export function APIchangeQuoteStatus(quoteId, status) {
     })
 }
 
+export function APIaddFeedback(quoteId, data) {
+  return request
+    .post(`/api/v1/customer/completed/${quoteId}/review`)
+    .send(data)
+    .catch((error) => console.log(error))
+}
+
 // TODO: Add quoteId so we can search for item price and send that items price to stripe for payment
 export function APIcustomerCheckoutSession(quoteId) {
   return request

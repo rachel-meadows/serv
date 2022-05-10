@@ -72,9 +72,31 @@ function getBusiness(id, db = connection) {
     .first()
 }
 
+function addFeedbackHelper(quoteId, db = connection) {
+  return db('businesses')
+    .join('quotes', 'quotes.business_id', 'businesses.id')
+    .where('quotes.id', quoteId)
+    .select('businesses.id as businessId')
+    .first()
+}
+
+function addFeedback(data, db = connection) {
+  console.log('data: ', data)
+  const reviewData = {
+    user_id: data.customerId,
+    business_id: data.businessId,
+    rating: data.rating,
+    review: data.review,
+    date_added: data.dateAdded,
+  }
+  return db('reviews').insert(reviewData)
+}
+
 module.exports = {
   addBusiness,
   editBusiness,
   getBusiness,
   getBusinessByUserId,
+  addFeedbackHelper,
+  addFeedback,
 }

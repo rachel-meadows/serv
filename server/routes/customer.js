@@ -1,6 +1,7 @@
 const express = require('express')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
+const dbBusiness = require('../db/business')
 const router = express.Router()
 const path = require('path')
 
@@ -113,8 +114,32 @@ router.get('/:jobId/quotes/:quoteId', async (req, res) => {
   }
 })
 
+// Add review
+// POST api/v1/customer/completed/:quoteId/review
+router.post('/completed/:quoteId/review', async (req, res) => {
+  const { quoteId } = req.params
+  const { customerId, rating, review } = req.body
+  const dateAdded = new Date(Date.now())
+  try {
+    dbBusiness
+      .addFeedbackHelper(quoteId)
+      .then((business) => {
+        const businessId = business.businessId
+        dbBusiness
+          .addFeedback({ customerId, rating, review, businessId, dateAdded })
+          .then(() => {
+            res.sendStatus(201)
+            return null
+          })
+      })
+      .then()
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to post feedback.' })
+  }
+})
+
 router.post('/create-checkout-session', async (req, res) => {
-  console.log('yes')
   const { quoteId } = req.body
   const quote = await dbQuotes.getQuote(quoteId)
   console.log(quote[0].priceMax)
