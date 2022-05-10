@@ -47,6 +47,13 @@ function Home() {
           <div className="carousel-item">
             <img
               className="d-block w-100"
+              src="/images/hero2.jpg"
+              alt="Second slide"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              className="d-block w-100"
               src="/images/hero2.png"
               alt="Second slide"
             />
