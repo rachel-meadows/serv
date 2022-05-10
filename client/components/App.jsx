@@ -16,6 +16,7 @@ import BusinessJobsList from './business/BusinessJobsList'
 import CustomerJobCompleted from './customer/CustomerJobCompleted'
 import BusinessJobToQuote from './business/BusinessJobToQuote'
 import BusinessActiveJob from './business/BusinessActiveJob'
+import BusinessCompletedJob from './business/BusinessCompletedJob'
 import WaitIndicator from './WaitIndicator'
 import BusinessQuotedJob from './business/BusinessQuotedJob'
 import CheckoutSuccess from './customer/StripeCheckout/CheckoutSuccess'
@@ -79,6 +80,14 @@ function App() {
             <BusinessQuotedJob>
               <WaitIndicator />
             </BusinessQuotedJob>
+          }
+        />
+        <Route
+          path="/business/completed/:jobId"
+          element={
+            <BusinessCompletedJob>
+              <WaitIndicator />
+            </BusinessCompletedJob>
           }
         />
         <Route

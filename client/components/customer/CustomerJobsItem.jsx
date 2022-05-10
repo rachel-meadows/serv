@@ -32,7 +32,15 @@ function JobsListItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={job?.image} className="w-100" alt="Job illustration" />
+              {job.image ? (
+                <img
+                  src={job?.image}
+                  className="w-100"
+                  alt="Job illustration"
+                />
+              ) : (
+                <p>N/A</p>
+              )}
             </td>
           </tr>
           <tr>

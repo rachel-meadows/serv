@@ -73,7 +73,11 @@ function BusinessQuotedJob() {
             <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="Job illustration" />
+                {job.image ? (
+                  <img src={job?.image} alt="Job illustration" />
+                ) : (
+                  <p>N/A</p>
+                )}
               </td>
             </tr>
             <tr>

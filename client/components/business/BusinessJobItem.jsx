@@ -58,7 +58,7 @@ function BusinessJobItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={image} alt="Job illustration" />
+              {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
             </td>
           </tr>
           <tr>
