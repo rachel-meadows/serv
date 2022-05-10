@@ -19,7 +19,7 @@ function AddJob() {
     event.preventDefault()
     APIaddJob(inputs).then(() =>
       navigate('/customer', { state: { message: true } })
-    )
+    ).catch
   }
 
   const handleFileUpload = async (e) => {
@@ -85,12 +85,12 @@ function AddJob() {
           </select>
         </div>
         <div>
-          <text
+          <input
             name="location"
             placeholder="What's the address of the job?"
             onChange={handleChange}
             required
-          ></text>
+          />
         </div>
         <div className="submit-buttons">
           <button className="submit-button">Submit</button>

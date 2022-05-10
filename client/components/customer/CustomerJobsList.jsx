@@ -53,20 +53,33 @@ function JobsList() {
   }
   return (
     <>
-      <form>
+     
         {location?.state?.message && <h1>YOUR JOB HAS BEEN SUBMITTED!</h1>}
-        <label htmlFor="filter">Filter your jobs:</label>
-        <select name="filter" onChange={handleDropDown}>
+        <h2 className="text-success mb-3">Job Listings</h2>
+      <form>
+        <div className="my-3 ml-auto">
+          <label htmlFor="filter" className="form-label">
+            Filter your jobs:
+          </label>
+  
+        <select
+            name="filter"
+            id="filter"
+            className="form-select w-25"
+            defaultValue="unmatched"
+            onChange={handleDropDown}
+          >
           <option value="all">All</option>
           <option value="active">Active</option>
           <option value="unmatched">Unmatched</option>
           <option value="completed">Completed</option>
         </select>
+        </div>
       </form>
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h3>You have no job listings (EDIT THE WORDING)</h3>
+          <h4 className="text-success mb-3">You have no job listings to view</h4>
         ) : (
           jobs.map((job) => {
             return (
@@ -75,6 +88,7 @@ function JobsList() {
           })
         )}
       </div>
+   
     </>
   )
 }
