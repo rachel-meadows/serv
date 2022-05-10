@@ -2,7 +2,7 @@ import React from 'react'
 
 function JobsListItem(props) {
   const { job, hideButton } = props
-
+  console.log(job)
   function showDetails() {
     props.showDetails(job.id, job?.status)
   }
@@ -50,53 +50,20 @@ function JobsListItem(props) {
       {!hideButton ? (
         <p>
           {job.status === 'open' ? (
-            <button onClick={showDetails}>Quotes</button>
+              <button className="btn btn-success" onClick={showDetails}>Quotes</button>
           ) : job.status === 'closed' ? (
-            <button onClick={showDetails}>Details</button>
+            <button className="btn btn-success" onClick={showDetails}>Details</button>
           ) : null}
         </p>
       ) : (
         <></>
       )}
-</div>
+    </div>
+
+   
+
   )
 }
 
 export default JobsListItem
-
-{/* 
-      <div className="flex flex-col flex-justify-center">
-        <div className="jobList-item"></div>
-        <button className="btn btn-success" onClick={handleDetailClick}>
-          Details
-        </button>
-      </div>
-    </div> */}
-
-
-
-    // <div className="job">
-    //   <p className="description">{job?.description}</p>
-    //   <p className="image">
-    //     {job.image && (
-    //       <img src={job.image} alt="my job" style={{ width: '100px' }} />
-    //     )}
-    //   </p>
-    //   <p className="category">{job?.category}</p>
-    //   <p className="priceMin">${job?.priceMin}</p>
-    //   <p className="priceMax">${job?.priceMax}</p>
-    //   <p className="location">{job?.location}</p>
-    //   <p className="status">{job?.status}</p>
-    //   {!hideButton ? (
-    //     <p>
-    //       {job.status === 'open' ? (
-    //         <button onClick={showDetails}>Quotes</button>
-    //       ) : job.status === 'closed' ? (
-    //         <button onClick={showDetails}>Details</button>
-    //       ) : null}
-    //     </p>
-    //   ) : (
-    //     <></>
-    //   )}
-    // </div>
 

@@ -7,9 +7,9 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand" href="#">
+          <Link to="/" className="navbar-brand">
             <img src="/images/serv-logo-thin-light.jpg" alt="" />
-          </a>
+          </Link>
           <div className="d-flex">
             <button
               className="navbar-toggler"

@@ -10,6 +10,7 @@ const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY)
 
 // POST api/v1/customer/add
 router.post('/add', async (req, res) => {
+  console.log('Server')
   const data = req.body
   try {
     await dbJobs.addJob(data)
