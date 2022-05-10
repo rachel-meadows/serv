@@ -6,7 +6,6 @@ function BusinessJobItem(props) {
 
   const {
     id,
-    userId,
     description,
     image,
     category,
@@ -15,7 +14,6 @@ function BusinessJobItem(props) {
     status,
     location,
   } = props.job
-  console.log('job: ', props.job)
 
   const dropDownStatus = props.dropDownSelection
 
@@ -36,23 +34,46 @@ function BusinessJobItem(props) {
   }
 
   return (
-    <>
+    <div className="card my-2 p-4 col-xl-6">
+      <table className="table">
+        <tbody>
+          <tr>
+            <th scope="row">Category: </th>
+            <td className="text-capitalize">{category}</td>
+          </tr>
+          <tr>
+            <th scope="row">Description: </th>
+            <td className="text-capitalize">{description}</td>
+          </tr>
+          <tr>
+            <th scope="row">Budget: </th>
+            <td>
+              ${priceMin}.00 - ${priceMax}.00
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Address: </th>
+            <td>{location}</td>
+          </tr>
+          <tr>
+            <th scope="row">Image: </th>
+            <td>
+              <img src={image} alt="Job illustration" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Status: </th>
+            <td className="text-capitalize">{status}</td>
+          </tr>
+        </tbody>
+      </table>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <p className="userId" key={id}>
-          {userId}
-        </p>
-        <p className="category">{category}</p>
-        <p className="description">{description}</p>
-        <p className="price">
-          Budget: ${priceMin} - {priceMax}
-        </p>
-        <p className="image">{image}</p>
-        <p className="location">{location}</p>
-        <p className="status">{status}</p>
-        <button onClick={handleDetailClick}>Details</button>
+        <button className="btn btn-success" onClick={handleDetailClick}>
+          Details
+        </button>
       </div>
-    </>
+    </div>
   )
 }
 

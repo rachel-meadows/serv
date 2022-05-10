@@ -54,63 +54,86 @@ function BusinessJobToQuote() {
     })
   }
   return (
-    <>
-      <div className="flex flex-col flex-justify-center">
-        <div className="jobList-item"></div>
-        <p className="userId" key={job?.id}>
-          {job?.userId}
-        </p>
-        <p className="category">{job?.category}</p>
-        <p className="description">{job?.description}</p>
-        <p className="price">
-          Budget: ${job.priceMin} - {job?.priceMax}
-        </p>
-        {/* <p className="image">{image}</p> */}
-        <p className="location">{job?.location}</p>
-        <p className="status">{job?.status}</p>
-
-        <button className="accept-btn" onClick={handleSetToggleForm}>
+    <div className="container mt-3">
+      <h2 className="text-success mb-3">Job Details</h2>
+      <div className="card my-2 p-4 col-xl-6">
+        <table className="table">
+          <tbody>
+            <tr>
+              <th scope="row">Category: </th>
+              <td className="text-capitalize">{job.category}</td>
+            </tr>
+            <tr>
+              <th scope="row">Description: </th>
+              <td className="text-capitalize">{job.description}</td>
+            </tr>
+            <tr>
+              <th scope="row">Budget: </th>
+              <td>
+                ${job.priceMin}.00 - ${job.priceMax}.00
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Address: </th>
+              <td>{job.location}</td>
+            </tr>
+            <tr>
+              <th scope="row">Image: </th>
+              <td>
+                <img src={job.image} alt="Job illustration" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Status: </th>
+              <td className="text-capitalize">{job.status}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button className="btn btn-primary" onClick={handleSetToggleForm}>
           Create Quote
         </button>
       </div>
       {toggleForm && (
-        <>
-          <div className="flex flex-col flex-align-center">
-            <h2>Send A Message To A Customers</h2>
+        <div className="card my-4 p-4 col-xl-6">
+          <div className="mb-3">
+            <h2 className="text-success mb-3">Quote Job</h2>
             <textarea
               name="description"
+              className="form-control"
               value={quoteForm.description}
-              placeholder="What can we help you with?"
+              placeholder="Enter the job quote details.."
               onChange={handleChange}
             ></textarea>
-            <h3>Cost Estimate</h3>
           </div>
-          <div className="flex flex-row flex-justify-center">
-            <label htmlFor="price_min"></label>
+          <div className="mb-3">
+            <label htmlFor="price_min">Quote Amount</label>
             <input
               name="priceMin"
+              type="number"
+              min={0}
+              className="form-control"
               placeholder="Min price"
               value={quoteForm.priceMin}
               onChange={handleChange}
               disabled={false}
             />
-            <label htmlFor="price_min"></label>
+            {/* <label htmlFor="price_min"></label>
             <input
               name="priceMax"
               placeholder="Max price"
               value={quoteForm.priceMax}
               onChange={handleChange}
               disabled={false}
-            />
+            /> */}
           </div>
-          <div className="flex flex-col flex-justify-center">
-            <button className="submit-button" onClick={handleSubmit}>
-              Submit
+          <div className="">
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Send Quote
             </button>
           </div>
-        </>
+        </div>
       )}
-    </>
+    </div>
   )
 }
 

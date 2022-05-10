@@ -8,7 +8,7 @@ import {
 } from '../../apis/business'
 import { useLocation } from 'react-router-dom'
 
-function BusinessJobsList({ children }) {
+function BusinessJobsList() {
   const location = useLocation()
 
   const user = useSelector((state) => state.currentUser)
@@ -22,9 +22,13 @@ function BusinessJobsList({ children }) {
   useEffect(() => {
     // Test user
     // APIgetJobsByUser(4).then((quotedJobs) => {
-    APIgetJobsByUser(user?.id).then((quotedJobs) => {
-      setJobsQuotedOn(quotedJobs)
-    })
+    APIgetJobsByUser(user?.id)
+      .then((quotedJobs) => {
+        setJobsQuotedOn(quotedJobs)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
 
     // Test user
     APIgetBusinessByUserId(user?.id)
@@ -38,6 +42,7 @@ function BusinessJobsList({ children }) {
       .catch((err) => {
         // TODO
         // dispatch(showError(err.message))
+        console.error(err)
         return false
       })
   }, [user, dropDownSelection])
@@ -46,7 +51,7 @@ function BusinessJobsList({ children }) {
     setShowMessage(location?.state?.message)
     setTimeout(() => {
       setShowMessage(false)
-    }, 5000)
+    }, 3000)
   }, [])
 
   useEffect(() => {
@@ -84,28 +89,33 @@ function BusinessJobsList({ children }) {
   }
 
   return (
-    <>
+    <div className="container mt-3">
       {showMessage && (
-        <div className="quote-submitted flex flex-col flex-align-center">
-          <h2>Your quote has been submitted</h2>
-          <p>Your quote has been successfully passed on to your customer.</p>
-          <p>Youll get a message soon if they accept the quote.</p>
+        <div className="alert alert-success" role="alert">
+          Your quote has been submitted!
         </div>
       )}
+      <h2 className="text-success mb-3">Job Listings</h2>
       <form>
-        <label htmlFor="filter">Filter your jobs:</label>
-        <select
-          name="filter"
-          defaultValue="unmatched"
-          onChange={handleDropDown}
-        >
-          <option value="unmatched">Unmatched</option>
-          <option value="quoted">Quoted</option>
-          <option value="active">Active</option>
-          <option value="completed">Completed</option>
-        </select>
+        <div className="my-3 ml-auto">
+          <label htmlFor="filter" className="form-label">
+            Filter your jobs:
+          </label>
+          <select
+            name="filter"
+            id="filter"
+            className="form-select w-25"
+            defaultValue="unmatched"
+            onChange={handleDropDown}
+          >
+            <option value="unmatched">Unmatched</option>
+            <option value="quoted">Quoted</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
       </form>
-      <h1>Job Listings</h1>
+
       <div className="jobList">
         {jobs?.map((job) => {
           return (
@@ -117,7 +127,7 @@ function BusinessJobsList({ children }) {
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 
