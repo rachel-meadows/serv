@@ -8,13 +8,7 @@ function JobsListItem(props) {
   }
 
   return (
-     <div className="card my-2 p-4 col-xl-6">
-       <p className="description">{job?.description}</p>
-      <p className="image">
-        {job.image && (
-          <img src={job.image} alt="my job" style={{ width: '100px' }} />
-        )}
-      </p>
+    <div className="card my-2 p-4 col-xl-6">
       <table className="table">
         <tbody>
           <tr>
@@ -38,7 +32,7 @@ function JobsListItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={job?.image} alt="Job illustration" />
+              <img src={job?.image} className="w-100" alt="Job illustration" />
             </td>
           </tr>
           <tr>
@@ -50,20 +44,20 @@ function JobsListItem(props) {
       {!hideButton ? (
         <p>
           {job.status === 'open' ? (
-              <button className="btn btn-success" onClick={showDetails}>Quotes</button>
+            <button className="btn btn-success" onClick={showDetails}>
+              Quotes
+            </button>
           ) : job.status === 'closed' ? (
-            <button className="btn btn-success" onClick={showDetails}>Details</button>
+            <button className="btn btn-success" onClick={showDetails}>
+              Details
+            </button>
           ) : null}
         </p>
       ) : (
         <></>
       )}
     </div>
-
-   
-
   )
 }
 
 export default JobsListItem
-

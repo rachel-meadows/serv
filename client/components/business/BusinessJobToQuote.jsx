@@ -37,7 +37,7 @@ function BusinessJobToQuote() {
   const [toggleForm, setToggleForm] = useState(false)
   const [quoteForm, setQuoteForm] = useState({
     description: '',
-    price: 0,
+    price: '',
   })
 
   const handleChange = (event) => {
@@ -123,8 +123,8 @@ function BusinessJobToQuote() {
               type="number"
               min={0}
               className="form-control"
-              placeholder="Min price"
-              value={quoteForm.priceMin}
+              placeholder="Price"
+              value={quoteForm.price}
               onChange={handleChange}
               disabled={false}
             />
