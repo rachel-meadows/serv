@@ -53,10 +53,11 @@ function AddJob() {
             </div>
             <input
               type="text"
-              className="form-control mr-2 w-50"
+              className="form-control"
               aria-label="Dollar amount (with dot and two decimal places)"
+              placeholder="Min Price"
             />
-            <div className="m-4">-</div>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             <div className="input-group-prepend">
               <span className="input-group-text">$</span>
             </div>
@@ -64,74 +65,26 @@ function AddJob() {
               type="text"
               className="form-control"
               aria-label="Dollar amount (with dot and two decimal places)"
+              placeholder="Max Price"
             />
-
-            {/* <div className="container">
-              <div className="row">
-                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                  <form action="" method="post">
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-xs-12 col-sm-5 col-md-5 col-lg-5 padding0">
-                           <div className="input-group"> 
-                          <div className="input-group-prepend">
-                            <span className="input-group-text">$</span>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            aria-label="Dollar amount (with dot and two decimal places)"
-                          />
-                          </div>
-                        </div>
-
-                        <div className="col-xs-12 col-sm-1 col-md-1 col-lg-1 text-center padding0">
-                          <p> - </p>
-                        </div>
-
-                        <div className="col-xs-12 col-sm-5 col-md-5 col-lg-5 padding0">
-                          <div id="max-group" className="input-group ">
-                            <span className="input-group-addon">$</span>
-                            <input
-                              type="text"
-                              id="price-max-input"
-                              name="price-max"
-                              data-toggle="dropdown"
-                              className="form-control"
-                              placeholder="Max Price"
-                              value=""
-                            />
-                            <ul id="price-max" className="dropdown-menu">
-                              <li>
-                                <a href="#" data-value="1000">
-                                  Max Price
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#" data-value="300">
-                                  300
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#" data-value="500">
-                                  500
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-           */}
           </div>
-          <small id="emailHelp" className="form-text text-muted">
-            We&apos;ll never share your email with anyone else.
-          </small>
-        </div>
+          
+          <div className="mb-3">
+            <label htmlFor="image" className="form-label">Image Upload</label>
+          {/* <input className="form-control" type="file" id="formFile"/> */}
+            <input
+              className="form-control"
+              type="file"
+              id="myImage"
+              name="image"
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e)}
+            />
+           <div className="input-group">
+              <img src={inputs.image} alt="" style={{ width: '100px' }} />
+            </div>
+          </div>
+        
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
           <input
@@ -154,6 +107,7 @@ function AddJob() {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        </div>
       </form>
     </>
   )
@@ -191,18 +145,24 @@ export default AddJob
       //       required
       //     />
       //   </div>
-      //   <div>
-      //     <input
-      //       type="file"
-      //       id="myImage"
-      //       name="image"
-      //       accept="image/*"
-      //       onChange={(e) => handleFileUpload(e)}
-      //     />
-      //   </div>
-      //   <div className="input-group">
-      //     <img src={inputs.image} alt="" style={{ width: '100px' }} />
-      //   </div>
+
+
+
+
+        // <div>
+        //   <input
+        //     type="file"
+        //     id="myImage"
+        //     name="image"
+        //     accept="image/*"
+        //     onChange={(e) => handleFileUpload(e)}
+        //   />
+        // </div>
+        // <div className="input-group">
+        //   <img src={inputs.image} alt="" style={{ width: '100px' }} />
+        // </div>
+
+        
       //   <div>
       //     <select
       //       name="category"
