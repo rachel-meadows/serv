@@ -7,6 +7,8 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
   const { jobId, id, businessId, description, price, status } = props.quote
+  console.log('Business', business)
+  console.log('Props', props)
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
@@ -26,16 +28,26 @@ function QuotesItem(props) {
     APIchangeQuoteStatus(id, 'rejected')
     navigate('/customer')
   }
-
   useEffect(() => {
-    APIgetJobQuotes(user?.id)
+    APIgetBusinessById(businessId)
       .then((data) => {
+        console.log('data', data)
         return setBusiness(data)
       })
       .catch((err) => {
         console.error(err)
       })
   }, [user])
+  // useEffect(() => {
+  //   APIgetJobQuotes(user?.id)
+  //     .then((data) => {
+  //       console.log('data', data)
+  //       return setBusiness(data)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }, [user])
 
   return (
     <div className="card my-2 p-4 col-xl-6">
@@ -44,7 +56,10 @@ function QuotesItem(props) {
           <tr>
             <th scope="row">Business</th>
             <td className="text-capitalize">
-              <Link to={`/business/${user.id}`}>{business.businessName}</Link>
+              <Link to={`/business/${businessId}`}>
+                {business.businessName}
+              </Link>
+              {/* <Link to={`/business/${user.id}`}>{business.businessName}</Link> */}
             </td>
           </tr>
           <tr>
@@ -55,19 +70,26 @@ function QuotesItem(props) {
             <th scope="row">Price</th>
             <td>${price}.00</td>
           </tr>
+          <tr>
+            <th scope="row">Status</th>
+            <td>
+              {status === 'accepted' && <p>Quote has been accepted.</p>}
+              {status === 'rejected' && <p>Quote has was rejected.</p>}
+              {status === 'pending' && <p>Quote is pending.</p>}
+            </td>
+          </tr>
         </tbody>
       </table>
-      {status === 'accepted' && <p>Quote has been accepted.</p>}
-      {status === 'rejected' && <p>Quote has was rejected.</p>}
+
       {status === 'pending' && (
-        <>
-          <button className="btn btn-success" onClick={handleSubmitAccept}>
+        <div className="d-flex">
+          <button className="btn btn-success w-50" onClick={handleSubmitAccept}>
             Accept
           </button>
-          <button className="btn btn-danger" onClick={handleSubmitReject}>
+          <button className="btn btn-danger w-50" onClick={handleSubmitReject}>
             Reject
           </button>
-        </>
+        </div>
       )}
     </div>
   )
