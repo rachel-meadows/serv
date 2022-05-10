@@ -106,7 +106,9 @@ function Registration() {
             {
               userType === 'customer' && (
                 <>
-                  <form className="w-50 flex flex-col col-7 my-4 py-5" onSubmit={handleAddCustomer}>
+             
+                  <form className="flex flex-col col-9 my-4 py-5" onSubmit={handleAddCustomer}>
+                  <div className="card w-100 my-2 p-4">
                     <h3 className="text-success mb-3">Customer</h3>
                     <div className="input-group">
                       <input name="auth0Id" value={form.auth0Id} type="hidden" />{' '}
@@ -124,13 +126,16 @@ function Registration() {
                     <div className="input-group mb-3">
                       <button type="submit" className="btn btn-success">Register</button>
                     </div>
+                    </div>
                   </form>
+                  
                 </>
               )
             }
             {
               userType === 'business' && (
-                <form onSubmit={handleAddBusiness} className="flex flex-col col-7 my-4 py-5">
+                <form onSubmit={handleAddBusiness} className="flex flex-col col-9 my-4 py-5">
+                   <div className="card w-100 my-2 p-4">
                   <h3 className="business-details-title text-success mb-3">Business Details</h3>
                   <div className="mb-3">
                     <input name="auth0Id" value={form.auth0Id} type="hidden" />
@@ -145,23 +150,18 @@ function Registration() {
                     <input name="email" id="emailAddress" value={form.email} type="email" className="form-control" onChange={handleChange}
                       disabled={true} />
                   </div>
-
                   <div className="mb-3">
                     <label htmlFor="business-name" className="form-label">Business Name</label>
                     <input type="businessName" className="form-control" name="businessName" id="businessName" onChange={handleChange} />
                   </div>
-
                   <div className="mb-3">
                     <label htmlFor="website" className="form-label">Website Link</label>
                     <input type="website" className="form-control" name="website" id="website" onChange={handleChange} />
                   </div>
-
                   <div className="mb-3" >
                     <label htmlFor="location" className="form-label" >Location</label>
                     <input type="location" className="form-control" name="location" id="location" onChange={handleChange} />
                   </div>
-
-
                   <div className="mb-3">
                     <select defaultValue="default" className="business-category form-select" aria-label="Default select example" name="category" id="category" required onChange={handleChange}>
                       <option value="default">Business Category</option>
@@ -170,8 +170,6 @@ function Registration() {
                       <option value="Building">Building</option>
                     </select>
                   </div>
-
-
                   <div className="input-group mb-3">
                     <label htmlFor="logo" className="input-group-text">Logo</label>
                     <input type="file" className="form-control" name="logo" id="logo" accept="image/*" onChange={(e) => handleFileUpload(e)} />
@@ -181,6 +179,7 @@ function Registration() {
                   </div>
                   <div className="input-group">
                     <button type="submit" className="btn btn-success">Register as a Business</button>
+                  </div>
                   </div>
                 </form>
               )
