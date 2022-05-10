@@ -80,10 +80,12 @@ function Registration() {
   return (
     <div className="registration">
 
-      <div className="container">
+      <div className="container mt-3">
         <div className="row">
           <div className="col">
-            <h2 className="page-title">Welcome to</h2>
+            <div className="text-center">
+            {/* <h2 className="page-title text-success">Welcome to</h2> */}
+            </div>
             <div className="hero-logo">
               <img src="/images/serv-logo-light.png" alt="Welcome to Serv" />
             </div>
@@ -91,7 +93,7 @@ function Registration() {
           <div className="col ">
             <div className="d-flex flex-col align-items-center h-100 w-100 justify-content-center">
               <div className="text-center">
-                <h4 className="user-type-title mb-4">Select what type of user you are..</h4>
+                <h4 className="user-type-title mb-4 text-success">Select what type of user you are..</h4>
                 <button className="btn btn-success btn-lg w-40 py-4 mx-2" type="button" onClick={handleSetUserTypeCustomer} >I am a customer </button>
                 <button className="btn btn-primary btn-lg w-40 py-4 mx-2" type="button" onClick={handleSetUserTypeBusiness} >I am a service provider</button>
               </div>
@@ -105,7 +107,7 @@ function Registration() {
               userType === 'customer' && (
                 <>
                   <form className="w-50 flex flex-col col-7 my-4 py-5" onSubmit={handleAddCustomer}>
-                    <h3>Customer</h3>
+                    <h3 className="text-success mb-3">Customer</h3>
                     <div className="input-group">
                       <input name="auth0Id" value={form.auth0Id} type="hidden" />{' '}
                       <input name="type" value="customer" type="hidden" />
@@ -130,7 +132,7 @@ function Registration() {
             {
               userType === 'business' && (
                 <form onSubmit={handleAddBusiness} className="flex flex-col col-7 my-4 py-5">
-                  <h3 className="business-details-title">Business Details</h3>
+                  <h3 className="business-details-title text-success mb-3">Business Details</h3>
                   <div className="mb-3">
                     <input name="auth0Id" value={form.auth0Id} type="hidden" />
                     <input name="type" value="business" type="hidden" />
