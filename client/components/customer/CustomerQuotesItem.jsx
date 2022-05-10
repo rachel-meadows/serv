@@ -6,17 +6,20 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { jobId, id, businessId, description, priceMin, priceMax, status } =
-    props.quote
+  const { jobId, id, businessId, description, price, status } = props.quote
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
 
   function handleSubmitAccept() {
     APIchangeQuoteStatus(id, 'accepted')
-    APIchangeJobStatus(jobId, 'in progress').then(() => {
-      navigate('/customer')
-    })
+    APIchangeJobStatus(jobId, 'in progress')
+      .then(() => {
+        navigate('/customer')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   function handleSubmitReject() {
@@ -25,36 +28,48 @@ function QuotesItem(props) {
   }
 
   useEffect(() => {
-    APIgetJobQuotes(user?.id).then((data) => {
-      return setBusiness(data)
-    })
+    APIgetJobQuotes(user?.id)
+      .then((data) => {
+        return setBusiness(data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }, [user])
 
   return (
-    <>
-      <section>
-        <div className="flex quoteList-item"></div>
-        <strong>
-          <Link to={`/business/${user.id}`}>{business.businessName}</Link>
-        </strong>
-        <p>{description}</p>
-        <p>
-          ${priceMin} - ${priceMax}
-        </p>
-        {status === 'accepted' && <p>Quote has been accepted.</p>}
-        {status === 'rejected' && <p>Quote has was rejected.</p>}
-        {status === 'pending' && (
-          <>
-            <button className="accept-btn" onClick={handleSubmitAccept}>
-              Accept
-            </button>
-            <button className="reject-btn" onClick={handleSubmitReject}>
-              Reject
-            </button>
-          </>
-        )}
-      </section>
-    </>
+    <div className="card my-2 p-4 col-xl-6">
+      <table className="table">
+        <tbody>
+          <tr>
+            <th scope="row">Business</th>
+            <td className="text-capitalize">
+              <Link to={`/business/${user.id}`}>{business.businessName}</Link>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Description</th>
+            <td className="text-capitalize">{description}</td>
+          </tr>
+          <tr>
+            <th scope="row">Price</th>
+            <td>${price}.00</td>
+          </tr>
+        </tbody>
+      </table>
+      {status === 'accepted' && <p>Quote has been accepted.</p>}
+      {status === 'rejected' && <p>Quote has was rejected.</p>}
+      {status === 'pending' && (
+        <>
+          <button className="btn btn-success" onClick={handleSubmitAccept}>
+            Accept
+          </button>
+          <button className="btn btn-danger" onClick={handleSubmitReject}>
+            Reject
+          </button>
+        </>
+      )}
+    </div>
   )
 }
 

@@ -8,6 +8,7 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
+  const [showMessage, setShowMessage] = useState(false)
   const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
@@ -25,6 +26,13 @@ function JobsList() {
         // dispatch(showError(errMessage))
       })
   }, [customerId])
+
+  useEffect(() => {
+    setShowMessage(location?.state?.message)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }, [])
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
@@ -54,20 +62,37 @@ function JobsList() {
   }
   return (
     <>
+     
+        {showMessage && 
+        <div className="alert alert-success" role="alert">
+        Your job has been submitted!
+      </div> }
+        
+        <h2 className="text-success mb-3">Job Listings</h2>
       <form>
-        {location?.state?.message && <h1>YOUR JOB HAS BEEN SUBMITTED!</h1>}
-        <label htmlFor="filter">Filter your jobs:</label>
-        <select name="filter" onChange={handleDropDown}>
+        <div className="my-3 ml-auto">
+          <label htmlFor="filter" className="form-label">
+            Filter your jobs:
+          </label>
+  
+        <select
+            name="filter"
+            id="filter"
+            className="form-select w-25"
+            defaultValue="unmatched"
+            onChange={handleDropDown}
+          >
           <option value="all">All</option>
           <option value="active">Active</option>
           <option value="unmatched">Unmatched</option>
           <option value="completed">Completed</option>
         </select>
+        </div>
       </form>
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h3>You have no job listings (EDIT THE WORDING)</h3>
+          <h4 className="text-success mb-3">You have no job listings to view</h4>
         ) : (
           jobs.map((job) => {
             return (
@@ -76,6 +101,7 @@ function JobsList() {
           })
         )}
       </div>
+   
     </>
   )
 }

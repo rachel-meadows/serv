@@ -10,9 +10,7 @@ import { useLocation } from 'react-router-dom'
 
 function BusinessJobsList() {
   const location = useLocation()
-
   const user = useSelector((state) => state.currentUser)
-
   const [showMessage, setShowMessage] = useState(false)
   const [jobs, setJobs] = useState([])
   const [openJobsInCategory, setOpenJobsInCategory] = useState([])
@@ -61,7 +59,6 @@ function BusinessJobsList() {
       const openAndUnquoted = openJobsInCategory.filter((job) => {
         return !jobsQuotedOnIds.includes(job.id)
       })
-
       setJobs(openAndUnquoted)
     } else if (dropDownSelection === 'quoted') {
       // 'Quoted' status includes pending and rejected quotes

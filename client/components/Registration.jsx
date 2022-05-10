@@ -106,7 +106,7 @@ function Registration() {
             {
               userType === 'customer' && (
                 <>
-             
+
                   <form className="flex flex-col col-9 my-4 py-5" onSubmit={handleAddCustomer}>
                   <div className="card w-100 my-2 p-4">
                     <h3 className="text-success mb-3">Customer</h3>
@@ -128,7 +128,6 @@ function Registration() {
                     </div>
                     </div>
                   </form>
-                  
                 </>
               )
             }
@@ -191,10 +190,7 @@ function Registration() {
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div >
   )
 }
