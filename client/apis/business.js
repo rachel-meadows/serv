@@ -61,3 +61,7 @@ export function APIgetQuoteByJobAndUserId(jobId, userId) {
     .get(rootUrl + `/quotes/${jobId}/${userId}`)
     .then((res) => res.body)
 }
+
+export function APIgetReviews(businessId) {
+  return request.get(rootUrl + `/${businessId}/reviews`).then((res) => res.body)
+}

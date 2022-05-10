@@ -67,7 +67,7 @@ function getBusiness(id, db = connection) {
       'logo',
       'location',
       'average_rating as averageRating',
-      'average_rating as averageRating'
+      'rating_count as ratingCount'
     )
     .first()
 }
@@ -96,8 +96,6 @@ function getRatings(businessId, db = connection) {
 }
 
 function updateBusinessRatingCount(businessId, ratingsCount, db = connection) {
-  console.log('db businessId: ', businessId)
-  console.log('db ratingsCount: ', ratingsCount)
   return db('businesses')
     .where('id', businessId)
     .update({ rating_count: ratingsCount })
@@ -108,11 +106,15 @@ function updateBusinessAverageRating(
   averageRating,
   db = connection
 ) {
-  console.log('db businessId: ', businessId)
-  console.log('db averageRating: ', averageRating)
   return db('businesses')
     .where('id', businessId)
     .update({ average_rating: averageRating })
+}
+
+function getReviews(businessId, db = connection) {
+  return db('reviews')
+    .where('business_id', businessId)
+    .select('review', 'rating')
 }
 
 module.exports = {
@@ -125,4 +127,5 @@ module.exports = {
   getRatings,
   updateBusinessRatingCount,
   updateBusinessAverageRating,
+  getReviews,
 }
