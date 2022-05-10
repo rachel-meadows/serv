@@ -1,6 +1,7 @@
 const express = require('express')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
+const dbBusiness = require('../db/business')
 const router = express.Router()
 const path = require('path')
 
@@ -114,8 +115,46 @@ router.get('/:jobId/quotes/:quoteId', async (req, res) => {
   }
 })
 
+// Add review
+// POST api/v1/customer/completed/:quoteId/review
+router.post('/completed/:quoteId/review', (req, res) => {
+  const { quoteId } = req.params
+  const { customerId, rating, review } = req.body
+  const dateAdded = new Date(Date.now())
+
+  dbBusiness.addFeedbackHelper(quoteId).then((business) => {
+    const businessId = business.businessId
+
+    dbBusiness
+      .addFeedback({ customerId, rating, review, businessId, dateAdded })
+      .then(() => {
+        dbBusiness.getRatings(businessId).then((ratingsArr) => {
+          const clearRatingsArr = ratingsArr
+            .map((obj) => obj.rating)
+            .filter((number) => number != null)
+          const ratingsCount = clearRatingsArr.length
+
+          const averageRating =
+            clearRatingsArr.reduce((partialSum, i) => partialSum + i, 0) /
+            ratingsCount
+
+          console.log('Average rating from route: ', averageRating)
+          console.log('businessId from route: ', businessId)
+          dbBusiness
+            .updateBusinessRatingCount(businessId, ratingsCount)
+            .then(() => {})
+          dbBusiness
+            .updateBusinessAverageRating(businessId, averageRating)
+            .then(() => {})
+        })
+
+        res.sendStatus(201)
+        return null
+      })
+  })
+})
+
 router.post('/create-checkout-session', async (req, res) => {
-  console.log('yes')
   const { quoteId } = req.body
   const quote = await dbQuotes.getQuote(quoteId)
   console.log(quote[0].priceMax)

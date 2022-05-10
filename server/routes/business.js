@@ -172,7 +172,21 @@ router.get('/quotes/:jobId/:userId', async (req, res) => {
     })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Unable to get quote data from database' })
+    res.stat
+  }
+})
+
+// GET /business/:businessId/reviews
+router.get('/:businessId/reviews', async (req, res) => {
+  const { businessId } = req.params
+  try {
+    await dbBusiness.getReviews(businessId).then((data) => {
+      res.json(data)
+      return null
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to get reviews from database' })
   }
 })
 
