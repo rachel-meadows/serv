@@ -157,7 +157,7 @@ router.post('/completed/:quoteId/review', (req, res) => {
 router.post('/create-checkout-session', async (req, res) => {
   const { quoteId } = req.body
   const quote = await dbQuotes.getQuote(quoteId)
-  console.log(quote[0].priceMax)
+  console.log(quote[0].price)
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -169,7 +169,7 @@ router.post('/create-checkout-session', async (req, res) => {
             product_data: {
               name: quote[0].description || 'My Service',
             },
-            unit_amount: quote[0].priceMax * 100,
+            unit_amount: quote[0].price * 100,
           },
           quantity: 1,
         },
