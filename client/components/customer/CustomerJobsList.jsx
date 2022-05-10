@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Outlet, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 
@@ -11,7 +11,7 @@ function JobsList() {
   const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
@@ -21,7 +21,8 @@ function JobsList() {
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
-        dispatch(showError(errMessage))
+        console.log(errMessage)
+        // dispatch(showError(errMessage))
       })
   }, [customerId])
 
