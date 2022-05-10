@@ -116,39 +116,41 @@ router.get('/:jobId/quotes/:quoteId', async (req, res) => {
 
 // Add review
 // POST api/v1/customer/completed/:quoteId/review
-router.post('/completed/:quoteId/review', async (req, res) => {
+router.post('/completed/:quoteId/review', (req, res) => {
   const { quoteId } = req.params
   const { customerId, rating, review } = req.body
   const dateAdded = new Date(Date.now())
 
-  try {
-    dbBusiness.addFeedbackHelper(quoteId).then((business) => {
-      const businessId = business.businessId
+  dbBusiness.addFeedbackHelper(quoteId).then((business) => {
+    const businessId = business.businessId
 
-      dbBusiness
-        .addFeedback({ customerId, rating, review, businessId, dateAdded })
-        .then(() => {
-          dbBusiness.getRatings(businessId).then((ratingsArr) => {
-            const clearRatingsArr = ratingsArr
-              .map((obj) => obj.rating)
-              .filter((number) => number != null)
-            const ratingsCount = clearRatingsArr.length
+    dbBusiness
+      .addFeedback({ customerId, rating, review, businessId, dateAdded })
+      .then(() => {
+        dbBusiness.getRatings(businessId).then((ratingsArr) => {
+          const clearRatingsArr = ratingsArr
+            .map((obj) => obj.rating)
+            .filter((number) => number != null)
+          const ratingsCount = clearRatingsArr.length
 
-            const averageRating =
-              clearRatingsArr.reduce((partialSum, i) => partialSum + i, 0) /
-              ratingsCount
-            dbBusiness.updateBusinessRatingCount(businessId, ratingsCount)
-            dbBusiness.updateBusinessAverageRating(businessId, averageRating)
-          })
+          const averageRating =
+            clearRatingsArr.reduce((partialSum, i) => partialSum + i, 0) /
+            ratingsCount
 
-          res.sendStatus(201)
-          return null
+          console.log('Average rating from route: ', averageRating)
+          console.log('businessId from route: ', businessId)
+          dbBusiness
+            .updateBusinessRatingCount(businessId, ratingsCount)
+            .then(() => {})
+          dbBusiness
+            .updateBusinessAverageRating(businessId, averageRating)
+            .then(() => {})
         })
-    })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Unable to post feedback.' })
-  }
+
+        res.sendStatus(201)
+        return null
+      })
+  })
 })
 
 router.post('/create-checkout-session', async (req, res) => {
