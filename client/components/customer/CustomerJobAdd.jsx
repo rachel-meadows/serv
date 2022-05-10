@@ -31,10 +31,10 @@ function AddJob() {
   return (
     <>
       <h3>Get Your Job Taken Care Of!</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Job Description</label>
+            <label htmlFor="exampleFormControlTextarea1">Job Description:</label>
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -46,7 +46,7 @@ function AddJob() {
             ></textarea>
           </div>
           <br></br>
-          <label htmlFor="exampleInputEmail1">Budget Estimate</label>
+          <label htmlFor="exampleInputEmail1">Budget Estimate:</label>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">$</span>
@@ -70,7 +70,7 @@ function AddJob() {
           </div>
           
           <div className="mb-3">
-            <label htmlFor="image" className="form-label">Image Upload</label>
+            <label htmlFor="image" className="form-label">Image Upload:</label>
           {/* <input className="form-control" type="file" id="formFile"/> */}
             <input
               className="form-control"
@@ -84,25 +84,23 @@ function AddJob() {
               <img src={inputs.image} alt="" style={{ width: '100px' }} />
             </div>
           </div>
-        
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-          />
-        </div>
-        <div className="form-group form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
+
+        <div className="my-3 ml-auto">
+          <label htmlFor="category" className="form-label">
+            Pick your category:
           </label>
+          <select
+            name="category"
+            id="category"
+            className="form-select w-25"
+            defaultValue=""
+            onChange={handleChange}
+          >
+            <option value="">Select</option>
+            <option value="plumbing">Plumbing</option>
+            <option value="gardening">Gardening</option>
+            <option value="building">Building</option>
+          </select>
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
@@ -170,10 +168,10 @@ export default AddJob
       //       onChange={handleChange}
       //       required
       //     >
-      //       <option value="">Select Category</option>
-      //       <option value="plumbing">Plumbing</option>
-      //       <option value="gardening">Gardening</option>
-      //       <option value="building">Building</option>
+            // <option value="">Select Category</option>
+            // <option value="plumbing">Plumbing</option>
+            // <option value="gardening">Gardening</option>
+            // <option value="building">Building</option>
       //     </select>
       //   </div>
       //   <div>
