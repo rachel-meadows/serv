@@ -9,10 +9,12 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState(false)
-  const [dropDownSelection, setdropDownSelection] = useState('all')
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
+  console.log('jobs', jobs)
+  console.log('Alljobs', allJobs)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
@@ -36,7 +38,6 @@ function JobsList() {
   }, [])
 
   useEffect(() => {
-    console.log('allJobs: ', allJobs)
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
       setJobs(unmatchedJobs)
@@ -62,6 +63,10 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
+
+  //for styling
+  const size = 3
+
   return (
     <>
       {showMessage && (
@@ -84,10 +89,10 @@ function JobsList() {
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
-            <option value="all">All</option>
-            <option value="active">Active</option>
             <option value="unmatched">Unmatched</option>
+            <option value="active">Active</option>
             <option value="completed">Completed</option>
+            <option value="all">All</option>
           </select>
         </div>
       </form>
@@ -98,11 +103,18 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          jobs.map((job) => {
-            return (
-              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
-            )
-          })
+          <div className="d-flex flex-row flex-wrap w-100">
+            {jobs.map((job) => {
+              return (
+                <JobsListItem
+                  key={job.id}
+                  job={job}
+                  showDetails={showDetails}
+                  size={size}
+                />
+              )
+            })}
+          </div>
         )}
       </div>
     </>

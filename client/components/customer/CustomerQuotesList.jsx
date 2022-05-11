@@ -6,7 +6,7 @@ import CustomerQuotesItem from './CustomerQuotesItem'
 function QuotesList({ children }) {
   const { jobId } = useParams()
   const [quotes, setQuotes] = useState([])
-  
+
   useEffect(() => {
     APIgetJobQuotes(jobId)
       .then((jobs) => {
@@ -20,20 +20,21 @@ function QuotesList({ children }) {
   }, [])
 
   return (
-
     <div className="container mt-3">
-    <h2 className="text-success mb-3">Customer Quotes</h2>
+      <h2 className="text-success mb-3">Customer Quotes</h2>
       <section>
         {children} {/* This holds the WaitIndicator (from App) */}
-        {!quotes[0]
-          ?
+        {!quotes[0] ? (
           <h4>No Quotes Available</h4>
-          :
-          quotes.map((quote) => {
-          return <CustomerQuotesItem key={quote.id} quote={quote} />
-        })}
+        ) : (
+          <div className="d-flex d-flex flex-row flex-wrap w-100">
+            {quotes.map((quote) => {
+              return <CustomerQuotesItem key={quote.id} quote={quote} />
+            })}
+          </div>
+        )}
       </section>
-      </div>
+    </div>
   )
 }
 
