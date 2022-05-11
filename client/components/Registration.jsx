@@ -101,9 +101,9 @@ function Registration() {
             </div> */}
           {/* </div> */}
           <div className="col ">
-            <div className="d-flex flex-col align-items-center h-100 w-100 justify-content-center">
-              <div className="text-center">
-                <h4 className="user-type-title mb-4 text-success">
+            <div className="d-flex flex-col align-items-center h-100 w-100 justify-content-center register">
+              <div className="card text-center register-buttons">
+                <h4 className="user-type-title mb-4 text-dark">
                   Select what type of user you are..
                 </h4>
                 <button

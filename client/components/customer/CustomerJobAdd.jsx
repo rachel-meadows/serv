@@ -35,7 +35,7 @@ function AddJob() {
 
   return (
     <div className="container my-3">
-      <h2 className="text-success">Get Your Job Taken Care Of!</h2>
+      <h2 className="text-dark">Get Your Job Taken Care Of!</h2>
       <form onSubmit={handleSubmit}>
         <div className="col-md-6">
           <div className="mb-3">
@@ -128,7 +128,7 @@ function AddJob() {
               <option value="building">Building</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-outline-success">
             Submit
           </button>
         </div>

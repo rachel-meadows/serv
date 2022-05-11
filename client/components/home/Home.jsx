@@ -112,7 +112,7 @@ function Home() {
               className=" about-us w-100 about-us"
               style={{ minHeight: '40vh' }}
             >
-              <h3 className="text-success my-3">About Us</h3>
+              <h3 className="text-dark my-3">About Us</h3>
               <h5 className="">Our Vision</h5>
               <p>
                 To lead the way in bringing services effortlessly to your front
@@ -127,7 +127,7 @@ function Home() {
             </div>
             <div className="col p-3">
               <div className="our-values">
-                <h3 className="text-success my-3">Welcome To Serv</h3>
+                <h3 className="text-dark my-3">Welcome To Serv</h3>
                 <Link to="/welcome">
                   <img
                     src="/images/home-flowers.png"
@@ -138,7 +138,7 @@ function Home() {
               </div>
             </div>
             <div className="col p-3">
-              <h3 className="text-success my-3">Services We Offer</h3>
+              <h3 className="text-dark my-3">Services We Offer</h3>
               <img
                 src="/images/services/carpenter.jpg"
                 alt="..."
