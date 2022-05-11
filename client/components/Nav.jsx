@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-// import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserByAuth0Id } from '../actions/user'
@@ -25,12 +24,13 @@ function Nav() {
   console.log(currentUser.id)
 
   useEffect(() => {
-    APIgetBusinessByUserId(currentUser.id)
+    APIgetBusinessByUserId(currentUser?.id)
       .then((business) => {
         setBusiness(business)
-        console.log('business', business)
       })
-      .catch(() => null)
+      .catch((err) => {
+        console.log(err)
+      })
   }, [currentUser])
 
   function handleLogin(event) {
@@ -87,12 +87,6 @@ function Nav() {
       </IfAuthenticated>
       <IfNotAuthenticated>
         <>
-          {/* <li>
-              <Link to="/how-it-works">How It Works</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li> */}
           <li className="nav-item">
             <a href="/" onClick={handleLogin} className="nav-link">
               <button className="btn btn-outline-light">Login</button>

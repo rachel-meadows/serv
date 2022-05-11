@@ -78,7 +78,7 @@ function JobsList() {
   const size = 3
 
   return (
-    <>
+    <div className="container my-3">
       {/* {showMessage.type === 'jobAdd' && ( */}
       {showMessage === 'jobAdd' && (
         <div className="alert alert-primary" role="alert">
@@ -134,7 +134,7 @@ function JobsList() {
           </div>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
