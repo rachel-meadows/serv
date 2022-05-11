@@ -89,9 +89,21 @@ function BusinessJobToQuote() {
               <td>{job.location}</td>
             </tr>
             <tr>
+              <th scope="row">Date added: </th>
+              <td>
+                {job.dateAdded
+                  ? new Date(job.dateAdded).toLocaleString()
+                  : null}
+              </td>
+            </tr>
+            <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} className="w-100" alt="Job illustration" />
+                {job.image ? (
+                  <img src={job?.image} alt="Job illustration" />
+                ) : (
+                  <p>N/A</p>
+                )}
               </td>
             </tr>
             <tr>
