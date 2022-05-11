@@ -72,7 +72,7 @@ function Home() {
           <div className="carousel-item">
             <img
               className="d-block w-100"
-              src="/images/hero1-2.jpg"
+              src="/images/hero4-2.jpg"
               alt="Third slide"
             />
             <div className="carousel-caption d-none d-md-block">
@@ -163,7 +163,7 @@ function Home() {
               />
               <div className="card my-3 p-3">
                 <blockquote className="blockquote mt-3">
-                  <p className="mb-3 fs-6">
+                  <p className="mb-3 fs-5">
                     It always seems impossible, until it is done.
                   </p>
                   <footer className="blockquote-footer fs-6">
