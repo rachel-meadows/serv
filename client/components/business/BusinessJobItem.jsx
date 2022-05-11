@@ -11,7 +11,7 @@ function BusinessJobItem(props) {
     category,
     priceMin,
     priceMax,
-    status,
+    jobStatus,
     location,
     dateAdded,
   } = props.job
@@ -72,7 +72,7 @@ function BusinessJobItem(props) {
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text">{status}</td>
+            <td className="text">{jobStatus}</td>
           </tr>
         </tbody>
       </table>

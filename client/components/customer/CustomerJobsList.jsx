@@ -39,20 +39,20 @@ function JobsList() {
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter(
-        (job) => job.status === 'open' && job.quoteStatus == null
+        (job) => job.jobStatus === 'open' && job.quoteStatus == null
       )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
       //console.log('here')
       setJobs(
         allJobs.filter(
-          (job) => job.status === 'open' && job.quoteStatus === 'pending'
+          (job) => job.jobStatus === 'open' && job.quoteStatus === 'pending'
         )
       )
     } else if (dropDownSelection === 'active') {
-      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
+      setJobs(allJobs.filter((obj) => obj.jobStatus === 'in progress'))
     } else if (dropDownSelection === 'completed') {
-      setJobs(allJobs.filter((obj) => obj.status === 'closed'))
+      setJobs(allJobs.filter((obj) => obj.jobStatus === 'closed'))
     } else if (dropDownSelection === 'all') {
       console.log('all')
       setJobs(allJobs)

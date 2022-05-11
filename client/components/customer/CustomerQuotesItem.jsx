@@ -71,7 +71,7 @@ function QuotesItem(props) {
             <td>${price}.00</td>
           </tr>
           <tr>
-            <th scope="row">Status</th>
+            <th scope="row">quoteStatus</th>
             <td>
               {status === 'accepted' && <p>Quote has been accepted.</p>}
               {status === 'rejected' && <p>Quote has was rejected.</p>}

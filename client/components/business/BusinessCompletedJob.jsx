@@ -79,7 +79,7 @@ function BusinessCompletedJob() {
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text-capitalize">{job?.status}</td>
+            <td className="text-capitalize">{job?.quoteStatus}</td>
           </tr>
         </tbody>
       </table>

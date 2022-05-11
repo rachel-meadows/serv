@@ -113,7 +113,7 @@ function BusinessJobToQuote() {
             </tr>
             <tr>
               <th scope="row">Status: </th>
-              <td className="text">{job.status}</td>
+              <td className="text">{job.jobStatus}</td>
             </tr>
           </tbody>
         </table>
