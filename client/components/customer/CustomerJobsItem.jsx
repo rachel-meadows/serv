@@ -3,9 +3,9 @@ import React from 'react'
 function JobsListItem(props) {
   const { job, hideButton } = props
   function showDetails() {
-    props.showDetails(job.id, job?.status)
+    props.showDetails(job.id, job?.jobStatus)
   }
-
+  console.log('status', job?.jobStatus)
   return (
     <div
       className={`card mx-2 my-2 p-1 col-s-${props.size} col-m-${props.size} col-l-${props.size} col-xl-${props.size}`}
@@ -58,14 +58,14 @@ function JobsListItem(props) {
       </table>
       {!hideButton ? (
         <p>
-          {job.status === 'open' ? (
+          {job?.jobStatus === 'open' ? (
             <button
               className="btn btn-outline-success w-100"
               onClick={showDetails}
             >
               Quotes
             </button>
-          ) : job.status === 'closed' ? (
+          ) : job?.jobStatus === 'closed' ? (
             <button
               className="btn btn-outline-success w-100"
               onClick={showDetails}
