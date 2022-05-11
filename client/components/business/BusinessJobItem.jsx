@@ -35,17 +35,17 @@ function BusinessJobItem(props) {
   }
 
   return (
-    <div className="card my-2 p-4 col-xl-6">
+    <div className="card mx-2 my-2 p-1 col-xl-3">
       <table className="table">
         <tbody>
           <tr>
             <th scope="row">Category: </th>
             <td className="text-capitalize">{category}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <th scope="row">Description: </th>
             <td className="text-capitalize">{description}</td>
-          </tr>
+          </tr> */}
           <tr>
             <th scope="row">Budget: </th>
             <td>
@@ -56,6 +56,10 @@ function BusinessJobItem(props) {
             <th scope="row">Address: </th>
             <td>{location}</td>
           </tr>
+          {/* <tr>
+            <th scope="row">Image: </th>
+            <td>
+              <img src={image} className="w-100" alt="Job illustration" />
           <tr>
             <th scope="row">Date added: </th>
             <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
@@ -65,16 +69,15 @@ function BusinessJobItem(props) {
             <td>
               {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
             </td>
-          </tr>
-          <tr>
+          </tr> */}
+          {/* <tr>
             <th scope="row">Status: </th>
             <td className="text-capitalize">{status}</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
-      <div className="flex flex-col flex-justify-center">
-        <div className="jobList-item"></div>
-        <button className="btn btn-success" onClick={handleDetailClick}>
+      <div className="flex align-items-end">
+        <button className="btn btn-success w-100" onClick={handleDetailClick}>
           Details
         </button>
       </div>
