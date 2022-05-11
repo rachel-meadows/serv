@@ -5,7 +5,7 @@ function JobsListItem(props) {
   function showDetails() {
     props.showDetails(job.id, job?.jobStatus)
   }
-  console.log('status', job?.jobStatus)
+
   return (
     <div
       className={`card mx-2 my-2 p-1 col-s-${props.size} col-m-${props.size} col-l-${props.size} col-xl-${props.size}`}
@@ -33,7 +33,12 @@ function JobsListItem(props) {
           <tr>
             <th scope="row">Date added: </th>
             <td>
-              {job.dateAdded ? new Date(job.dateAdded).toLocaleString() : null}
+              {job?.dateAdded
+                ? new Date(job?.dateAdded).toLocaleString()
+                : null}
+              {/* {job?.dateAdded
+                ? new Date(job?.dateAdded).toLocaleString()
+                : null} */}
             </td>
           </tr>
           <tr>

@@ -15,19 +15,20 @@ function CustomerJobCompleted() {
   const [quote, setQuote] = useState({})
   const customerId = useSelector((state) => state.currentUser.id)
   const [reviewed, setReviewed] = useState(false)
-
+  console.log('customerId', customerId)
   console.log('allJobs', allJobs)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
       .then((jobs) => {
+        console.log('job', job)
         setAllJobs(jobs)
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
         console.log(errMessage)
       })
-  }, [])
+  }, [customerId])
 
   useEffect(() => {
     setJob(allJobs.find((obj) => obj.id === Number(jobsId)))
@@ -37,14 +38,14 @@ function CustomerJobCompleted() {
   useEffect(() => {
     APIgetJobQuotes(jobsId)
       .then((obj) => {
-        setQuote(obj.quotes.find((quote) => quote.status === 'accepted'))
+        setQuote(obj.quotes.find((quote) => quote.quoteStatus === 'accepted'))
       })
       .catch(() => null)
-  }, [])
+  }, [job])
 
   //for styling
   const size = 6
-
+  console.log('quote', quote)
   return (
     <div className="container my-3">
       {job?.id !== undefined ? (
@@ -61,6 +62,7 @@ function CustomerJobCompleted() {
           <IndividualQuote
             description={quote.description}
             price={quote.price}
+            date={quote.dateAdded}
           />
         </>
       ) : (
