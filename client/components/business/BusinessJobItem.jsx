@@ -11,9 +11,11 @@ function BusinessJobItem(props) {
     category,
     priceMin,
     priceMax,
-    status,
-    location,
+    quoteStatus,
+    jobLocation,
   } = props.job
+
+  console.log('props.job', props.job)
 
   const dropDownStatus = props.dropDownSelection
 
@@ -39,11 +41,11 @@ function BusinessJobItem(props) {
         <tbody>
           <tr>
             <th scope="row">Category: </th>
-            <td className="text-capitalize">{category}</td>
+            <td className="text">{category}</td>
           </tr>
           <tr>
             <th scope="row">Description: </th>
-            <td className="text-capitalize">{description}</td>
+            <td className="text">{description}</td>
           </tr>
           <tr>
             <th scope="row">Budget: </th>
@@ -53,17 +55,17 @@ function BusinessJobItem(props) {
           </tr>
           <tr>
             <th scope="row">Address: </th>
-            <td>{location}</td>
+            <td>{jobLocation}</td>
           </tr>
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={image} alt="Job illustration" />
+              <img src={image} className="w-100" alt="N/A" />
             </td>
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text-capitalize">{status}</td>
+            <td className="text">{quoteStatus}</td>
           </tr>
         </tbody>
       </table>
@@ -78,24 +80,3 @@ function BusinessJobItem(props) {
 }
 
 export default BusinessJobItem
-
-
-
-<div className="container mt-3">
-<h2 className="text-success mb-3">Quote</h2>
-<div className="card my-2 p-4 col-xl-6">
-  <table className="table">
-    <tbody>
-    <tr>
-        <th scope="row">Description</th>
-        <td className="text-capitalize">{props.description}</td>
-      </tr>
-      <tr>
-        <th scope="row">Price</th>
-        <td className="text-capitalize">{props.price}</td>
-      </tr>
-    </tbody>
-  </table>
-
-</div>
-</div>

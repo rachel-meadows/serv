@@ -13,11 +13,11 @@ function JobsListItem(props) {
         <tbody>
           <tr>
             <th scope="row">Category: </th>
-            <td className="text-capitalize">{job?.category}</td>
+            <td className="text">{job?.category}</td>
           </tr>
           <tr>
             <th scope="row">Description: </th>
-            <td className="text-capitalize">{job?.description}</td>
+            <td className="text">{job?.description}</td>
           </tr>
           <tr>
             <th scope="row">Budget: </th>
@@ -37,7 +37,7 @@ function JobsListItem(props) {
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text-capitalize">{job?.status}</td>
+            <td className="text">{job?.status}</td>
           </tr>
         </tbody>
       </table>

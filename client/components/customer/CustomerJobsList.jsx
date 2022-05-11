@@ -8,11 +8,12 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
-  const [showMessage, setShowMessage] = useState(false)
+  const [showMessage, setShowMessage] = useState({})
   const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
+  console.log('allJobs', allJobs)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
@@ -30,7 +31,7 @@ function JobsList() {
   useEffect(() => {
     setShowMessage(location?.state?.message)
     setTimeout(() => {
-      setShowMessage(false)
+      setShowMessage({})
     }, 3000)
   }, [])
 
@@ -38,6 +39,8 @@ function JobsList() {
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
       setJobs(unmatchedJobs)
+    } else if (dropDownSelection === 'quoted') {
+      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'active') {
       setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'completed') {
@@ -60,39 +63,51 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
+  console.log(showMessage)
+
   return (
     <>
-     
-        {showMessage && 
+      {/* {showMessage.type === 'jobAdd' && ( */}
+      {showMessage === 'jobAdd' && (
         <div className="alert alert-success" role="alert">
-        Your job has been submitted!
-      </div> }
-        
-        <h2 className="text-success mb-3">Job Listings</h2>
+          Your job has been submitted!
+        </div>
+      )}
+
+      {showMessage === 'quoteAdd' && (
+        <div className="alert alert-success" role="alert">
+          Your quote has been submitted!
+        </div>
+      )}
+
+      <h2 className="text-success mb-3">Job Listings</h2>
       <form>
         <div className="my-3 ml-auto">
           <label htmlFor="filter" className="form-label">
             Filter your jobs:
           </label>
-  
-        <select
+
+          <select
             name="filter"
             id="filter"
             className="form-select w-25"
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
-          <option value="all">All</option>
-          <option value="active">Active</option>
-          <option value="unmatched">Unmatched</option>
-          <option value="completed">Completed</option>
-        </select>
+            <option value="all">All</option>
+            <option value="unmatched">Unmatched</option>
+            <option value="unmatched">Quoted</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
       </form>
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h4 className="text-success mb-3">You have no job listings to view</h4>
+          <h4 className="text-success mb-3">
+            You have no job listings to view
+          </h4>
         ) : (
           jobs.map((job) => {
             return (
@@ -101,7 +116,6 @@ function JobsList() {
           })
         )}
       </div>
-   
     </>
   )
 }

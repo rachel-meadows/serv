@@ -55,7 +55,7 @@ function QuotesItem(props) {
         <tbody>
           <tr>
             <th scope="row">Business</th>
-            <td className="text-capitalize">
+            <td className="text">
               <Link to={`/business/${businessId}`}>
                 {business.businessName}
               </Link>
@@ -64,7 +64,7 @@ function QuotesItem(props) {
           </tr>
           <tr>
             <th scope="row">Description</th>
-            <td className="text-capitalize">{description}</td>
+            <td className="text">{description}</td>
           </tr>
           <tr>
             <th scope="row">Price</th>
@@ -83,10 +83,16 @@ function QuotesItem(props) {
 
       {status === 'pending' && (
         <div className="d-flex">
-          <button className="btn btn-success w-50" onClick={handleSubmitAccept}>
+          <button
+            className="btn btn-success mx-2 w-40"
+            onClick={handleSubmitAccept}
+          >
             Accept
           </button>
-          <button className="btn btn-danger w-50" onClick={handleSubmitReject}>
+          <button
+            className="btn btn-danger mx-2 w-40"
+            onClick={handleSubmitReject}
+          >
             Reject
           </button>
         </div>

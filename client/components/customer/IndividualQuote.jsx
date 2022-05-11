@@ -9,11 +9,11 @@ function IndividualQuote(props) {
           <tbody>
             <tr>
               <th scope="row">Description</th>
-              <td className="text-capitalize">{props.description}</td>
+              <td className="text">{props.description}</td>
             </tr>
             <tr>
               <th scope="row">Price</th>
-              <td className="text-capitalize">${props.price}.00</td>
+              <td className="text">${props.price}.00</td>
             </tr>
           </tbody>
         </table>

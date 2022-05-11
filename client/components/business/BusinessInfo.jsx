@@ -45,7 +45,7 @@ function BusinessInfo({ children }) {
           <tbody>
             <tr>
               <th scope="row">
-                <img src={logo} alt="Job illustration" className="w-25 mx-5" />
+                <img src={logo} alt="N/A" className="w-25 mx-5" />
               </th>
               <td></td>
             </tr>
@@ -53,11 +53,11 @@ function BusinessInfo({ children }) {
               <th scope="row" className="w-50">
                 Business Name
               </th>
-              <td className="text-capitalize">{businessName}</td>
+              <td className="text">{businessName}</td>
             </tr>
             <tr>
               <th scope="row">Category</th>
-              <td className="text-capitalize">{category}</td>
+              <td className="text">{category}</td>
             </tr>
             <tr>
               <th scope="row">Website</th>

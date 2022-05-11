@@ -14,6 +14,7 @@ function BusinessJobToQuote() {
   const [business, setBusiness] = useState({})
   const user = useSelector((state) => state.currentUser)
 
+  console.log(job)
   useEffect(() => {
     APIgetJobById(jobId)
       .then((job) => {
@@ -72,11 +73,11 @@ function BusinessJobToQuote() {
           <tbody>
             <tr>
               <th scope="row">Category: </th>
-              <td className="text-capitalize">{job.category}</td>
+              <td className="text">{job.category}</td>
             </tr>
             <tr>
               <th scope="row">Description: </th>
-              <td className="text-capitalize">{job.description}</td>
+              <td className="text">{job.description}</td>
             </tr>
             <tr>
               <th scope="row">Budget: </th>
@@ -91,16 +92,16 @@ function BusinessJobToQuote() {
             <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="Job illustration" />
+                <img src={job?.image} alt="N/A" />
               </td>
             </tr>
             <tr>
               <th scope="row">Status: </th>
-              <td className="text-capitalize">{job.status}</td>
+              <td className="text">{job.status}</td>
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-primary" onClick={handleSetToggleForm}>
+        <button className="btn btn-success" onClick={handleSetToggleForm}>
           Create Quote
         </button>
       </div>

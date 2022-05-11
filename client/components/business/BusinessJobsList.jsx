@@ -16,7 +16,7 @@ function BusinessJobsList() {
   const [openJobsInCategory, setOpenJobsInCategory] = useState([])
   const [jobsQuotedOn, setJobsQuotedOn] = useState([])
   const [dropDownSelection, setdropDownSelection] = useState('unmatched')
-  console.log(user)
+
   useEffect(() => {
     // Test user
     // APIgetJobsByUser(4).then((quotedJobs) => {
@@ -32,11 +32,9 @@ function BusinessJobsList() {
     APIgetBusinessByUserId(user?.id)
       // APIgetBusinessByUserId(4)
       .then((business) => {
-        console.log('API2', business?.category)
         return APIgetOpenJobsByCategory(business?.category)
       })
       .then((openJobs) => {
-        console.log('API3 - openJobs', openJobs)
         setOpenJobsInCategory(openJobs)
       })
       .catch((err) => {

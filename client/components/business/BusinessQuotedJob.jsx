@@ -14,6 +14,9 @@ function BusinessQuotedJob() {
   const { jobId } = useParams()
   const user = useSelector((state) => state.currentUser)
 
+  console.log(quote)
+  console.log(job)
+
   useEffect(() => {
     APIgetQuoteByJobAndUserId(jobId, user?.id)
       .then((quote) => {
@@ -54,11 +57,11 @@ function BusinessQuotedJob() {
           <tbody>
             <tr>
               <th scope="row">Category: </th>
-              <td className="text-capitalize">{job.category}</td>
+              <td className="text">{job.category}</td>
             </tr>
             <tr>
               <th scope="row">Description: </th>
-              <td className="text-capitalize">{job.description}</td>
+              <td className="text">{job.description}</td>
             </tr>
             <tr>
               <th scope="row">Budget: </th>
@@ -73,16 +76,16 @@ function BusinessQuotedJob() {
             <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="Job illustration" />
+                <img src={job.image} alt="No image to display" />
               </td>
             </tr>
             <tr>
               <th scope="row">Job Status: </th>
-              <td className="text-capitalize">{job.status}</td>
+              <td className="text">{job.status}</td>
             </tr>
             <tr>
               <th scope="row">Quote Status: </th>
-              <td className="text-capitalize">{quote?.quoteStatus}</td>
+              <td className="text">{quote?.quoteStatus}</td>
             </tr>
           </tbody>
         </table>
