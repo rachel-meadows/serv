@@ -85,7 +85,7 @@ function BusinessJobsList() {
   }
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3 " data-dismiss="modal">
       {showMessage && (
         <div className="alert alert-success" role="alert">
           Your quote has been submitted!
