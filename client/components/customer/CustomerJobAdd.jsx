@@ -19,7 +19,9 @@ function AddJob() {
     event.preventDefault()
     console.log('here are our inputs', inputs)
     APIaddJob(inputs)
-      .then(() => navigate('/customer', { state: { message: true } }))
+      .then(() =>
+        navigate('/customer', { state: { message: { type: 'jobAdd' } } })
+      )
       .catch((error) => {
         console.log(error)
       })

@@ -14,6 +14,9 @@ function BusinessQuotedJob() {
   const { jobId } = useParams()
   const user = useSelector((state) => state.currentUser)
 
+  console.log(quote)
+  console.log(job)
+
   useEffect(() => {
     APIgetQuoteByJobAndUserId(jobId, user?.id)
       .then((quote) => {
@@ -49,16 +52,16 @@ function BusinessQuotedJob() {
   return (
     <div className="container mt-3">
       <h2 className="text-success mb-3">Quoted Jobs</h2>
-      <div className="card mx-2 my-2 p-1 col-xl-6">
+      <div className="card my-2 p-4 col-xl-6">
         <table className="table">
           <tbody>
             <tr>
               <th scope="row">Category: </th>
-              <td className="text-capitalize">{job.category}</td>
+              <td className="text">{job.category}</td>
             </tr>
             <tr>
               <th scope="row">Description: </th>
-              <td className="text-capitalize">{job.description}</td>
+              <td className="text">{job.description}</td>
             </tr>
             <tr>
               <th scope="row">Budget: </th>
@@ -71,38 +74,18 @@ function BusinessQuotedJob() {
               <td>{job.location}</td>
             </tr>
             <tr>
-              <th scope="row">Date added: </th>
-              <td>
-                {job.dateAdded
-                  ? new Date(job.dateAdded).toLocaleString()
-                  : null}
-              </td>
-            </tr>
-            <tr>
               <th scope="row">Image: </th>
               <td>
-                {job.image ? (
-                  <img src={job?.image} alt="Job illustration" />
-                ) : (
-                  <p>N/A</p>
-                )}
+                <img src={job.image} alt="N/A" />
               </td>
             </tr>
             <tr>
               <th scope="row">Job Status: </th>
-              <td className="text-capitalize">{job.status}</td>
-            </tr>
-            <tr>
-              <th scope="row">Date quoted: </th>
-              <td>
-                {quote.dateAdded
-                  ? new Date(quote.dateAdded).toLocaleString()
-                  : null}
-              </td>
+              <td className="text">{job.status}</td>
             </tr>
             <tr>
               <th scope="row">Quote Status: </th>
-              <td className="text-capitalize">{quote?.quoteStatus}</td>
+              <td className="text">{quote?.quoteStatus}</td>
             </tr>
           </tbody>
         </table>

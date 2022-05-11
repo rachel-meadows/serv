@@ -8,19 +8,19 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
-  const [showMessage, setShowMessage] = useState(false)
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
+  const [showMessage, setShowMessage] = useState({})
+  const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
-  console.log('jobs', jobs)
-  console.log('Alljobs', allJobs)
+  console.log('allJobs', allJobs)
 
   useEffect(() => {
+    // obj returning will include quotes object
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
+        console.log(obj)
         setAllJobs([obj])
-        console.log('jobs: ', obj)
         return null
       })
       .catch((err) => {
@@ -33,7 +33,7 @@ function JobsList() {
   useEffect(() => {
     setShowMessage(location?.state?.message)
     setTimeout(() => {
-      setShowMessage(false)
+      setShowMessage({})
     }, 3000)
   }, [])
 
@@ -41,6 +41,8 @@ function JobsList() {
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
       setJobs(unmatchedJobs)
+    } else if (dropDownSelection === 'quoted') {
+      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'active') {
       setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'completed') {
@@ -63,15 +65,20 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-
-  //for styling
-  const size = 3
+  console.log(showMessage)
 
   return (
     <>
-      {showMessage && (
+      {/* {showMessage.type === 'jobAdd' && ( */}
+      {showMessage === 'jobAdd' && (
         <div className="alert alert-success" role="alert">
           Your job has been submitted!
+        </div>
+      )}
+
+      {showMessage === 'quoteAdd' && (
+        <div className="alert alert-success" role="alert">
+          Your quote has been submitted!
         </div>
       )}
 
@@ -89,10 +96,11 @@ function JobsList() {
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
+            <option value="all">All</option>
             <option value="unmatched">Unmatched</option>
+            <option value="unmatched">Quoted</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
-            <option value="all">All</option>
           </select>
         </div>
       </form>
@@ -103,18 +111,11 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          <div className="d-flex flex-row flex-wrap w-100">
-            {jobs.map((job) => {
-              return (
-                <JobsListItem
-                  key={job.id}
-                  job={job}
-                  showDetails={showDetails}
-                  size={size}
-                />
-              )
-            })}
-          </div>
+          jobs.map((job) => {
+            return (
+              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
+            )
+          })
         )}
       </div>
     </>

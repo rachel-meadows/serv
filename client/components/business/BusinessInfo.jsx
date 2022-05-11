@@ -53,11 +53,11 @@ function BusinessInfo({ children }) {
               <th scope="row" className="w-50">
                 Business Name
               </th>
-              <td className="text-capitalize">{businessName}</td>
+              <td className="text">{businessName}</td>
             </tr>
             <tr>
               <th scope="row">Category</th>
-              <td className="text-capitalize">{category}</td>
+              <td className="text">{category}</td>
             </tr>
             <tr>
               <th scope="row">Website</th>

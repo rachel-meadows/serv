@@ -281,7 +281,7 @@ function Registration() {
                       onChange={(e) => handleFileUpload(e)}
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-grou mb-3">
                     <img src={form.logo} alt="" style={{ width: '100px' }} />
                   </div>
                   <div className="input-group">

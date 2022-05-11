@@ -6,19 +6,18 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { jobId, id, businessId, description, dateAdded, price, status } =
-    props.quote
+  const { jobId, id, businessId, description, price, status } = props.quote
   console.log('Business', business)
   console.log('Props', props)
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
 
-  async function handleSubmitAccept() {
-    await APIchangeQuoteStatus(id, 'accepted')
+  function handleSubmitAccept() {
+    APIchangeQuoteStatus(id, 'accepted')
     APIchangeJobStatus(jobId, 'in progress')
       .then(() => {
-        navigate('/customer')
+        navigate(`/customer`, { state: { message: { type: 'quoteAdd' } } })
       })
       .catch((err) => {
         console.error(err)
@@ -51,12 +50,12 @@ function QuotesItem(props) {
   // }, [user])
 
   return (
-    <div className="card mx-2 my-2 p-1 col-xl-3">
+    <div className="card my-2 p-4 col-xl-6">
       <table className="table">
         <tbody>
           <tr>
             <th scope="row">Business</th>
-            <td className="text-capitalize">
+            <td className="text">
               <Link to={`/business/${businessId}`}>
                 {business.businessName}
               </Link>
@@ -65,15 +64,11 @@ function QuotesItem(props) {
           </tr>
           <tr>
             <th scope="row">Description</th>
-            <td className="text-capitalize">{description}</td>
+            <td className="text">{description}</td>
           </tr>
           <tr>
             <th scope="row">Price</th>
             <td>${price}.00</td>
-          </tr>
-          <tr>
-            <th scope="row">Date sent: </th>
-            <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
           </tr>
           <tr>
             <th scope="row">Status</th>
@@ -88,10 +83,16 @@ function QuotesItem(props) {
 
       {status === 'pending' && (
         <div className="d-flex">
-          <button className="btn btn-success w-50" onClick={handleSubmitAccept}>
+          <button
+            className="btn btn-success mx-2 w-40"
+            onClick={handleSubmitAccept}
+          >
             Accept
           </button>
-          <button className="btn btn-danger w-50" onClick={handleSubmitReject}>
+          <button
+            className="btn btn-danger mx-2 w-40"
+            onClick={handleSubmitReject}
+          >
             Reject
           </button>
         </div>
