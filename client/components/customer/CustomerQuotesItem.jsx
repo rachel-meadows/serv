@@ -14,8 +14,8 @@ function QuotesItem(props) {
 
   const navigate = useNavigate()
 
-  function handleSubmitAccept() {
-    APIchangeQuoteStatus(id, 'accepted')
+  async function handleSubmitAccept() {
+    await APIchangeQuoteStatus(id, 'accepted')
     APIchangeJobStatus(jobId, 'in progress')
       .then(() => {
         navigate('/customer')
