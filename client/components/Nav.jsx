@@ -21,7 +21,6 @@ function Nav() {
       dispatch(getUserByAuth0Id(user.auth0Id))
     }
   }, [user])
-  console.log(currentUser.id)
 
   useEffect(() => {
     APIgetBusinessByUserId(currentUser?.id)
