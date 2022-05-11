@@ -20,7 +20,7 @@ function JobsList() {
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
         console.log(obj)
-        setAllJobs(obj.jobs)
+        setAllJobs([obj])
         return null
       })
       .catch((err) => {
