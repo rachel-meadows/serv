@@ -21,7 +21,7 @@ function Home() {
   }, [currentUser])
 
   return (
-    <div className="home-page">
+    <div className="home-page ">
       <div
         id="carouselExampleIndicators"
         className="carousel slide h-100"
@@ -108,21 +108,24 @@ function Home() {
       <div className="about-panel">
         <div className="container">
           <div className="row">
+            <div
+              className=" about-us w-100 about-us"
+              style={{ minHeight: '40vh' }}
+            >
+              <h3 className="text-success my-3">About Us</h3>
+              <h5 className="">Our Vision</h5>
+              <p>
+                To lead the way in bringing services effortlessly to your front
+                door at the click of a button.
+              </p>
+              <h5 className="">Our Mission</h5>
+              <p>
+                Our mission is to provide effortless service at the click of a
+                button, so you can have all of your maintenance issues fixed
+                with ease by skilled professionals.
+              </p>
+            </div>
             <div className="col p-3">
-              <div className="about-us">
-                <h3 className="text-success my-3">About Us</h3>
-                <h5 className="">Our Vision</h5>
-                <p>
-                  To lead the way in bringing services effortlessly to your
-                  front door at the click of a button.
-                </p>
-                <h5 className="">Our Mission</h5>
-                <p>
-                  Our mission is to provide effortless service at the click of a
-                  button, so you can have all of your maintenance issues fixed
-                  with ease by skilled professionals.
-                </p>
-              </div>
               <div className="our-values">
                 <h3 className="text-success my-3">Welcome To Serv</h3>
                 <Link to="/welcome">
@@ -161,16 +164,16 @@ function Home() {
                 alt="..."
                 className="img-thumbnail w-50 p-2"
               />
-              <div className="card my-3 p-3">
-                <blockquote className="blockquote mt-3">
-                  <p className="mb-3 fs-5">
-                    It always seems impossible, until it is done.
-                  </p>
-                  <footer className="blockquote-footer fs-6">
-                    Nelson Mandela
-                  </footer>
-                </blockquote>
-              </div>
+            </div>
+            <div className="my-3 p-3 ">
+              <blockquote className="blockquote mt-3 quote">
+                <p className="mb-3 fs-5">
+                  It always seems impossible, until it is done.
+                </p>
+                <footer className="blockquote-footer fs-6">
+                  Nelson Mandela
+                </footer>
+              </blockquote>
             </div>
           </div>
         </div>

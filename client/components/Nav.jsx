@@ -57,7 +57,7 @@ function Nav() {
           <>
             <li className="nav-item">
               <Link to="/business" className="nav-link">
-                <button className="btn btn-outline-light">Business</button>
+                <button className="btn btn-outline-light ">Business</button>
               </Link>
             </li>
             {/* <li className="nav-item">
