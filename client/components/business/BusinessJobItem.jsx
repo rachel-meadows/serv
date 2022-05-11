@@ -13,7 +13,7 @@ function BusinessJobItem(props) {
     priceMax,
     quoteStatus,
     jobLocation,
-    dateAdded
+    dateAdded,
   } = props.job
 
   console.log('props.job', props.job)
@@ -65,7 +65,11 @@ function BusinessJobItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
+              {image ? (
+                <img src={image} className="w-100" alt="Job illustration" />
+              ) : (
+                <p>N/A</p>
+              )}
             </td>
           </tr>
           <tr>
