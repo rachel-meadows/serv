@@ -18,9 +18,9 @@ function JobsList() {
   useEffect(() => {
     // obj returning will include quotes object
     APIgetJobsByCustomer(customerId)
-      .then((obj) => {
-        console.log(obj)
-        setAllJobs([obj])
+      .then((job) => {
+        console.log('Jobs from front end:', job)
+        setAllJobs(job)
         return null
       })
       .catch((err) => {

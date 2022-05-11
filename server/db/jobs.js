@@ -18,49 +18,29 @@ function getOpenJobs(db = connection) {
     )
 }
 
-// Get a list of jobs submitted by the current customer.
+// // Get a list of jobs submitted by the current customer.
 function getJobsByCustomer(id, db = connection) {
   return db('jobs')
+    .join('quotes', 'jobs.id', 'quotes.job_id')
     .where('jobs.user_id', id)
     .select(
-      'id',
+      'jobs.id as id',
       'user_id as userId',
-      'description as description',
+      'jobs.description as description',
       'image',
       'category',
       'price_min as priceMin',
       'price_max as priceMax',
-      'date_added as dateAdded',
+      'jobs.date_added as dateAdded',
       'location',
-      'status'
+      'jobs.status as status',
+      'quotes.business_id as businessId',
+      'quotes.price as price',
+      'quotes.date_added as quoteDateAdded',
+      'quotes.notes as quoteDescription',
+      'quotes.status as quoteStatus'
     )
-    .first()
 }
-
-// // Get a list of jobs submitted by the current customer.
-// function getJobsByCustomer(id, db = connection) {
-//   return db('jobs')
-//     .join('quotes', 'jobs.id', 'quotes.job_id')
-//     .where('jobs.user_id', id)
-//     .select(
-//       'jobs.id as id',
-//       'user_id as userId',
-//       'jobs.description as description',
-//       'image',
-//       'category',
-//       'price_min as priceMin',
-//       'price_max as priceMax',
-//       'jobs.date_added as dateAdded',
-//       'location',
-//       'jobs.status as status',
-//       'quotes.business_id as businessId',
-//       'quotes.price as price',
-//       'quotes.date_added as quoteDateAdded',
-//       'quotes.notes as quoteDescription',
-//       'quotes.status as quoteStatus'
-//     )
-//     .first()
-// }
 
 function addJob(input, db = connection) {
   const { userId, description, image, category, priceMin, priceMax, location } =
