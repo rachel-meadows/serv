@@ -8,32 +8,19 @@ function JobsList() {
   const customerId = useSelector((state) => state.currentUser?.id)
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
-<<<<<<< HEAD
   const [showMessage, setShowMessage] = useState({})
   const [dropDownSelection, setdropDownSelection] = useState('all')
-||||||| 59708b2
-  const [showMessage, setShowMessage] = useState(false)
-  const [dropDownSelection, setdropDownSelection] = useState('all')
-=======
-  const [showMessage, setShowMessage] = useState(false)
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
-<<<<<<< HEAD
   console.log('allJobs', allJobs)
-||||||| 59708b2
-=======
-  console.log('jobs', jobs)
-  console.log('Alljobs', allJobs)
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
 
   useEffect(() => {
+    // obj returning will include quotes object
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
-        setAllJobs([obj])
-        console.log('jobs: ', obj)
+        console.log(obj)
+        setAllJobs(obj.jobs)
         return null
       })
       .catch((err) => {
@@ -78,29 +65,13 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-<<<<<<< HEAD
   console.log(showMessage)
 
-||||||| 59708b2
-=======
-
-  //for styling
-  const size = 3
-
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
   return (
     <>
-<<<<<<< HEAD
       {/* {showMessage.type === 'jobAdd' && ( */}
       {showMessage === 'jobAdd' && (
-||||||| 59708b2
-     
-        {showMessage && 
-=======
-      {showMessage && (
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
         <div className="alert alert-success" role="alert">
-<<<<<<< HEAD
           Your job has been submitted!
         </div>
       )}
@@ -112,18 +83,6 @@ function JobsList() {
       )}
 
       <h2 className="text-success mb-3">Job Listings</h2>
-||||||| 59708b2
-        Your job has been submitted!
-      </div> }
-        
-        <h2 className="text-success mb-3">Job Listings</h2>
-=======
-          Your job has been submitted!
-        </div>
-      )}
-
-      <h2 className="text-success mb-3">Job Listings</h2>
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
       <form>
         <div className="my-3 ml-auto">
           <label htmlFor="filter" className="form-label">
@@ -137,26 +96,12 @@ function JobsList() {
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
-<<<<<<< HEAD
             <option value="all">All</option>
             <option value="unmatched">Unmatched</option>
             <option value="unmatched">Quoted</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
           </select>
-||||||| 59708b2
-          <option value="all">All</option>
-          <option value="active">Active</option>
-          <option value="unmatched">Unmatched</option>
-          <option value="completed">Completed</option>
-        </select>
-=======
-            <option value="unmatched">Unmatched</option>
-            <option value="active">Active</option>
-            <option value="completed">Completed</option>
-            <option value="all">All</option>
-          </select>
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
         </div>
       </form>
       <div className="jobList">
@@ -166,18 +111,11 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          <div className="d-flex flex-row flex-wrap w-100">
-            {jobs.map((job) => {
-              return (
-                <JobsListItem
-                  key={job.id}
-                  job={job}
-                  showDetails={showDetails}
-                  size={size}
-                />
-              )
-            })}
-          </div>
+          jobs.map((job) => {
+            return (
+              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
+            )
+          })
         )}
       </div>
     </>

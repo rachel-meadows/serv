@@ -52,11 +52,6 @@ function BusinessActiveJob() {
           <tr>
             <th scope="row">Image: </th>
             <td>
-<<<<<<< HEAD
-              <img src={job?.image} alt="N/A" />
-||||||| 59708b2
-              <img src={job?.image} alt="Job illustration" />
-=======
 
               {job.image ? (
                 <img src={job?.image} alt="Job illustration" />
@@ -64,7 +59,6 @@ function BusinessActiveJob() {
                 <p>N/A</p>
               )}
 
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
             </td>
           </tr>
           <tr>

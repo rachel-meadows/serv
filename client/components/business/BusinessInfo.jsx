@@ -45,13 +45,7 @@ function BusinessInfo({ children }) {
           <tbody>
             <tr>
               <th scope="row">
-<<<<<<< HEAD
-                <img src={logo} alt="N/A" className="w-25 mx-5" />
-||||||| 59708b2
-                <img src={logo} alt="Job illustration" className="w-25 mx-5" />
-=======
                 <img src={logo} alt="Business logo" className="w-25 mx-5" />
->>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
               </th>
               <td></td>
             </tr>
