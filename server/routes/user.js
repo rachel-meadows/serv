@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
   try {
     const userData = { auth0Id, email, userName, type }
     const user = await dbUsers.addUser(userData)
-    console.log(user)
+    //console.log(user)
     if (type === 'business') {
       const businessData = {
         userId: user.id,

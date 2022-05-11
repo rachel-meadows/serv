@@ -82,7 +82,7 @@ function BusinessQuotedJobsList() {
       <h1>Job Listings</h1>
       <section>
         {jobs?.map((job) => {
-          console.log(job)
+          //console.log(job)
           return (
             <BusinessQuoteItem
               key={job.id}

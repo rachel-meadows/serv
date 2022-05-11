@@ -7,8 +7,8 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
   const { jobId, id, businessId, description, price, status } = props.quote
-  console.log('Business', business)
-  console.log('Props', props)
+  //console.log('Business', business)
+  //console.log('Props', props)
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ function QuotesItem(props) {
   useEffect(() => {
     APIgetBusinessById(businessId)
       .then((data) => {
-        console.log('data', data)
+        //console.log('data', data)
         return setBusiness(data)
       })
       .catch((err) => {
@@ -41,7 +41,7 @@ function QuotesItem(props) {
   // useEffect(() => {
   //   APIgetJobQuotes(user?.id)
   //     .then((data) => {
-  //       console.log('data', data)
+  //       //console.log('data', data)
   //       return setBusiness(data)
   //     })
   //     .catch((err) => {

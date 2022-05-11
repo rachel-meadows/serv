@@ -48,7 +48,7 @@ function BusinessQuotedJob() {
         console.error(err)
       })
   }
-
+  console.log('Quoted', job)
   return (
     <div className="container mt-3">
       <h2 className="text-success mb-3">Quoted Jobs</h2>

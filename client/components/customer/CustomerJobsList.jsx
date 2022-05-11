@@ -16,16 +16,16 @@ function JobsList() {
 
   useEffect(() => {
     // obj returning will include quotes object
-    console.log(customerId)
+    //console.log(customerId)
     APIgetJobsByCustomer(customerId)
       .then((jobs) => {
-        console.log(jobs)
+        //console.log(jobs)
         setAllJobs(jobs)
         return null
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
-        console.log(errMessage)
+        //console.log(errMessage)
         // dispatch(showError(errMessage))
       })
   }, [customerId])
@@ -44,7 +44,7 @@ function JobsList() {
       )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
-      console.log('here')
+      //console.log('here')
       setJobs(
         allJobs.filter(
           (job) => job.status === 'open' && job.quoteStatus === 'pending'
@@ -72,7 +72,7 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-  console.log(showMessage)
+  //console.log(showMessage)
 
   //for styling
   const size = 3

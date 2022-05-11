@@ -11,7 +11,7 @@ const stripe = Stripe(process.env.STRIPE_PRIVATE_KEY)
 
 // POST api/v1/customer/add
 router.post('/add', async (req, res) => {
-  console.log('Server')
+  //console.log('Server')
   const data = req.body
   try {
     await dbJobs.addJob(data)
@@ -138,8 +138,8 @@ router.post('/completed/:quoteId/review', (req, res) => {
             clearRatingsArr.reduce((partialSum, i) => partialSum + i, 0) /
             ratingsCount
 
-          console.log('Average rating from route: ', averageRating)
-          console.log('businessId from route: ', businessId)
+          //console.log('Average rating from route: ', averageRating)
+          //console.log('businessId from route: ', businessId)
           dbBusiness
             .updateBusinessRatingCount(businessId, ratingsCount)
             .then(() => {})
@@ -157,7 +157,7 @@ router.post('/completed/:quoteId/review', (req, res) => {
 router.post('/create-checkout-session', async (req, res) => {
   const { quoteId } = req.body
   const quote = await dbQuotes.getQuote(quoteId)
-  console.log(quote[0].price)
+  //console.log(quote[0].price)
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
