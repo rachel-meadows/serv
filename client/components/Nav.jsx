@@ -43,14 +43,12 @@ function Nav() {
           <>
             <li className="nav-item">
               <Link to="/customer" className="nav-link">
-                <button className="btn btn-outline-success">
-                  View Listings
-                </button>
+                <button className="btn btn-outline-light">View Listings</button>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/customer/add" className="nav-link">
-                <button className="btn btn-outline-success">Add Listing</button>
+                <button className="btn btn-outline-light">Add Listing</button>
               </Link>
             </li>
           </>
@@ -59,19 +57,19 @@ function Nav() {
           <>
             <li className="nav-item">
               <Link to="/business" className="nav-link">
-                <button className="btn btn-outline-primary">Business</button>
+                <button className="btn btn-outline-light">Business</button>
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/business/jobs" className="nav-link">
-                <button className="btn btn-outline-primary">Bus Jobs</button>
+                <button className="btn btn-outline-light">Bus Jobs</button>
               </Link>
-            </li>
+            </li> */}
           </>
         )}
         <li className="nav-item">
           <a href="/" onClick={handleLogoff} className="nav-link ">
-            <button className="btn btn-outline-danger">Log out</button>
+            <button className="btn btn-light">Log out</button>
           </a>
         </li>
       </IfAuthenticated>

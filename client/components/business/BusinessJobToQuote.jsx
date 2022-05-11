@@ -101,7 +101,11 @@ function BusinessJobToQuote() {
               <th scope="row">Image: </th>
               <td>
                 {job.image ? (
-                  <img src={job?.image} alt="Job illustration" />
+                  <img
+                    src={job?.image}
+                    className="w-100"
+                    alt="Job illustration"
+                  />
                 ) : (
                   <p>N/A</p>
                 )}
