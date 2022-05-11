@@ -169,7 +169,7 @@ function Registration() {
                     className="flex flex-col col-9 w-100 "
                   >
                     <div className="card w-100 my-2 p-4">
-                      <h3 className="business-details-title text-success mb-3">
+                      <h3 className="business-details-title text-primary mb-3">
                         Business Details
                       </h3>
                       <div className="mb-3">
@@ -283,7 +283,7 @@ function Registration() {
                       <div className="input-group">
                         <button
                           type="submit"
-                          className="btn btn-outline-success"
+                          className="btn btn-outline-primary"
                         >
                           Register as a Business
                         </button>
