@@ -13,6 +13,7 @@ function BusinessJobItem(props) {
     priceMax,
     status,
     location,
+    dateAdded,
   } = props.job
 
   const dropDownStatus = props.dropDownSelection
@@ -56,9 +57,13 @@ function BusinessJobItem(props) {
             <td>{location}</td>
           </tr>
           <tr>
+            <th scope="row">Date added: </th>
+            <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
+          </tr>
+          <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={image} alt="Job illustration" />
+              {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
             </td>
           </tr>
           <tr>

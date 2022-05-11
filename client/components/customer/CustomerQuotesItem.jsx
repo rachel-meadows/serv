@@ -6,7 +6,8 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { jobId, id, businessId, description, price, status } = props.quote
+  const { jobId, id, businessId, description, dateAdded, price, status } =
+    props.quote
   console.log('Business', business)
   console.log('Props', props)
   const user = useSelector((state) => state.currentUser)
@@ -69,6 +70,10 @@ function QuotesItem(props) {
           <tr>
             <th scope="row">Price</th>
             <td>${price}.00</td>
+          </tr>
+          <tr>
+            <th scope="row">Date sent: </th>
+            <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
           </tr>
           <tr>
             <th scope="row">Status</th>

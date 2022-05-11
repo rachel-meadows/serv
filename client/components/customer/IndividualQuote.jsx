@@ -15,6 +15,14 @@ function IndividualQuote(props) {
               <th scope="row">Price</th>
               <td className="text-capitalize">${props.price}.00</td>
             </tr>
+            <tr>
+              <th scope="row">Date added: </th>
+              <td>
+                {props.dateAdded
+                  ? new Date(props.dateAdded).toLocaleString()
+                  : null}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

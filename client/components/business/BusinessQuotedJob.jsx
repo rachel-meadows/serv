@@ -71,14 +71,34 @@ function BusinessQuotedJob() {
               <td>{job.location}</td>
             </tr>
             <tr>
+              <th scope="row">Date added: </th>
+              <td>
+                {job.dateAdded
+                  ? new Date(job.dateAdded).toLocaleString()
+                  : null}
+              </td>
+            </tr>
+            <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="Job illustration" />
+                {job.image ? (
+                  <img src={job?.image} alt="Job illustration" />
+                ) : (
+                  <p>N/A</p>
+                )}
               </td>
             </tr>
             <tr>
               <th scope="row">Job Status: </th>
               <td className="text-capitalize">{job.status}</td>
+            </tr>
+            <tr>
+              <th scope="row">Date quoted: </th>
+              <td>
+                {quote.dateAdded
+                  ? new Date(quote.dateAdded).toLocaleString()
+                  : null}
+              </td>
             </tr>
             <tr>
               <th scope="row">Quote Status: </th>

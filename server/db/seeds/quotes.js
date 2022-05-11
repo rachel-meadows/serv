@@ -8,7 +8,7 @@ exports.seed = function (knex) {
           business_id: 1,
           job_id: 1,
           price: 1100,
-          date_added: '2022-05-04T21:15:34.334Z',
+          date_added: '1652220023069',
           notes: `We can fix your roof leak for 1100, materials excluded. Check out our website for evidence of work on similar issues.`,
           status: 'pending',
         },
@@ -17,7 +17,7 @@ exports.seed = function (knex) {
           business_id: 1,
           job_id: 2,
           price: 110,
-          date_added: '2022-05-04T21:15:34.334Z',
+          date_added: '1652220023069',
           notes:
             'I can have a plumber look at it within 24 hours of accepting the quote.',
           status: 'accepted',
