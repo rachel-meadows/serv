@@ -16,15 +16,12 @@ function CustomerJobCompleted() {
   const customerId = useSelector((state) => state.currentUser.id)
   const [reviewed, setReviewed] = useState(false)
 
-  console.log('allJob', allJobs)
+  console.log('allJobs', allJobs)
 
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
-      .then((obj) => {
-        obj.map((job) => {
-          setAllJobs([job])
-        })
-        console.log('allJobsApi', obj)
+      .then((jobs) => {
+        setAllJobs(jobs)
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message

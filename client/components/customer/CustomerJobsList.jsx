@@ -9,7 +9,7 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState({})
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
+  const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
@@ -19,13 +19,12 @@ function JobsList() {
     //console.log(customerId)
     APIgetJobsByCustomer(customerId)
       .then((jobs) => {
-        //console.log(jobs)
         setAllJobs(jobs)
         return null
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
-        //console.log(errMessage)
+        console.log(errMessage)
         // dispatch(showError(errMessage))
       })
   }, [customerId])
@@ -55,6 +54,7 @@ function JobsList() {
     } else if (dropDownSelection === 'completed') {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
     } else if (dropDownSelection === 'all') {
+      console.log('all')
       setJobs(allJobs)
     }
   }, [allJobs, dropDownSelection])

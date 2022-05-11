@@ -1,11 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Nav from '../Nav'
 
 function Header() {
+  const currentUser = useSelector((state) => state.currentUser)
+
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-success">
+      <nav
+        className={`navbar navbar-expand-lg navbar-light ${
+          currentUser?.type === 'business' ? 'bg-primary' : 'bg-success'
+        }`}
+      >
         <div className="container">
           <Link to="/" className="navbar-brand">
             <img src="/images/serv-logo-small-white.png" alt="Serv" />

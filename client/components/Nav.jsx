@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
@@ -6,6 +6,7 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserByAuth0Id } from '../actions/user'
+import { APIgetBusinessByUserId } from '../apis/business'
 
 function Nav() {
   const dispatch = useDispatch()
@@ -14,12 +15,21 @@ function Nav() {
   const register = getRegisterFn(useAuth0)
   const user = useSelector((state) => state.user)
   const currentUser = useSelector((state) => state.currentUser)
+  const [business, setBusiness] = useState({})
 
   useEffect(() => {
     if (user.auth0Id !== '') {
       dispatch(getUserByAuth0Id(user.auth0Id))
     }
   }, [user])
+
+  useEffect(() => {
+    APIgetBusinessByUserId(currentUser.id).then((business) => {
+      console.log(currentUser.id)
+      setBusiness(business)
+      console.log('business', business)
+    })
+  }, [currentUser])
 
   function handleLogin(event) {
     event.preventDefault()
@@ -57,14 +67,14 @@ function Nav() {
           <>
             <li className="nav-item">
               <Link to="/business" className="nav-link">
-                <button className="btn btn-outline-light">Business</button>
+                <button className="btn btn-outline-light ">Business</button>
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link to="/business/jobs" className="nav-link">
-                <button className="btn btn-outline-light">Bus Jobs</button>
+            <li className="nav-item">
+              <Link to={`/business/${business?.id}`} className="nav-link">
+                <button className="btn btn-outline-light">Details</button>
               </Link>
-            </li> */}
+            </li>
           </>
         )}
         <li className="nav-item">
