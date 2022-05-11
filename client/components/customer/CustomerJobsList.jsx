@@ -9,11 +9,10 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState({})
-  const [dropDownSelection, setdropDownSelection] = useState('all')
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
-  console.log('allJobs', allJobs)
 
   useEffect(() => {
     // obj returning will include quotes object
@@ -39,13 +38,13 @@ function JobsList() {
   }, [])
 
   useEffect(() => {
-    console.log('job useEffect', allJobs)
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter(
-        (job) => job.status === 'open' && job.quoteStatus !== 'pending'
+        (job) => job.status === 'open' && job.quoteStatus == null
       )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
+      console.log('here')
       setJobs(
         allJobs.filter(
           (job) => job.status === 'open' && job.quoteStatus === 'pending'
