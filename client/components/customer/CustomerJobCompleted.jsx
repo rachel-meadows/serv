@@ -8,10 +8,6 @@ import IndividualQuote from './IndividualQuote'
 import StarRating from './Review/StarRating'
 import Review from './Review/Review'
 
-/*To-Do
-2. (stretch) Rate Button
-*/
-
 function CustomerJobCompleted() {
   const { jobsId } = useParams()
   const [allJobs, setAllJobs] = useState([])

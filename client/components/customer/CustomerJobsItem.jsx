@@ -30,6 +30,12 @@ function JobsListItem(props) {
             <td>{job?.location}</td>
           </tr>
           <tr>
+            <th scope="row">Date added: </th>
+            <td>
+              {job.dateAdded ? new Date(job.dateAdded).toLocaleString() : null}
+            </td>
+          </tr>
+          <tr>
             <th scope="row">Image: </th>
             <td>
               {job.image ? (

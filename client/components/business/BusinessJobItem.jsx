@@ -56,6 +56,12 @@ function BusinessJobItem(props) {
             <td>{location}</td>
           </tr>
           <tr>
+            <th scope="row">Date added: </th>
+            <td>
+              {job.dateAdded ? new Date(job.dateAdded).toLocaleString() : null}
+            </td>
+          </tr>
+          <tr>
             <th scope="row">Image: </th>
             <td>
               {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}

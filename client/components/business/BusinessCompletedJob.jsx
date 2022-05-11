@@ -51,7 +51,9 @@ function BusinessCompletedJob() {
           </tr>
           <tr>
             <th scope="row">Date added: </th>
-            <td>{job?.dateAdded}</td>
+            <td>
+              {job.dateAdded ? new Date(job.dateAdded).toLocaleString() : null}
+            </td>
           </tr>
           <tr>
             <th scope="row">Image: </th>
@@ -65,7 +67,7 @@ function BusinessCompletedJob() {
           </tr>
           <tr>
             <th scope="row">Quote Date:</th>
-            <td className="text-capitalize">{quote?.dateAdded}</td>
+            <td>{quote.dateAdded ? quote.dateAdded.toLocaleString() : null}</td>
           </tr>
           <tr>
             <th scope="row">Quote Text: </th>
