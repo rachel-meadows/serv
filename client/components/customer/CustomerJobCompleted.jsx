@@ -47,12 +47,15 @@ function CustomerJobCompleted() {
       .catch(() => null)
   }, [])
 
+  //for styling
+  const size = 6
+
   return (
     <>
       {job?.id !== undefined ? (
         <>
           <h2>Your job:</h2>
-          <JobsListItem key={job.id} job={job} hideButton={true} />
+          <JobsListItem key={job.id} job={job} hideButton={true} size={size} />
         </>
       ) : (
         <h4>Error - Job listing cannot display</h4>

@@ -114,7 +114,7 @@ function BusinessJobsList() {
         </div>
       </form>
 
-      <div className="d-flex d-flex flex-row flex-wrap w-100">
+      <div className="d-flex d-flex flex-row flex-wrap w-100 ">
         {jobs?.map((job) => {
           return (
             <BusinessJobItem

@@ -63,6 +63,10 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
+
+  //for styling
+  const size = 3
+
   return (
     <>
       {showMessage && (
@@ -106,6 +110,7 @@ function JobsList() {
                   key={job.id}
                   job={job}
                   showDetails={showDetails}
+                  size={size}
                 />
               )
             })}
