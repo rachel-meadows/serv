@@ -17,10 +17,11 @@ function JobsList() {
 
   useEffect(() => {
     // obj returning will include quotes object
+    console.log(customerId)
     APIgetJobsByCustomer(customerId)
-      .then((job) => {
-        console.log('Jobs from front end:', job)
-        setAllJobs(job)
+      .then((jobs) => {
+        console.log(jobs)
+        setAllJobs(jobs)
         return null
       })
       .catch((err) => {
@@ -38,11 +39,18 @@ function JobsList() {
   }, [])
 
   useEffect(() => {
+    console.log('job useEffect', allJobs)
     if (dropDownSelection === 'unmatched') {
-      const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
+      const unmatchedJobs = allJobs.filter(
+        (job) => job.status === 'open' && job.quoteStatus !== 'pending'
+      )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
-      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
+      setJobs(
+        allJobs.filter(
+          (job) => job.status === 'open' && job.quoteStatus === 'pending'
+        )
+      )
     } else if (dropDownSelection === 'active') {
       setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'completed') {
@@ -65,7 +73,7 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-  console.log(showMessage)
+  // console.log(showMessage)
 
   return (
     <>
@@ -76,6 +84,7 @@ function JobsList() {
         </div>
       )}
 
+      {/* {showMessage.type === 'quoteAdd' && ( */}
       {showMessage === 'quoteAdd' && (
         <div className="alert alert-success" role="alert">
           Your quote has been submitted!
