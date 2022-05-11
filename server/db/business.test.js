@@ -18,56 +18,50 @@ afterAll(() => {
   return testDb.destroy()
 })
 
-describe('addBusiness', () => {
-  it('inserts a new business correctly', () => {
-    const newBusiness = {
-      userId: 1,
-      businessName: 'Plumbers R Us',
-      website: 'www.example.com',
-      category: 'plumbing',
-      logo: '',
-      location: '123 Fake Street',
-    }
-    return db.addBusiness(newBusiness, testDb).then((event) => {
-      expect(event.userId).toBe(1)
-      expect(event.businessName).toBe('Plumbers R Us')
-      return null
-    })
-  })
-})
+// describe('editBusiness', () => {
+//   it('edits an existing business correctly', () => {
+//     const newData = {
+//       userId: 1,
+//       businessName: 'Plumbers R Us',
+//       website: 'www.example.com',
+//       category: 'plumbing',
+//       logo: 'base64ImageString',
+//       location: '123 Fake Street',
+//     }
 
-describe('editBusiness', () => {
-  it('edits an existing business correctly', () => {
-    const existingBusiness = {
-      userId: 1,
-      businessName: 'Plumbers R Us',
-      website: 'www.example.com',
-      category: 'plumbing',
-      logo: '',
-      location: '123 Fake Street',
-    }
+//     return db.editBusiness(1, newData).then((event) => {
+//       expect(event.logo).toBe('base64ImageString')
+//       expect(event.businessName).toBe('Plumbers R Us')
+//       return null
+//     })
+//   })
+// })
 
-    const newData = {
-      userId: 1,
-      businessName: 'Plumbers R Not Us',
-      website: 'www.example.com',
-      category: 'plumbing',
-      logo: 'base64ImageString',
-      location: '123 Fake Street',
-    }
-
-    return db.editBusiness(existingBusiness, newData, testDb).then((event) => {
-      expect(event.logo).toBe('base64ImageString')
-      expect(event.businessName).toBe('Plumbers R Not Us')
-      return null
-    })
-  })
-})
+// describe('addBusiness', () => {
+//   it('inserts a new business correctly', () => {
+//     const newBusiness = {
+//       userId: 1,
+//       businessName: 'Plumbers R Us',
+//       website: 'www.example.com',
+//       category: 'plumbing',
+//       logo: '',
+//       location: '123 Fake Street',
+//       average_rating: null,
+//     }
+//     return db.addBusiness(newBusiness, testDb).then((businessId) => {
+//       db.getBusinessByUserId(businessId).then((event) => {
+//         console.log('event', event)
+//         expect(event.userId).toBe(1)
+//         expect(event.businessName).resolves.toBe('Plumbers R Us')
+//         return null
+//       })
+//     })
+//   })
+// })
 
 describe('getBusinessByUserId', () => {
   it('returns business by ID of the user who registered it', () => {
     return db.getBusinessByUserId(2, testDb).then((event) => {
-      console.log('event: ', event)
       expect(event.id).toBe(1)
       expect(event.businessName).toBe('Pipe Fix Plumbing')
       return null

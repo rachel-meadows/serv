@@ -23,7 +23,7 @@ function getQuotesByJob(id, db = connection) {
       'price',
       'date_added as dateAdded',
       'notes as description',
-      'status'
+      'status as quoteStatus'
     )
 }
 
@@ -37,7 +37,7 @@ function getQuote(id, db = connection) {
       'price',
       'date_added as dateAdded',
       'notes as description',
-      'status'
+      'status as quoteStatus'
     )
 }
 
