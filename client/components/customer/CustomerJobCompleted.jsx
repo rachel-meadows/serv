@@ -21,9 +21,10 @@ function CustomerJobCompleted() {
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
+        obj.map((job) => {
+          setAllJobs([job])
+        })
         console.log('allJobsApi', obj)
-        setAllJobs(obj.jobs)
-        return null
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
@@ -34,6 +35,7 @@ function CustomerJobCompleted() {
   useEffect(() => {
     setJob(allJobs.find((obj) => obj.id === Number(jobsId)))
   }, [allJobs])
+  console.log(allJobs)
 
   useEffect(() => {
     APIgetJobQuotes(jobsId)
@@ -47,10 +49,10 @@ function CustomerJobCompleted() {
   const size = 6
 
   return (
-    <>
+    <div className="container my-3">
       {job?.id !== undefined ? (
         <>
-          <h2>Your job:</h2>
+          <h2 className="text-success">Your job</h2>
           <JobsListItem key={job.id} job={job} hideButton={true} size={size} />
         </>
       ) : (
@@ -76,7 +78,7 @@ function CustomerJobCompleted() {
       />
       <br />
       <CustomerCheckout quoteId={quote.id} />
-    </>
+    </div>
   )
 }
 
