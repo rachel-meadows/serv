@@ -67,7 +67,7 @@ function BusinessJobToQuote() {
   }
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Job Details</h2>
+      <h2 className="text-primary mb-3">Job Details</h2>
       <div className="card mx-2 my-2 p-1 col-xl-6">
         <table className="table">
           <tbody>
@@ -118,7 +118,7 @@ function BusinessJobToQuote() {
           </tbody>
         </table>
         <button
-          className="btn btn-outline-success"
+          className="btn btn-outline-primary"
           onClick={handleSetToggleForm}
         >
           Create Quote
@@ -127,7 +127,7 @@ function BusinessJobToQuote() {
       {toggleForm && (
         <div className="card my-4 p-4 col-xl-6">
           <div className="mb-3">
-            <h2 className="text-success mb-3">Quote Job</h2>
+            <h2 className="text-primary mb-3">Quote Job</h2>
             <textarea
               name="description"
               className="form-control"
@@ -150,7 +150,7 @@ function BusinessJobToQuote() {
             />
           </div>
           <div className="">
-            <button className="btn btn-outline-success" onClick={handleSubmit}>
+            <button className="btn btn-outline-primary" onClick={handleSubmit}>
               Send Quote
             </button>
           </div>

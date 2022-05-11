@@ -59,11 +59,11 @@ function JobsListItem(props) {
       {!hideButton ? (
         <p>
           {job.status === 'open' ? (
-            <button className="btn btn-outline-success" onClick={showDetails}>
+            <button className="btn btn-outline-primary" onClick={showDetails}>
               Quotes
             </button>
           ) : job.status === 'closed' ? (
-            <button className="btn btn-outline-success" onClick={showDetails}>
+            <button className="btn btn-outline-primary" onClick={showDetails}>
               Details
             </button>
           ) : null}

@@ -67,7 +67,7 @@ function BusinessActiveJob() {
       </table>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <button className="btn btn-outline-success" onClick={handleSubmit}>
+        <button className="btn btn-outline-primary" onClick={handleSubmit}>
           Mark as Completed
         </button>
       </div>

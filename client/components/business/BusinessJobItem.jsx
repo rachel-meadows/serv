@@ -80,7 +80,7 @@ function BusinessJobItem(props) {
       </table>
       <div className="flex align-items-end">
         <button
-          className="btn btn-outline-success w-100"
+          className="btn btn-outline-primary w-100"
           onClick={handleDetailClick}
         >
           Details
