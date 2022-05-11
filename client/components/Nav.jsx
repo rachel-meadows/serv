@@ -22,13 +22,15 @@ function Nav() {
       dispatch(getUserByAuth0Id(user.auth0Id))
     }
   }, [user])
+  console.log(currentUser.id)
 
   useEffect(() => {
-    APIgetBusinessByUserId(currentUser.id).then((business) => {
-      console.log(currentUser.id)
-      setBusiness(business)
-      console.log('business', business)
-    })
+    APIgetBusinessByUserId(currentUser.id)
+      .then((business) => {
+        setBusiness(business)
+        console.log('business', business)
+      })
+      .catch(() => null)
   }, [currentUser])
 
   function handleLogin(event) {

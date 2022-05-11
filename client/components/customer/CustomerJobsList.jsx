@@ -9,7 +9,7 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState({})
-  const [dropDownSelection, setdropDownSelection] = useState('all')
+  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function JobsList() {
     console.log(customerId)
     APIgetJobsByCustomer(customerId)
       .then((jobs) => {
+        console.log(jobs)
         setAllJobs(jobs)
         return null
       })
@@ -54,7 +55,6 @@ function JobsList() {
     } else if (dropDownSelection === 'completed') {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
     } else if (dropDownSelection === 'all') {
-      console.log('all')
       setJobs(allJobs)
     }
   }, [allJobs, dropDownSelection])
@@ -81,19 +81,19 @@ function JobsList() {
     <>
       {/* {showMessage.type === 'jobAdd' && ( */}
       {showMessage === 'jobAdd' && (
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-primary" role="alert">
           Your job has been submitted!
         </div>
       )}
 
       {/* {showMessage.type === 'quoteAdd' && ( */}
       {showMessage === 'quoteAdd' && (
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-primary" role="alert">
           Your quote has been submitted!
         </div>
       )}
 
-      <h2 className="text-success mb-3">Job Listings</h2>
+      <h2 className="text-dark mb-3">Job Listings</h2>
       <form>
         <div className="my-3 ml-auto">
           <label htmlFor="filter" className="form-label">
@@ -118,9 +118,7 @@ function JobsList() {
       <div className="jobList">
         {/* {children} This holds the WaitIndicator (from App) */}
         {!jobs[0] ? (
-          <h4 className="text-success mb-3">
-            You have no job listings to view
-          </h4>
+          <h4 className="text-darkmb-3">You have no job listings to view</h4>
         ) : (
           <div className="d-flex flex-row flex-wrap w-100">
             {jobs.map((job) => {
