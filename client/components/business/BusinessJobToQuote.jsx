@@ -67,7 +67,7 @@ function BusinessJobToQuote() {
   }
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Job Details</h2>
+      <h2 className="text-primary mb-3">Job Details</h2>
       <div className="card mx-2 my-2 p-1 col-xl-6">
         <table className="table">
           <tbody>
@@ -101,7 +101,11 @@ function BusinessJobToQuote() {
               <th scope="row">Image: </th>
               <td>
                 {job.image ? (
-                  <img src={job?.image} alt="Job illustration" />
+                  <img
+                    src={job?.image}
+                    className="w-100"
+                    alt="Job illustration"
+                  />
                 ) : (
                   <p>N/A</p>
                 )}
@@ -113,14 +117,17 @@ function BusinessJobToQuote() {
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-success" onClick={handleSetToggleForm}>
+        <button
+          className="btn btn-outline-primary"
+          onClick={handleSetToggleForm}
+        >
           Create Quote
         </button>
       </div>
       {toggleForm && (
         <div className="card my-4 p-4 col-xl-6">
           <div className="mb-3">
-            <h2 className="text-success mb-3">Quote Job</h2>
+            <h2 className="text-primary mb-3">Quote Job</h2>
             <textarea
               name="description"
               className="form-control"
@@ -143,7 +150,7 @@ function BusinessJobToQuote() {
             />
           </div>
           <div className="">
-            <button className="btn btn-success" onClick={handleSubmit}>
+            <button className="btn btn-outline-primary" onClick={handleSubmit}>
               Send Quote
             </button>
           </div>

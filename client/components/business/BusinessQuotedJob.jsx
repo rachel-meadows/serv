@@ -76,7 +76,7 @@ function BusinessQuotedJob() {
             <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="N/A" />
+                <img src={job.image} className="w-100" alt="N/A" />
               </td>
             </tr>
             <tr>

@@ -52,13 +52,11 @@ function BusinessActiveJob() {
           <tr>
             <th scope="row">Image: </th>
             <td>
-
               {job.image ? (
                 <img src={job?.image} alt="Job illustration" />
               ) : (
                 <p>N/A</p>
               )}
-
             </td>
           </tr>
           <tr>
@@ -69,7 +67,7 @@ function BusinessActiveJob() {
       </table>
       <div className="flex flex-col flex-justify-center">
         <div className="jobList-item"></div>
-        <button className="btn btn-success" onClick={handleSubmit}>
+        <button className="btn btn-outline-primary" onClick={handleSubmit}>
           Mark as Completed
         </button>
       </div>

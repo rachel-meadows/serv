@@ -8,7 +8,7 @@ function CustomerCheckout(props) {
   }
   return (
     <div className="container mt-3">
-      <button className="btn btn-success" onClick={handleClick}>
+      <button className="btn btn-outline-success" onClick={handleClick}>
         Checkout
       </button>
     </div>

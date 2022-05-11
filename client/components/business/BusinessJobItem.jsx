@@ -13,7 +13,7 @@ function BusinessJobItem(props) {
     priceMax,
     quoteStatus,
     jobLocation,
-    dateAdded
+    dateAdded,
   } = props.job
 
   console.log('props.job', props.job)
@@ -65,7 +65,11 @@ function BusinessJobItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
+              {image ? (
+                <img src={image} className="w-100" alt="Job illustration" />
+              ) : (
+                <p>N/A</p>
+              )}
             </td>
           </tr>
           <tr>
@@ -75,7 +79,10 @@ function BusinessJobItem(props) {
         </tbody>
       </table>
       <div className="flex align-items-end">
-        <button className="btn btn-success w-100" onClick={handleDetailClick}>
+        <button
+          className="btn btn-outline-primary w-100"
+          onClick={handleDetailClick}
+        >
           Details
         </button>
       </div>

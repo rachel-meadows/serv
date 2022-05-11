@@ -13,14 +13,13 @@ function JobsList() {
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
-  console.log('allJobs', allJobs)
 
   useEffect(() => {
     // obj returning will include quotes object
+    console.log(customerId)
     APIgetJobsByCustomer(customerId)
-      .then((job) => {
-        console.log('Jobs from front end:', job)
-        setAllJobs(job)
+      .then((jobs) => {
+        setAllJobs(jobs)
         return null
       })
       .catch((err) => {
@@ -39,15 +38,23 @@ function JobsList() {
 
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
-      const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
+      const unmatchedJobs = allJobs.filter(
+        (job) => job.status === 'open' && job.quoteStatus == null
+      )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
-      setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
+      console.log('here')
+      setJobs(
+        allJobs.filter(
+          (job) => job.status === 'open' && job.quoteStatus === 'pending'
+        )
+      )
     } else if (dropDownSelection === 'active') {
       setJobs(allJobs.filter((obj) => obj.status === 'in progress'))
     } else if (dropDownSelection === 'completed') {
       setJobs(allJobs.filter((obj) => obj.status === 'closed'))
     } else if (dropDownSelection === 'all') {
+      console.log('all')
       setJobs(allJobs)
     }
   }, [allJobs, dropDownSelection])
@@ -65,7 +72,10 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-  console.log(showMessage)
+  // console.log(showMessage)
+
+  //for styling
+  const size = 3
 
   return (
     <div className="container my-3">
@@ -76,6 +86,7 @@ function JobsList() {
         </div>
       )}
 
+      {/* {showMessage.type === 'quoteAdd' && ( */}
       {showMessage === 'quoteAdd' && (
         <div className="alert alert-success" role="alert">
           Your quote has been submitted!
@@ -93,12 +104,12 @@ function JobsList() {
             name="filter"
             id="filter"
             className="form-select w-25"
-            defaultValue="unmatched"
+            defaultValue="all"
             onChange={handleDropDown}
           >
             <option value="all">All</option>
             <option value="unmatched">Unmatched</option>
-            <option value="unmatched">Quoted</option>
+            <option value="quoted">Quoted</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
           </select>
@@ -111,11 +122,18 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          jobs.map((job) => {
-            return (
-              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
-            )
-          })
+          <div className="d-flex flex-row flex-wrap w-100">
+            {jobs.map((job) => {
+              return (
+                <JobsListItem
+                  key={job.id}
+                  job={job}
+                  showDetails={showDetails}
+                  size={size}
+                />
+              )
+            })}
+          </div>
         )}
       </div>
     </div>
