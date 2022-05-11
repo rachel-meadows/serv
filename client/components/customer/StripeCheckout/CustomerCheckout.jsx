@@ -5,6 +5,8 @@ function CustomerCheckout(props) {
   const { quoteId } = props
   const handleClick = () => {
     APIcustomerCheckoutSession(quoteId)
+      .then(() => null)
+      .catch(() => null)
   }
   return (
     <div className="container mt-3">
