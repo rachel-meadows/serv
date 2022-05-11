@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
     website,
     category,
     logo,
+    location,
   } = req.body
   try {
     const userData = { auth0Id, email, userName, type }
@@ -30,6 +31,7 @@ router.post('/', async (req, res) => {
         website,
         category,
         logo,
+        location,
       }
       await dbBusiness.addBusiness(businessData)
     }
