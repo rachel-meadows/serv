@@ -21,7 +21,7 @@ function getOpenJobs(db = connection) {
 // // Get a list of jobs submitted by the current customer.
 function getJobsByCustomer(id, db = connection) {
   return db('jobs')
-    .join('quotes', 'jobs.id', 'quotes.job_id')
+    .leftOuterJoin('quotes', 'jobs.id', 'quotes.job_id')
     .where('jobs.user_id', id)
     .select(
       'jobs.id as id',
