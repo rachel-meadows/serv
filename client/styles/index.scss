@@ -6,8 +6,18 @@ $light: #fff;
 @import '~bootstrap/scss/bootstrap';
 
 html,
-body {
+body,
+#app {
   height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
 }
 
 .navbar-brand > img {
@@ -19,6 +29,8 @@ body {
   padding: 1.5rem 0;
   background: #1ebd44;
   color: #ffffff;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-heading {
