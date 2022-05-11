@@ -8,7 +8,9 @@ function JobsListItem(props) {
   }
 
   return (
-    <div className={`card mx-2 my-2 p-1 col-xl-${props.size}`}>
+    <div
+      className={`card mx-2 my-2 p-1 col-m-${props.size} col-l-${props.size} col-xl-${props.size}`}
+    >
       <table className="table">
         <tbody>
           <tr>

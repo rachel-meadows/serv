@@ -75,6 +75,9 @@ function JobsList() {
   }
   // console.log(showMessage)
 
+  //for styling
+  const size = 3
+
   return (
     <>
       {/* {showMessage.type === 'jobAdd' && ( */}
@@ -102,12 +105,12 @@ function JobsList() {
             name="filter"
             id="filter"
             className="form-select w-25"
-            defaultValue="unmatched"
+            defaultValue="all"
             onChange={handleDropDown}
           >
             <option value="all">All</option>
             <option value="unmatched">Unmatched</option>
-            <option value="unmatched">Quoted</option>
+            <option value="quoted">Quoted</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
           </select>
@@ -120,11 +123,18 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          jobs.map((job) => {
-            return (
-              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
-            )
-          })
+          <div className="d-flex flex-row flex-wrap w-100">
+            {jobs.map((job) => {
+              return (
+                <JobsListItem
+                  key={job.id}
+                  job={job}
+                  showDetails={showDetails}
+                  size={size}
+                />
+              )
+            })}
+          </div>
         )}
       </div>
     </>
