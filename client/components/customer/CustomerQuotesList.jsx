@@ -21,7 +21,7 @@ function QuotesList({ children }) {
 
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Customer Quotes</h2>
+      <h2 className="text-dark mb-3">Customer Quotes</h2>
       <section>
         {children} {/* This holds the WaitIndicator (from App) */}
         {!quotes[0] ? (

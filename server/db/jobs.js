@@ -14,7 +14,7 @@ function getOpenJobs(db = connection) {
       'price_max as priceMax',
       'date_added as dateAdded',
       'location',
-      'status'
+      'status as jobStatus'
     )
 }
 
@@ -33,7 +33,7 @@ function getJobsByCustomer(id, db = connection) {
       'price_max as priceMax',
       'jobs.date_added as dateAdded',
       'location',
-      'jobs.status as status',
+      'jobs.status as jobStatus',
       'quotes.business_id as businessId',
       'quotes.price as price',
       'quotes.date_added as quoteDateAdded',
@@ -56,7 +56,7 @@ function addJob(input, db = connection) {
     location,
     status: 'open',
   }
-  //console.log(job)
+
   return db('jobs').insert(job)
 }
 
@@ -73,7 +73,7 @@ function getJobById(id, db = connection) {
       'price_max as priceMax',
       'date_added as dateAdded',
       'location',
-      'status'
+      'status as jobStatus'
     )
 }
 
@@ -117,7 +117,7 @@ function getOpenJobsByCategory(category, db = connection) {
       'price_max as priceMax',
       'date_added as dateAdded',
       'location',
-      'status'
+      'status as jobStatus'
     )
 }
 
@@ -137,7 +137,7 @@ function getJobsByUser(userId, db = connection) {
       'jobs.price_max as priceMax',
       'jobs.date_added as dateAdded',
       'quotes.status as quoteStatus',
-      'jobs.location as jobLocation',
+      'jobs.location as location',
       'businesses.location as businessLocation',
       'jobs.status as jobStatus'
     )
