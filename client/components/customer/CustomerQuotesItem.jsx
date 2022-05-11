@@ -84,7 +84,7 @@ function QuotesItem(props) {
       {status === 'pending' && (
         <div className="d-flex">
           <button
-            className="btn btn-success mx-2 w-40"
+            className="btn btn-outline-success mx-2 w-40"
             onClick={handleSubmitAccept}
           >
             Accept

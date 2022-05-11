@@ -107,7 +107,7 @@ function Registration() {
                   Select what type of user you are..
                 </h4>
                 <button
-                  className="btn btn-success btn-lg w-40 py-4 mx-2"
+                  className="btn btn-outline-success btn-lg w-40 py-4 mx-2"
                   type="button"
                   onClick={handleSetUserTypeCustomer}
                 >
@@ -281,7 +281,10 @@ function Registration() {
                         />
                       </div>
                       <div className="input-group">
-                        <button type="submit" className="btn btn-success">
+                        <button
+                          type="submit"
+                          className="btn btn-outline-success"
+                        >
                           Register as a Business
                         </button>
                       </div>

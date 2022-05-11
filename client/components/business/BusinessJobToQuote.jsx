@@ -117,7 +117,10 @@ function BusinessJobToQuote() {
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-success" onClick={handleSetToggleForm}>
+        <button
+          className="btn btn-outline-success"
+          onClick={handleSetToggleForm}
+        >
           Create Quote
         </button>
       </div>
@@ -147,7 +150,7 @@ function BusinessJobToQuote() {
             />
           </div>
           <div className="">
-            <button className="btn btn-success" onClick={handleSubmit}>
+            <button className="btn btn-outline-success" onClick={handleSubmit}>
               Send Quote
             </button>
           </div>

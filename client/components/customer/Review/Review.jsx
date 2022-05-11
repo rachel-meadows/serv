@@ -40,7 +40,7 @@ function Review({ quoteId, reviewed, setReviewed, customerId }) {
                 onChange={handleReview}
               />
               <button
-                className="btn btn-success"
+                className="btn btn-outline-success"
                 type="submit"
                 id="inputGroupFileAddon04"
               >
