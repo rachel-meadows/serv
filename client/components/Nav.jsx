@@ -13,7 +13,7 @@ function Nav() {
   const logout = getLogoutFn(useAuth0)
   const register = getRegisterFn(useAuth0)
   const user = useSelector((state) => state.user)
-  // const currentUser = useSelector((state) => state.currentUser)
+  const currentUser = useSelector((state) => state.currentUser)
 
   useEffect(() => {
     if (user.auth0Id !== '') {
@@ -39,36 +39,36 @@ function Nav() {
   return (
     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
       <IfAuthenticated>
-        {/* puit === 'customer' when ready for production */}
-        {/* {currentUser?.type && ( */}
-        <>
-          <li className="nav-item">
-            <Link to="/customer" className="nav-link">
-              <button className="btn btn-outline-success">Customer</button>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/customer/add" className="nav-link">
-              <button className="btn btn-outline-success">Cus Add</button>
-            </Link>
-          </li>
-        </>
-        {/* )} */}
-        {/* put === 'business' when ready for production */}
-        {/* {currentUser?.type && ( */}
-        <>
-          <li className="nav-item">
-            <Link to="/business" className="nav-link">
-              <button className="btn btn-outline-primary">Business</button>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/business/jobs" className="nav-link">
-              <button className="btn btn-outline-primary">Bus Jobs</button>
-            </Link>
-          </li>
-        </>
-        {/* )} */}
+        {currentUser?.type === 'customer' && (
+          <>
+            <li className="nav-item">
+              <Link to="/customer" className="nav-link">
+                <button className="btn btn-outline-success">
+                  View Listings
+                </button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/customer/add" className="nav-link">
+                <button className="btn btn-outline-success">Add Listing</button>
+              </Link>
+            </li>
+          </>
+        )}
+        {currentUser?.type === 'business' && (
+          <>
+            <li className="nav-item">
+              <Link to="/business" className="nav-link">
+                <button className="btn btn-outline-primary">Business</button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/business/jobs" className="nav-link">
+                <button className="btn btn-outline-primary">Bus Jobs</button>
+              </Link>
+            </li>
+          </>
+        )}
         <li className="nav-item">
           <a href="/" onClick={handleLogoff} className="nav-link ">
             <button className="btn btn-outline-danger">Log out</button>
