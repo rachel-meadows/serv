@@ -51,6 +51,7 @@ export function addUser(data, navigate, type) {
     dispatch(addUserPending())
     return APIaddUser(data)
       .then((user) => {
+        console.log('user', user)
         dispatch(addUserSuccess(user))
         navigate(type)
         return null
