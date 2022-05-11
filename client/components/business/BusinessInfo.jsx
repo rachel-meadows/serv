@@ -11,6 +11,7 @@ function BusinessInfo({ children }) {
   useEffect(() => {
     APIgetBusinessById(businessId)
       .then((data) => {
+        console.log(data)
         setBusiness(data)
       })
       .catch(() => null)
@@ -72,13 +73,9 @@ function BusinessInfo({ children }) {
             <tr>
               <th scope="row">Rating </th>
               <td>
-                {averageRating?.toFixed(2)} ({ratingCount} ratings)
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Average Reviews </th>
-              <td>
-                {averageRating?.toFixed(2)} ({ratingCount} ratings)
+                {averageRating
+                  ? `${averageRating?.toFixed(2)} (${ratingCount} ratings)`
+                  : `No ratings yet`}
               </td>
             </tr>
           </tbody>

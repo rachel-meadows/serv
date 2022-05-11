@@ -11,6 +11,7 @@ function addBusiness(input, db = connection) {
     location,
     average_rating: null,
   }
+  console.log('location in db function: ', location)
   return db('businesses').insert(business)
 }
 
