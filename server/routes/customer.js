@@ -26,26 +26,7 @@ router.post('/add', async (req, res) => {
 router.get('/:customerId/jobs', async (req, res) => {
   const { customerId } = req.params
   try {
-    await dbJobs.getJobsByCustomer(customerId).then((data) => {
-      const jobs = {
-        id: data.id,
-        userId: data.userId,
-        description: data.description,
-        image: data.image,
-        category: data.category,
-        priceMin: data.priceMin,
-        priceMax: data.priceMax,
-        dateAdded: data.dateAdded,
-        location: data.location,
-        status: data.status,
-        quote: {
-          businessId: data.businessId,
-          price: data.price,
-          dateAdded: data.quoteDateAdded,
-          description: data.quoteDescription,
-          status: data.quoteStatus,
-        },
-      }
+    await dbJobs.getJobsByCustomer(customerId).then((jobs) => {
       res.json(jobs)
       return null
     })
@@ -56,6 +37,41 @@ router.get('/:customerId/jobs', async (req, res) => {
       .json({ message: 'Unable to get list of jobs by customer ID' })
   }
 })
+
+// // GET api/v1/customer/:customerId/jobs
+// router.get('/:customerId/jobs', async (req, res) => {
+//   const { customerId } = req.params
+//   try {
+//     await dbJobs.getJobsByCustomer(customerId).then((data) => {
+//       const jobs = {
+//         id: data.id,
+//         userId: data.userId,
+//         description: data.description,
+//         image: data.image,
+//         category: data.category,
+//         priceMin: data.priceMin,
+//         priceMax: data.priceMax,
+//         dateAdded: data.dateAdded,
+//         location: data.location,
+//         status: data.status,
+//         quote: {
+//           businessId: data.businessId,
+//           price: data.price,
+//           dateAdded: data.quoteDateAdded,
+//           description: data.quoteDescription,
+//           status: data.quoteStatus,
+//         },
+//       }
+//       res.json(jobs)
+//       return null
+//     })
+//   } catch (error) {
+//     console.error(error)
+//     res
+//       .status(500)
+//       .json({ message: 'Unable to get list of jobs by customer ID' })
+//   }
+// })
 
 // GET api/v1/customer/jobs/:jobId
 router.get('/jobs/:jobId', async (req, res) => {
