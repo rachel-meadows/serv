@@ -11,8 +11,17 @@ function BusinessJobItem(props) {
     category,
     priceMin,
     priceMax,
+<<<<<<< HEAD
     quoteStatus,
     jobLocation,
+||||||| 59708b2
+    status,
+    location,
+=======
+    status,
+    location,
+    dateAdded,
+>>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
   } = props.job
 
   console.log('props.job', props.job)
@@ -36,17 +45,25 @@ function BusinessJobItem(props) {
   }
 
   return (
-    <div className="card my-2 p-4 col-xl-6">
+    <div className="card mx-2 my-2 p-1 col-xl-3">
       <table className="table">
         <tbody>
           <tr>
             <th scope="row">Category: </th>
             <td className="text">{category}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <th scope="row">Description: </th>
+<<<<<<< HEAD
             <td className="text">{description}</td>
           </tr>
+||||||| 59708b2
+            <td className="text-capitalize">{description}</td>
+          </tr>
+=======
+            <td className="text-capitalize">{description}</td>
+          </tr> */}
+>>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
           <tr>
             <th scope="row">Budget: </th>
             <td>
@@ -57,21 +74,42 @@ function BusinessJobItem(props) {
             <th scope="row">Address: </th>
             <td>{jobLocation}</td>
           </tr>
+          {/* <tr>
+            <th scope="row">Image: </th>
+            <td>
+              <img src={image} className="w-100" alt="Job illustration" />
+          <tr>
+            <th scope="row">Date added: </th>
+            <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
+          </tr>
           <tr>
             <th scope="row">Image: </th>
             <td>
+<<<<<<< HEAD
               <img src={image} className="w-100" alt="N/A" />
+||||||| 59708b2
+              <img src={image} alt="Job illustration" />
+=======
+              {image ? <img src={image} alt="Job illustration" /> : <p>N/A</p>}
+>>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
             </td>
-          </tr>
-          <tr>
+          </tr> */}
+          {/* <tr>
             <th scope="row">Status: </th>
+<<<<<<< HEAD
             <td className="text">{quoteStatus}</td>
           </tr>
+||||||| 59708b2
+            <td className="text-capitalize">{status}</td>
+          </tr>
+=======
+            <td className="text-capitalize">{status}</td>
+          </tr> */}
+>>>>>>> 444d34b21a7dac843a50cf0cf0e3362178cc2d49
         </tbody>
       </table>
-      <div className="flex flex-col flex-justify-center">
-        <div className="jobList-item"></div>
-        <button className="btn btn-success" onClick={handleDetailClick}>
+      <div className="flex align-items-end">
+        <button className="btn btn-success w-100" onClick={handleDetailClick}>
           Details
         </button>
       </div>

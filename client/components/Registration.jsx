@@ -264,8 +264,8 @@ function Registration() {
                     >
                       <option value="default">Business Category</option>
                       <option value="plumbing">Plumbing</option>
-                      <option value="Gardening">Gardening</option>
-                      <option value="Building">Building</option>
+                      <option value="gardening">Gardening</option>
+                      <option value="building">Building</option>
                     </select>
                   </div>
                   <div className="input-group mb-3">

@@ -6,15 +6,16 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { jobId, id, businessId, description, price, status } = props.quote
+  const { jobId, id, businessId, description, dateAdded, price, status } =
+    props.quote
   console.log('Business', business)
   console.log('Props', props)
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
 
-  function handleSubmitAccept() {
-    APIchangeQuoteStatus(id, 'accepted')
+  async function handleSubmitAccept() {
+    await APIchangeQuoteStatus(id, 'accepted')
     APIchangeJobStatus(jobId, 'in progress')
       .then(() => {
         navigate('/customer')
@@ -50,7 +51,7 @@ function QuotesItem(props) {
   // }, [user])
 
   return (
-    <div className="card my-2 p-4 col-xl-6">
+    <div className="card mx-2 my-2 p-1 col-xl-3">
       <table className="table">
         <tbody>
           <tr>
@@ -69,6 +70,10 @@ function QuotesItem(props) {
           <tr>
             <th scope="row">Price</th>
             <td>${price}.00</td>
+          </tr>
+          <tr>
+            <th scope="row">Date sent: </th>
+            <td>{dateAdded ? new Date(dateAdded).toLocaleString() : null}</td>
           </tr>
           <tr>
             <th scope="row">Status</th>

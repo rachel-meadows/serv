@@ -26,8 +26,27 @@ router.post('/add', async (req, res) => {
 router.get('/:customerId/jobs', async (req, res) => {
   const { customerId } = req.params
   try {
-    await dbJobs.getJobsByCustomer(customerId).then((jobs) => {
-      res.json({ jobs })
+    await dbJobs.getJobsByCustomer(customerId).then((data) => {
+      const jobs = {
+        id: data.id,
+        userId: data.userId,
+        description: data.description,
+        image: data.image,
+        category: data.category,
+        priceMin: data.priceMin,
+        priceMax: data.priceMax,
+        dateAdded: data.dateAdded,
+        location: data.location,
+        status: data.status,
+        quote: {
+          businessId: data.businessId,
+          price: data.price,
+          dateAdded: data.quoteDateAdded,
+          description: data.quoteDescription,
+          status: data.quoteStatus,
+        },
+      }
+      res.json(jobs)
       return null
     })
   } catch (error) {
