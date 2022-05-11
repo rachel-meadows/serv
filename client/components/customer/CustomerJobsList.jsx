@@ -19,7 +19,8 @@ function JobsList() {
   useEffect(() => {
     APIgetJobsByCustomer(customerId)
       .then((obj) => {
-        setAllJobs(obj.jobs)
+        setAllJobs([obj])
+        console.log('jobs: ', obj)
         return null
       })
       .catch((err) => {
@@ -37,7 +38,6 @@ function JobsList() {
   }, [])
 
   useEffect(() => {
-    console.log('useEffect')
     if (dropDownSelection === 'unmatched') {
       const unmatchedJobs = allJobs.filter((obj) => obj.status === 'open')
       setJobs(unmatchedJobs)
