@@ -49,7 +49,7 @@ function BusinessQuotedJob() {
   return (
     <div className="container mt-3">
       <h2 className="text-success mb-3">Quoted Jobs</h2>
-      <div className="card my-2 p-4 col-xl-6">
+      <div className="card mx-2 my-2 p-1 col-xl-3">
         <table className="table">
           <tbody>
             <tr>

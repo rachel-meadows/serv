@@ -49,7 +49,7 @@ function BusinessActiveJob() {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={job?.image} alt="Job illustration" />
+              <img src={job?.image} className="w-100" alt="Job illustration" />
             </td>
           </tr>
           <tr>

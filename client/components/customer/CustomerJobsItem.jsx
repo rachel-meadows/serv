@@ -8,7 +8,7 @@ function JobsListItem(props) {
   }
 
   return (
-    <div className="card my-2 p-4 col-xl-6">
+    <div className="card mx-2 my-2 p-1 col-xl-3">
       <table className="table">
         <tbody>
           <tr>

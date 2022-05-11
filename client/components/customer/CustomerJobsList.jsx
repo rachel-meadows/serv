@@ -85,10 +85,10 @@ function JobsList() {
             defaultValue="unmatched"
             onChange={handleDropDown}
           >
-            <option value="all">All</option>
-            <option value="active">Active</option>
             <option value="unmatched">Unmatched</option>
+            <option value="active">Active</option>
             <option value="completed">Completed</option>
+            <option value="all">All</option>
           </select>
         </div>
       </form>
@@ -99,11 +99,17 @@ function JobsList() {
             You have no job listings to view
           </h4>
         ) : (
-          jobs.map((job) => {
-            return (
-              <JobsListItem key={job.id} job={job} showDetails={showDetails} />
-            )
-          })
+          <div className="d-flex flex-row flex-wrap w-100">
+            {jobs.map((job) => {
+              return (
+                <JobsListItem
+                  key={job.id}
+                  job={job}
+                  showDetails={showDetails}
+                />
+              )
+            })}
+          </div>
         )}
       </div>
     </>

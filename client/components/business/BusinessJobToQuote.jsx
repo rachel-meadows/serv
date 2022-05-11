@@ -67,7 +67,7 @@ function BusinessJobToQuote() {
   return (
     <div className="container mt-3">
       <h2 className="text-success mb-3">Job Details</h2>
-      <div className="card my-2 p-4 col-xl-6">
+      <div className="card mx-2 my-2 p-1 col-xl-6">
         <table className="table">
           <tbody>
             <tr>
@@ -91,7 +91,7 @@ function BusinessJobToQuote() {
             <tr>
               <th scope="row">Image: </th>
               <td>
-                <img src={job.image} alt="Job illustration" />
+                <img src={job.image} className="w-100" alt="Job illustration" />
               </td>
             </tr>
             <tr>

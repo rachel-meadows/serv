@@ -34,9 +34,13 @@ function BusinessJobItem(props) {
   }
 
   return (
-    <div className="card my-2 p-4 col-xl-6">
+    <div className="card mx-2 my-2 p-1 col-xl-3">
       <table className="table">
         <tbody>
+          <tr>
+            <th scope="row">Category: </th>
+            <td className="text-capitalize">{category}</td>
+          </tr>
           <tr>
             <th scope="row">Category: </th>
             <td className="text-capitalize">{category}</td>
@@ -58,7 +62,7 @@ function BusinessJobItem(props) {
           <tr>
             <th scope="row">Image: </th>
             <td>
-              <img src={image} alt="Job illustration" />
+              <img src={image} className="w-100" alt="Job illustration" />
             </td>
           </tr>
           <tr>
