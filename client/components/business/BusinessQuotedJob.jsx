@@ -48,7 +48,7 @@ function BusinessQuotedJob() {
         console.error(err)
       })
   }
-
+  console.log('Quoted', job)
   return (
     <div className="container mt-3">
       <h2 className="text-primary mb-3">Quoted Jobs</h2>
@@ -71,7 +71,7 @@ function BusinessQuotedJob() {
             </tr>
             <tr>
               <th scope="row">Address: </th>
-              <td>{job.location}</td>
+              <td>{job?.location}</td>
             </tr>
             <tr>
               <th scope="row">Image: </th>
@@ -81,7 +81,7 @@ function BusinessQuotedJob() {
             </tr>
             <tr>
               <th scope="row">Job Status: </th>
-              <td className="text">{job.status}</td>
+              <td className="text">{job?.jobStatus}</td>
             </tr>
             <tr>
               <th scope="row">Quote Status: </th>

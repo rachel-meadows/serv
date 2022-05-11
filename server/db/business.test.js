@@ -62,6 +62,8 @@ afterAll(() => {
 describe('getBusinessByUserId', () => {
   it('returns business by ID of the user who registered it', () => {
     return db.getBusinessByUserId(2, testDb).then((event) => {
+      console.log('event: ', event)
+
       expect(event.id).toBe(1)
       expect(event.businessName).toBe('Pipe Fix Plumbing')
       return null

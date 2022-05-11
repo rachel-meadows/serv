@@ -51,7 +51,7 @@ function BusinessJobsList() {
       setShowMessage(false)
     }, 3000)
   }, [])
-  console.log('jobs', jobs)
+
   useEffect(() => {
     if (dropDownSelection === 'unmatched') {
       // Exclude content business has worked on (i.e. quoted jobs)
@@ -114,6 +114,7 @@ function BusinessJobsList() {
 
       <div className="d-flex d-flex flex-row flex-wrap w-100 ">
         {jobs?.map((job) => {
+          console.log('BusJobList', job)
           return (
             <BusinessJobItem
               key={job.id}

@@ -11,12 +11,10 @@ function BusinessJobItem(props) {
     category,
     priceMin,
     priceMax,
-    quoteStatus,
-    jobLocation,
+    jobStatus,
+    location,
     dateAdded,
   } = props.job
-
-  console.log('props.job', props.job)
 
   const dropDownStatus = props.dropDownSelection
 
@@ -56,7 +54,7 @@ function BusinessJobItem(props) {
           </tr>
           <tr>
             <th scope="row">Address: </th>
-            <td>{jobLocation}</td>
+            <td>{location}</td>
           </tr>
           <tr>
             <th scope="row">Date added: </th>
@@ -74,7 +72,7 @@ function BusinessJobItem(props) {
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text">{quoteStatus}</td>
+            <td className="text">{jobStatus}</td>
           </tr>
         </tbody>
       </table>

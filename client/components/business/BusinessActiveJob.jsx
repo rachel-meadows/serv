@@ -10,6 +10,7 @@ function BusinessActiveJob() {
   useEffect(() => {
     APIgetJobById(jobId)
       .then((job) => {
+        console.log('Active', job)
         setJob(job)
       })
       .catch(() => null)
@@ -61,7 +62,7 @@ function BusinessActiveJob() {
           </tr>
           <tr>
             <th scope="row">Status: </th>
-            <td className="text">{job?.status}</td>
+            <td className="text">{job?.jobStatus}</td>
           </tr>
         </tbody>
       </table>
