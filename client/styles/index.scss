@@ -1,3 +1,8 @@
+$primary: #0074d9;
+$danger: #ff4136;
+$success: #1ebd44;
+$light: #fff;
+
 @import '~bootstrap/scss/bootstrap';
 
 html,
@@ -7,4 +12,17 @@ body {
 
 .navbar-brand > img {
   width: 120px;
+}
+
+#app > footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #1ebd44;
+  color: #ffffff;
+}
+
+.carousel-heading {
+  font-family: 'Bitter', serif;
+  font-size: 3rem;
+  color: #ffffff;
 }

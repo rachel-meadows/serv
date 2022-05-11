@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { getRegisterFn } from '../../auth0-utils'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
   const navigate = useNavigate()
@@ -24,7 +24,7 @@ function Home() {
     <div className="home-page">
       <div
         id="carouselExampleIndicators"
-        className="carousel slide"
+        className="carousel slide h-100"
         data-ride="carousel"
       >
         <ol className="carousel-indicators">
@@ -36,34 +36,50 @@ function Home() {
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
+        <div className="carousel-inner h-100">
+          <div className="carousel-item active number1 h-100">
             <img
               className="d-block w-100"
-              src="/images/hero1.jpeg"
+              src="/images/hero1-2.jpg"
               alt="First slide"
             />
+            <div className="carousel-caption d-none d-md-block">
+              <h2 className="carousel-heading">Service to your door</h2>
+            </div>
           </div>
           <div className="carousel-item">
             <img
               className="d-block w-100"
-              src="/images/hero2.jpg"
+              src="/images/hero3-2.jpg"
               alt="Second slide"
             />
+            <div className="carousel-caption d-none d-md-block">
+              <h2 className="carousel-heading">
+                A range of quality service providers
+              </h2>
+            </div>
           </div>
           <div className="carousel-item">
             <img
               className="d-block w-100"
-              src="/images/hero2.png"
+              src="/images/hero2-2.jpg"
               alt="Second slide"
             />
+            <div className="carousel-caption d-none d-md-block">
+              <h2 className="carousel-heading">No obligation free quotes</h2>
+            </div>
           </div>
           <div className="carousel-item">
             <img
               className="d-block w-100"
-              src="/images/hero3.png"
+              src="/images/hero1-2.jpg"
               alt="Third slide"
             />
+            <div className="carousel-caption d-none d-md-block">
+              <h2 className="carousel-heading">
+                Service at the click of a button
+              </h2>
+            </div>
           </div>
         </div>
         <a
@@ -76,7 +92,6 @@ function Home() {
             className="carousel-control-prev-icon"
             aria-hidden="true"
           ></span>
-          <span className="sr-only">Previous</span>
         </a>
         <a
           className="carousel-control-next"
@@ -88,7 +103,6 @@ function Home() {
             className="carousel-control-next-icon"
             aria-hidden="true"
           ></span>
-          <span className="sr-only">Next</span>
         </a>
       </div>
       <div className="about-panel">
@@ -96,70 +110,32 @@ function Home() {
           <div className="row">
             <div className="col p-3">
               <div className="about-us">
-                <h3 className="text-danger">About Us</h3>
-                <h4>Our Vision</h4>
+                <h3 className="text-success my-3">About Us</h3>
+                <h5 className="">Our Vision</h5>
                 <p>
-                  <q>
-                    To lead the way in bringing services effortlessly to your
-                    front door at the click of a button
-                  </q>
+                  To lead the way in bringing services effortlessly to your
+                  front door at the click of a button.
                 </p>
-                <h4>Our Mission</h4>
+                <h5 className="">Our Mission</h5>
                 <p>
-                  <q>
-                    Our mission is to provide effortless service at the click of
-                    a button, so you can have all of your maintenance issues
-                    fixed with ease by skilled professionals.
-                  </q>
+                  Our mission is to provide effortless service at the click of a
+                  button, so you can have all of your maintenance issues fixed
+                  with ease by skilled professionals.
                 </p>
               </div>
               <div className="our-values">
-                <h3 className="text-danger">Our Values</h3>
-                <ul>
-                  <li>Trust</li>
-                  <li>Accountability</li>
-                  <li>Ingenuity</li>
-                  <li>Respect</li>
-                  <li>Value creation</li>
-                </ul>
-                <h4>We Serv. You</h4>
-                <p className="tagline">
-                  We take the hard work out of vetting tradespeople. We select
-                  the best, most qualified and with the best reviews and
-                  experience. We also compare those service prices and we offer
-                  you a selection from the most expensive to the most
-                  inexpensive. So when your lights go out, or your hot water
-                  cylinder explodes, just tap on our app and your problem will
-                  be solved before you even have to worry about it. We&apos;ll
-                  get you the quotes and you&apos;ll do the choosing.
-                </p>
-                <p>
-                  We take the hassle out lifes unexpected maintenance problems
-                  We are here to ensure all your service needs and requirements
-                  are met in an easy and efficient manner.
-                </p>
-                <p>
-                  Our aim is to make your life easier by finding the service
-                  providers for you. Our service providers are trained and
-                  certified in all aspects of Health and Safety procedures
-                  including Workplace Hygiene, HACCP Hazard Analysis and
-                  Critical Control Point, GMP, Good Manufacturing Practices.
-                </p>
-                <p>
-                  Additionally, our service providers are highly trained in
-                  Hazard Management, Confined Space, Safe Working at Heights,
-                  Safe Chemical Handling plus many more.
-                </p>
-                <p>
-                  The Company&apos;s Health and Safety Policy and Environmental
-                  Policies are comprehensive. Serv. prides itself on offering a
-                  full range of services to our clients, together with the
-                  expertise to ensure they get the results they require.
-                </p>
+                <h3 className="text-success my-3">Welcome To Serv</h3>
+                <Link to="/welcome">
+                  <img
+                    src="/images/home-flowers.png"
+                    alt="..."
+                    className="img-thumbnail p-2"
+                  />
+                </Link>
               </div>
             </div>
             <div className="col p-3">
-              <h3 className="text-danger">Services We Offer</h3>
+              <h3 className="text-success my-3">Services We Offer</h3>
               <img
                 src="/images/services/carpenter.jpg"
                 alt="..."
@@ -185,16 +161,16 @@ function Home() {
                 alt="..."
                 className="img-thumbnail w-50 p-2"
               />
-              <blockquote className="blockquote mt-3">
-                <p className="mb-3">
-                  This is going to change the way services are offered around
-                  the world.
-                </p>
-                <footer className="blockquote-footer">
-                  Someone famous in the service industry
-                  <cite title="Source Title">Source Title</cite>
-                </footer>
-              </blockquote>
+              <div className="card my-3 p-3">
+                <blockquote className="blockquote mt-3">
+                  <p className="mb-3 fs-6">
+                    It always seems impossible, until it is done.
+                  </p>
+                  <footer className="blockquote-footer fs-6">
+                    Nelson Mandela
+                  </footer>
+                </blockquote>
+              </div>
             </div>
           </div>
         </div>

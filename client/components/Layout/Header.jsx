@@ -5,10 +5,10 @@ import Nav from '../Nav'
 function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-success">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            <img src="/images/serv-logo-small.png" alt="Serv" />
+            <img src="/images/serv-logo-small-white.png" alt="Serv" />
           </Link>
           <div className="d-flex">
             <button
