@@ -54,7 +54,7 @@ function Registration() {
   }
 
   async function handleAddBusiness(e) {
-    console.log("I am registering a business")
+    console.log('I am registering a business')
     console.log(form)
     e.preventDefault()
     dispatch(
@@ -79,12 +79,11 @@ function Registration() {
 
   return (
     <div className="registration">
-
       <div className="container mt-3">
         <div className="row">
           <div className="col">
             <div className="text-center">
-            {/* <h2 className="page-title text-success">Welcome to</h2> */}
+              {/* <h2 className="page-title text-success">Welcome to</h2> */}
             </div>
             <div className="hero-logo">
               <img src="/images/serv-logo-light.png" alt="Welcome to Serv" />
@@ -93,9 +92,23 @@ function Registration() {
           <div className="col ">
             <div className="d-flex flex-col align-items-center h-100 w-100 justify-content-center">
               <div className="text-center">
-                <h4 className="user-type-title mb-4 text-success">Select what type of user you are..</h4>
-                <button className="btn btn-success btn-lg w-40 py-4 mx-2" type="button" onClick={handleSetUserTypeCustomer} >I am a customer </button>
-                <button className="btn btn-primary btn-lg w-40 py-4 mx-2" type="button" onClick={handleSetUserTypeBusiness} >I am a service provider</button>
+                <h4 className="user-type-title mb-4 text-success">
+                  Select what type of user you are..
+                </h4>
+                <button
+                  className="btn btn-success btn-lg w-40 py-4 mx-2"
+                  type="button"
+                  onClick={handleSetUserTypeCustomer}
+                >
+                  I am a customer{' '}
+                </button>
+                <button
+                  className="btn btn-primary btn-lg w-40 py-4 mx-2"
+                  type="button"
+                  onClick={handleSetUserTypeBusiness}
+                >
+                  I am a service provider
+                </button>
               </div>
             </div>
           </div>
@@ -103,95 +116,195 @@ function Registration() {
 
         <div className="row">
           <div className="col">
-            {
-              userType === 'customer' && (
-                <>
-
-                  <form className="flex flex-col col-9 my-4 py-5" onSubmit={handleAddCustomer}>
+            {userType === 'customer' && (
+              <>
+                <form
+                  className="flex flex-col col-9 my-4 py-5"
+                  onSubmit={handleAddCustomer}
+                >
                   <div className="card w-100 my-2 p-4">
                     <h3 className="text-success mb-3">Customer</h3>
                     <div className="input-group">
-                      <input name="auth0Id" value={form.auth0Id} type="hidden" />{' '}
+                      <input
+                        name="auth0Id"
+                        value={form.auth0Id}
+                        type="hidden"
+                      />{' '}
                       <input name="type" value="customer" type="hidden" />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
-                      <input type="username" className="form-control" name="userName" id="userName" value={form.userName} onChange={handleChange} disabled={true} />
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Username
+                      </label>
+                      <input
+                        type="username"
+                        className="form-control"
+                        name="userName"
+                        id="userName"
+                        value={form.userName}
+                        onChange={handleChange}
+                        disabled={true}
+                      />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
-                      <input name="email" id="emailAddress" value={form.email} type="email" className="form-control" onChange={handleChange}
-                        disabled={true} />
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className="form-label"
+                      >
+                        Email address
+                      </label>
+                      <input
+                        name="email"
+                        id="emailAddress"
+                        value={form.email}
+                        type="email"
+                        className="form-control"
+                        onChange={handleChange}
+                        disabled={true}
+                      />
                     </div>
                     <div className="input-group mb-3">
-                      <button type="submit" className="btn btn-success">Register</button>
+                      <button type="submit" className="btn btn-success">
+                        Register
+                      </button>
                     </div>
-                    </div>
-                  </form>
-                </>
-              )
-            }
-            {
-              userType === 'business' && (
-                <form onSubmit={handleAddBusiness} className="flex flex-col col-9 my-4 py-5">
-                   <div className="card w-100 my-2 p-4">
-                  <h3 className="business-details-title text-success mb-3">Business Details</h3>
+                  </div>
+                </form>
+              </>
+            )}
+            {userType === 'business' && (
+              <form
+                onSubmit={handleAddBusiness}
+                className="flex flex-col col-9 my-4 py-5"
+              >
+                <div className="card w-100 my-2 p-4">
+                  <h3 className="business-details-title text-success mb-3">
+                    Business Details
+                  </h3>
                   <div className="mb-3">
                     <input name="auth0Id" value={form.auth0Id} type="hidden" />
                     <input name="type" value="business" type="hidden" />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="user-name" className="form-label">Username</label>
-                    <input type="userName" className="form-control" name="userName" id="userName" value={form.userName} onChange={handleChange} disabled={true} />
+                    <label htmlFor="user-name" className="form-label">
+                      Username
+                    </label>
+                    <input
+                      type="userName"
+                      className="form-control"
+                      name="userName"
+                      id="userName"
+                      value={form.userName}
+                      onChange={handleChange}
+                      disabled={true}
+                    />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="email-address" className="form-label">Email address</label>
-                    <input name="email" id="emailAddress" value={form.email} type="email" className="form-control" onChange={handleChange}
-                      disabled={true} />
+                    <label htmlFor="email-address" className="form-label">
+                      Email address
+                    </label>
+                    <input
+                      name="email"
+                      id="emailAddress"
+                      value={form.email}
+                      type="email"
+                      className="form-control"
+                      onChange={handleChange}
+                      disabled={true}
+                    />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="business-name" className="form-label">Business Name</label>
-                    <input type="businessName" className="form-control" name="businessName" id="businessName" onChange={handleChange} />
+                    <label htmlFor="business-name" className="form-label">
+                      Business Name
+                    </label>
+                    <input
+                      type="businessName"
+                      className="form-control"
+                      name="businessName"
+                      id="businessName"
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="website" className="form-label">Website Link</label>
-                    <input type="website" className="form-control" name="website" id="website" onChange={handleChange} />
-                  </div>
-                  <div className="mb-3" >
-                    <label htmlFor="location" className="form-label" >Location</label>
-                    <input type="location" className="form-control" name="location" id="location" onChange={handleChange} />
+                    <label htmlFor="website" className="form-label">
+                      Website Link
+                    </label>
+                    <input
+                      type="website"
+                      className="form-control"
+                      name="website"
+                      id="website"
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="mb-3">
-                    <select defaultValue="default" className="business-category form-select" aria-label="Default select example" name="category" id="category" required onChange={handleChange}>
+                    <label htmlFor="location" className="form-label">
+                      Location
+                    </label>
+                    <input
+                      type="location"
+                      className="form-control"
+                      name="location"
+                      id="location"
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <select
+                      defaultValue="default"
+                      className="business-category form-select"
+                      aria-label="Default select example"
+                      name="category"
+                      id="category"
+                      required
+                      onChange={handleChange}
+                    >
                       <option value="default">Business Category</option>
                       <option value="plumbing">Plumbing</option>
-                      <option value="Gardening">Gardening</option>
-                      <option value="Building">Building</option>
+                      <option value="gardening">Gardening</option>
+                      <option value="building">Building</option>
                     </select>
                   </div>
                   <div className="input-group mb-3">
-                    <label htmlFor="logo" className="input-group-text">Logo</label>
-                    <input type="file" className="form-control" name="logo" id="logo" accept="image/*" onChange={(e) => handleFileUpload(e)} />
+                    <label htmlFor="logo" className="input-group-text">
+                      Logo
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      name="logo"
+                      id="logo"
+                      accept="image/*"
+                      onChange={(e) => handleFileUpload(e)}
+                    />
                   </div>
                   <div className="input-group">
                     <img src={form.logo} alt="" style={{ width: '100px' }} />
                   </div>
                   <div className="input-group">
-                    <button type="submit" className="btn btn-success">Register as a Business</button>
+                    <button type="submit" className="btn btn-success">
+                      Register as a Business
+                    </button>
                   </div>
-                  </div>
-                </form>
-              )
-            }
+                </div>
+              </form>
+            )}
           </div>
           <div className="col ">
             <div className="d-flex flex-col align-items-center h-100 w-100 justify-content-center">
-              <img src="/images/home.jpg" className="img-fluid" alt="home-image" />
+              <img
+                src="/images/home.jpg"
+                className="img-fluid"
+                alt="home-image"
+              />
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 
