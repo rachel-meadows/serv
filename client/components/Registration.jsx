@@ -39,19 +39,19 @@ function Registration() {
     setForm({ ...form, logo: base64 })
   }
 
-  function handleAddCustomer(e) {
-    e.preventDefault()
-    dispatch(
-      addUser(
-        {
-          ...form,
-          type: 'customer',
-        },
-        navigate,
-        '/customer'
-      )
-    )
-  }
+  // function handleAddCustomer(e) {
+  //   e.preventDefault()
+  //   dispatch(
+  //     addUser(
+  //       {
+  //         ...form,
+  //         type: 'customer',
+  //       },
+  //       navigate,
+  //       '/customer'
+  //     )
+  //   )
+  // }
 
   async function handleAddBusiness(e) {
     console.log('I am registering a business')
@@ -70,7 +70,17 @@ function Registration() {
   }
 
   const handleSetUserTypeCustomer = () => {
-    setUserType('customer')
+    // setUserType('customer')
+    dispatch(
+      addUser(
+        {
+          ...form,
+          type: 'customer',
+        },
+        navigate,
+        '/customer'
+      )
+    )
   }
 
   const handleSetUserTypeBusiness = () => {
@@ -116,7 +126,7 @@ function Registration() {
 
         <div className="row">
           <div className="col">
-            {userType === 'customer' && (
+            {/* {userType === 'customer' && (
               <>
                 <form
                   className="flex flex-col col-9 my-4 py-5"
@@ -174,7 +184,7 @@ function Registration() {
                   </div>
                 </form>
               </>
-            )}
+            )} */}
             {userType === 'business' && (
               <form
                 onSubmit={handleAddBusiness}
