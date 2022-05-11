@@ -6,9 +6,10 @@ import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
-  const { jobId, id, businessId, description, price, status } = props.quote
+  const { jobId, id, businessId, description, price, quoteStatus } = props.quote
   //console.log('Business', business)
   //console.log('Props', props)
+  const status = quoteStatus
   const user = useSelector((state) => state.currentUser)
 
   const navigate = useNavigate()
@@ -71,7 +72,7 @@ function QuotesItem(props) {
             <td>${price}.00</td>
           </tr>
           <tr>
-            <th scope="row">quoteStatus</th>
+            <th scope="row">Status</th>
             <td>
               {status === 'accepted' && <p>Quote has been accepted.</p>}
               {status === 'rejected' && <p>Quote has was rejected.</p>}
