@@ -68,7 +68,7 @@ function JobsList() {
   console.log(showMessage)
 
   return (
-    <>
+    <div className="container my-3">
       {/* {showMessage.type === 'jobAdd' && ( */}
       {showMessage === 'jobAdd' && (
         <div className="alert alert-success" role="alert">
@@ -118,7 +118,7 @@ function JobsList() {
           })
         )}
       </div>
-    </>
+    </div>
   )
 }
 
