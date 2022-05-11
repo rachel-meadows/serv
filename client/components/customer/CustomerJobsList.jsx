@@ -9,7 +9,7 @@ function JobsList() {
   const [jobs, setJobs] = useState([])
   const [allJobs, setAllJobs] = useState([])
   const [showMessage, setShowMessage] = useState({})
-  const [dropDownSelection, setdropDownSelection] = useState('unmatched')
+  const [dropDownSelection, setdropDownSelection] = useState('all')
   const location = useLocation()
   const navigate = useNavigate()
   // const dispatch = useDispatch()
@@ -44,7 +44,6 @@ function JobsList() {
       )
       setJobs(unmatchedJobs)
     } else if (dropDownSelection === 'quoted') {
-      //console.log('here')
       setJobs(
         allJobs.filter(
           (job) => job.jobStatus === 'open' && job.quoteStatus === 'pending'
