@@ -1,6 +1,7 @@
 import React from 'react'
 
 function IndividualQuote(props) {
+  console.log('props', props)
   return (
     <div className="container mt-3">
       <h2 className="text-dark mb-3">Quote</h2>
@@ -18,9 +19,7 @@ function IndividualQuote(props) {
             <tr>
               <th scope="row">Date added: </th>
               <td>
-                {props.dateAdded
-                  ? new Date(props.dateAdded).toLocaleString()
-                  : null}
+                {props.date ? new Date(props.date).toLocaleString() : null}
               </td>
             </tr>
           </tbody>
