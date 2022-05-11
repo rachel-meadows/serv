@@ -68,13 +68,13 @@ function CustomerJobCompleted() {
       )}
 
       <Review
-        quoteId={quote.id}
+        quoteId={quote?.id}
         customerId={customerId}
         reviewed={reviewed}
         setReviewed={setReviewed}
       />
       <br />
-      <CustomerCheckout quoteId={quote.id} />
+      <CustomerCheckout quoteId={quote?.id} />
     </div>
   )
 }
