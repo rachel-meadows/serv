@@ -38,7 +38,7 @@ function BusinessInfo({ children }) {
 
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Business Information</h2>
+      <h2 className="text-primary mb-3">Business Information</h2>
       {children} {/* This holds the WaitIndicator (from App) */}
       <div className="card my-2 p-4 col-xl-6">
         <table className="table">

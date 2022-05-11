@@ -51,7 +51,7 @@ function BusinessQuotedJob() {
 
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Quoted Jobs</h2>
+      <h2 className="text-primary mb-3">Quoted Jobs</h2>
       <div className="card my-2 p-4 col-xl-6">
         <table className="table">
           <tbody>

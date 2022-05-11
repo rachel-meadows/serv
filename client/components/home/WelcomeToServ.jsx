@@ -3,7 +3,7 @@ import React from 'react'
 function WelcomeToServ() {
   return (
     <div className="container my-3 welcome-to-serv">
-      <h2 className="text-success mt-3">Welcome to Serv.</h2>
+      <h2 className="text-dark mt-3">Welcome to Serv.</h2>
       <h3>We Serv. You</h3>
       <p className="tagline">
         We take the hard work out of vetting tradespeople. We select the best,
@@ -37,7 +37,7 @@ function WelcomeToServ() {
         services to our clients, together with the expertise to ensure you get
         the results you desire.
       </p>
-      <h4 className="my-4 text-success">The team at Serv.</h4>
+      <h4 className="my-4 text-dark">The team at Serv.</h4>
       <img src="/images/office-1.png" alt="Office Space" />
     </div>
   )

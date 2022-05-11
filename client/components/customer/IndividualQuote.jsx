@@ -3,7 +3,7 @@ import React from 'react'
 function IndividualQuote(props) {
   return (
     <div className="container mt-3">
-      <h2 className="text-success mb-3">Quote</h2>
+      <h2 className="text-dark mb-3">Quote</h2>
       <div className="card my-2 p-4 col-xl-6">
         <table className="table">
           <tbody>
