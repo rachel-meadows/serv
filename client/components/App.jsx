@@ -28,7 +28,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/welcome-to-serv" element={<WelcomeToServ />} />
+        <Route path="/welcome" element={<WelcomeToServ />} />
         <Route path="/services" element={<Services />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/customer/add" element={<CustomerJobAdd />} />

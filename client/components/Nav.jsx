@@ -85,12 +85,12 @@ function Nav() {
             </li> */}
           <li className="nav-item">
             <a href="/" onClick={handleLogin} className="nav-link">
-              <button className="btn btn-outline-danger">Login</button>
+              <button className="btn btn-outline-light">Login</button>
             </a>
           </li>
           <li className="nav-item">
             <a href="/" onClick={handleRegister} className="nav-link">
-              <button className="btn btn-outline-danger">Sign Up</button>
+              <button className="btn btn-outline-light">Sign Up</button>
             </a>
           </li>
         </>
