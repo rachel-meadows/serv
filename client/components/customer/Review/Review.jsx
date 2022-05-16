@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import StarRating from './StarRating'
+
 import { APIaddFeedback } from '../../../apis/customer'
+import StarRating from './StarRating'
 
 function Review({ quoteId, reviewed, setReviewed, customerId }) {
   const [rating, setRating] = useState(null)

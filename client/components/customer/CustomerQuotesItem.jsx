@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { APIgetBusinessById, APIchangeJobStatus } from '../../apis/business'
-import { APIchangeQuoteStatus, APIgetJobQuotes } from '../../apis/customer'
+
+import { APIchangeJobStatus, APIgetBusinessById } from '../../apis/business'
+import { APIchangeQuoteStatus } from '../../apis/customer'
 
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})

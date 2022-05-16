@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
+
 import { APIgetJobsByCustomer } from '../../apis/customer'
 import JobsListItem from './CustomerJobsItem'
 

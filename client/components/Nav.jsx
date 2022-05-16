@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserByAuth0Id } from '../actions/user'
+
 import { APIgetBusinessByUserId } from '../apis/business'
+import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
+import { getUserByAuth0Id } from '../actions/user'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav() {
   const dispatch = useDispatch()

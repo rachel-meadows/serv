@@ -1,8 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getRegisterFn } from '../../auth0-utils'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { getRegisterFn } from '../../auth0-utils'
 
 function Home() {
   const navigate = useNavigate()

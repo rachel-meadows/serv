@@ -2,13 +2,12 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import store from './store'
-
-// eslint-disable-next-line import/no-unresolved
-import config from './auth_config.json'
 
 import App from './components/App'
+// eslint-disable-next-line import/no-unresolved
 import { Auth0Provider } from '@auth0/auth0-react'
+import config from './auth_config.json'
+import store from './store'
 
 document.addEventListener('DOMContentLoaded', () => {
   render(

@@ -1,9 +1,9 @@
 const express = require('express')
 const path = require('path')
 
-const userRoutes = require('./routes/user')
 const businessRoutes = require('./routes/business')
 const customerRoutes = require('./routes/customer')
+const userRoutes = require('./routes/user')
 
 const server = express()
 

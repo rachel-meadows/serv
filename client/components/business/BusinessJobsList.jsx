@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import BusinessJobItem from './BusinessJobItem'
+import { useLocation } from 'react-router-dom'
+
 import {
   APIgetBusinessByUserId,
-  APIgetOpenJobsByCategory,
   APIgetJobsByUser,
+  APIgetOpenJobsByCategory,
 } from '../../apis/business'
-import { useLocation } from 'react-router-dom'
+import BusinessJobItem from './BusinessJobItem'
 
 function BusinessJobsList() {
   const location = useLocation()
