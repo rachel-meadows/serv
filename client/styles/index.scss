@@ -1,112 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+$primary: #0074d9;
+$danger: #ff4136;
+$success: #1ebd44;
+$light: #fff;
+
+@import '~bootstrap/scss/bootstrap';
 
 html,
-body {
-  font-family: 'Montserrat', sans-serif;
+body,
+#app {
+  height: 100%;
 }
 
-.table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table td,
-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-table tr:hover {
-  background-color: #ddd;
-}
-
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #9c9c9c;
-  color: white;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  align-self: stretch;
-}
-
-.logo {
-  width: 50%;
-}
-
-.sign {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  text-align: right;
-  justify-content: right;
-  gap: 10px;
-}
-
-a {
-  color: inherit;
-}
-
-.nav-item {
-  width: 50%;
-  text-align: right;
-}
-
-.app {
+#app {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.navbar-brand > img {
+  width: 120px;
+}
+
+#app > footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: #1ebd44;
+  color: #ffffff;
+  justify-content: center;
   align-items: center;
 }
 
-.registration {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.carousel-heading {
+  font-family: 'helvetica', serif;
+  font-size: 2rem;
+  color: #ffffff;
 }
 
-.form {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.about-us {
+  background-color: #f4f4f4;
+  padding: 4rem 4rem;
 }
 
-.title {
-  font-size: larger;
+.quote {
+  background-color: #f4f4f4;
+  padding: 4rem 4rem;
 }
 
-.message {
-  background-color: lightgrey;
-  font-family: 'Courier New', Courier, monospace;
+.register-buttons {
+  padding: 1rem 1rem;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.users {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ping {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.register {
+  padding: 10rem;
 }

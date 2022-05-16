@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getLoginFn, getLogoutFn, getRegisterFn } from '../auth0-utils'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserByAuth0Id } from '../actions/user'
+import { APIgetBusinessByUserId } from '../apis/business'
 
 function Nav() {
-  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
   const login = getLoginFn(useAuth0)
   const logout = getLogoutFn(useAuth0)
   const register = getRegisterFn(useAuth0)
+  const user = useSelector((state) => state.user)
+  const currentUser = useSelector((state) => state.currentUser)
+  const [business, setBusiness] = useState({})
+
+  useEffect(() => {
+    if (user.auth0Id !== '') {
+      dispatch(getUserByAuth0Id(user.auth0Id))
+    }
+  }, [user])
+
+  useEffect(() => {
+    APIgetBusinessByUserId(currentUser?.id)
+      .then((business) => {
+        setBusiness(business)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [currentUser])
 
   function handleLogin(event) {
     event.preventDefault()
@@ -26,34 +48,57 @@ function Nav() {
   }
 
   return (
-    <nav>
-      <h1 className="logo">Full-stack Boilerplate with Auth0</h1>
-      <section className="nav-item">
-        <IfAuthenticated>
-          <p>
-            Hello, {user.name} {user.roles ? `(${user.roles})` : null}
-          </p>
-          <section className="sign">
-            <a href="/" onClick={handleLogoff} className="nav-link">
-              Log out
-            </a>
-          </section>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          {/* <section className='nav-item'> */}
-          <p>Hello, guest</p>
-          <section className="sign">
+    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <IfAuthenticated>
+        {currentUser?.type === 'customer' && (
+          <>
+            <li className="nav-item">
+              <Link to="/customer" className="nav-link">
+                <button className="btn btn-outline-light">View Listings</button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/customer/add" className="nav-link">
+                <button className="btn btn-outline-light">Add Listing</button>
+              </Link>
+            </li>
+          </>
+        )}
+        {currentUser?.type === 'business' && (
+          <>
+            <li className="nav-item">
+              <Link to="/business" className="nav-link">
+                <button className="btn btn-outline-light ">Business</button>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`/business/${business?.id}`} className="nav-link">
+                <button className="btn btn-outline-light">Details</button>
+              </Link>
+            </li>
+          </>
+        )}
+        <li className="nav-item">
+          <a href="/" onClick={handleLogoff} className="nav-link ">
+            <button className="btn btn-light">Log out</button>
+          </a>
+        </li>
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <>
+          <li className="nav-item">
             <a href="/" onClick={handleLogin} className="nav-link">
-              Sign in
+              <button className="btn btn-outline-light">Login</button>
             </a>
+          </li>
+          <li className="nav-item">
             <a href="/" onClick={handleRegister} className="nav-link">
-              Register
+              <button className="btn btn-outline-light">Sign Up</button>
             </a>
-          </section>
-          {/* </section> */}
-        </IfNotAuthenticated>
-      </section>
-    </nav>
+          </li>
+        </>
+      </IfNotAuthenticated>
+    </ul>
   )
 }
 

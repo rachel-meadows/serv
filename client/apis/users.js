@@ -1,19 +1,18 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootUrl = '/api/v1/user'
 
-export function getUsers() {
-  return request.get(rootUrl + '/users').then((res) => {
-    return res.body.users
-  })
+export function APIaddUser(data) {
+  return request
+    .post(rootUrl)
+    .send(data)
+    .then((res) => {
+      return res.body
+    })
 }
 
-export function addUser(user) {
-  return request.post(rootUrl + '/users').send(user)
-}
-
-export function getUserRoles(id) {
-  return request.get(`${rootUrl}/users/${id}`).then((res) => {
-    return res.body.roles
+export function APIgetUserByAuth0Id(auth0Id) {
+  return request.get(rootUrl + `/${auth0Id}`).then((res) => {
+    return res.body
   })
 }
