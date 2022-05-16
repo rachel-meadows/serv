@@ -1,8 +1,8 @@
 const express = require('express')
-
-const dbUsers = require('../db/users')
-const dbBusiness = require('../db/business')
 const router = express.Router()
+
+const dbBusiness = require('../db/business')
+const dbUsers = require('../db/users')
 
 // POST /api/v1/user
 router.post('/', async (req, res) => {

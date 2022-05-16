@@ -1,9 +1,10 @@
 const express = require('express')
+const path = require('path')
+const router = express.Router()
+
+const dbBusiness = require('../db/business')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
-const dbBusiness = require('../db/business')
-const router = express.Router()
-const path = require('path')
 
 require('dotenv').config({ path: path.join(__dirname, '../', '.env') })
 const Stripe = require('stripe')

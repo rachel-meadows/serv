@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { APIgetJobQuotes, APIgetJobsByCustomer } from '../../apis/customer'
+
+import { APIgetJobsByCustomer, APIgetJobQuotes } from '../../apis/customer'
 import CustomerCheckout from './StripeCheckout/CustomerCheckout'
-import JobsListItem from './CustomerJobsItem'
 import IndividualQuote from './IndividualQuote'
-import StarRating from './Review/StarRating'
+import JobsListItem from './CustomerJobsItem'
 import Review from './Review/Review'
+import StarRating from './Review/StarRating'
 
 function CustomerJobCompleted() {
   const { jobsId } = useParams()

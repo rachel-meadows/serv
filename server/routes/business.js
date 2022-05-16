@@ -1,8 +1,9 @@
 const express = require('express')
+const router = express.Router()
+
+const dbBusiness = require('../db/business')
 const dbJobs = require('../db/jobs')
 const dbQuotes = require('../db/quotes')
-const dbBusiness = require('../db/business')
-const router = express.Router()
 
 // GET /business
 router.get('/', async (req, res) => {
