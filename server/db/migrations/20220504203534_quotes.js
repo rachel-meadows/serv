@@ -5,7 +5,7 @@ exports.up = function (knex) {
     table.integer('business_id').references('businesses.id')
     table.int('price')
     table.date('date_added')
-    table.string('notes')
+    table.text('notes')
     table.string('status')
   })
 }
