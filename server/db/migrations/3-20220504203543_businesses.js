@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.string('category')
     table.text('logo')
     table.text('location')
-    table.integer('average_rating')
+    table.real('average_rating')
     table.integer('rating_count')
   })
 }
