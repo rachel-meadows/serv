@@ -13,19 +13,20 @@ function getUsers(db = connection) {
 }
 
 function addUser(input, db = connection) {
+  console.log('addUser input: ', input)
   const { auth0Id, userName, email, type } = input
   const user = { auth0_id: auth0Id, user_name: userName, email, type }
   return db('users')
     .insert(user, 'id')
-    .then((id) => {
-      return getUserById(id)
+    .then((data) => {
+      return getUserById(data)
     })
 }
 
-function getUserById(id, db = connection) {
-  console.log('id: ', id)
+function getUserById([data], db = connection) {
+  console.log('id in getUserById: ', data.id)
   return db('users')
-    .where('id', id)
+    .where('id', data.id)
     .select(
       'id',
       'auth0_id as auth0Id',
@@ -37,9 +38,9 @@ function getUserById(id, db = connection) {
 }
 
 function getUserByAuth0Id(auth0Id, db = connection) {
+  console.log('auth0Id in getUserByAuth0Id: ', auth0Id)
   return db('users')
     .where('auth0_id', auth0Id)
-    .first()
     .select(
       'id',
       'auth0_id as auth0Id',
@@ -47,6 +48,7 @@ function getUserByAuth0Id(auth0Id, db = connection) {
       'email',
       'type'
     )
+    .first()
 }
 
 module.exports = {
