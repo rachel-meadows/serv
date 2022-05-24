@@ -17,18 +17,13 @@ function addUser(input, db = connection) {
   const user = { auth0_id: auth0Id, user_name: userName, email, type }
   return db('users')
     .insert(user, 'id')
-    .then((data) => {
-      return getUserById(data)
+    .then((id) => {
+      return getUserById(id)
     })
 }
 
-function getUserById([id], db = connection) {
+function getUserById(id, db = connection) {
   console.log('id: ', id)
-  // Deal with conversion to postgres
-  if (id.id) {
-    return (id = id.id)
-  }
-  console.log('id2: ', id)
   return db('users')
     .where('id', id)
     .select(
