@@ -12,9 +12,9 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          auth0_id: 'auth0|627a2087c94999006fde3c59',
-          user_name: 'servbusiness',
-          email: 'servbusiness@example.com',
+          auth0_id: 'auth0|628cc6ba9000dc0069a3e5f4',
+          user_name: 'business',
+          email: 'business@example.com',
           type: 'business',
         },
       ])
