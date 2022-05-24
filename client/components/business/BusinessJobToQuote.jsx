@@ -15,7 +15,6 @@ function BusinessJobToQuote() {
   const [business, setBusiness] = useState({})
   const user = useSelector((state) => state.currentUser)
 
-  console.log(job)
   useEffect(() => {
     APIgetJobById(jobId)
       .then((job) => {
@@ -27,8 +26,6 @@ function BusinessJobToQuote() {
 
     APIgetBusinessByUserId(user?.id)
       .then((business) => {
-        console.log('user', user)
-        console.log('business', business)
         setBusiness(business)
       })
       .catch((err) => {
@@ -51,8 +48,6 @@ function BusinessJobToQuote() {
       businessId: business?.id,
     }))
   }
-
-  //console.log()
 
   const handleSetToggleForm = () => {
     setToggleForm(!toggleForm)

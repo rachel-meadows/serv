@@ -11,7 +11,6 @@ function BusinessActiveJob() {
   useEffect(() => {
     APIgetJobById(jobId)
       .then((job) => {
-        console.log('Active', job)
         setJob(job)
       })
       .catch(() => null)

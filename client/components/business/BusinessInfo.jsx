@@ -12,7 +12,6 @@ function BusinessInfo({ children }) {
   useEffect(() => {
     APIgetBusinessById(businessId)
       .then((data) => {
-        console.log(data)
         setBusiness(data)
       })
       .catch(() => null)
@@ -22,7 +21,6 @@ function BusinessInfo({ children }) {
     APIgetReviews(Number(businessId))
       .then((data) => {
         const reviewData = data.filter((obj) => obj.review !== '')
-        console.log('reviews: ', reviewData)
         setReviews(reviewData)
       })
       .catch(() => null)

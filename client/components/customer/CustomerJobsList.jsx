@@ -17,17 +17,14 @@ function JobsList() {
 
   useEffect(() => {
     // obj returning will include quotes object
-    //console.log(customerId)
     APIgetJobsByCustomer(customerId)
       .then((jobs) => {
-        console.log(jobs)
         setAllJobs(jobs)
         return null
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
         console.log(errMessage)
-        // dispatch(showError(errMessage))
       })
   }, [customerId])
 
@@ -72,7 +69,6 @@ function JobsList() {
   function handleDropDown(event) {
     setdropDownSelection(event.target.value)
   }
-  //console.log(showMessage)
 
   //for styling
   const size = 3

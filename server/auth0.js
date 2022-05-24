@@ -4,6 +4,7 @@ const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 const domain = process.env.AUTH0_DOMAIN
+// const audience = process.env.AUTH0_SSO_AUDIENCE
 const audience = process.env.AUTH0_AUDIENCE
 
 const checkJwt = jwt({

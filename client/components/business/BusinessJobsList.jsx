@@ -115,7 +115,6 @@ function BusinessJobsList() {
 
       <div className="d-flex d-flex flex-row flex-wrap w-100 ">
         {jobs?.map((job) => {
-          console.log('BusJobList', job)
           return (
             <BusinessJobItem
               key={job.id}

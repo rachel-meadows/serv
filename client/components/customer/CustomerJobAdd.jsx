@@ -18,7 +18,6 @@ function AddJob() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('here are our inputs', inputs)
     APIaddJob(inputs)
       .then(() =>
         navigate('/customer', { state: { message: { type: 'jobAdd' } } })

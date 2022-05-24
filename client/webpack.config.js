@@ -17,9 +17,13 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     new webpack.DefinePlugin({
-      'process.env.DOMAIN': JSON.stringify(process.env.DOMAIN),
-      'process.env.CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
-      'process.env.AUDIENCE': JSON.stringify(process.env.AUDIENCE),
+      'process.env.AUTH0_DOMAIN': JSON.stringify(process.env.AUTH0_DOMAIN),
+      'process.env.AUTH0_MACHINE_2_MACHINE_CLIENT_ID': JSON.stringify(
+        process.env.AUTH0_MACHINE_2_MACHINE_CLIENT_ID
+      ),
+      'process.env.AUTH0_SSO_AUDIENCE': JSON.stringify(
+        process.env.AUTH0_SSO_AUDIENCE
+      ),
     }),
   ],
   module: {

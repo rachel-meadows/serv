@@ -11,10 +11,10 @@ import store from './store'
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Auth0Provider
-      domain={process.env.DOMAIN}
-      clientId={process.env.CLIENT_ID}
+      domain={process.env.AUTH0_DOMAIN}
+      clientId={process.env.AUTH0_MACHINE_2_MACHINE_CLIENT_ID}
       redirectUri={window.location.origin}
-      audience={process.env.AUDIENCE}
+      audience={process.env.AUTH0_SSO_AUDIENCE}
     >
       <Provider store={store}>
         <Router>

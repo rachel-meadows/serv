@@ -1,7 +1,6 @@
 import React from 'react'
 
 function IndividualQuote(props) {
-  console.log('props', props)
   return (
     <div className="container mt-3">
       <h2 className="text-dark mb-3">Quote</h2>

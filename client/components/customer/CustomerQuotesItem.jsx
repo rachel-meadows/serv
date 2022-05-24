@@ -8,8 +8,6 @@ import { APIchangeQuoteStatus } from '../../apis/customer'
 function QuotesItem(props) {
   const [business, setBusiness] = useState({})
   const { jobId, id, businessId, description, price, quoteStatus } = props.quote
-  //console.log('Business', business)
-  //console.log('Props', props)
   const status = quoteStatus
   const user = useSelector((state) => state.currentUser)
 
@@ -33,23 +31,12 @@ function QuotesItem(props) {
   useEffect(() => {
     APIgetBusinessById(businessId)
       .then((data) => {
-        //console.log('data', data)
         return setBusiness(data)
       })
       .catch((err) => {
         console.error(err)
       })
   }, [user])
-  // useEffect(() => {
-  //   APIgetJobQuotes(user?.id)
-  //     .then((data) => {
-  //       //console.log('data', data)
-  //       return setBusiness(data)
-  //     })
-  //     .catch((err) => {
-  //       console.error(err)
-  //     })
-  // }, [user])
 
   return (
     <div className="card my-2 p-4 col-xl-6">

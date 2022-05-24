@@ -10,7 +10,6 @@ function addBusiness(input, db = connection) {
     logo,
     location,
   }
-  console.log('location in db function: ', location)
   return db('businesses').insert(business)
 }
 

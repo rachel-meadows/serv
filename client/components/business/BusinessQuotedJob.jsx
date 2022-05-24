@@ -15,9 +15,6 @@ function BusinessQuotedJob() {
   const { jobId } = useParams()
   const user = useSelector((state) => state.currentUser)
 
-  console.log(quote)
-  console.log(job)
-
   useEffect(() => {
     APIgetQuoteByJobAndUserId(jobId, user?.id)
       .then((quote) => {
@@ -49,7 +46,6 @@ function BusinessQuotedJob() {
         console.error(err)
       })
   }
-  console.log('Quoted', job)
   return (
     <div className="container mt-3">
       <h2 className="text-primary mb-3">Quoted Jobs</h2>
