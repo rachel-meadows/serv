@@ -25,7 +25,6 @@ function addUser(input, db = connection) {
 function getUserById(id, db = connection) {
   return db('users')
     .where('id', id)
-    .first()
     .select(
       'id',
       'auth0_id as auth0Id',
@@ -33,6 +32,7 @@ function getUserById(id, db = connection) {
       'email',
       'type'
     )
+    .first()
 }
 
 function getUserByAuth0Id(auth0Id, db = connection) {
