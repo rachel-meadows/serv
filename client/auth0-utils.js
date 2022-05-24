@@ -9,6 +9,7 @@ const emptyUser = {
 }
 
 function saveUser(user = emptyUser) {
+  console.log('user: ', user)
   store.dispatch(setUser(user))
 }
 

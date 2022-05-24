@@ -24,13 +24,15 @@ function Nav() {
   }, [user])
 
   useEffect(() => {
-    APIgetBusinessByUserId(currentUser?.id)
-      .then((business) => {
-        setBusiness(business)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    if (currentUser.id) {
+      APIgetBusinessByUserId(currentUser.id)
+        .then((business) => {
+          setBusiness(business)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }, [currentUser])
 
   function handleLogin(event) {

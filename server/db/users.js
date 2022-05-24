@@ -17,14 +17,12 @@ function addUser(input, db = connection) {
   const user = { auth0_id: auth0Id, user_name: userName, email, type }
   return db('users')
     .insert(user, 'id')
-    .then((id) => {
-      return getUserById(id)
+    .then(([data]) => {
+      return getUserById(data.id)
     })
 }
 
 function getUserById(id, db = connection) {
-  console.log('id: ', id)
-  console.log('id2: ', id?.id)
   return db('users')
     .where('id', id)
     .select(
