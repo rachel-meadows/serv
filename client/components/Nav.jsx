@@ -24,7 +24,7 @@ function Nav() {
   }, [user])
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser.id !== null) {
       APIgetBusinessByUserId(currentUser.id)
         .then((business) => {
           setBusiness(business)
