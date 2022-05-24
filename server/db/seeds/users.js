@@ -5,9 +5,9 @@ exports.seed = function (knex) {
       return knex('users').insert([
         {
           id: 1,
-          auth0_id: 'auth0|627a1fe6a17ac70069715cdd',
-          user_name: 'servcustomer',
-          email: 'servcustomer@example.com',
+          auth0_id: 'auth0|628cc12a89f78c0068a45fb4',
+          user_name: 'customer',
+          email: 'customer@example.com',
           type: 'customer',
         },
         {
@@ -16,13 +16,6 @@ exports.seed = function (knex) {
           user_name: 'servbusiness',
           email: 'servbusiness@example.com',
           type: 'business',
-        },
-        {
-          id: 7,
-          auth0_id: 'google-oauth2|100533594005351605752',
-          user_name: 'Daniel Bird',
-          email: 'danieldbird@gmail.com',
-          type: 'customer',
         },
       ])
     })

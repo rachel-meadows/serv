@@ -55,7 +55,6 @@ function Registration() {
   // }
 
   async function handleAddBusiness(e) {
-    console.log(form)
     e.preventDefault()
 
     dispatch(
@@ -71,7 +70,6 @@ function Registration() {
   }
 
   const handleSetUserTypeCustomer = () => {
-    console.log(form)
     // setUserType('customer')
     dispatch(
       addUser(
