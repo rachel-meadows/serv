@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.integer('user_id').references('users.id')
     table.integer('business_id').references('businesses.id')
-    table.float('rating')
+    table.real('rating')
     table.text('review')
     table.date('date_added')
   })
